@@ -1,0 +1,5 @@
+/* Supplement for approved Taktera v3.3. Import AFTER 04_tokens/taktera.tokens.css */
+:root { --tk-space-0:0px; --tk-space-1:4px; --tk-space-2:8px; --tk-space-3:12px; --tk-space-4:16px; --tk-space-5:20px; --tk-space-6:24px; --tk-space-8:32px; --tk-space-10:40px; --tk-space-12:48px; --tk-font-xs:12px; --tk-font-sm:14px; --tk-font-md:16px; --tk-font-lg:18px; --tk-font-xl:24px; --tk-font-2xl:32px; --tk-row-height:44px; --tk-control-height:40px; }
+[data-density="compact"] { --tk-row-height:36px; --tk-control-height:32px; }
+[data-density="comfortable"] { --tk-row-height:44px; --tk-control-height:40px; }
+@media (prefers-reduced-motion:reduce) { *,*::before,*::after {scroll-behavior:auto !important;} }

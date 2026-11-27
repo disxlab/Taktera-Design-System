@@ -1,0 +1,71 @@
+{
+  "library": "Lucide",
+  "package": "lucide-react",
+  "source": "https://lucide.dev/icons/",
+  "rules": {
+    "defaultSize": 20,
+    "compactSize": 16,
+    "largeSize": 24,
+    "illustrativeSize": 32,
+    "strokeWidth": 1.5,
+    "lineCap": "round",
+    "lineJoin": "round",
+    "color": "currentColor",
+    "filledIcons": false
+  },
+  "navigation": {
+    "dashboard": "LayoutDashboard",
+    "clients": "UsersRound",
+    "schedule": "CalendarDays",
+    "finance": "WalletCards",
+    "reports": "ChartNoAxesCombined",
+    "warehouse": "Package",
+    "messages": "MessageCircle",
+    "settings": "Settings"
+  },
+  "actions": {
+    "search": "Search",
+    "add": "Plus",
+    "edit": "Pencil",
+    "delete": "Trash2",
+    "view": "Eye",
+    "hide": "EyeOff",
+    "filter": "ListFilter",
+    "download": "Download",
+    "upload": "Upload",
+    "save": "Save",
+    "refresh": "RefreshCw",
+    "more": "Ellipsis",
+    "openExternal": "ExternalLink"
+  },
+  "status": {
+    "success": "CircleCheck",
+    "warning": "TriangleAlert",
+    "danger": "CircleX",
+    "info": "Info",
+    "pending": "Clock",
+    "loading": "LoaderCircle"
+  },
+  "productContext": {
+    "clinic": "Stethoscope",
+    "beauty": "Sparkles",
+    "spa": "Waves",
+    "fitness": "Dumbbell",
+    "travel": "Plane"
+  },
+  "note": "Product-context icons are UI pictograms only and must never replace the Taktera brand mark or product logo lockups.",
+  "travelDomain": {
+    "tours": "MapPinned",
+    "bookings": "CalendarRange",
+    "travelers": "UsersRound",
+    "suppliers": "Building2",
+    "documents": "Files",
+    "payments": "WalletCards",
+    "destinations": "Globe2",
+    "tickets": "TicketsPlane",
+    "luggage": "Luggage",
+    "transfers": "BusFront",
+    "hotels": "Hotel",
+    "insurance": "ShieldCheck"
+  }
+}

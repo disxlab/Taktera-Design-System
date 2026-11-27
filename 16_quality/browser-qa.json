@@ -1,0 +1,218 @@
+{
+  "browser": "Chromium",
+  "url": "about:blank + inlined local assets (navigation sandbox restriction)",
+  "checks": [
+    {
+      "name": "loaded",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "platform-light",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "no-overflow platform-light",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "platform-dark",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "no-overflow platform-dark",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "clinic-light",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "no-overflow clinic-light",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "clinic-dark",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "no-overflow clinic-dark",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "beauty-light",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "no-overflow beauty-light",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "beauty-dark",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "no-overflow beauty-dark",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "spa-light",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "no-overflow spa-light",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "spa-dark",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "no-overflow spa-dark",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "fitness-light",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "no-overflow fitness-light",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "fitness-dark",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "no-overflow fitness-dark",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "travel-light",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "no-overflow travel-light",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "travel-dark",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "no-overflow travel-dark",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "records navigation",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "accessible mobile nav label",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "filter",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "status tabs",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "pagination",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "dialog opens",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "invalid form",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "create record",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "components view",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "toast",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "confirm dialog",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "Escape closes",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "320px mobile no overflow",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "mobile no horizontal overflow",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "main landmark",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "page errors",
+      "pass": true,
+      "details": "[]"
+    },
+    {
+      "name": "console errors",
+      "pass": true,
+      "details": "[]"
+    }
+  ],
+  "console_errors": [],
+  "page_errors": []
+}

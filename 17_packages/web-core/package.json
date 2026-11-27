@@ -1,0 +1,37 @@
+{
+  "name": "@taktera/ui-core",
+  "version": "4.0.0-alpha.5",
+  "private": true,
+  "description": "Taktera Design System Web Core: offline-capable DOM components and product themes",
+  "type": "module",
+  "sideEffects": [
+    "./taktera-ui.css",
+    "./taktera-ui.js"
+  ],
+  "exports": {
+    ".": {
+      "types": "./index.d.mts",
+      "import": "./index.mjs"
+    },
+    "./styles.css": "./taktera-ui.css",
+    "./script.js": "./taktera-ui.js"
+  },
+  "types": "./index.d.mts",
+  "files": [
+    "index.mjs",
+    "index.d.ts",
+    "taktera-ui.js",
+    "taktera-ui.css",
+    "README.md",
+    "index.d.mts"
+  ],
+  "scripts": {
+    "check:js": "node --check taktera-ui.js && node --check index.mjs",
+    "check:types": "tsc -p tsconfig.types.json --noEmit",
+    "test": "npm run check:js && npm run check:types"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "UNLICENSED"
+}

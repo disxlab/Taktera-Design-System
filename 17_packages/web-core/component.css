@@ -1,0 +1,44 @@
+/* Taktera UI Core component layer v4.0 alpha.3. CSS token roles are inherited from v3.3. */
+.tku-root {font-family:var(--tk-font);font-size:14px;background:var(--tk-canvas);color:var(--tk-text);color-scheme:light;line-height:1.5}
+.tku-root[data-theme=dark]{color-scheme:dark}
+.tku-root *, .tku-root *::before, .tku-root *::after {box-sizing:border-box}
+.tku-root button,.tku-root input,.tku-root select,.tku-root textarea {font:inherit}
+.tku-root :is(button,input,select,a,summary,[tabindex]):focus-visible {outline:3px solid var(--tk-focus-ring);outline-offset:3px}
+.tku-button{display:inline-flex;align-items:center;justify-content:center;border-radius:var(--tk-radius-md);gap:8px;min-height:40px;padding:8px 16px;border:1px solid var(--tk-control-border);cursor:pointer;font-weight:600;text-align:center;transition:background var(--tk-motion-fast),border-color var(--tk-motion-fast)}
+.tku-button--primary{background:var(--tk-accent);border-color:var(--tk-accent);color:var(--tk-on-accent)}
+.tku-button--primary:hover:not(:disabled){background:var(--tk-accent-hover)}.tku-button--primary:active:not(:disabled){background:var(--tk-accent-pressed)}
+.tku-button--secondary{background:var(--tk-surface);color:var(--tk-text)}.tku-button--secondary:hover:not(:disabled){background:var(--tk-disabled-bg)}
+.tku-button--ghost{background:transparent;border-color:transparent;color:var(--tk-text)}.tku-button--ghost:hover:not(:disabled){background:var(--tk-disabled-bg)}
+.tku-button--danger{background:var(--tk-status-error-bg);color:var(--tk-status-error-text);border-color:var(--tk-status-error-text)}
+.tku-button:disabled{background:var(--tk-disabled-bg);color:var(--tk-disabled-text);border-color:var(--tk-border);cursor:not-allowed;opacity:.85}
+.tku-field{display:flex;flex-direction:column;gap:6px;min-width:0}.tku-field__label{font-weight:600}
+.tku-input{width:100%;min-width:0;min-height:42px;background:var(--tk-surface);color:var(--tk-text);border:1px solid var(--tk-control-border);border-radius:var(--tk-radius-md);padding:8px 12px}
+.tku-input[aria-invalid=true]{border:2px solid var(--tk-status-error-text)}.tku-field__error{color:var(--tk-status-error-text);font-size:12px}.tku-field__error[hidden]{display:none}
+.tku-check{display:inline-flex;align-items:center;gap:9px;min-height:40px;cursor:pointer}.tku-check input{accent-color:var(--tk-accent);inline-size:18px;block-size:18px}
+.tku-status{display:inline-flex;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:650;white-space:nowrap}
+.tku-status--info,.tku-alert--info{color:var(--tk-status-info-text);background:var(--tk-status-info-bg)}
+.tku-status--success,.tku-alert--success{color:var(--tk-status-success-text);background:var(--tk-status-success-bg)}
+.tku-status--warning,.tku-alert--warning{color:var(--tk-status-warning-text);background:var(--tk-status-warning-bg)}
+.tku-status--error,.tku-alert--error{color:var(--tk-status-error-text);background:var(--tk-status-error-bg)}
+.tku-alert{padding:12px 16px;border-radius:var(--tk-radius-md)}.tku-alert p{margin:3px 0 0}
+.tku-card{background:var(--tk-surface);border:1px solid var(--tk-border);border-radius:var(--tk-radius-lg);padding:20px;min-width:0}.tku-card__title{margin:0 0 14px;font-size:16px}
+.tku-tablist{display:flex;gap:4px;border-bottom:1px solid var(--tk-border);overflow-x:auto}.tku-tab{min-height:44px;white-space:nowrap;border:none;border-bottom:3px solid transparent;padding:8px 16px;background:transparent;color:var(--tk-muted);cursor:pointer}
+.tku-tab[aria-selected=true]{border-color:var(--tk-accent-text);color:var(--tk-accent-text);font-weight:700}.tku-tabpanel{padding:14px 2px}
+.tku-dialog{background:var(--tk-surface);color:var(--tk-text);border:1px solid var(--tk-control-border);border-radius:var(--tk-radius-lg);padding:24px;max-width:min(520px,calc(100vw - 32px));width:100%;box-shadow:0 30px 70px #0005}
+.tku-dialog::backdrop{background:#0008}.tku-dialog__title{margin:0 0 16px;font-size:20px}.tku-dialog__body{margin-bottom:24px}.tku-dialog__footer{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.tku-table-scroll{max-width:100%;overflow-x:auto}.tku-table{width:100%;min-width:400px;border-collapse:collapse;text-align:left;background:var(--tk-surface)}
+.tku-table :is(th,td){padding:12px 14px;border-bottom:1px solid var(--tk-border)}.tku-table th{font-weight:650;color:var(--tk-muted);white-space:nowrap}.tku-table th[aria-sort] {color:var(--tk-accent-text)}.tku-table tr:hover td{background:var(--tk-disabled-bg)}
+.tku-table__empty{text-align:center;color:var(--tk-muted)}.tku-pager{display:flex;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:wrap;margin-top:12px}.tku-pager__info{font-variant-numeric:tabular-nums}
+.tku-toasts{position:fixed;right:18px;bottom:18px;display:flex;flex-direction:column;gap:8px;z-index:20;max-width:min(390px,calc(100vw - 36px))}.tku-toasts__live{position:absolute;left:-9999px;inline-size:1px;block-size:1px;overflow:hidden}
+.tku-toast{display:flex;align-items:center;gap:12px;justify-content:space-between;background:var(--tk-surface);color:var(--tk-text);border:1px solid var(--tk-control-border);border-radius:var(--tk-radius-md);padding:8px 12px;box-shadow:0 5px 15px #0002}
+@media (prefers-reduced-motion:reduce){.tku-button{transition:none}}
+@media (max-width:430px){.tku-dialog{padding:16px}.tku-pager{justify-content:flex-start}.tku-toasts{left:12px;right:12px;max-width:none}}
+
+/* High-contrast OS mode: preserve boundaries and visible selection without depending on brand colors. */
+@media (forced-colors: active) {
+  .tku-button,.tku-input,.tku-dialog,.tku-toast { border-color:ButtonText;forced-color-adjust:auto }
+  .tku-button:focus-visible,.tku-input:focus-visible,.tku-tab:focus-visible { outline:3px solid Highlight;outline-offset:2px }
+  .tku-tab[aria-selected=true] { border-bottom-color:Highlight;color:Highlight }
+  .tku-status,.tku-alert { border:1px solid CanvasText }
+  .tku-button:disabled { border-color:GrayText;color:GrayText }
+}

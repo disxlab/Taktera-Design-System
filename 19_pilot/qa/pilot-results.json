@@ -1,0 +1,64 @@
+{
+  "passed": 14,
+  "total": 14,
+  "checks": [
+    {
+      "check": "HTTP module loads",
+      "ok": true
+    },
+    {
+      "check": "Consumer app bootstraps with installed package",
+      "ok": true
+    },
+    {
+      "check": "English pager",
+      "ok": true
+    },
+    {
+      "check": "English labels",
+      "ok": true
+    },
+    {
+      "check": "Numeric sorting",
+      "ok": true
+    },
+    {
+      "check": "Pagination",
+      "ok": true
+    },
+    {
+      "check": "Russian labels",
+      "ok": true
+    },
+    {
+      "check": "Russian pager",
+      "ok": true
+    },
+    {
+      "check": "Theme attributes",
+      "ok": true
+    },
+    {
+      "check": "Localized modal",
+      "ok": true
+    },
+    {
+      "check": "Focus restored",
+      "ok": true
+    },
+    {
+      "check": "English modal",
+      "ok": true
+    },
+    {
+      "check": "Mobile no viewport overflow",
+      "ok": true
+    },
+    {
+      "check": "No JavaScript errors",
+      "ok": true
+    }
+  ],
+  "js_errors": [],
+  "scope": "Chromium injected-local-files pilot with npm ci --offline; HTTP navigation blocked by environment policy; not full cross-browser/assistive-tech audit"
+}

@@ -1,0 +1,15 @@
+{
+  "scope": [
+    "01_brandbook",
+    "02_logos",
+    "03_icons",
+    "04_tokens",
+    "05_typography",
+    "06_templates",
+    "07_guidelines",
+    "08_exports"
+  ],
+  "compared": 257,
+  "identical": 257,
+  "different": []
+}

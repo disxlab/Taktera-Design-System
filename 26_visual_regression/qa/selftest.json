@@ -1,0 +1,11 @@
+{
+  "positive": {
+    "passed": 48,
+    "failed": 0
+  },
+  "negative": {
+    "changed_ratio": 0.35968843005952383,
+    "regression_detected": true
+  },
+  "status": "pass"
+}

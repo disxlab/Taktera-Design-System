@@ -1,0 +1,22 @@
+{
+  "release": "4.0-alpha.9",
+  "date": "2026-11-23",
+  "preservedFiles": 657,
+  "newBrowserChecks": 18,
+  "newBrowserTotal": 18,
+  "projectTasks": 36,
+  "statuses": {
+    "planned": 7,
+    "in_progress": 3,
+    "blocked": 6,
+    "deferred": 1,
+    "done": 19
+  },
+  "archiveBytes": 13480518,
+  "archiveEntries": 716,
+  "qaNotes": [
+    "Chromium via injected local resources; file URL blocked by environment",
+    "No Windows/macOS native or screen-reader certification",
+    "Visual assets and templates candidates pending approval"
+  ]
+}

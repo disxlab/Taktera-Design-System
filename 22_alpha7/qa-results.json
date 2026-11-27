@@ -1,0 +1,71 @@
+{
+  "passed": 15,
+  "total": 16,
+  "checks": [
+    [
+      "grid initial rows",
+      "PASS"
+    ],
+    [
+      "search",
+      "PASS"
+    ],
+    [
+      "numeric sort",
+      "PASS"
+    ],
+    [
+      "filter",
+      "PASS"
+    ],
+    [
+      "bulk selection",
+      "PASS"
+    ],
+    [
+      "pagination",
+      "PASS"
+    ],
+    [
+      "schedule render",
+      "PASS"
+    ],
+    [
+      "booking works",
+      "PASS"
+    ],
+    [
+      "collision detection",
+      "PASS"
+    ],
+    [
+      "wizard validation save",
+      "PASS"
+    ],
+    [
+      "analytics chart",
+      "PASS"
+    ],
+    [
+      "product theme",
+      "PASS"
+    ],
+    [
+      "keyboard tabs",
+      "PASS"
+    ],
+    [
+      "no JS exceptions",
+      "PASS"
+    ],
+    [
+      "board 31 tasks",
+      "PASS"
+    ],
+    [
+      "board persists reload",
+      "FAIL (isolated about:blank storage)"
+    ]
+  ],
+  "pageErrors": []
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- GENERATED compatibility adapter from Taktera.Fitness.Light.axaml; Tk* API -->
+<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <SolidColorBrush x:Key="TkMarkBrush" Color="#000000"/>
+  <SolidColorBrush x:Key="TkCanvasBrush" Color="#F4F3EF"/>
+  <SolidColorBrush x:Key="TkSurfaceBrush" Color="#FFFFFF"/>
+  <SolidColorBrush x:Key="TkTextBrush" Color="#22262B"/>
+  <SolidColorBrush x:Key="TkMutedBrush" Color="#62676E"/>
+  <SolidColorBrush x:Key="TkBorderBrush" Color="#D9DCDF"/>
+  <SolidColorBrush x:Key="TkControlBorderBrush" Color="#858A93"/>
+  <SolidColorBrush x:Key="TkDisabledBgBrush" Color="#EAEBED"/>
+  <SolidColorBrush x:Key="TkDisabledTextBrush" Color="#62676E"/>
+  <SolidColorBrush x:Key="TkAccentBrush" Color="#D52B35"/>
+  <SolidColorBrush x:Key="TkOnAccentBrush" Color="#FFFFFF"/>
+  <SolidColorBrush x:Key="TkAccentTextBrush" Color="#D52B35"/>
+  <SolidColorBrush x:Key="TkAccentTextCanvasBrush" Color="#BE2430"/>
+  <SolidColorBrush x:Key="TkAccentHoverBrush" Color="#C22730"/>
+  <SolidColorBrush x:Key="TkAccentPressedBrush" Color="#B1242C"/>
+  <SolidColorBrush x:Key="TkFocusRingBrush" Color="#BE2430"/>
+  <SolidColorBrush x:Key="TkStatusSuccessTextBrush" Color="#126A45"/>
+  <SolidColorBrush x:Key="TkStatusSuccessBgBrush" Color="#E8F5EC"/>
+  <SolidColorBrush x:Key="TkStatusInfoTextBrush" Color="#164A9C"/>
+  <SolidColorBrush x:Key="TkStatusInfoBgBrush" Color="#E9F1FF"/>
+  <SolidColorBrush x:Key="TkStatusWarningTextBrush" Color="#8A5300"/>
+  <SolidColorBrush x:Key="TkStatusWarningBgBrush" Color="#FFF3D6"/>
+  <SolidColorBrush x:Key="TkStatusErrorTextBrush" Color="#AD2432"/>
+  <SolidColorBrush x:Key="TkStatusErrorBgBrush" Color="#FFF0F2"/>
+</ResourceDictionary>

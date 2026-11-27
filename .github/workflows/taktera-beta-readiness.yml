@@ -1,3 +1,4 @@
+# Prepared workflow. Upload this project to a GitHub repository to execute it.
 name: Taktera Design System — Beta gates
 on:
   push:
@@ -27,6 +28,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      # npm install is necessary until a verified lockfile can be generated on a networked runner.
       - run: npm install --no-audit --no-fund
         working-directory: 17_packages/react
       - run: npm run verify

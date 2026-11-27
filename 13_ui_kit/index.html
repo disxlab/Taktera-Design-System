@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light" data-product="clinic">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Taktera Design System · v4.0 Alpha</title>
+  <link rel="stylesheet" href="../04_tokens/taktera.tokens.css">
+  <link rel="stylesheet" href="./ui.css">
+  <script src="./data.js" defer></script><script src="./ui.js" defer></script>
+</head>
+<body class="tk4-app">
+<a class="tk4-skip" href="#main">Перейти к содержимому</a>
+<div class="tk4-shell">
+  <aside class="tk4-rail" aria-label="Основная навигация">
+    <div class="tk4-brand"><img id="logo" src="../02_logos/products/ru/svg/clinic-ru-light.svg" alt="Taktera Клиника"><div class="tk4-edition">Дизайн-система <span>4.0 alpha</span></div></div>
+    <div class="tk4-workspace"><span class="tk4-workspace-icon">T</span><div><b id="workspace-name">Центр управления</b><small>Демонстрационный контур</small></div><span class="tk4-chevron">⌄</span></div>
+    <p class="tk4-rail-label">РАБОЧЕЕ ПРОСТРАНСТВО</p>
+    <nav class="tk4-navigation" aria-label="Страницы">
+      <button aria-label="Обзор" data-view="overview" class="tk4-nav-link is-active" aria-current="page"><span data-icon="dashboard"></span><span>Обзор</span></button>
+      <button aria-label="Записи и задачи" data-view="records" class="tk4-nav-link"><span data-icon="calendar"></span><span id="records-nav-label">Записи</span><span class="tk4-nav-count" id="records-count">8</span></button>
+      <button aria-label="Компоненты UI" data-view="components" class="tk4-nav-link"><span data-icon="layers"></span><span>Компоненты UI</span></button>
+      <button aria-label="Правила" data-view="guidelines" class="tk4-nav-link"><span data-icon="book"></span><span>Правила</span></button>
+    </nav>
+    <p class="tk4-rail-label">СИСТЕМА</p>
+    <nav class="tk4-navigation" aria-label="Настройки интерфейса">
+      <button id="shortcut-theme" class="tk4-nav-link" aria-label="Сменить тему"><span data-icon="sun"></span><span>Сменить тему</span></button>
+      <button id="shortcut-help" class="tk4-nav-link" aria-label="О демонстрации"><span data-icon="help"></span><span>О демонстрации</span></button>
+    </nav>
+    <div class="tk4-rail-bottom"><div class="tk4-avatar">DS</div><div><b>Design System</b><small>Локальный прототип</small></div><span class="tk4-status-dot" aria-label="Офлайн"></span></div>
+  </aside>
+
+  <div class="tk4-content">
+    <header class="tk4-topbar">
+      <div class="tk4-breadcrumb"><span class="tk4-breadcrumb-root" id="crumb-product">Taktera Clinic</span><span class="tk4-breadcrumb-slash">/</span><span id="crumb-page">Обзор</span></div>
+      <div class="tk4-top-actions">
+        <label class="tk4-top-field"><span>Продукт</span><select id="product-select" aria-label="Выбрать продукт"><option value="platform">Platform</option><option value="clinic" selected>Clinic</option><option value="beauty">Beauty</option><option value="spa">Spa</option><option value="fitness">Fitness</option><option value="travel">Travel</option></select></label>
+        <label class="tk4-top-field"><span>Тема</span><select id="theme-select" aria-label="Тема интерфейса"><option value="light">Светлая</option><option value="dark">Тёмная</option></select></label>
+        <button class="tk4-icon-button" id="top-info" title="О демонстрации" aria-label="О демонстрации"><span data-icon="info"></span></button>
+      </div>
+    </header>
+    <main id="main" tabindex="-1" class="tk4-main">
+      <section id="view-overview" class="tk4-page">
+        <div class="tk4-heading"><div><p class="tk4-eyebrow">РАБОЧИЙ СТОЛ <span id="today-date">22 НОЯБРЯ 2026</span></p><h1 id="hero-title">Обзор клиники</h1><p class="tk4-subtitle" id="hero-subtitle">Обновлённая система управления Taktera</p></div><div class="tk4-heading-actions"><button class="tk4-button tk4-button-outline" id="open-filter"><span data-icon="filter"></span>Фильтры</button><button class="tk4-button tk4-button-primary" data-action="create"><span data-icon="plus"></span><span id="new-label">Новая запись</span></button></div></div>
+        <div class="tk4-metrics" id="metric-cards" aria-label="Основные показатели"></div>
+        <div class="tk4-overview-columns">
+          <section class="tk4-panel tk4-schedule"><header class="tk4-panel-head"><div><p class="tk4-overline" id="schedule-kicker">РАСПИСАНИЕ</p><h2 id="schedule-title">План на сегодня</h2></div><span class="tk4-date-pill"><span data-icon="calendar"></span><span id="schedule-date">22.11.2026</span></span></header><p class="tk4-panel-description" id="schedule-caption">Демонстрационные данные</p><div class="tk4-schedule-grid" id="schedule-rows"></div><div class="tk4-panel-footer"><span><span class="tk4-legend-dot"></span>События демонстрационные</span><button class="tk4-text-button" data-view="records">Все записи <span aria-hidden="true">→</span></button></div></section>
+          <section class="tk4-panel tk4-side-panel"><header class="tk4-panel-head"><div><p class="tk4-overline">ОПЕРАЦИОННАЯ СВОДКА</p><h2>Важное сегодня</h2></div><span class="tk4-soft-icon"><span data-icon="bell"></span></span></header><div class="tk4-notes" id="notes"></div><div class="tk4-tip"><span data-icon="sparkle"></span><div><strong>Одна дизайн-система</strong><p>Структура общая для всех направлений. Данные и рабочие процессы адаптируются.</p></div></div></section>
+        </div>
+        <section class="tk4-panel tk4-table-panel"><header class="tk4-panel-head tk4-table-heading"><div><p class="tk4-overline">ЖУРНАЛ</p><h2 id="table-title">Ближайшие записи</h2></div><div class="tk4-table-actions"><label class="tk4-search"><span data-icon="search"></span><input type="search" id="quick-search" placeholder="Поиск по записям" aria-label="Поиск по записям"></label><button class="tk4-icon-button" id="download-csv" aria-label="Экспорт демонстрационных записей в CSV" title="Экспорт CSV"><span data-icon="download"></span></button></div></header><div id="table-container"></div></section>
+      </section>
+
+      <section id="view-records" class="tk4-page" hidden>
+        <div class="tk4-heading"><div><p class="tk4-eyebrow">ОПЕРАЦИИ</p><h1 id="records-title">Записи и задачи</h1><p class="tk4-subtitle">Фильтрация, сортировка и постраничная навигация</p></div><button class="tk4-button tk4-button-primary" data-action="create"><span data-icon="plus"></span>Добавить запись</button></div>
+        <div class="tk4-panel tk4-records-panel"><div class="tk4-filterline"><div class="tk4-tabs" role="tablist" aria-label="Виды записей"><button type="button" role="tab" aria-selected="true" tabindex="0" data-tab="all">Все</button><button type="button" role="tab" aria-selected="false" tabindex="-1" data-tab="confirmed">Подтверждены</button><button type="button" role="tab" aria-selected="false" tabindex="-1" data-tab="pending">Ожидают</button></div><label class="tk4-search"><span data-icon="search"></span><input id="records-search" type="search" aria-label="Поиск по журналу" placeholder="Имя, услуга, номер"></label></div><div id="records-table"></div><div class="tk4-pager"><span id="page-info"></span><div><button class="tk4-button tk4-button-outline tk4-button-small" id="prev-page">Назад</button><button class="tk4-button tk4-button-outline tk4-button-small" id="next-page">Далее</button></div></div></div>
+      </section>
+
+      <section id="view-components" class="tk4-page" hidden>
+        <div class="tk4-heading"><div><p class="tk4-eyebrow">КАТАЛОГ КОМПОНЕНТОВ · ALPHA</p><h1>Библиотека Taktera UI</h1><p class="tk4-subtitle">Унифицированные элементы. Измените продукт и тему в верхней панели.</p></div><span class="tk4-version">18 компонентов / паттернов</span></div>
+        <div class="tk4-component-grid">
+         <section class="tk4-panel tk4-component-card"><h2>01 / Кнопки и состояния</h2><p>Основное, вторичное, текстовое, недоступное и загрузка.</p><div class="tk4-demo-row"><button class="tk4-button tk4-button-primary" id="sample-action">Сохранить</button><button class="tk4-button tk4-button-outline" id="sample-secondary">Отмена</button><button class="tk4-text-button" id="sample-link">Подробнее</button><button class="tk4-button tk4-button-outline" disabled>Недоступно</button><button class="tk4-button tk4-button-primary" id="sample-loading"><span data-icon="refresh"></span>Загрузка</button></div></section>
+         <section class="tk4-panel tk4-component-card"><h2>02 / Поля и валидация</h2><p>Явные ярлыки, подсказки и сообщения об ошибках.</p><div class="tk4-field-stack"><label class="tk4-field"><span>Имя клиента</span><input id="sample-name" placeholder="Например, Мария Иванова" autocomplete="off"></label><label class="tk4-field"><span>Адрес электронной почты</span><input aria-invalid="true" aria-describedby="email-error" value="not-an-email"><span class="tk4-field-error" id="email-error">Введите корректный email</span></label><label class="tk4-field"><span>Направление</span><select id="sample-select"><option>Общие вопросы</option><option>Запись</option><option>Оплата</option></select></label></div></section>
+         <section class="tk4-panel tk4-component-card"><h2>03 / Выбор и переключатели</h2><p>Нативная клавиатурная навигация и явное состояние.</p><div class="tk4-field-stack"><label class="tk4-check"><input id="sample-checkbox" type="checkbox" checked><span>Отправить уведомление</span></label><label class="tk4-check"><input name="sample-radio" type="radio" checked><span>Обычный приоритет</span></label><label class="tk4-check"><input name="sample-radio" type="radio"><span>Повышенный приоритет</span></label><label class="tk4-switch-row"><span>Автоматическое обновление</span><input id="sample-switch" type="checkbox" role="switch"><span class="tk4-switch" aria-hidden="true"></span></label></div></section>
+         <section class="tk4-panel tk4-component-card"><h2>04 / Статусы и уведомления</h2><p>Семантические сообщения не зависят от цвета направления.</p><div class="tk4-demo-row"><span class="tk4-status tk4-status-success">Подтверждено</span><span class="tk4-status tk4-status-info">В работе</span><span class="tk4-status tk4-status-warning">Ожидает</span><span class="tk4-status tk4-status-error">Ошибка</span></div><div class="tk4-alert" role="note"><span data-icon="info"></span>Это информационное сообщение с явным текстом и иконкой.</div><button class="tk4-button tk4-button-outline" id="sample-toast">Показать уведомление</button></section>
+         <section class="tk4-panel tk4-component-card"><h2>05 / Диалоги и подтверждения</h2><p>Нативный dialog, клавиша Escape, возврат фокуса.</p><div class="tk4-demo-row"><button class="tk4-button tk4-button-primary" data-action="create">Открыть форму</button><button class="tk4-button tk4-button-outline" id="sample-confirm">Запросить подтверждение</button></div><details class="tk4-accordion"><summary>Подробнее о компоненте</summary><p>Раскрывающаяся область использует нативный details/summary и не требует отдельного JS.</p></details></section>
+         <section class="tk4-panel tk4-component-card"><h2>06 / Состояния загрузки</h2><p>Скелетоны, пустые таблицы и заглушки не блокируют клавиатуру.</p><div class="tk4-skeleton-demo" aria-hidden="true"><div class="tk4-skeleton tk4-skeleton-avatar"></div><div class="tk4-skeleton-lines"><div class="tk4-skeleton"></div><div class="tk4-skeleton tk4-skeleton-short"></div></div></div><div class="tk4-empty-small"><span data-icon="inbox"></span><strong>Ничего не найдено</strong><small>Уточните условия фильтрации или сбросьте поиск.</small></div></section>
+        </div>
+      </section>
+      <section id="view-guidelines" class="tk4-page" hidden><div class="tk4-heading"><div><p class="tk4-eyebrow">СПРАВОЧНИК</p><h1>Правила Taktera UI</h1><p class="tk4-subtitle">Границы использования и проверка качества</p></div></div><div class="tk4-component-grid"><article class="tk4-panel tk4-component-card"><h2>01 / Система цвета</h2><p>Знак и акценты продуктов наследуются из v3.2. Ошибки, предупреждения и состояния не используют бренд-цвет как единственный сигнал.</p><div class="tk4-swatch-row" id="swatches"></div></article><article class="tk4-panel tk4-component-card"><h2>02 / Доступность</h2><p>Управление клавиатурой, видимый фокус, текст ошибок, заголовки таблиц, уменьшение анимации и 12 сочетаний тем.</p><button class="tk4-button tk4-button-outline" id="guideline-toast">Тест уведомлений</button></article><article class="tk4-panel tk4-component-card"><h2>03 / Производственный статус</h2><p>Это функциональный офлайн-прототип. Не связан с CRM/ERP, не содержит реальных клиентов и не является сертифицированной медицинской системой.</p><p>Контракты и сценарии находятся в документации 13_ui_kit.</p></article><article class="tk4-panel tk4-component-card"><h2>04 / Отдельные проекты</h2><p>Иконки-кандидаты в 14_brand_extensions не заменяют утверждённые оригиналы. Нативные адаптеры требуют интеграционного тестирования в целевом приложении.</p></article></div></section>
+    </main>
+    <footer class="tk4-footer">Taktera Design System · v4.0 alpha.1 <span>Демонстрация · все данные вымышлены · без сетевых запросов</span></footer>
+  </div>
+</div>
+<div class="tk4-toast-stack" id="toast-stack" role="status" aria-live="polite" aria-atomic="false"></div>
+<dialog id="create-dialog" class="tk4-dialog" aria-labelledby="dialog-title"><form id="create-form" novalidate><header><div><p class="tk4-overline">НОВАЯ ЗАПИСЬ</p><h2 id="dialog-title">Создать событие</h2></div><button type="button" class="tk4-icon-button" data-close="create-dialog" aria-label="Закрыть"><span data-icon="x"></span></button></header><div class="tk4-modal-body"><label class="tk4-field"><span>Контакт или название <b aria-hidden="true">*</b></span><input id="create-name" name="contact" minlength="2" maxlength="80" required placeholder="Введите название"><span id="create-error" class="tk4-field-error" hidden>Укажите не менее двух символов</span></label><label class="tk4-field"><span id="create-service-label">Услуга или задача</span><input id="create-service" name="service" maxlength="80" placeholder="Описание"></label><div class="tk4-modal-fields"><label class="tk4-field"><span>Дата</span><input type="date" id="create-date" name="date" required value="2026-11-23"></label><label class="tk4-field"><span>Статус</span><select name="status" id="create-status"><option value="pending">Ожидает</option><option value="confirmed">Подтверждено</option><option value="progress">В работе</option></select></label></div><label class="tk4-check"><input type="checkbox" id="create-notify" checked><span>Уведомить контакт (демонстрация)</span></label></div><footer><button type="button" class="tk4-button tk4-button-outline" data-close="create-dialog">Отмена</button><button type="submit" class="tk4-button tk4-button-primary">Создать запись</button></footer></form></dialog>
+<dialog id="confirm-dialog" class="tk4-dialog tk4-confirm" aria-labelledby="confirm-title"><div class="tk4-confirm-content"><span class="tk4-soft-icon"><span data-icon="alert"></span></span><h2 id="confirm-title">Подтвердить действие?</h2><p>Это пример безопасного подтверждения. Изменений в реальных данных не будет.</p><div class="tk4-confirm-actions"><button class="tk4-button tk4-button-outline" data-close="confirm-dialog">Отмена</button><button class="tk4-button tk4-button-primary" id="confirm-yes">Подтвердить</button></div></div></dialog>
+</body>
+</html>

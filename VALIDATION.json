@@ -1,0 +1,22 @@
+{
+  "version": "3.3",
+  "date": "2026-11-22",
+  "checks": {
+    "SVG": "Parsed all 69 files; logo text remains outlined",
+    "Icons": "12 theme/product combinations; 9 PNG sizes; 7 ICO layers",
+    "Color contrast": 76,
+    "HTML": "All local HTML src/href paths exist",
+    "Typography": "3 WOFF2 fonts readable; OFL included",
+    "Original asset compatibility": "245/245 original brand/graphics files are byte-identical",
+    "Offline demo logic": "12 product/theme combinations and action handlers pass in Node (no browser)",
+    "Legacy brandbook": "v3.2, 14 pages; retained unchanged",
+    "Addendum PDF": 8
+  },
+  "limitations": [
+    "Legacy v3.2 production scripts are archived and still require adaptation for their original build environment; portable re-export script can recreate SVG-sourced PNG and ICO, not the vectorization of the reference raster.",
+    "Color contrast was validated for specified opaque token pairs, not full application screen WCAG conformance.",
+    "UI demonstration is static/offline prototype; no production application integration, native Avalonia controls, Figma, trademark or print prepress validation.",
+    "Brandbook v3.2 remains the normative baseline; v3.3 additions are a separate implementation guide.",
+    "Visual interactive-browser QA of the preview was not completed in this environment because Chromium navigation was blocked by administrator policy; verify using a normal local browser before integration."
+  ]
+}

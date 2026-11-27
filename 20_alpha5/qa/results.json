@@ -1,0 +1,84 @@
+{
+  "passed": 19,
+  "total": 19,
+  "checks": [
+    {
+      "name": "Installed tarball boots consumer",
+      "ok": true
+    },
+    {
+      "name": "EN notification button",
+      "ok": true
+    },
+    {
+      "name": "EN toast message",
+      "ok": true
+    },
+    {
+      "name": "EN toast accessible dismiss",
+      "ok": true
+    },
+    {
+      "name": "EN region label",
+      "ok": true
+    },
+    {
+      "name": "Dismiss removes toast",
+      "ok": true
+    },
+    {
+      "name": "RU toast message",
+      "ok": true
+    },
+    {
+      "name": "RU toast accessible dismiss",
+      "ok": true
+    },
+    {
+      "name": "RU region label",
+      "ok": true
+    },
+    {
+      "name": "RU dialog",
+      "ok": true
+    },
+    {
+      "name": "Dialog restores focus",
+      "ok": true
+    },
+    {
+      "name": "Theme switch",
+      "ok": true
+    },
+    {
+      "name": "Numeric sort correctly ascending",
+      "ok": true
+    },
+    {
+      "name": "Invalid locale rejected",
+      "ok": true
+    },
+    {
+      "name": "Invalid labels rejected",
+      "ok": true
+    },
+    {
+      "name": "Invalid button type rejected",
+      "ok": true
+    },
+    {
+      "name": "Invalid table rows rejected",
+      "ok": true
+    },
+    {
+      "name": "320px viewport fits",
+      "ok": true
+    },
+    {
+      "name": "No runtime errors",
+      "ok": true
+    }
+  ],
+  "errors": [],
+  "scope": "Chromium with local assets injected from npm-installed @taktera/ui-core Alpha.5; real HTTP module loading blocked by policy"
+}

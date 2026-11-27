@@ -1,0 +1,41 @@
+{
+  "name": "@taktera/ui-react",
+  "version": "4.0.0-beta-readiness.3",
+  "private": true,
+  "description": "React/TypeScript source components; Beta Readiness 3 verification pending networked dependency install",
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./styles.css"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.qa.json --noEmit",
+    "smoke": "tsx qa/smoke.tsx",
+    "verify": "npm run typecheck && npm run build && npm run smoke"
+  },
+  "peerDependencies": {
+    "react": ">=18.3 <20",
+    "react-dom": ">=18.3 <20"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.0.0",
+    "tsx": "^4.20.0",
+    "@types/node": "^22.15.0"
+  },
+  "files": [
+    "dist",
+    "styles.css",
+    "README.md"
+  ]
+}

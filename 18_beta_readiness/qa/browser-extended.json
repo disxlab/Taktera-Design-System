@@ -1,0 +1,154 @@
+{
+  "version": "4.0-alpha.3",
+  "scope": "Web Core Chromium extended regression and focused accessibility checks; no axe/NVDA/VoiceOver",
+  "passed": 29,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "No JavaScript bootstrap errors",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "Table rejects page size zero",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Table rejects fractional page size",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Alert rejects unknown tone",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Toast rejects unknown tone",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "setTheme validates HTMLElement",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Error alert uses role alert",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Normal notice uses role status",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Pager uses named navigation",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Pager change is live announced",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "rowKey receives absolute row index",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Empty table result is not negative",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "setRows updates paging after empty",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Status message is plain text",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Toast message is plain text",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "setError associates explanation",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "setError clears explanation",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ArrowLeft wraps to final tab",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ArrowRight wraps to first tab",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Two roots have independent accents",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Dialog receives keyboard focus",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Escape closes and restores opener",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "CSS includes forced-color override",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "CSS includes reduced motion",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "OS forced colors mode applied",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Selected tab has highlight border",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320px baseline no viewport overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "320px nested fields no overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No browser JS errors",
+      "ok": true,
+      "detail": "[]"
+    }
+  ],
+  "errors": []
+}

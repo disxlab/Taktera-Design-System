@@ -1,0 +1,13 @@
+import {PRODUCTS,THEMES,setTheme,button,field,select,checkbox,status,alert,card,tabs,dialog,table,toastRegion} from '../index.mjs';
+import type {Product,Theme,TableOptions,TableInstance} from '../index.mjs';
+const p:Product='clinic';const t:Theme='light';
+const root=document.createElement('div');setTheme(root,{product:p,theme:t});
+button({label:'Создать',onClick:ev=>ev.preventDefault()});
+const f=field({label:'Название',onInput:(v,e)=>console.log(v,e.type)});f.setError('Нужно название');
+select({label:'Тип',options:[{label:'A',value:1}],onChange:v=>console.log(v)});
+checkbox({label:'Включено',onChange:checked=>console.log(checked)});
+status({tone:'success'});alert({tone:'error'});card({children:['text']});
+tabs({items:[{id:'a',label:'A',content:'Hello'}]});dialog({title:'Ок'});
+type Row={id:string;name:string};const opts:TableOptions<Row>={columns:[{key:'name',label:'Имя',sortable:true}],rows:[{id:'1',name:'A'}],rowKey:r=>r.id};
+const grid:TableInstance<Row>=table(opts);grid.setRows([]);toastRegion().push('Готово');
+console.log(PRODUCTS.length,THEMES.length);

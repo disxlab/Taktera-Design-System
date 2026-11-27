@@ -1,0 +1,780 @@
+{
+  "tool": "Taktera visual regression",
+  "browser": "Chromium",
+  "matrixCount": 48,
+  "passed": 48,
+  "failed": 0,
+  "threshold": 0.005,
+  "channelDelta": 16,
+  "status": "pass",
+  "results": [
+    {
+      "id": "platform-light-comfortable-ru",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/platform-light-comfortable-ru.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/platform-light-comfortable-ru.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "platform-light-comfortable-en",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/platform-light-comfortable-en.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/platform-light-comfortable-en.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "platform-light-compact-ru",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/platform-light-compact-ru.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/platform-light-compact-ru.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "platform-light-compact-en",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 1,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/platform-light-compact-en.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/platform-light-compact-en.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "platform-dark-comfortable-ru",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/platform-dark-comfortable-ru.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/platform-dark-comfortable-ru.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "platform-dark-comfortable-en",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/platform-dark-comfortable-en.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/platform-dark-comfortable-en.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "platform-dark-compact-ru",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/platform-dark-compact-ru.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/platform-dark-compact-ru.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "platform-dark-compact-en",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 1,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/platform-dark-compact-en.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/platform-dark-compact-en.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "clinic-light-comfortable-ru",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/clinic-light-comfortable-ru.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/clinic-light-comfortable-ru.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "clinic-light-comfortable-en",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/clinic-light-comfortable-en.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/clinic-light-comfortable-en.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "clinic-light-compact-ru",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/clinic-light-compact-ru.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/clinic-light-compact-ru.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "clinic-light-compact-en",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 1,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/clinic-light-compact-en.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/clinic-light-compact-en.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "clinic-dark-comfortable-ru",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/clinic-dark-comfortable-ru.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/clinic-dark-comfortable-ru.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "clinic-dark-comfortable-en",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 1,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/clinic-dark-comfortable-en.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/clinic-dark-comfortable-en.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "clinic-dark-compact-ru",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/clinic-dark-compact-ru.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/clinic-dark-compact-ru.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "clinic-dark-compact-en",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/clinic-dark-compact-en.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/clinic-dark-compact-en.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "beauty-light-comfortable-ru",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/beauty-light-comfortable-ru.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/beauty-light-comfortable-ru.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "beauty-light-comfortable-en",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 1,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/beauty-light-comfortable-en.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/beauty-light-comfortable-en.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "beauty-light-compact-ru",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/beauty-light-compact-ru.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/beauty-light-compact-ru.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "beauty-light-compact-en",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 1,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/beauty-light-compact-en.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/beauty-light-compact-en.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "beauty-dark-comfortable-ru",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/beauty-dark-comfortable-ru.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/beauty-dark-comfortable-ru.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "beauty-dark-comfortable-en",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/beauty-dark-comfortable-en.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/beauty-dark-comfortable-en.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "beauty-dark-compact-ru",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/beauty-dark-compact-ru.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/beauty-dark-compact-ru.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "beauty-dark-compact-en",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/beauty-dark-compact-en.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/beauty-dark-compact-en.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "spa-light-comfortable-ru",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/spa-light-comfortable-ru.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/spa-light-comfortable-ru.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "spa-light-comfortable-en",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 1,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/spa-light-comfortable-en.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/spa-light-comfortable-en.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "spa-light-compact-ru",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/spa-light-compact-ru.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/spa-light-compact-ru.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "spa-light-compact-en",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/spa-light-compact-en.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/spa-light-compact-en.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "spa-dark-comfortable-ru",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/spa-dark-comfortable-ru.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/spa-dark-comfortable-ru.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "spa-dark-comfortable-en",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/spa-dark-comfortable-en.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/spa-dark-comfortable-en.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "spa-dark-compact-ru",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/spa-dark-compact-ru.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/spa-dark-compact-ru.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "spa-dark-compact-en",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/spa-dark-compact-en.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/spa-dark-compact-en.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "fitness-light-comfortable-ru",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/fitness-light-comfortable-ru.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/fitness-light-comfortable-ru.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "fitness-light-comfortable-en",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 1,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/fitness-light-comfortable-en.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/fitness-light-comfortable-en.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "fitness-light-compact-ru",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/fitness-light-compact-ru.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/fitness-light-compact-ru.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "fitness-light-compact-en",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 1,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/fitness-light-compact-en.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/fitness-light-compact-en.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "fitness-dark-comfortable-ru",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/fitness-dark-comfortable-ru.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/fitness-dark-comfortable-ru.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "fitness-dark-comfortable-en",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/fitness-dark-comfortable-en.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/fitness-dark-comfortable-en.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "fitness-dark-compact-ru",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/fitness-dark-compact-ru.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/fitness-dark-compact-ru.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "fitness-dark-compact-en",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 1,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/fitness-dark-compact-en.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/fitness-dark-compact-en.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "travel-light-comfortable-ru",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/travel-light-comfortable-ru.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/travel-light-comfortable-ru.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "travel-light-comfortable-en",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/travel-light-comfortable-en.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/travel-light-comfortable-en.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "travel-light-compact-ru",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/travel-light-compact-ru.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/travel-light-compact-ru.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "travel-light-compact-en",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 1,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/travel-light-compact-en.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/travel-light-compact-en.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "travel-dark-comfortable-ru",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/travel-dark-comfortable-ru.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/travel-dark-comfortable-ru.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "travel-dark-comfortable-en",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 1,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/travel-dark-comfortable-en.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/travel-dark-comfortable-en.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "travel-dark-compact-ru",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 0,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/travel-dark-compact-ru.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/travel-dark-compact-ru.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "id": "travel-dark-compact-en",
+      "status": "pass",
+      "changed_ratio": 0.0,
+      "max_channel_delta": 1,
+      "reference": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/25_internal_completion/qa/baselines/travel-dark-compact-en.png",
+      "current": "/mnt/data/Taktera_Design_System_v4.0-beta-readiness.2/26_visual_regression/qa/positive/current/travel-dark-compact-en.png",
+      "reference_size": [
+        1280,
+        840
+      ],
+      "current_size": [
+        1280,
+        840
+      ]
+    }
+  ]
+}

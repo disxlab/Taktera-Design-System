@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-22",
+  "base": "v4.0-alpha.5",
+  "version": "v4.0-alpha.6",
+  "testedBrowserChecks": 31,
+  "browserChecksTotal": 31,
+  "unchangedComparedFiles": 322,
+  "mismatches": [],
+  "betaPassed": false,
+  "localStorageAcrossDevices": false,
+  "chromiumNavigationVerified": false
+}

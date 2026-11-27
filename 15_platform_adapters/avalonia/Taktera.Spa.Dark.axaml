@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generated from v3.3 canonical JSON. Do not hand-edit; not a full Avalonia control theme. -->
+<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Color x:Key="TkMarkColor">#FFFFFF</Color>
+  <Color x:Key="TkCanvasColor">#151719</Color>
+  <Color x:Key="TkSurfaceColor">#22262B</Color>
+  <Color x:Key="TkTextColor">#F4F3EF</Color>
+  <Color x:Key="TkMutedColor">#B9BEC5</Color>
+  <Color x:Key="TkBorderColor">#444A52</Color>
+  <Color x:Key="TkControlBorderColor">#8D939C</Color>
+  <Color x:Key="TkDisabledBgColor">#343A41</Color>
+  <Color x:Key="TkDisabledTextColor">#A4ABB4</Color>
+  <Color x:Key="TkAccentColor">#55CBA4</Color>
+  <Color x:Key="TkOnAccentColor">#151719</Color>
+  <Color x:Key="TkAccentTextColor">#55CBA4</Color>
+  <Color x:Key="TkAccentTextCanvasColor">#55CBA4</Color>
+  <Color x:Key="TkAccentHoverColor">#66D0AD</Color>
+  <Color x:Key="TkAccentPressedColor">#74D4B4</Color>
+  <Color x:Key="TkFocusRingColor">#55CBA4</Color>
+  <Color x:Key="TkStatusSuccessTextColor">#81D5AD</Color>
+  <Color x:Key="TkStatusSuccessBgColor">#17352B</Color>
+  <Color x:Key="TkStatusInfoTextColor">#9FC0FF</Color>
+  <Color x:Key="TkStatusInfoBgColor">#172B4B</Color>
+  <Color x:Key="TkStatusWarningTextColor">#FFCC73</Color>
+  <Color x:Key="TkStatusWarningBgColor">#45320F</Color>
+  <Color x:Key="TkStatusErrorTextColor">#FF9BA3</Color>
+  <Color x:Key="TkStatusErrorBgColor">#4A2026</Color>
+  <SolidColorBrush x:Key="TkMarkBrush" Color="#FFFFFF"/>
+  <SolidColorBrush x:Key="TkCanvasBrush" Color="#151719"/>
+  <SolidColorBrush x:Key="TkSurfaceBrush" Color="#22262B"/>
+  <SolidColorBrush x:Key="TkTextBrush" Color="#F4F3EF"/>
+  <SolidColorBrush x:Key="TkMutedBrush" Color="#B9BEC5"/>
+  <SolidColorBrush x:Key="TkBorderBrush" Color="#444A52"/>
+  <SolidColorBrush x:Key="TkControlBorderBrush" Color="#8D939C"/>
+  <SolidColorBrush x:Key="TkDisabledBgBrush" Color="#343A41"/>
+  <SolidColorBrush x:Key="TkDisabledTextBrush" Color="#A4ABB4"/>
+  <SolidColorBrush x:Key="TkAccentBrush" Color="#55CBA4"/>
+  <SolidColorBrush x:Key="TkOnAccentBrush" Color="#151719"/>
+  <SolidColorBrush x:Key="TkAccentTextBrush" Color="#55CBA4"/>
+  <SolidColorBrush x:Key="TkAccentTextCanvasBrush" Color="#55CBA4"/>
+  <SolidColorBrush x:Key="TkAccentHoverBrush" Color="#66D0AD"/>
+  <SolidColorBrush x:Key="TkAccentPressedBrush" Color="#74D4B4"/>
+  <SolidColorBrush x:Key="TkFocusRingBrush" Color="#55CBA4"/>
+  <SolidColorBrush x:Key="TkStatusSuccessTextBrush" Color="#81D5AD"/>
+  <SolidColorBrush x:Key="TkStatusSuccessBgBrush" Color="#17352B"/>
+  <SolidColorBrush x:Key="TkStatusInfoTextBrush" Color="#9FC0FF"/>
+  <SolidColorBrush x:Key="TkStatusInfoBgBrush" Color="#172B4B"/>
+  <SolidColorBrush x:Key="TkStatusWarningTextBrush" Color="#FFCC73"/>
+  <SolidColorBrush x:Key="TkStatusWarningBgBrush" Color="#45320F"/>
+  <SolidColorBrush x:Key="TkStatusErrorTextBrush" Color="#FF9BA3"/>
+  <SolidColorBrush x:Key="TkStatusErrorBgBrush" Color="#4A2026"/>
+</ResourceDictionary>

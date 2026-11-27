@@ -1,0 +1,20 @@
+{
+  "version": "4.0-alpha.3",
+  "release_status": "DEVELOPMENT ALPHA / NOT BETA / NOT PRODUCTION",
+  "approved_brand_assets_sha256_frozen": 248,
+  "chromium_base_passed": 53,
+  "chromium_extended_passed": 29,
+  "static_passed": 274,
+  "npm_offline_pack_install_esm": "PASS",
+  "web_core_typescript_public_contract": "tsc strict test PASS (global tsc)",
+  "react": "source only: TSX syntax transpile passed; npm registry unavailable: no actual React build/typecheck",
+  "avalonia": "source only: XAML XML/resource check passed; no .NET SDK/native compile",
+  "unverified": [
+    "GitHub Actions CI not executed",
+    "NVDA/VoiceOver/axe-core not run",
+    "No real OS native app test",
+    "WCAG 2.2 certification not claimed",
+    "Icon A/B approval pending"
+  ],
+  "manifest_sha256": "34e17b4bdb4727ee9c70a97907f5facb268ffa80a1880412ac6cac8b1e2c3bec"
+}

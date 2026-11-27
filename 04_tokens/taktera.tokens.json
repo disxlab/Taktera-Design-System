@@ -1,0 +1,195 @@
+{
+  "version": "3.3",
+  "date": "2026-11-22",
+  "concept": "Selected raster exec-2c59ddad; rounded bent T, not conventional capital T",
+  "neutral": {
+    "markLight": "#000000",
+    "markDark": "#FFFFFF",
+    "ink": "#22262B",
+    "canvas": "#F4F3EF",
+    "surface": "#FFFFFF",
+    "darkCanvas": "#151719",
+    "mutedLight": "#62676E",
+    "borderLight": "#D9DCDF",
+    "controlBorderLight": "#858A93",
+    "controlBorderDark": "#8D939C",
+    "surfaceDark": "#22262B",
+    "textDark": "#F4F3EF",
+    "mutedDark": "#B9BEC5",
+    "borderDark": "#444A52",
+    "disabledBgLight": "#EAEBED",
+    "disabledFgLight": "#62676E",
+    "disabledBgDark": "#343A41",
+    "disabledFgDark": "#A4ABB4"
+  },
+  "products": {
+    "platform": {
+      "accentLight": "#50556B",
+      "accentDark": "#B3B8D6",
+      "onAccentLight": "#FFFFFF",
+      "onAccentDark": "#151719",
+      "uiTextLight": "#50556B",
+      "uiTextDark": "#B3B8D6"
+    },
+    "clinic": {
+      "accentLight": "#2368D1",
+      "accentDark": "#70A6FF",
+      "onAccentLight": "#FFFFFF",
+      "onAccentDark": "#151719",
+      "uiTextLight": "#2368D1",
+      "uiTextDark": "#70A6FF"
+    },
+    "beauty": {
+      "accentLight": "#C13B78",
+      "accentDark": "#F17BB1",
+      "onAccentLight": "#FFFFFF",
+      "onAccentDark": "#151719",
+      "uiTextLight": "#C13B78",
+      "uiTextDark": "#F17BB1"
+    },
+    "spa": {
+      "accentLight": "#118569",
+      "accentDark": "#55CBA4",
+      "onAccentLight": "#FFFFFF",
+      "onAccentDark": "#151719",
+      "uiTextLight": "#118569",
+      "uiTextDark": "#55CBA4",
+      "uiTextCanvasLight": "#0D755B"
+    },
+    "fitness": {
+      "accentLight": "#D52B35",
+      "accentDark": "#FF6B75",
+      "onAccentLight": "#FFFFFF",
+      "onAccentDark": "#151719",
+      "uiTextLight": "#D52B35",
+      "uiTextDark": "#FF6B75",
+      "uiTextCanvasLight": "#BE2430"
+    },
+    "travel": {
+      "accentLight": "#D4A600",
+      "accentDark": "#FFD43B",
+      "onAccentLight": "#151719",
+      "onAccentDark": "#151719",
+      "uiTextLight": "#806300",
+      "uiTextDark": "#FFD43B"
+    }
+  },
+  "geometry": {
+    "path": "M12 16H29Q49 16 49 36V58",
+    "strokeWidth": 20,
+    "linecap": "round",
+    "dot": {
+      "cx": 75,
+      "cy": 15,
+      "r": 10
+    },
+    "viewBox": [
+      0,
+      0,
+      88,
+      74
+    ]
+  },
+  "ui": {
+    "font": "Inter",
+    "iconLibrary": "Lucide",
+    "iconStroke": 1.5,
+    "spacingBase": 4,
+    "radii": [
+      4,
+      6,
+      8,
+      12,
+      16
+    ],
+    "motionMs": [
+      150,
+      250,
+      400
+    ],
+    "states": {
+      "primaryHoverMix": {
+        "light": {
+          "with": "#000000",
+          "percent": 9
+        },
+        "dark": {
+          "with": "#FFFFFF",
+          "percent": 10
+        }
+      },
+      "primaryPressedMix": {
+        "light": {
+          "with": "#000000",
+          "percent": 17
+        },
+        "dark": {
+          "with": "#FFFFFF",
+          "percent": 18
+        }
+      }
+    }
+  },
+  "localization": {
+    "brand": "taktera",
+    "ru": {
+      "platform": "платформа",
+      "clinic": "клиника",
+      "beauty": "красота",
+      "spa": "спа",
+      "fitness": "фитнес",
+      "travel": "путешествия"
+    },
+    "appCodes": {
+      "platform": "PL",
+      "clinic": "CL",
+      "beauty": "BE",
+      "spa": "SP",
+      "fitness": "FI",
+      "travel": "TR"
+    },
+    "labelMinRecommendedPx": 64,
+    "microSizesPx": [
+      16,
+      24
+    ]
+  },
+  "semantic": {
+    "light": {
+      "success": {
+        "foreground": "#126A45",
+        "background": "#E8F5EC"
+      },
+      "info": {
+        "foreground": "#164A9C",
+        "background": "#E9F1FF"
+      },
+      "warning": {
+        "foreground": "#8A5300",
+        "background": "#FFF3D6"
+      },
+      "error": {
+        "foreground": "#AD2432",
+        "background": "#FFF0F2"
+      }
+    },
+    "dark": {
+      "success": {
+        "foreground": "#81D5AD",
+        "background": "#17352B"
+      },
+      "info": {
+        "foreground": "#9FC0FF",
+        "background": "#172B4B"
+      },
+      "warning": {
+        "foreground": "#FFCC73",
+        "background": "#45320F"
+      },
+      "error": {
+        "foreground": "#FF9BA3",
+        "background": "#4A2026"
+      }
+    }
+  }
+}

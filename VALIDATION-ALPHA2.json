@@ -1,0 +1,19 @@
+{
+  "status": "ALPHA.2 — development preview, not production",
+  "browser_checks": 53,
+  "browser_failed": 0,
+  "static_checks": 274,
+  "static_failed": 0,
+  "approved_brand_assets_frozen": 248,
+  "web_core": "executed in Chromium + DOM injected source due to navigation restrictions",
+  "react": "TSX parsed via TypeScript transpileModule; npm install/full typecheck/build NOT executed",
+  "avalonia": "XAML XML/resource keys checked; native dotnet build NOT executed",
+  "limitations": [
+    "npm registry unavailable",
+    "dotnet SDK missing",
+    "real OS/screen readers not tested",
+    "icon proposals not approved",
+    "not a WCAG certification"
+  ],
+  "manifest_sha256": "d5b9b163cfa378ffbdbd65d317b95fb1f339908f11095b559722529108c3b225"
+}

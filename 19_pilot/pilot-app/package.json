@@ -1,0 +1,1 @@
+{"name":"taktera-ui-pilot-alpha5","version":"0.1.0","private":true,"type":"module","scripts":{"serve":"python -m http.server 8765"},"dependencies":{"@taktera/ui-core":"file:../../20_alpha5/offline/taktera-ui-core-4.0.0-alpha.5.tgz"}}

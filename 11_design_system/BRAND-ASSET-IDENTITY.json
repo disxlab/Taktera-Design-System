@@ -1,0 +1,11 @@
+{
+  "source": "Taktera Brand Package v3.2 original uploaded archive",
+  "result": "All compared brand graphics, logo SVG/PNG, app icon SVG/PNG/ICO, templates and v3.2 PDF byte-identical in v3.3",
+  "files": 245,
+  "allUnchanged": true,
+  "exceptions": [],
+  "notes": [
+    "New semantic token files do not change existing logo or app icon master colors.",
+    "Original v3.2 core visual files remain canonical."
+  ]
+}

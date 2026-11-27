@@ -1,0 +1,70 @@
+/* Self-contained Taktera UI alpha.3 CSS (generated); no external dependencies. */
+/* Taktera v3.3. GENERATED: python 09_source/generate_tokens.py. Do not hand edit. */
+/* --tk-border is decorative; use --tk-control-border for essential boundaries. */
+:root { --tk-mark:#000000; --tk-canvas:#F4F3EF; --tk-surface:#FFFFFF; --tk-text:#22262B; --tk-muted:#62676E; --tk-border:#D9DCDF; --tk-control-border:#858A93; --tk-disabled-bg:#EAEBED; --tk-disabled-text:#62676E; --tk-accent:#50556B; --tk-on-accent:#FFFFFF; --tk-accent-text:#50556B; --tk-accent-text-canvas:#50556B; --tk-accent-hover:#494D61; --tk-accent-pressed:#424759; --tk-focus-ring:#50556B; --tk-status-success-text:#126A45; --tk-status-success-bg:#E8F5EC; --tk-status-info-text:#164A9C; --tk-status-info-bg:#E9F1FF; --tk-status-warning-text:#8A5300; --tk-status-warning-bg:#FFF3D6; --tk-status-error-text:#AD2432; --tk-status-error-bg:#FFF0F2; --tk-font:Inter,"Segoe UI",Arial,sans-serif; --tk-space-unit:4px; --tk-radius-xs:4px; --tk-radius-sm:6px; --tk-radius-md:8px; --tk-radius-lg:12px; --tk-radius-xl:16px; --tk-motion-fast:150ms; --tk-motion-base:250ms; --tk-motion-slow:400ms; }
+[data-theme="dark"] { --tk-mark:#FFFFFF; --tk-canvas:#151719; --tk-surface:#22262B; --tk-text:#F4F3EF; --tk-muted:#B9BEC5; --tk-border:#444A52; --tk-control-border:#8D939C; --tk-disabled-bg:#343A41; --tk-disabled-text:#A4ABB4; --tk-accent:#B3B8D6; --tk-on-accent:#151719; --tk-accent-text:#B3B8D6; --tk-accent-text-canvas:#B3B8D6; --tk-accent-hover:#BBBFDA; --tk-accent-pressed:#C1C5DD; --tk-focus-ring:#B3B8D6; --tk-status-success-text:#81D5AD; --tk-status-success-bg:#17352B; --tk-status-info-text:#9FC0FF; --tk-status-info-bg:#172B4B; --tk-status-warning-text:#FFCC73; --tk-status-warning-bg:#45320F; --tk-status-error-text:#FF9BA3; --tk-status-error-bg:#4A2026; }
+[data-product="platform"] { --tk-accent:#50556B; --tk-on-accent:#FFFFFF; --tk-accent-text:#50556B; --tk-accent-text-canvas:#50556B; --tk-accent-hover:#494D61; --tk-accent-pressed:#424759; --tk-focus-ring:#50556B; }
+[data-theme="dark"][data-product="platform"], [data-theme="dark"] [data-product="platform"], [data-product="platform"] [data-theme="dark"] { --tk-accent:#B3B8D6; --tk-on-accent:#151719; --tk-accent-text:#B3B8D6; --tk-accent-text-canvas:#B3B8D6; --tk-accent-hover:#BBBFDA; --tk-accent-pressed:#C1C5DD; --tk-focus-ring:#B3B8D6; }
+[data-product="clinic"] { --tk-accent:#2368D1; --tk-on-accent:#FFFFFF; --tk-accent-text:#2368D1; --tk-accent-text-canvas:#2368D1; --tk-accent-hover:#205FBE; --tk-accent-pressed:#1D56AD; --tk-focus-ring:#2368D1; }
+[data-theme="dark"][data-product="clinic"], [data-theme="dark"] [data-product="clinic"], [data-product="clinic"] [data-theme="dark"] { --tk-accent:#70A6FF; --tk-on-accent:#151719; --tk-accent-text:#70A6FF; --tk-accent-text-canvas:#70A6FF; --tk-accent-hover:#7EAFFF; --tk-accent-pressed:#8AB6FF; --tk-focus-ring:#70A6FF; }
+[data-product="beauty"] { --tk-accent:#C13B78; --tk-on-accent:#FFFFFF; --tk-accent-text:#C13B78; --tk-accent-text-canvas:#C13B78; --tk-accent-hover:#B0366D; --tk-accent-pressed:#A03164; --tk-focus-ring:#C13B78; }
+[data-theme="dark"][data-product="beauty"], [data-theme="dark"] [data-product="beauty"], [data-product="beauty"] [data-theme="dark"] { --tk-accent:#F17BB1; --tk-on-accent:#151719; --tk-accent-text:#F17BB1; --tk-accent-text-canvas:#F17BB1; --tk-accent-hover:#F288B9; --tk-accent-pressed:#F493BF; --tk-focus-ring:#F17BB1; }
+[data-product="spa"] { --tk-accent:#118569; --tk-on-accent:#FFFFFF; --tk-accent-text:#118569; --tk-accent-text-canvas:#0D755B; --tk-accent-hover:#0F7960; --tk-accent-pressed:#0E6E57; --tk-focus-ring:#0D755B; }
+[data-theme="dark"][data-product="spa"], [data-theme="dark"] [data-product="spa"], [data-product="spa"] [data-theme="dark"] { --tk-accent:#55CBA4; --tk-on-accent:#151719; --tk-accent-text:#55CBA4; --tk-accent-text-canvas:#55CBA4; --tk-accent-hover:#66D0AD; --tk-accent-pressed:#74D4B4; --tk-focus-ring:#55CBA4; }
+[data-product="fitness"] { --tk-accent:#D52B35; --tk-on-accent:#FFFFFF; --tk-accent-text:#D52B35; --tk-accent-text-canvas:#BE2430; --tk-accent-hover:#C22730; --tk-accent-pressed:#B1242C; --tk-focus-ring:#BE2430; }
+[data-theme="dark"][data-product="fitness"], [data-theme="dark"] [data-product="fitness"], [data-product="fitness"] [data-theme="dark"] { --tk-accent:#FF6B75; --tk-on-accent:#151719; --tk-accent-text:#FF6B75; --tk-accent-text-canvas:#FF6B75; --tk-accent-hover:#FF7A83; --tk-accent-pressed:#FF868E; --tk-focus-ring:#FF6B75; }
+[data-product="travel"] { --tk-accent:#D4A600; --tk-on-accent:#151719; --tk-accent-text:#806300; --tk-accent-text-canvas:#806300; --tk-accent-hover:#C19700; --tk-accent-pressed:#B08A00; --tk-focus-ring:#806300; }
+[data-theme="dark"][data-product="travel"], [data-theme="dark"] [data-product="travel"], [data-product="travel"] [data-theme="dark"] { --tk-accent:#FFD43B; --tk-on-accent:#151719; --tk-accent-text:#FFD43B; --tk-accent-text-canvas:#FFD43B; --tk-accent-hover:#FFD84F; --tk-accent-pressed:#FFDC5E; --tk-focus-ring:#FFD43B; }
+/* Brand colors are never used as semantic error/success colors. */
+.tk-brand-mark { color:var(--tk-mark); }
+.tk-brand-dot, .tk-product-name { color:var(--tk-accent); }
+.tk-primary { background:var(--tk-accent);color:var(--tk-on-accent); }
+.tk-accent-text { color:var(--tk-accent-text); }
+.tk-accent-text-on-canvas { color:var(--tk-accent-text-canvas); }
+.tk-focus:focus-visible { outline:3px solid var(--tk-focus-ring);outline-offset:3px; }
+@media (prefers-reduced-motion:reduce) { :root { --tk-motion-fast:0ms;--tk-motion-base:0ms;--tk-motion-slow:0ms; } }
+
+/* Taktera UI Core component layer v4.0 alpha.3. CSS token roles are inherited from v3.3. */
+.tku-root {font-family:var(--tk-font);font-size:14px;background:var(--tk-canvas);color:var(--tk-text);color-scheme:light;line-height:1.5}
+.tku-root[data-theme=dark]{color-scheme:dark}
+.tku-root *, .tku-root *::before, .tku-root *::after {box-sizing:border-box}
+.tku-root button,.tku-root input,.tku-root select,.tku-root textarea {font:inherit}
+.tku-root :is(button,input,select,a,summary,[tabindex]):focus-visible {outline:3px solid var(--tk-focus-ring);outline-offset:3px}
+.tku-button{display:inline-flex;align-items:center;justify-content:center;border-radius:var(--tk-radius-md);gap:8px;min-height:40px;padding:8px 16px;border:1px solid var(--tk-control-border);cursor:pointer;font-weight:600;text-align:center;transition:background var(--tk-motion-fast),border-color var(--tk-motion-fast)}
+.tku-button--primary{background:var(--tk-accent);border-color:var(--tk-accent);color:var(--tk-on-accent)}
+.tku-button--primary:hover:not(:disabled){background:var(--tk-accent-hover)}.tku-button--primary:active:not(:disabled){background:var(--tk-accent-pressed)}
+.tku-button--secondary{background:var(--tk-surface);color:var(--tk-text)}.tku-button--secondary:hover:not(:disabled){background:var(--tk-disabled-bg)}
+.tku-button--ghost{background:transparent;border-color:transparent;color:var(--tk-text)}.tku-button--ghost:hover:not(:disabled){background:var(--tk-disabled-bg)}
+.tku-button--danger{background:var(--tk-status-error-bg);color:var(--tk-status-error-text);border-color:var(--tk-status-error-text)}
+.tku-button:disabled{background:var(--tk-disabled-bg);color:var(--tk-disabled-text);border-color:var(--tk-border);cursor:not-allowed;opacity:.85}
+.tku-field{display:flex;flex-direction:column;gap:6px;min-width:0}.tku-field__label{font-weight:600}
+.tku-input{width:100%;min-width:0;min-height:42px;background:var(--tk-surface);color:var(--tk-text);border:1px solid var(--tk-control-border);border-radius:var(--tk-radius-md);padding:8px 12px}
+.tku-input[aria-invalid=true]{border:2px solid var(--tk-status-error-text)}.tku-field__error{color:var(--tk-status-error-text);font-size:12px}.tku-field__error[hidden]{display:none}
+.tku-check{display:inline-flex;align-items:center;gap:9px;min-height:40px;cursor:pointer}.tku-check input{accent-color:var(--tk-accent);inline-size:18px;block-size:18px}
+.tku-status{display:inline-flex;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:650;white-space:nowrap}
+.tku-status--info,.tku-alert--info{color:var(--tk-status-info-text);background:var(--tk-status-info-bg)}
+.tku-status--success,.tku-alert--success{color:var(--tk-status-success-text);background:var(--tk-status-success-bg)}
+.tku-status--warning,.tku-alert--warning{color:var(--tk-status-warning-text);background:var(--tk-status-warning-bg)}
+.tku-status--error,.tku-alert--error{color:var(--tk-status-error-text);background:var(--tk-status-error-bg)}
+.tku-alert{padding:12px 16px;border-radius:var(--tk-radius-md)}.tku-alert p{margin:3px 0 0}
+.tku-card{background:var(--tk-surface);border:1px solid var(--tk-border);border-radius:var(--tk-radius-lg);padding:20px;min-width:0}.tku-card__title{margin:0 0 14px;font-size:16px}
+.tku-tablist{display:flex;gap:4px;border-bottom:1px solid var(--tk-border);overflow-x:auto}.tku-tab{min-height:44px;white-space:nowrap;border:none;border-bottom:3px solid transparent;padding:8px 16px;background:transparent;color:var(--tk-muted);cursor:pointer}
+.tku-tab[aria-selected=true]{border-color:var(--tk-accent-text);color:var(--tk-accent-text);font-weight:700}.tku-tabpanel{padding:14px 2px}
+.tku-dialog{background:var(--tk-surface);color:var(--tk-text);border:1px solid var(--tk-control-border);border-radius:var(--tk-radius-lg);padding:24px;max-width:min(520px,calc(100vw - 32px));width:100%;box-shadow:0 30px 70px #0005}
+.tku-dialog::backdrop{background:#0008}.tku-dialog__title{margin:0 0 16px;font-size:20px}.tku-dialog__body{margin-bottom:24px}.tku-dialog__footer{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.tku-table-scroll{max-width:100%;overflow-x:auto}.tku-table{width:100%;min-width:400px;border-collapse:collapse;text-align:left;background:var(--tk-surface)}
+.tku-table :is(th,td){padding:12px 14px;border-bottom:1px solid var(--tk-border)}.tku-table th{font-weight:650;color:var(--tk-muted);white-space:nowrap}.tku-table th[aria-sort] {color:var(--tk-accent-text)}.tku-table tr:hover td{background:var(--tk-disabled-bg)}
+.tku-table__empty{text-align:center;color:var(--tk-muted)}.tku-pager{display:flex;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:wrap;margin-top:12px}.tku-pager__info{font-variant-numeric:tabular-nums}
+.tku-toasts{position:fixed;right:18px;bottom:18px;display:flex;flex-direction:column;gap:8px;z-index:20;max-width:min(390px,calc(100vw - 36px))}.tku-toasts__live{position:absolute;left:-9999px;inline-size:1px;block-size:1px;overflow:hidden}
+.tku-toast{display:flex;align-items:center;gap:12px;justify-content:space-between;background:var(--tk-surface);color:var(--tk-text);border:1px solid var(--tk-control-border);border-radius:var(--tk-radius-md);padding:8px 12px;box-shadow:0 5px 15px #0002}
+@media (prefers-reduced-motion:reduce){.tku-button{transition:none}}
+@media (max-width:430px){.tku-dialog{padding:16px}.tku-pager{justify-content:flex-start}.tku-toasts{left:12px;right:12px;max-width:none}}
+
+/* High-contrast OS mode: preserve boundaries and visible selection without depending on brand colors. */
+@media (forced-colors: active) {
+  .tku-button,.tku-input,.tku-dialog,.tku-toast { border-color:ButtonText;forced-color-adjust:auto }
+  .tku-button:focus-visible,.tku-input:focus-visible,.tku-tab:focus-visible { outline:3px solid Highlight;outline-offset:2px }
+  .tku-tab[aria-selected=true] { border-bottom-color:Highlight;color:Highlight }
+  .tku-status,.tku-alert { border:1px solid CanvasText }
+  .tku-button:disabled { border-color:GrayText;color:GrayText }
+}

@@ -1,0 +1,15 @@
+<Application xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="TakteraUiAvalonia.Sample.App">
+  <Application.Styles>
+    <FluentTheme />
+    <StyleInclude Source="avares://TakteraUiAvalonia.Sample/Assets/TkFieldStyles.axaml"/>
+  </Application.Styles>
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceInclude Source="avares://TakteraUiAvalonia.Sample/Assets/Taktera.Clinic.Light.axaml"/>
+        <ResourceInclude Source="avares://TakteraUiAvalonia.Sample/Assets/TkControls.axaml"/>
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>
+</Application>
