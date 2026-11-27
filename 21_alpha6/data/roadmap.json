@@ -969,7 +969,7 @@
       "phase": "Beta Readiness 5",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Run #17 14/14 PASS; baseline Scheduler 218/218 per engine (654), 21 unit assertions across OSes, 108 total axe scans zero detected violations. https://github.com/disxlab/Taktera-Design-System/actions/runs/46078824211 Advanced timeline, staged drag/drop, working schedules, bounded recurrence and multi-resource booking added; CI pending. Real backend and manual QA remain open.",
+      "description": "Run #18 14/14 PASS; advanced Scheduler 227/227 per engine (681), 29 unit tests per OS, 108 axe scans zero violations. https://github.com/disxlab/Taktera-Design-System/actions/runs/46079529448 Hardening a87de024 published; Run #19 pending. Real backend/manual QA remain open.",
       "dependencies": [
         "BR5-01",
         "DS-014"
@@ -986,8 +986,8 @@
       "title": "CRM, Forms, Application Shell",
       "phase": "Beta Readiness 5",
       "priority": "P0",
-      "status": "planned",
-      "description": "Карточки клиента, история, валидация, навигация, вкладки, RU/EN.",
+      "status": "in_progress",
+      "description": "CRM React foundations: customer profile, activity timeline, conditional wizard with versioned host callback, controlled workspace, command palette, notification center. Synthetic fixture, unit/browser QA added; CI and real host acceptance pending.",
       "dependencies": [
         "BR5-01",
         "DS-015"
@@ -1149,6 +1149,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #18 14/14 PASS, Scheduler 681/681, unit tests 87/87. Scheduler hardening published. BR5-04 CRM foundation implemented; new CI pending."
+    },
     {
       "at": "2026-11-28",
       "message": "Run #17 14/14 PASS; Scheduler 654/654, 108 axe scans / zero detected violations. Added opt-in advanced Scheduler UI and core; new CI pending."

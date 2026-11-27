@@ -142,3 +142,6 @@ export * from './resource-scheduler.js';
 export * from './RemoteDataGrid.js';
 
 export * from './ResourceScheduler.js';
+
+export * from './crm-core.js';
+export * from './CrmWorkspace.js';
