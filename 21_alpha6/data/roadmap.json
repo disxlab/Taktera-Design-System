@@ -969,7 +969,7 @@
       "phase": "Beta Readiness 5",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Run #16: Scheduler unit tests passed Linux/Windows/macOS, WebKit browser QA failed at exact accessible name of resource filter; added explicit accessible select labels, stable UTC-offset display, exact instant retention, stale version guard and unknown outcome regression tests. Revalidation pending. Real ERP backend remains open.",
+      "description": "Run #16: 11/14 jobs PASS. Scheduler 6 unit tests passed on Linux/Windows/macOS; browser first 6 checks per engine passed, all 3 engines timed out at exact accessible label for resource filter. Explicit select names, timestamp precision, UTC offset, stale version and unknown outcome regression added. Revalidation pending; real backend open. https://github.com/disxlab/Taktera-Design-System/actions/runs/46078586117",
       "dependencies": [
         "BR5-01",
         "DS-014"
@@ -1149,6 +1149,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #16: 11/14, Scheduler unit tests 6/6 per OS; first 6 browser checks passed per engine then resource selector label timeout. Existing React 397/397, Web Core 38/38 and Board 19/19 per engine still PASS. Correction pending."
+    },
     {
       "at": "2026-11-28",
       "message": "Run #16 confirmed scheduler unit tests across three OSes; accessible name issue found in WebKit browser QA, correction and revalidation pending."
