@@ -987,7 +987,7 @@
       "phase": "Beta Readiness 5",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Run #21 14/14 PASS: CRM 218/218 per engine (654/654), 108 CRM axe scans and 252 total with zero detected violations. https://github.com/disxlab/Taktera-Design-System/actions/runs/46080801304 Extended async validation, host autosave, field errors, dynamic tabs and dirty guard await new CI; real host routing/manual QA open.",
+      "description": "Run #22 14/14 PASS: CRM 326/326 per engine (978/978), async validation, draft callback, field errors, tab guard and reopen verified with synthetic host. https://github.com/disxlab/Taktera-Design-System/actions/runs/46081132417 Actual ERP endpoints, global routing/manual QA remain open.",
       "dependencies": [
         "BR5-01",
         "DS-015"
@@ -1005,7 +1005,7 @@
       "phase": "Beta Readiness 5",
       "priority": "P1",
       "status": "in_progress",
-      "description": "Advanced Analytics: equal-length period comparison with completeness checks, KPI targets, bar/line/combined chart, widget selection/order, daily drill-down, permission-gated CSV. New unit/browser QA pending; real ERP reporting and manual acceptance open.",
+      "description": "Run #22 verified initial KPI chart/table and core. https://github.com/disxlab/Taktera-Design-System/actions/runs/46081132417 Advanced Analytics now adds equal-length comparison, completeness, goals, fixed-card builder, bar/line/combined, daily drilldown, gated CSV; new CI pending. Real reporting, manual acceptance open.",
       "dependencies": [
         "BR5-01",
         "DS-016"
@@ -1151,7 +1151,7 @@
   "history": [
     {
       "at": "2026-11-28",
-      "message": "BR5-05 advanced analytics prepared; Run #22 at last check 13/14 jobs passed, Firefox pending; new CI required."
+      "message": "Run #22 14/14 PASS; CRM 978/978; 288 total axe scans / zero detected violations. BR5-05 advanced analytics added; new CI required."
     },
     {
       "at": "2026-11-28",
