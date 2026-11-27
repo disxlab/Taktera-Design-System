@@ -1096,7 +1096,7 @@
       "phase": "Beta Readiness 6",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Candidate release evidence gate after all CI: package report/hash verification, actual consumer CycloneDX inventories, packaged declaration comparison, SHA256SUMS and unsigned run/source evidence. New CI pending; license, registry access, signing, reproducibility and actual shipped SBOM remain open.",
+      "description": "Run #26 16/18 jobs PASS, Windows cleanup failed, release evidence correctly skipped by dependency gate; no aggregate SBOM/checksum bundle yet. Revalidation after documented build telemetry opt-out pending.",
       "dependencies": [
         "BR6-02",
         "BR6-03"
@@ -1151,7 +1151,7 @@
   "history": [
     {
       "at": "2026-11-28",
-      "message": "Run #26 npm 22/22, API 12+2 declaration files, macOS NuGet 26/26 and 5/5 tests PASS; Windows 26/26 and 5/5 before collector cleanup failure. Scoped documented telemetry opt-out added. Candidate aggregate gate awaits all jobs."
+      "message": "Run #26 16/18 (1 failure, 1 skipped): CRM/Analytics 1302/1302, npm 22/22, API 12+2, macOS NuGet 26/26 and 5/5 PASS; Windows 26/26 and 5/5 before collector cleanup failure. Release gate correctly skipped. Scoped telemetry opt-out added."
     },
     {
       "at": "2026-11-28",

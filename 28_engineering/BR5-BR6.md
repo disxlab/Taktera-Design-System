@@ -25,3 +25,5 @@ Taktera.UI.Avalonia candidate: compiled resource dictionaries and control themes
 
 ## BR6 release engineering and SDK tools
 Run #25 https://github.com/disxlab/Taktera-Design-System/actions/runs/46083389234: 15/17; npm consumer 16/16. Windows native consumer 22/22 plus 4/4 headless tests, cleanup failed due locked Avalonia build task DLL. macOS pack and independent app compiled, 21/21 checks, test CS0234. Fix explicit test package ref, canonical temp directory, shutdown/no reuse and cleanup retry. Added API candidate baseline, CLI starter integration, searchable developer portal, aggregate candidate release evidence after all required jobs. Revalidation pending. SBOM scope is actual consumer dependency inventory; license review, signed provenance, reproducibility, registry approval and staging remain open.
+
+Run #26 final: 16/18 jobs success, 1 Windows cleanup failure, 1 candidate evidence skipped as required. All three browser jobs PASS; CRM/Analytics 434/434 per engine and 48 CRM axe scans per engine, zero detected violations. New CI required.
