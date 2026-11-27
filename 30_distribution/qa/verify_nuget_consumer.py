@@ -17,11 +17,14 @@ def run(args,cwd,env):
 @contextmanager
 def isolated_workspace():
     tmp=Path(tempfile.mkdtemp(prefix='taktera-nuget-')).resolve()
-    env=dict(os.environ,NUGET_PACKAGES=str(tmp/'packages'),DOTNET_CLI_TELEMETRY_OPTOUT='1',MSBUILDDISABLENODEREUSE='1',DOTNET_CLI_USE_MSBUILD_SERVER='0')
+    env=dict(os.environ,NUGET_PACKAGES=str(tmp/'packages'),DOTNET_CLI_TELEMETRY_OPTOUT='1',MSBUILDDISABLENODEREUSE='1',DOTNET_CLI_USE_MSBUILD_SERVER='0',AVALONIA_TELEMETRY_OPTOUT='1')
     try:
         yield tmp,env
     finally:
         # Build task assemblies may be held by reusable MSBuild processes on Windows.
+        # Avalonia's documented build-time telemetry opt-out avoids a separate collector
+        # process holding the isolated package cache. No runtime/test gate is disabled.
+        # https://github.com/AvaloniaUI/Avalonia.BuildServices#opting-out
         subprocess.run(['dotnet','build-server','shutdown'],cwd=tmp,env=env,check=True,timeout=60)
         for attempt in range(6):
             try:
