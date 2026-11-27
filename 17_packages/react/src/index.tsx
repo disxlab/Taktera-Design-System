@@ -148,3 +148,5 @@ export * from './CrmWorkspace.js';
 
 export * from './analytics-core.js';
 export * from './AnalyticsDashboard.js';
+
+export * from './AdvancedAnalyticsDashboard.js';

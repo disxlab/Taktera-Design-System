@@ -1,27 +1,25 @@
-# @taktera/ui-react · v4.0.0-alpha.2 (SOURCE ONLY)
+# @taktera/ui-react — pre-release integration
 
-React/TypeScript components provided: TakteraProvider, Button, Field, Select, Checkbox, Switch, Status, Alert, Card, Tabs, Dialog, DataTable, Pagination and ToastRegion. `DataTable` escapes string values by native React rendering; column `format` is application-supplied ReactNode and must not render untrusted HTML. Tab state supports controlled and uncontrolled modes; table sorting supports both. No application/domain services included.
+Source package, currently private. CI has verified React compilation/SSR and browser suites for prior commits; consult the exact commit's Actions result. Do not treat this as a published stable registry package.
 
-**Unverified in this environment**: npm dependency installation, React typings/build, runtime React tests and npm publication (registry unavailable). `package.json` is intentionally `private: true`; remove that only after `npm ci`, `npm run typecheck`, `npm run build`, React tests and review. There is no fake compiled distribution or npm lockfile.
-
-From this folder on developer machine with registry access:
-
-```bash
-npm install
-npm run typecheck
-npm run build
+## Local consumer pilot
+From repository root, on Node 26 (current CI baseline):
+```sh
+cd 17_packages/react
+npm ci
+npm run verify
+npm pack
 ```
-
-In the app:
-
+Install the generated tarball in a separate React application with React/React DOM 18.3–19 (React 19 is the tested dev baseline).
+```sh
+npm install /absolute/path/to/taktera-ui-react-4.0.0-beta-readiness.3.tgz
+```
 ```tsx
-import { TakteraProvider, Button, Field } from '@taktera/ui-react';
+import { TakteraProvider, Button } from '@taktera/ui-react';
 import '@taktera/ui-react/styles.css';
 
-<TakteraProvider product="clinic" theme="light">
-  <Field label="Название услуги" required />
-  <Button onClick={() => alert('Демо')}>Добавить</Button>
-</TakteraProvider>
+export function App() {
+ return <TakteraProvider product="clinic" theme="light"><Button>Demo</Button></TakteraProvider>;
+}
 ```
-
-Components currently lack production-reviewed prop APIs, React runtime tests, safe input validation for domain data and screen-reader verification. Release gate is pending.
+Local packing is a pilot recipe, not completed clean-consumer acceptance. BR6 must validate package contents, exports, dependency/React peer compatibility, license/SBOM, reproducible builds, registry authorization and rollback. Do not publish or remove private flag until approved. DataGrid, Scheduler, CRM and analytics consume authorized host data/callbacks; the host owns domain rules, tenant/RBAC, concurrency, privacy and storage. See 29_product_integration/ARCHITECTURE.md in the repository.

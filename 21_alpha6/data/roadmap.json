@@ -1005,7 +1005,7 @@
       "phase": "Beta Readiness 5",
       "priority": "P1",
       "status": "in_progress",
-      "description": "Initial React AnalyticsDashboard: integer minor-unit revenue, weighted completion/utilization, average revenue per completed visit, period delta, chart/table, RU/EN; synthetic fixture and unit/browser QA pending.",
+      "description": "Advanced Analytics: equal-length period comparison with completeness checks, KPI targets, bar/line/combined chart, widget selection/order, daily drill-down, permission-gated CSV. New unit/browser QA pending; real ERP reporting and manual acceptance open.",
       "dependencies": [
         "BR5-01",
         "DS-016"
@@ -1149,6 +1149,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "BR5-05 advanced analytics prepared; Run #22 at last check 13/14 jobs passed, Firefox pending; new CI required."
+    },
     {
       "at": "2026-11-28",
       "message": "Run #21 14/14 PASS, notification label fix verified on all engines, CRM 654/654, 252 total axe scans with zero detected violations. BR5-04 extension and BR5-05 initial KPI committed, new CI pending."
