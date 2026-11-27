@@ -25,3 +25,9 @@ Test the candidate in a separate branch and isolated staging tenant; preserve lo
 
 ## Remaining release gates
 Actual staging, native Safari, Windows/macOS manual QA, NVDA/VoiceOver, performance budgets, third-party notices/license/SBOM/provenance, repeatability, registry access policy and owner sign-off. The SDK does not imply that all these gates have passed.
+
+## Developer tools
+- Portal: 30_distribution/portal/index.html (open locally or serve repository root over loopback HTTP).
+- CLI: python 30_distribution/taktera.py init react|web|avalonia --packages PATH --output NEW_DIRECTORY; see CLI.md. Generates local-vendor starter without overwriting existing directories. No registry write.
+- Release evidence: RELEASE.md; CI creates checksummed candidate bundle only when every required job passes; no publishing.
+- Run #25 https://github.com/disxlab/Taktera-Design-System/actions/runs/46083389234: npm passed, both NuGet jobs require revalidation. Windows cleanup and macOS package test reference corrected in this change; not yet verified.

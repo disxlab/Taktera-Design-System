@@ -1043,7 +1043,7 @@
       "phase": "Beta Readiness 6",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Public API integration docs and typed Avalonia resource SDK prepared. Public API freeze/semver approval remain open.",
+      "description": "Strict React/Web Core declaration and package contract comparison against passing Run #24 baseline; native resource enum/URI regression test added. New CI pending; full API/semver approval open.",
       "dependencies": [
         "BR5-01"
       ],
@@ -1060,7 +1060,7 @@
       "phase": "Beta Readiness 6",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Run #24 npm clean consumer 16/16 PASS: private React and Web Core tarballs, strict NodeNext, SSR/browser, public exports and SHA-256. https://github.com/disxlab/Taktera-Design-System/actions/runs/46082895789 Reproducibility, stable versions/registry approval remain open.",
+      "description": "Run #24/#25 npm clean consumer 16/16 PASS. CLI-generated React/Web starters and strict API comparison now wired into consumer QA; new CI pending.",
       "dependencies": [
         "BR6-01",
         "BR4-11"
@@ -1078,7 +1078,7 @@
       "phase": "Beta Readiness 6",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Compiled Avalonia resource library and independent package-only desktop/headless consumer prepared, CI pending on Windows/macOS. All 12 existing palettes staged without modifying source.",
+      "description": "Run #25 Windows 22/22 checks and 4/4 tests, cleanup failed due locked build task DLL; macOS 21/21 before test CS0234. https://github.com/disxlab/Taktera-Design-System/actions/runs/46083389234 Canonical temp path, explicit test PackageReference, build server shutdown/retry and CLI-based consumer added; revalidation pending.",
       "dependencies": [
         "BR6-01",
         "BR4-12"
@@ -1095,8 +1095,8 @@
       "title": "Private registry, SBOM, license, provenance",
       "phase": "Beta Readiness 6",
       "priority": "P0",
-      "status": "planned",
-      "description": "Лицензирование/third-party notices, SBOM, checksums, provenance, доступ; не публиковать без approval.",
+      "status": "in_progress",
+      "description": "Candidate release evidence gate after all CI: package report/hash verification, actual consumer CycloneDX inventories, packaged declaration comparison, SHA256SUMS and unsigned run/source evidence. New CI pending; license, registry access, signing, reproducibility and actual shipped SBOM remain open.",
       "dependencies": [
         "BR6-02",
         "BR6-03"
@@ -1114,7 +1114,7 @@
       "phase": "Beta Readiness 6",
       "priority": "P1",
       "status": "in_progress",
-      "description": "Developer SDK entry points, reference consumers, integration and migration/rollback guide added. Full documentation/rollback acceptance remains open.",
+      "description": "Developer Portal searchable catalog and theme switch, local Python CLI for React/Web/Avalonia templates, SDK/CLI/RELEASE guides and integration CI added. New CI pending; full documentation/manual acceptance open.",
       "dependencies": [
         "BR6-02",
         "BR6-03"
@@ -1149,6 +1149,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #25 15/17 PASS; Windows NuGet 22/22 and 4/4 tests before cleanup failure, macOS CS0234 in test consumer. Fixes, API guard, CLI, portal and candidate release evidence added; new CI pending."
+    },
     {
       "at": "2026-11-28",
       "message": "Run #24 15/15 PASS, CRM/analytics 434/434 per engine; 1302/1302 total, npm clean consumer 16/16. NuGet resource SDK and independent consumer added; new CI pending."
