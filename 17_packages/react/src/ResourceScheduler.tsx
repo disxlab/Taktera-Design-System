@@ -8,7 +8,7 @@ export function ResourceScheduler({label,resources,bookings,initialDate,initialZ
  const ru=locale==='ru-RU',t=(r:string,e:string)=>ru?r:e,id=React.useId();
  const [date,setDate]=React.useState(initialDate),[mode,setMode]=React.useState<'day'|'week'>('day'),[zone,setZone]=React.useState(initialZone),[resource,setResource]=React.useState('');
  const [view,setView]=React.useState<'agenda'|'timeline'>('agenda');
- const dragged=React.useRef<{id:string;from:string}|null>(null);
+ const dragged=React.useRef<{id:string;version:string;from:string}|null>(null);
  const [editor,setEditor]=React.useState<Editor|null>(null),[cancelConfirm,setCancelConfirm]=React.useState(false),[busy,setBusy]=React.useState(false),[uncertain,setUncertain]=React.useState(false),[message,setMessage]=React.useState(''),[error,setError]=React.useState('');
  const active=React.useRef<AbortController|undefined>(undefined),opener=React.useRef<HTMLElement|null>(null),editorTitle=React.useRef<HTMLInputElement>(null),heading=React.useRef<HTMLHeadingElement>(null),table=React.useRef<HTMLTableElement>(null);
  const days=React.useMemo(()=>calendarDays(date,mode,zone),[date,mode,zone]);
@@ -16,7 +16,7 @@ export function ResourceScheduler({label,resources,bookings,initialDate,initialZ
  const editing=!!editor;
  React.useEffect(()=>()=>active.current?.abort(),[]);
  React.useEffect(()=>{if(editing)editorTitle.current?.focus()},[editing]);
- function closeEditor(){setEditor(null);setCancelConfirm(false);setError('');requestAnimationFrame(()=>{if(opener.current?.isConnected)opener.current.focus();else heading.current?.focus()})}
+ function closeEditor(){setEditor(null);setCancelConfirm(false);setError('');requestAnimationFrame(()=>{if(opener.current?.isConnected&&!opener.current.matches(':disabled')&&opener.current!==document.body)opener.current.focus();else heading.current?.focus()})}
  function openNew(resourceId:string,day:string){opener.current=document.activeElement as HTMLElement;setMessage('');setError('');setCancelConfirm(false);setEditor({resourceId,additionalResourceIds:[],frequency:'none',count:2,exclusions:'',title:'',start:day+'T09:00',end:day+'T10:00',startFold:'reject',endFold:'reject'})}
  function openEdit(b:SchedulerBooking,proposal?:SchedulerDraft){opener.current=document.activeElement as HTMLElement;setMessage('');setError('');setCancelConfirm(false);const draft=proposal??b;const start=localMinute(instant(draft.start),zone),end=localMinute(instant(draft.end),zone);const fold=(v:string,original:string):Fold=>{const candidates=localCandidates(v,zone);return candidates.length>1&&Math.floor(candidates.at(-1)!/60000)===Math.floor(instant(original)/60000)?'later':candidates.length>1?'earlier':'reject'};setEditor({id:b.id,version:b.version,resourceId:draft.resourceId,additionalResourceIds:[...(draft.additionalResourceIds??[])],title:draft.title,start,end,startFold:fold(start,draft.start),endFold:fold(end,draft.end)})}
  function patch(v:Partial<Editor>){setEditor(e=>e?{...e,...v}:e);setError('');setCancelConfirm(false)}
@@ -34,14 +34,16 @@ export function ResourceScheduler({label,resources,bookings,initialDate,initialZ
    if(cancel){if(!cancelConfirm||!editor.id||!editor.version)return;request={kind:'cancel',id:editor.id,version:editor.version,idempotencyKey:key}}
    else{
     const draft:SchedulerDraft={resourceId:editor.resourceId,additionalResourceIds:editor.additionalResourceIds??[],title:editor.title.trim(),start:resolveEditedLocal(editor.start,zone,editor.startFold,original?.start),end:resolveEditedLocal(editor.end,zone,editor.endFold,original?.end)};
-    const conflicts=validateDraft(draft,resources,bookings,editor.id);
-    if(conflicts.length){setError(t('Конфликт ресурса: ','Resource conflict: ')+conflicts.map(b=>b.title).join(', '));return}
     if(!editor.id&&editor.frequency&&editor.frequency!=='none'){
      const rule:RecurrenceRule={frequency:editor.frequency,count:editor.count??2,timeZone:zone,excludeDates:(editor.exclusions??'').split(',').map(x=>x.trim()).filter(Boolean),startFold:editor.startFold,endFold:editor.endFold};
      const occurrences=expandRecurrence(draft,rule);validateSeries(occurrences,resources,bookings);request={kind:'create-series',draft,rule,occurrences,idempotencyKey:key};
-    }else request=editor.id&&editor.version?{kind:'update',id:editor.id,version:editor.version,draft,idempotencyKey:key}:{kind:'create',draft,idempotencyKey:key};
+    }else{
+    const conflicts=validateDraft(draft,resources,bookings,editor.id);
+    if(conflicts.length){setError(t('Конфликт ресурса: ','Resource conflict: ')+conflicts.map(b=>b.title).join(', '));return}
+     request=editor.id&&editor.version?{kind:'update',id:editor.id,version:editor.version,draft,idempotencyKey:key}:{kind:'create',draft,idempotencyKey:key};
+    }
    }
-  }catch{setError(t('Проверьте название, ресурсы, рабочие часы, серию, интервал и локальное время.','Check title, resources, working hours, series, interval and local time.'));return}
+  }catch(e){setError(e instanceof Error&&e.message==='Outside working hours'?t('Запись вне рабочего графика ресурса','Booking outside resource working hours'):e instanceof Error&&e.message==='Series conflict'?t('Конфликт одной из записей серии','Conflict in a series occurrence'):t('Проверьте название, ресурсы, рабочие часы, серию, интервал и локальное время.','Check title, resources, working hours, series, interval and local time.'));return}
   const abort=new AbortController();active.current=abort;setBusy(true);
   try{
    const result=await mutate(request,abort.signal);if(abort.signal.aborted)return;
@@ -53,7 +55,7 @@ export function ResourceScheduler({label,resources,bookings,initialDate,initialZ
  }
  const canEdit=!!mutate&&!uncertain&&!editing&&!busy;
  function proposeMove(b:SchedulerBooking,from:string,to:string,start:number){if(!canEdit)return;try{openEdit(b,moveBooking(b,from,to,start));setMessage(t('Проверьте перенос и сохраните запись','Review move and save booking'))}catch{setError(t('Перенос недоступен; используйте редактор','Move unavailable; use editor'))}}
- function onDrop(e:React.DragEvent<HTMLDivElement>,r:SchedulerResource,d:CalendarDay){e.preventDefault();const payload=dragged.current;dragged.current=null;if(!payload||!canEdit)return;const b=bookings.find(x=>x.id===payload.id&&x.status!=='cancelled');if(!b)return;const rect=e.currentTarget.getBoundingClientRect();try{proposeMove(b,payload.from,r.id,dropInstant(d,(e.clientX-rect.left)/rect.width))}catch{setError(t('Некорректный перенос','Invalid move'))}}
+ function onDrop(e:React.DragEvent<HTMLDivElement>,r:SchedulerResource,d:CalendarDay){e.preventDefault();const payload=dragged.current;dragged.current=null;if(!payload||!canEdit)return;const b=bookings.find(x=>x.id===payload.id&&x.status!=='cancelled');if(!b||b.version!==payload.version){setError(t('Запись изменилась. Откройте её заново.','Booking changed. Reopen it.'));return}const rect=e.currentTarget.getBoundingClientRect();try{proposeMove(b,payload.from,r.id,dropInstant(d,(e.clientX-rect.left)/rect.width))}catch{setError(t('Некорректный перенос','Invalid move'))}}
  function work(r:SchedulerResource,d:CalendarDay){try{return workingIntervals(r,d)}catch{return []}}
  function timelineTicks(d:CalendarDay){return Array.from({length:Math.ceil((d.end-d.start)/3600000)},(_,i)=>d.start+i*3600000)}
  const time=(b:SchedulerBooking)=>zonedMinuteLabel(instant(b.start),zone)+' — '+zonedMinuteLabel(instant(b.end),zone);
@@ -81,7 +83,7 @@ export function ResourceScheduler({label,resources,bookings,initialDate,initialZ
  <div className="tku-timeline-axis" aria-hidden="true">{timelineTicks(d).filter((_,i)=>i%4===0).map(ms=><span key={ms} style={{left:100*(ms-d.start)/(d.end-d.start)+'%'}}>{zonedMinuteLabel(ms,zone).slice(11,16)}</span>)}</div>
  <div className="tku-timeline-track" data-track={r.id+'-'+d.date} onDragOver={e=>{if(canEdit&&dragged.current)e.preventDefault()}} onDrop={e=>onDrop(e,r,d)}>
  {work(r,d).map((w,i)=>{const pos=timelinePosition(w,d);return pos&&<span key={i} aria-hidden="true" className="tku-timeline-work" style={{left:pos.left+'%',width:pos.width+'%'}}/>})}
- {bookingsForDay(bookings,r.id,d).map((b,i)=>{const pos=timelinePosition({start:instant(b.start),end:instant(b.end)},d)!;return <button key={b.id} type="button" className="tku-timeline-event" data-event={b.id} draggable={canEdit} disabled={!canEdit} style={{left:pos.left+'%',width:pos.width+'%',top:8+i*38}} title={b.title+' · '+time(b)} aria-label={b.title+' · '+r.label+' · '+time(b)} onDragStart={e=>{if(!canEdit){e.preventDefault();return}dragged.current={id:b.id,from:r.id};e.dataTransfer.setData('text/plain',b.id);e.dataTransfer.effectAllowed='move'}} onDragEnd={()=>{dragged.current=null}} onClick={()=>openEdit(b)} onKeyDown={e=>{if(e.altKey&&(e.key==='ArrowLeft'||e.key==='ArrowRight')){e.preventDefault();proposeMove(b,r.id,r.id,instant(b.start)+(e.key==='ArrowRight'?1:-1)*900000)}}}>{b.title}</button>})}
+ {bookingsForDay(bookings,r.id,d).map((b,i)=>{const pos=timelinePosition({start:instant(b.start),end:instant(b.end)},d)!;return <button key={b.id} type="button" className="tku-timeline-event" data-event={b.id} draggable={canEdit} disabled={!canEdit} style={{left:pos.left+'%',width:pos.width+'%',top:8+i*38}} title={b.title+' · '+time(b)} aria-label={b.title+' · '+r.label+' · '+time(b)} onDragStart={e=>{if(!canEdit){e.preventDefault();return}dragged.current={id:b.id,version:b.version,from:r.id};e.dataTransfer.setData('text/plain',b.id);e.dataTransfer.effectAllowed='move'}} onDragEnd={()=>{dragged.current=null}} onClick={()=>openEdit(b)} onKeyDown={e=>{if(e.altKey&&(e.key==='ArrowLeft'||e.key==='ArrowRight')){e.preventDefault();proposeMove(b,r.id,r.id,instant(b.start)+(e.key==='ArrowRight'?1:-1)*900000)}}}>{b.title}</button>})}
  <span aria-hidden="true" style={{display:'block',height:Math.max(54,bookingsForDay(bookings,r.id,d).length*38+16)}}/>
  </div><p className="tku-scheduler-hint">{r.schedule?t('Рабочие интервалы: ','Working intervals: ')+work(r,d).map(w=>zonedMinuteLabel(w.start,zone)+' – '+zonedMinuteLabel(w.end,zone)).join('; '):t('Без ограничений рабочего графика','No working-hours restriction')}</p>
  {mutate&&<button type="button" className="tku-button tku-button--secondary" disabled={!canEdit||d.start===d.end} aria-label={t('Новая запись','New booking')+' '+r.label+' '+d.date} onClick={()=>openNew(r.id,d.date)}>{t('Новая запись','New booking')}</button>}</section>)}</section>)}</div>}
