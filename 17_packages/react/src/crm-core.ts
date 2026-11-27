@@ -13,16 +13,17 @@ export function validateSchema(steps:readonly FormStep[]){
  if(!steps.length)throw Error('Form requires steps');
  const ids=new Set<string>(),stepIds=new Set<string>();
  for(const step of steps){if(!step.id||stepIds.has(step.id))throw Error('Duplicate step');stepIds.add(step.id);
-  for(const f of step.fields){if(!/^[A-Za-z][A-Za-z0-9_-]*$/.test(f.id)||['constructor','prototype'].includes(f.id)||ids.has(f.id)||!f.label)throw Error('Invalid field ID');if(f.when&&!ids.has(f.when.field))throw Error('Dependency must precede field');if(f.kind==='select'&&(!f.options?.length||new Set(f.options.map(o=>o.value)).size!==f.options.length||f.options.some(o=>!o.value)))throw Error('Invalid select');ids.add(f.id)}
+  for(const f of step.fields){if(!/^[A-Za-z][A-Za-z0-9_-]*$/.test(f.id)||['constructor','prototype'].includes(f.id)||ids.has(f.id)||!f.label)throw Error('Invalid field ID');if(f.when&&!ids.has(f.when.field))throw Error('Dependency must precede field');if(f.maxLength!==undefined&&(!Number.isSafeInteger(f.maxLength)||f.maxLength<1))throw Error('Invalid max length');if(f.kind==='select'&&(!f.options?.length||new Set(f.options.map(o=>o.value)).size!==f.options.length||f.options.some(o=>!o.value)))throw Error('Invalid select');ids.add(f.id)}
  }
 }
-export function activeFields(steps:readonly FormStep[],values:FormValues){validateSchema(steps);const active=new Set<string>();return steps.flatMap(s=>s.fields).filter(f=>{const yes=!f.when||active.has(f.when.field)&&values[f.when.field]===f.when.equals;if(yes)active.add(f.id);return yes})}
-export function formPayload(steps:readonly FormStep[],values:FormValues):Record<string,FormValue>{return Object.fromEntries(activeFields(steps,values).map(f=>[f.id,values[f.id]??(f.kind==='checkbox'?false:'')]))}
+function fieldValue(f:FormField,values:FormValues):FormValue{return Object.hasOwn(values,f.id)?values[f.id]:(f.kind==='checkbox'?false:'')}
+export function activeFields(steps:readonly FormStep[],values:FormValues){validateSchema(steps);const active=new Map<string,FormValue>();return steps.flatMap(s=>s.fields).filter(f=>{const yes=!f.when||active.has(f.when.field)&&active.get(f.when.field)===f.when.equals;if(yes)active.set(f.id,fieldValue(f,values));return yes})}
+export function formPayload(steps:readonly FormStep[],values:FormValues):Record<string,FormValue>{return Object.fromEntries(activeFields(steps,values).map(f=>[f.id,fieldValue(f,values)]))}
 export type FieldError='required'|'invalid'|'tooLong';
 export function formErrors(steps:readonly FormStep[],values:FormValues,stepId?:string):Record<string,FieldError>{
  const active=activeFields(steps,values);const filter=stepId?new Set(steps.find(s=>s.id===stepId)?.fields.map(f=>f.id)??[]):null;
  const result:Record<string,FieldError>={};
- for(const f of active){if(filter&&!filter.has(f.id))continue;const v=values[f.id]??(f.kind==='checkbox'?false:'');
+ for(const f of active){if(filter&&!filter.has(f.id))continue;const v=fieldValue(f,values);
   if(f.kind==='checkbox'){if(typeof v!=='boolean')result[f.id]='invalid';else if(f.required&&!v)result[f.id]='required';continue}
   if(typeof v!=='string'){result[f.id]='invalid';continue}
   const trimmed=v.trim();if(!trimmed){if(f.required)result[f.id]='required';continue}
