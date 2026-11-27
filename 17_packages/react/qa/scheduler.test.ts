@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {calendarDays,addCivilDays,localCandidates,resolveLocal,bookingsForDay,validateDraft,instant} from '../src/resource-scheduler.js';
+import {calendarDays,addCivilDays,localCandidates,resolveLocal,bookingsForDay,validateDraft,instant,resolveEditedLocal,zonedMinuteLabel} from '../src/resource-scheduler.js';
 import type {SchedulerBooking} from '../src/resource-scheduler.js';
 const zone='Europe/Amsterdam';
 test('civil Monday week and leap day',()=>{assert.equal(addCivilDays('2028-02-28',1),'2028-02-29');const d=calendarDays('2026-12-02','week',zone);assert.equal(d[0].date,'2026-11-30');assert.equal(d[6].date,'2026-12-06');assert.equal(d[0].end,d[1].start)});
@@ -10,3 +10,5 @@ test('non-hour timezone and skipped calendar date',()=>{assert.equal(resolveLoca
 const booking:SchedulerBooking={id:'a',version:'v1',resourceId:'room1',title:'A',start:'2026-12-01T22:30:00Z',end:'2026-12-02T00:30:00Z',status:'confirmed'};
 test('overnight records appear on both days, cancelled excluded',()=>{const a=calendarDays('2026-12-01','day',zone)[0],b=calendarDays('2026-12-02','day',zone)[0];assert.equal(bookingsForDay([booking],'room1',a).length,1);assert.equal(bookingsForDay([booking],'room1',b).length,1);assert.equal(bookingsForDay([{...booking,status:'cancelled'}],'room1',b).length,0)});
 test('draft resource, title, conflict and self exclusion',()=>{const resources=[{id:'room1',label:'Room 1'}],draft={resourceId:'room1',title:'B',start:booking.start,end:booking.end};assert.equal(validateDraft(draft,resources,[booking]).length,1);assert.equal(validateDraft(draft,resources,[booking],'a').length,0);assert.throws(()=>validateDraft({...draft,title:''},resources,[]));assert.throws(()=>validateDraft({...draft,resourceId:'bad'},resources,[]))});
+
+test('unchanged minute preserves exact seconds and distinguishes fold offsets',()=>{assert.equal(resolveEditedLocal('2026-10-25T02:30',zone,'later','2026-10-25T01:30:15.123Z'),'2026-10-25T01:30:15.123Z');assert.equal(resolveEditedLocal('2026-10-25T02:30',zone,'earlier','2026-10-25T01:30:15.123Z'),'2026-10-25T00:30:00.000Z');assert.match(zonedMinuteLabel(instant('2026-10-25T00:30:00Z'),zone),/UTC\+02:00$/);assert.match(zonedMinuteLabel(instant('2026-10-25T01:30:00Z'),zone),/UTC\+01:00$/)});

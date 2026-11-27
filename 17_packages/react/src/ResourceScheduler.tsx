@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {addCivilDays,calendarDays,bookingsForDay,localMinute,localCandidates,resolveLocal,instant,validateDraft} from './resource-scheduler.js';
+import {addCivilDays,calendarDays,bookingsForDay,localMinute,localCandidates,resolveEditedLocal,zonedMinuteLabel,instant,validateDraft} from './resource-scheduler.js';
 import type {SchedulerResource,SchedulerBooking,SchedulerDraft,SchedulerMutation,SchedulerTransport} from './resource-scheduler.js';
 type Fold='earlier'|'later'|'reject';
 type Editor={id?:string;version?:string;resourceId:string;title:string;start:string;end:string;startFold:Fold;endFold:Fold};
@@ -16,21 +16,22 @@ export function ResourceScheduler({label,resources,bookings,initialDate,initialZ
  React.useEffect(()=>{if(editing)editorTitle.current?.focus()},[editing]);
  function closeEditor(){setEditor(null);setCancelConfirm(false);setError('');requestAnimationFrame(()=>{if(opener.current?.isConnected)opener.current.focus();else heading.current?.focus()})}
  function openNew(resourceId:string,day:string){opener.current=document.activeElement as HTMLElement;setMessage('');setError('');setCancelConfirm(false);setEditor({resourceId,title:'',start:day+'T09:00',end:day+'T10:00',startFold:'reject',endFold:'reject'})}
- function openEdit(b:SchedulerBooking){opener.current=document.activeElement as HTMLElement;setMessage('');setError('');setCancelConfirm(false);const start=localMinute(instant(b.start),zone),end=localMinute(instant(b.end),zone);const fold=(v:string,original:string):Fold=>{const candidates=localCandidates(v,zone);return candidates.length>1&&candidates.at(-1)===instant(original)?'later':candidates.length>1?'earlier':'reject'};setEditor({id:b.id,version:b.version,resourceId:b.resourceId,title:b.title,start,end,startFold:fold(start,b.start),endFold:fold(end,b.end)})}
+ function openEdit(b:SchedulerBooking){opener.current=document.activeElement as HTMLElement;setMessage('');setError('');setCancelConfirm(false);const start=localMinute(instant(b.start),zone),end=localMinute(instant(b.end),zone);const fold=(v:string,original:string):Fold=>{const candidates=localCandidates(v,zone);return candidates.length>1&&Math.floor(candidates.at(-1)!/60000)===Math.floor(instant(original)/60000)?'later':candidates.length>1?'earlier':'reject'};setEditor({id:b.id,version:b.version,resourceId:b.resourceId,title:b.title,start,end,startFold:fold(start,b.start),endFold:fold(end,b.end)})}
  function patch(v:Partial<Editor>){setEditor(e=>e?{...e,...v}:e);setError('');setCancelConfirm(false)}
  function move(e:React.KeyboardEvent<HTMLButtonElement>,row:number,col:number){const moves:Record<string,[number,number]>={ArrowLeft:[row,col-1],ArrowRight:[row,col+1],ArrowUp:[row-1,col],ArrowDown:[row+1,col],Home:[row,0],End:[row,days.length-1]};const next=moves[e.key];if(!next)return;e.preventDefault();const [r,c]=next;table.current?.querySelector<HTMLButtonElement>('[data-cell="'+r+'-'+c+'"]')?.focus()}
- function navigate(n:number){try{const next=addCivilDays(date,n*(mode==='week'?7:1));calendarDays(next,mode,zone);setDate(next);setError('')}catch{setError(t('Дата вне диапазона календаря','Date outside calendar range'))}}
- function changeDate(value:string){try{calendarDays(value,mode,zone);setDate(value);setError('')}catch{setError(t('Некорректная дата','Invalid date'))}}
+ function navigate(n:number){try{const next=addCivilDays(date,n*(mode==='week'?7:1));if(next<'2000-01-10'||next>'2099-12-20')throw Error('Range');calendarDays(next,mode,zone);setDate(next);setError('')}catch{setError(t('Дата вне диапазона календаря','Date outside calendar range'))}}
+ function changeDate(value:string){try{if(value<'2000-01-10'||value>'2099-12-20')throw Error('Range');calendarDays(value,mode,zone);setDate(value);setError('')}catch{setError(t('Некорректная дата','Invalid date'))}}
  async function submit(cancel=false){
   if(!editor||!mutate||busy||uncertain||active.current)return;
   setError('');setMessage('');
   let request:SchedulerMutation;
   try{
    const key=globalThis.crypto.randomUUID();
+   const original=editor.id?bookings.find(b=>b.id===editor.id):undefined;
+   if(editor.id&&(!original||original.version!==editor.version||original.status==='cancelled')){setError(t('Запись изменилась. Откройте её заново.','Booking changed. Reopen it.'));return}
    if(cancel){if(!cancelConfirm||!editor.id||!editor.version)return;request={kind:'cancel',id:editor.id,version:editor.version,idempotencyKey:key}}
    else{
-    if(editor.id){const original=bookings.find(b=>b.id===editor.id);if(!original||original.version!==editor.version||original.status==='cancelled'){setError(t('Запись изменилась. Откройте её заново.','Booking changed. Reopen it.'));return}}
-    const draft:SchedulerDraft={resourceId:editor.resourceId,title:editor.title.trim(),start:resolveLocal(editor.start,zone,editor.startFold),end:resolveLocal(editor.end,zone,editor.endFold)};
+    const draft:SchedulerDraft={resourceId:editor.resourceId,title:editor.title.trim(),start:resolveEditedLocal(editor.start,zone,editor.startFold,original?.start),end:resolveEditedLocal(editor.end,zone,editor.endFold,original?.end)};
     const conflicts=validateDraft(draft,resources,bookings,editor.id);
     if(conflicts.length){setError(t('Конфликт ресурса: ','Resource conflict: ')+conflicts.map(b=>b.title).join(', '));return}
     request=editor.id&&editor.version?{kind:'update',id:editor.id,version:editor.version,draft,idempotencyKey:key}:{kind:'create',draft,idempotencyKey:key};
@@ -46,7 +47,7 @@ export function ResourceScheduler({label,resources,bookings,initialDate,initialZ
   finally{active.current=undefined;if(!abort.signal.aborted)setBusy(false)}
  }
  const canEdit=!!mutate&&!uncertain&&!editing&&!busy;
- const time=(b:SchedulerBooking)=>localMinute(instant(b.start),zone).replace('T',' ')+' — '+localMinute(instant(b.end),zone).replace('T',' ');
+ const time=(b:SchedulerBooking)=>zonedMinuteLabel(instant(b.start),zone)+' — '+zonedMinuteLabel(instant(b.end),zone);
  return <section className="tku-scheduler" aria-labelledby={id}><h2 id={id} ref={heading} tabIndex={-1}>{label}</h2>
  <div className="tku-scheduler-toolbar">
  <button className="tku-button tku-button--secondary" type="button" disabled={editing||busy} onClick={()=>navigate(-1)}>{t('Назад','Previous')}</button>

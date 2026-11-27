@@ -22,7 +22,8 @@ export function formatSlot(booking:Booking,timeZone:string,locale:'ru-RU'|'en-US
 const DAY=86400000;
 function civilEpoch(date:string){if(!/^20\d\d-\d\d-\d\d$/.test(date))throw Error('Unsupported civil date');return instant(date+'T00:00:00Z')}
 export function addCivilDays(date:string,count:number){if(!Number.isSafeInteger(count))throw Error('Invalid day count');const result=new Date(civilEpoch(date)+count*DAY).toISOString().slice(0,10);civilEpoch(result);return result}
-function partsAt(ms:number,zone:string){const f=new Intl.DateTimeFormat('en-CA',{timeZone:zone,calendar:'gregory',numberingSystem:'latn',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'});const p=Object.fromEntries(f.formatToParts(ms).map(x=>[x.type,x.value]));return {date:p.year+'-'+p.month+'-'+p.day,time:p.hour+':'+p.minute,seconds:p.second}}
+const formatters=new Map<string,Intl.DateTimeFormat>();
+function partsAt(ms:number,zone:string){let f=formatters.get(zone);if(!f){f=new Intl.DateTimeFormat('en-CA',{timeZone:zone,calendar:'gregory',numberingSystem:'latn',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'});if(formatters.size>=32)formatters.clear();formatters.set(zone,f)}const p=Object.fromEntries(f.formatToParts(ms).map(x=>[x.type,x.value]));return {date:p.year+'-'+p.month+'-'+p.day,time:p.hour+':'+p.minute,seconds:p.second}}
 export function localMinute(ms:number,zone:string){const p=partsAt(ms,zone);return p.date+'T'+p.time}
 export function localCandidates(value:string,zone:string):number[]{
  if(!/^20\d\d-\d\d-\d\dT\d\d:\d\d$/.test(value))throw Error('Invalid local minute');
@@ -63,3 +64,8 @@ export function validateDraft(draft:SchedulerDraft,resources:readonly SchedulerR
  const span=interval(draft.start,draft.end);
  return bookings.filter(b=>b.id!==editingId&&b.resourceId===draft.resourceId&&b.status!=='cancelled'&&overlaps(span,interval(b.start,b.end)));
 }
+
+/** Stable time label distinguishes repeated wall-clock hours, without locale-dependent SSR punctuation. */
+export function zonedMinuteLabel(ms:number,zone:string){const p=partsAt(ms,zone);const offset=(instant(p.date+'T'+p.time+':'+p.seconds+'Z')-Math.floor(ms/1000)*1000)/60000;const sign=offset<0?'-':'+';const minutes=Math.abs(Math.round(offset));return p.date+' '+p.time+' UTC'+sign+String(Math.floor(minutes/60)).padStart(2,'0')+':'+String(minutes%60).padStart(2,'0')}
+/** Keep exact original instant when a minute-resolution editor did not change the endpoint. */
+export function resolveEditedLocal(value:string,zone:string,fold:'earlier'|'later'|'reject',original?:string){const resolved=resolveLocal(value,zone,fold);if(original){const before=instant(original);if(Math.floor(before/60000)===Math.floor(instant(resolved)/60000))return new Date(before).toISOString()}return resolved}
