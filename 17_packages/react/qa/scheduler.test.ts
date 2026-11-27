@@ -1,0 +1,12 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {calendarDays,addCivilDays,localCandidates,resolveLocal,bookingsForDay,validateDraft,instant} from '../src/resource-scheduler.js';
+import type {SchedulerBooking} from '../src/resource-scheduler.js';
+const zone='Europe/Amsterdam';
+test('civil Monday week and leap day',()=>{assert.equal(addCivilDays('2028-02-28',1),'2028-02-29');const d=calendarDays('2026-12-02','week',zone);assert.equal(d[0].date,'2026-11-30');assert.equal(d[6].date,'2026-12-06');assert.equal(d[0].end,d[1].start)});
+test('DST days are 23 and 25 actual hours',()=>{for(const [date,hours] of [['2026-03-29',23],['2026-10-25',25]] as const){const [d]=calendarDays(date,'day',zone);assert.equal((d.end-d.start)/3600000,hours)}});
+test('DST gap rejected and fold explicitly disambiguated',()=>{assert.equal(localCandidates('2026-03-29T02:30',zone).length,0);assert.throws(()=>resolveLocal('2026-03-29T02:30',zone));assert.equal(localCandidates('2026-10-25T02:30',zone).length,2);assert.throws(()=>resolveLocal('2026-10-25T02:30',zone));assert.equal(instant(resolveLocal('2026-10-25T02:30',zone,'later'))-instant(resolveLocal('2026-10-25T02:30',zone,'earlier')),3600000)});
+test('non-hour timezone and skipped calendar date',()=>{assert.equal(resolveLocal('2026-12-01T09:00','Asia/Kathmandu'),'2026-12-01T03:15:00.000Z');const [d]=calendarDays('2011-12-30','day','Pacific/Apia');assert.equal(d.start,d.end)});
+const booking:SchedulerBooking={id:'a',version:'v1',resourceId:'room1',title:'A',start:'2026-12-01T22:30:00Z',end:'2026-12-02T00:30:00Z',status:'confirmed'};
+test('overnight records appear on both days, cancelled excluded',()=>{const a=calendarDays('2026-12-01','day',zone)[0],b=calendarDays('2026-12-02','day',zone)[0];assert.equal(bookingsForDay([booking],'room1',a).length,1);assert.equal(bookingsForDay([booking],'room1',b).length,1);assert.equal(bookingsForDay([{...booking,status:'cancelled'}],'room1',b).length,0)});
+test('draft resource, title, conflict and self exclusion',()=>{const resources=[{id:'room1',label:'Room 1'}],draft={resourceId:'room1',title:'B',start:booking.start,end:booking.end};assert.equal(validateDraft(draft,resources,[booking]).length,1);assert.equal(validateDraft(draft,resources,[booking],'a').length,0);assert.throws(()=>validateDraft({...draft,title:''},resources,[]));assert.throws(()=>validateDraft({...draft,resourceId:'bad'},resources,[]))});

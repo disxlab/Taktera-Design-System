@@ -1,0 +1,53 @@
+import * as React from 'react';
+import {renderToString} from 'react-dom/server';
+import {chromium,firefox,webkit} from 'playwright';
+import {createRequire} from 'node:module';
+import {createServer} from 'node:http';
+import {fileURLToPath} from 'node:url';
+import {readFile,mkdir,writeFile} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import assert from 'node:assert/strict';
+import {SchedulerFixture} from './scheduler-fixture.js';
+import type {Product,Theme} from '../src/index.js';
+const require=createRequire(import.meta.url),esbuild=createRequire(require.resolve('tsx/package.json'))('esbuild');
+const dir=fileURLToPath(new URL('../',import.meta.url)),engine=(process.argv[2]||'chromium') as 'chromium'|'firefox'|'webkit',engines={chromium,firefox,webkit};
+if(!engines[engine])throw Error('Unsupported engine');
+const out=resolve(dir,'../../28_engineering/qa/results','scheduler-'+engine);await mkdir(out,{recursive:true});
+const bundle=await esbuild.build({entryPoints:[resolve(dir,'qa/scheduler-client.tsx')],bundle:true,write:false,platform:'browser',format:'iife',jsx:'automatic',define:{'process.env.NODE_ENV':'"development"'}});
+const css=await readFile(resolve(dir,'styles.css'));const products:Product[]=['platform','clinic','beauty','spa','fitness','travel'],themes:Theme[]=['light','dark'];
+const server=createServer((req,res)=>{const u=new URL(req.url||'/','http://localhost');if(u.pathname==='/client.js'){res.writeHead(200,{'Content-Type':'text/javascript'}).end(bundle.outputFiles[0].contents);return}if(u.pathname==='/styles.css'){res.writeHead(200,{'Content-Type':'text/css'}).end(css);return}if(u.pathname!=='/'){res.writeHead(404).end();return}const product=u.searchParams.get('product') as Product,theme=u.searchParams.get('theme') as Theme,locale=u.searchParams.get('locale')==='en-US'?'en-US':'ru-RU';if(!products.includes(product)||!themes.includes(theme)){res.writeHead(400).end();return}res.writeHead(200,{'Content-Type':'text/html; charset=utf-8'}).end('<!doctype html><html lang="'+locale+'"><head><title>Scheduler QA</title><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/styles.css"></head><body><div id="root" data-product="'+product+'" data-theme="'+theme+'" data-locale="'+locale+'">'+renderToString(React.createElement(SchedulerFixture,{product,theme,locale}))+'</div></body></html>')});
+await new Promise<void>(ok=>server.listen(0,'127.0.0.1',ok));const addr=server.address();if(!addr||typeof addr==='string')throw Error('Server failed');const base='http://127.0.0.1:'+addr.port+'/';
+const report:{engine:string;checks:{name:string;ok:boolean}[];errors:string[];scans:{label:string;violations:unknown[];incomplete:unknown[]}[]}={engine,checks:[],errors:[],scans:[]};
+const check=(name:string,ok:unknown)=>{report.checks.push({name,ok:Boolean(ok)});assert.ok(ok,name)};
+const browser=await engines[engine].launch();
+try{
+ for(const product of products)for(const theme of themes){
+  const label=product+'/'+theme,page=await browser.newPage({viewport:{width:1440,height:900},reducedMotion:'reduce'});
+  page.on('crash',()=>report.errors.push(label+' crash'));page.on('pageerror',e=>report.errors.push(label+' '+e));page.on('console',m=>{if(m.type()==='error'&&!m.text().includes('favicon.ico'))report.errors.push(label+' '+m.text())});
+  try{
+   await page.goto(base+'?product='+product+'&theme='+theme);
+   const region=page.getByRole('region',{name:'Scheduler BR5'}),first=region.getByRole('button',{name:'Новая запись Room 1 2026-12-01',exact:true});
+   await first.evaluate(e=>{(window as any).__ssr=e});await page.addScriptTag({url:'/client.js'});await page.waitForFunction(()=>document.documentElement.dataset.hydrated==='yes');
+   check(label+' SSR DOM retained',await first.evaluate(e=>(window as any).__ssr===e));
+   check(label+' day resources',await region.locator('th[data-day]').count()===1&&await region.getByRole('button',{name:'Existing A'}).count()===1);
+   await region.getByRole('button',{name:'Неделя',exact:true}).click();check(label+' week Monday',await region.locator('th[data-day]').count()===7&&await region.locator('th[data-day]').first().getAttribute('data-day')==='2026-11-30');
+   const origin=region.getByRole('button',{name:'Новая запись Room 1 2026-11-30',exact:true});await origin.focus();await page.keyboard.press('ArrowRight');check(label+' keyboard horizontal',await first.evaluate(e=>document.activeElement===e));await page.keyboard.press('ArrowDown');check(label+' keyboard vertical',await region.getByRole('button',{name:'Новая запись Room 2 2026-12-01',exact:true}).evaluate(e=>document.activeElement===e));
+   await region.getByRole('button',{name:'Вперёд'}).click();check(label+' next week',await region.locator('th[data-day]').first().getAttribute('data-day')==='2026-12-07');await region.getByRole('button',{name:'Назад',exact:true}).click();
+   await region.getByRole('button',{name:'День',exact:true}).click();await region.getByLabel('Ресурс',{exact:true}).selectOption('r1');check(label+' resource filter',await region.getByRole('button',{name:'Existing B'}).count()===0);await region.getByLabel('Ресурс',{exact:true}).selectOption('');
+   await region.getByLabel('Часовой пояс').selectOption('UTC');check(label+' timezone display',(await region.locator('.tku-scheduler-booking').first().textContent())?.includes('08:00'));await region.getByLabel('Часовой пояс').selectOption('Europe/Amsterdam');
+   await first.focus();await page.keyboard.press('Enter');const form=region.getByRole('form',{name:'Редактор записи'});await form.getByLabel('Название').waitFor();check(label+' editor focus',await form.getByLabel('Название').evaluate(e=>document.activeElement===e));
+   await form.getByLabel('Название').fill('New booking');await form.getByRole('button',{name:'Сохранить запись'}).click();await region.getByRole('alert').waitFor();check(label+' conflict blocks transport',(await region.getByRole('alert').textContent())?.includes('Конфликт ресурса')&&await page.getByTestId('calls').textContent()==='0');
+   await form.getByLabel('Начало',{exact:true}).fill('2026-12-01T10:00');await form.getByLabel('Окончание',{exact:true}).fill('2026-12-01T11:00');
+   await form.getByRole('button',{name:'Сохранить запись'}).click();await region.getByRole('button',{name:'New booking',exact:true}).waitFor();check(label+' adjacent save',await page.getByTestId('calls').textContent()==='1');
+   await region.getByRole('button',{name:'New booking',exact:true}).click();await form.getByLabel('Название').fill('Updated booking');await form.getByRole('button',{name:'Сохранить запись'}).click();await region.getByRole('button',{name:'Updated booking',exact:true}).waitFor();check(label+' versioned edit',await page.getByTestId('calls').textContent()==='2');
+   await region.getByRole('button',{name:'Updated booking',exact:true}).click();await form.getByRole('button',{name:'Отменить запись',exact:true}).click();check(label+' cancellation explicit confirmation',await page.getByTestId('calls').textContent()==='2');await form.getByRole('button',{name:'Подтвердить отмену'}).click();await region.getByRole('button',{name:'Updated booking',exact:true}).waitFor({state:'detached'});check(label+' cancellation applied',await page.getByTestId('calls').textContent()==='3');
+   await first.click();await form.getByLabel('Название').fill('Server conflict');await form.getByLabel('Начало',{exact:true}).fill('2026-12-01T10:00');await form.getByLabel('Окончание',{exact:true}).fill('2026-12-01T11:00');await form.getByRole('button',{name:'Сохранить запись'}).click();await region.getByRole('alert').getByText('Сервер отклонил операцию: конфликт',{exact:true}).waitFor();check(label+' server conflict retains draft',await form.getByLabel('Название').inputValue()==='Server conflict'&&await region.getByRole('button',{name:'Server conflict',exact:true}).count()===0);
+   await form.getByRole('button',{name:'Закрыть редактор'}).click();await first.evaluate(e=>e instanceof HTMLElement);await page.waitForFunction(()=>document.activeElement?.getAttribute('data-cell')==='0-0');check(label+' focus restored',await first.evaluate(e=>document.activeElement===e));
+  }finally{await page.close()}
+  const audit=await browser.newPage({viewport:{width:1440,height:900}});audit.on('pageerror',e=>report.errors.push(label+' audit '+e));audit.on('crash',()=>report.errors.push(label+' audit crash'));
+  try{await audit.goto(base+'?product='+product+'&theme='+theme);await audit.addScriptTag({url:'/client.js'});await audit.waitForFunction(()=>document.documentElement.dataset.hydrated==='yes');await audit.getByRole('button',{name:'Неделя',exact:true}).click();await audit.addScriptTag({path:require.resolve('axe-core/axe.min.js')});const scan=await audit.evaluate(async()=>{const x=await (window as any).axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']}});return {violations:x.violations.map((v:any)=>({id:v.id,nodes:v.nodes.map((n:any)=>n.target)})),incomplete:x.incomplete.map((v:any)=>({id:v.id,nodes:v.nodes.map((n:any)=>n.target)}))}});report.scans.push({label,...scan});if(scan.violations.length)console.log(JSON.stringify({label,violations:scan.violations}));await audit.screenshot({path:resolve(out,product+'-'+theme+'.png'),fullPage:true})}finally{await audit.close()}
+ }
+ const en=await browser.newPage();try{await en.goto(base+'?product=platform&theme=light&locale=en-US');await en.addScriptTag({url:'/client.js'});await en.waitForFunction(()=>document.documentElement.dataset.hydrated==='yes');check('English labels',await en.getByRole('button',{name:'Week',exact:true}).count()===1&&await en.getByLabel('Time zone').count()===1)}finally{await en.close()}
+ check('no browser errors',report.errors.length===0);
+}catch(e){report.errors.push(String(e))}finally{await browser.close();await new Promise<void>(ok=>server.close(()=>ok()));await writeFile(resolve(out,'report.json'),JSON.stringify(report,null,2)+'\n')}
+const violations=report.scans.reduce((n,s)=>n+s.violations.length,0);console.log(JSON.stringify({engine,schedulerChecks:report.checks.length,passed:report.checks.filter(x=>x.ok).length,scans:report.scans.length,violations,errors:report.errors}));if(report.errors.length||report.scans.length!==12||violations)process.exitCode=1;

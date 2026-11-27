@@ -52,7 +52,7 @@ jobs:
         working-directory: 17_packages/react
       - run: npm run verify
         working-directory: 17_packages/react
-      - run: npx --no-install tsx --test qa/advanced-grid.test.ts qa/integration-core.test.ts
+      - run: npx --no-install tsx --test qa/advanced-grid.test.ts qa/integration-core.test.ts qa/scheduler.test.ts
         working-directory: 17_packages/react
   avalonia:
     name: Avalonia Release compilation
@@ -127,6 +127,10 @@ jobs:
         if: ${{ !cancelled() }}
         run: npx --no-install tsx qa/react-browser.ts ${{ matrix.engine }}
         working-directory: 17_packages/react
+      - name: Resource Scheduler hydration and interaction
+        if: ${{ !cancelled() }}
+        run: npx --no-install tsx qa/scheduler-browser.ts ${{ matrix.engine }}
+        working-directory: 17_packages/react
       - name: Project Board persistence and snapshot QA
         if: ${{ !cancelled() }}
         run: node qa/board-browser.mjs ${{ matrix.engine }}
@@ -139,6 +143,7 @@ jobs:
             28_engineering/qa/results/${{ matrix.engine }}
             28_engineering/qa/results/react-${{ matrix.engine }}
             28_engineering/qa/results/board-${{ matrix.engine }}
+            28_engineering/qa/results/scheduler-${{ matrix.engine }}
           if-no-files-found: warn
   headless:
     name: Avalonia headless XUnit

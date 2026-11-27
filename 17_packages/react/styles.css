@@ -80,3 +80,12 @@
 .tku-virtual-table .tku-virtual-spacer td{padding:0;border:0;font-size:0;line-height:0}
 
 .tku-table .tku-group-row th{background:var(--tk-disabled-bg);color:var(--tk-text);font-weight:700;text-align:left}
+
+/* BR5 calendar layout; approved token definitions untouched. */
+.tku-scheduler{min-width:0}.tku-scheduler-toolbar{display:flex;flex-wrap:wrap;align-items:end;gap:12px;margin-block:12px}
+.tku-scheduler-toolbar label,.tku-scheduler-editor label{display:flex;flex-direction:column;gap:4px;min-width:0}
+.tku-scheduler-table{min-width:640px}.tku-scheduler-table th,.tku-scheduler-table td{vertical-align:top;min-width:130px}
+.tku-scheduler-booking{display:flex;flex-direction:column;gap:4px;padding:8px;margin-bottom:8px;border:1px solid var(--tk-control-border);border-radius:var(--tk-radius-sm);background:var(--tk-surface);color:var(--tk-text)}
+.tku-scheduler-booking span{font-size:12px}.tku-scheduler-editor{display:grid;gap:12px;max-width:680px;border:1px solid var(--tk-control-border);border-radius:var(--tk-radius-md);padding:16px;margin-top:16px;background:var(--tk-surface);color:var(--tk-text)}
+.tku-scheduler-hint{color:var(--tk-muted)}.tku-scheduler-error{color:var(--tk-status-error-text);background:var(--tk-status-error-bg);padding:8px;border-radius:var(--tk-radius-sm)}
+.tku-scheduler [aria-pressed=true]{border:2px solid var(--tk-accent-text-canvas);font-weight:700}
