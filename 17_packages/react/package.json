@@ -2,7 +2,7 @@
   "name": "@taktera/ui-react",
   "version": "4.0.0-beta-readiness.3",
   "private": true,
-  "description": "React/TypeScript source components; Beta Readiness 3 verification pending networked dependency install",
+  "description": "React/TypeScript components; CI build and SSR verified; browser QA and release hardening in progress",
   "type": "module",
   "sideEffects": [
     "*.css"
@@ -18,7 +18,8 @@
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.qa.json --noEmit",
     "smoke": "tsx qa/smoke.tsx",
-    "verify": "npm run typecheck && npm run build && npm run smoke"
+    "verify": "npm run typecheck && npm run build && npm run smoke",
+    "qa:browser": "node qa/browser.mjs"
   },
   "peerDependencies": {
     "react": ">=18.3 <20",
@@ -31,7 +32,9 @@
     "react-dom": "^19.0.0",
     "typescript": "^5.0.0",
     "tsx": "^4.20.0",
-    "@types/node": "^22.15.0"
+    "@types/node": "^22.15.0",
+    "playwright": "^1.56.0",
+    "axe-core": "^4.10.3"
   },
   "files": [
     "dist",

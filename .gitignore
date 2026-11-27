@@ -11,3 +11,7 @@ node_modules/
 .idea/
 # QA outputs (keep curated baselines under version control)
 visual-results/
+
+28_engineering/qa/results/
+npm-audit.json
+nuget-audit.json

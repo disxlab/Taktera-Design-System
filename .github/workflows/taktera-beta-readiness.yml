@@ -1,35 +1,56 @@
-# Prepared workflow. Upload this project to a GitHub repository to execute it.
 name: Taktera Design System — Beta gates
 on:
   push:
+    branches: [main]
   pull_request:
   workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: taktera-beta-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   static:
-    name: Static checks
-    runs-on: ubuntu-latest
+    name: Static checks and brand freeze
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
       - run: python 27_beta_readiness_3/qa/check_sources.py
+      - run: python 28_engineering/qa/check_hardening.py
+      - run: node 25_internal_completion/src/test_formatters.mjs
+      - name: Protect approved resources against BR3 baseline
+        run: git diff --exit-code 4621646e21d987b86d8c9c21662e04c94a0b4d0b HEAD -- 01_brandbook 02_logos 03_icons 04_tokens 05_typography 06_templates 14_brand_extensions 25_internal_completion/src/tokens.canonical.json
   react:
     name: React typecheck / build / SSR smoke
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-24.04, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
         with:
           node-version: '22'
-      # npm install is necessary until a verified lockfile can be generated on a networked runner.
-      - run: npm install --no-audit --no-fund
+          package-manager-cache: false
+      # Transitional bootstrap only; remove fallback when actual generated lockfile is committed.
+      - name: Generate missing lockfile on networked runner
+        if: ${{ hashFiles('17_packages/react/package-lock.json') == '' }}
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+        working-directory: 17_packages/react
+      - name: Emit generated lockfile for review
+        if: ${{ matrix.os == 'ubuntu-24.04' }}
+        run: node -e "const s=JSON.stringify(JSON.parse(require('fs').readFileSync('package-lock.json','utf8')));for(let i=0;i<s.length;i+=500)console.log('TAKTERA_LOCK:'+s.slice(i,i+500))"
+        working-directory: 17_packages/react
+      - run: npm ci --no-audit --no-fund
         working-directory: 17_packages/react
       - run: npm run verify
         working-directory: 17_packages/react
@@ -41,9 +62,75 @@ jobs:
         os: [windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v4
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@v5
         with:
           dotnet-version: '10.0.x'
       - run: dotnet restore 17_packages/avalonia/sample/TakteraUiAvalonia.Sample.csproj
       - run: dotnet build 17_packages/avalonia/sample/TakteraUiAvalonia.Sample.csproj --configuration Release --no-restore -warnaserror
+  security:
+    name: Dependency audit
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.x'
+      - if: ${{ hashFiles('17_packages/react/package-lock.json') == '' }}
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+        working-directory: 17_packages/react
+      - name: npm audit (high/critical gate)
+        run: npm audit --audit-level=high --json > ../../npm-audit.json
+        working-directory: 17_packages/react
+      - name: NuGet audit (direct and transitive)
+        if: ${{ !cancelled() }}
+        run: dotnet restore 17_packages/avalonia/sample/TakteraUiAvalonia.Sample.csproj -p:NuGetAudit=true -p:NuGetAuditMode=all -warnaserror:NU1900,NU1903,NU1904,NU1905
+      - name: NuGet vulnerability report
+        if: ${{ !cancelled() }}
+        run: dotnet list 17_packages/avalonia/sample/TakteraUiAvalonia.Sample.csproj package --vulnerable --include-transitive --format json > nuget-audit.json
+      - uses: actions/upload-artifact@v6
+        if: ${{ always() }}
+        with:
+          name: dependency-audit
+          path: |
+            npm-audit.json
+            nuget-audit.json
+          if-no-files-found: error
+  browser:
+    name: Browser and axe QA
+    strategy:
+      fail-fast: false
+      matrix:
+        engine: [chromium, firefox, webkit]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - if: ${{ hashFiles('17_packages/react/package-lock.json') == '' }}
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+        working-directory: 17_packages/react
+      - run: npm ci --no-audit --no-fund
+        working-directory: 17_packages/react
+      - run: npx playwright install --with-deps ${{ matrix.engine }}
+        working-directory: 17_packages/react
+      - run: npm run qa:browser -- ${{ matrix.engine }}
+        working-directory: 17_packages/react
+      - uses: actions/upload-artifact@v6
+        if: ${{ always() }}
+        with:
+          name: browser-${{ matrix.engine }}
+          path: 28_engineering/qa/results/${{ matrix.engine }}
+          if-no-files-found: warn

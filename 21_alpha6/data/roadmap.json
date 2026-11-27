@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "project": "Taktera Design System",
-  "release": "4.0-beta-readiness.3",
-  "referenceDate": "2026-11-23",
+  "release": "4.0-beta-readiness.4",
+  "referenceDate": "2026-11-28",
   "statuses": [
     "planned",
     "in_progress",
@@ -19,7 +19,8 @@
     "Beta gates",
     "Beta Readiness 1",
     "Beta Readiness 2",
-    "Beta Readiness 3"
+    "Beta Readiness 3",
+    "Beta Readiness 4"
   ],
   "tasks": [
     {
@@ -401,8 +402,8 @@
       "title": "React / TypeScript: реальная сборка и тесты",
       "phase": "Beta gates",
       "priority": "P0",
-      "status": "blocked",
-      "description": "Нужны зависимости и runnable CI. Исходники не являются подтверждённой сборкой.",
+      "status": "in_progress",
+      "description": "React CI 3/3 и SSR 14/14 подтверждены https://github.com/disxlab/Taktera-Design-System/actions/runs/46074642182; ожидаются lockfile/npm ci и audit.",
       "dependencies": [
         "DS-004"
       ],
@@ -410,15 +411,15 @@
       "source": "plan",
       "owner": "",
       "due": "",
-      "updated": "2026-11-22"
+      "updated": "2026-11-28"
     },
     {
       "id": "BETA-02",
       "title": "Avalonia: Windows/macOS native build и UI QA",
       "phase": "Beta gates",
       "priority": "P0",
-      "status": "blocked",
-      "description": "Требуются .NET SDK и нативные раннеры, сборка не подтверждена.",
+      "status": "in_progress",
+      "description": "Release build Windows/macOS 0/0 https://github.com/disxlab/Taktera-Design-System/actions/runs/46074642182; нативный UI QA ещё не подтверждён.",
       "dependencies": [
         "DS-007"
       ],
@@ -426,7 +427,7 @@
       "source": "plan",
       "owner": "",
       "due": "",
-      "updated": "2026-11-22"
+      "updated": "2026-11-28"
     },
     {
       "id": "BETA-03",
@@ -482,8 +483,8 @@
       "title": "CI релиза и критерии отката",
       "phase": "Beta gates",
       "priority": "P0",
-      "status": "planned",
-      "description": "Выполнить на целевых runners и зафиксировать результаты.",
+      "status": "in_progress",
+      "description": "Базовый CI 6/6 https://github.com/disxlab/Taktera-Design-System/actions/runs/46074642182; release/rollback и hardening открыты.",
       "dependencies": [
         "BETA-01",
         "BETA-02"
@@ -492,7 +493,7 @@
       "source": "plan",
       "owner": "",
       "due": "",
-      "updated": "2026-11-22"
+      "updated": "2026-11-28"
     },
     {
       "id": "DS-026",
@@ -648,8 +649,8 @@
       "title": "React SSR smoke для всех продуктов и тем",
       "phase": "Beta Readiness 3",
       "priority": "P0",
-      "status": "in_progress",
-      "description": "Тестовый сценарий создан; npm-зависимости недоступны в локальной среде, необходимо выполнить в CI.",
+      "status": "done",
+      "description": "14/14 SSR PASS на каждой из трёх ОС, https://github.com/disxlab/Taktera-Design-System/actions/runs/46074642182; не browser/hydration QA.",
       "dependencies": [
         "BR3-01"
       ],
@@ -657,7 +658,7 @@
       "source": "plan",
       "owner": "",
       "due": "",
-      "updated": "2026-11-23"
+      "updated": "2026-11-28"
     },
     {
       "id": "BR3-03",
@@ -680,8 +681,8 @@
       "title": "Собрать фактические CI-логи и закрыть Beta gates",
       "phase": "Beta Readiness 3",
       "priority": "P0",
-      "status": "blocked",
-      "description": "Необходимо запустить реальный workflow на GitHub и пройти тесты Windows/macOS/Linux.",
+      "status": "in_progress",
+      "description": "Компиляционный CI 6/6 PASS https://github.com/disxlab/Taktera-Design-System/actions/runs/46074642182; остальные Beta gates открыты.",
       "dependencies": [
         "BR3-01",
         "BR3-02",
@@ -691,10 +692,190 @@
       "source": "plan",
       "owner": "",
       "due": "",
-      "updated": "2026-11-23"
+      "updated": "2026-11-28"
+    },
+    {
+      "id": "BR4-01",
+      "title": "React lockfile и npm ci",
+      "phase": "Beta Readiness 4",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Генерация lockfile только сетевым runner; коммит и повторная проверка обязательны.",
+      "dependencies": [
+        "BR3-02"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 11
+    },
+    {
+      "id": "BR4-02",
+      "title": "GitHub Actions: Node 24 runtime",
+      "phase": "Beta Readiness 4",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Обновить runtime Actions, исключить дублирование push/PR; проверить реальный CI.",
+      "dependencies": [
+        "BR3-01"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 11
+    },
+    {
+      "id": "BR4-03",
+      "title": "npm / NuGet аудит зависимостей",
+      "phase": "Beta Readiness 4",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "npm audit, NuGetAuditMode=all, отчёты и блокировка high/critical.",
+      "dependencies": [
+        "BR4-01"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 11
+    },
+    {
+      "id": "BR4-04",
+      "title": "XAML, генерация токенов и brand freeze",
+      "phase": "Beta Readiness 4",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Отдельный guard структуры XAML, сравнение sample/canonical, воспроизводимость токенов, Git freeze.",
+      "dependencies": [
+        "BR3-03"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 11
+    },
+    {
+      "id": "BR4-05",
+      "title": "HTTP browser QA Chromium/Firefox/WebKit",
+      "phase": "Beta Readiness 4",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Web Core: реальная HTTP загрузка, ESM, темы, keyboard, dialogs. WebKit не Safari.",
+      "dependencies": [
+        "BR4-01"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 6
+    },
+    {
+      "id": "BR4-06",
+      "title": "axe WCAG автоматические проверки",
+      "phase": "Beta Readiness 4",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Отчёты axe по продуктам и темам; не заменяет ручной WCAG audit/NVDA/VoiceOver.",
+      "dependencies": [
+        "BR4-05"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 4
+    },
+    {
+      "id": "BR4-07",
+      "title": "Avalonia native UI QA",
+      "phase": "Beta Readiness 4",
+      "priority": "P1",
+      "status": "planned",
+      "description": "Ручной запуск Windows/macOS, keyboard/focus, UI screenshots; CI build недостаточен.",
+      "dependencies": [
+        "BETA-02"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 3
+    },
+    {
+      "id": "BR4-08",
+      "title": "Project Board ↔ GitHub Issues",
+      "phase": "Beta Readiness 4",
+      "priority": "P1",
+      "status": "in_progress",
+      "description": "Явное соответствие ID и Issues; обновление seed без перезаписи локальных задач.",
+      "dependencies": [],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 8
+    },
+    {
+      "id": "BR4-09",
+      "title": "AGENTS.md и инженерные правила",
+      "phase": "Beta Readiness 4",
+      "priority": "P1",
+      "status": "in_progress",
+      "description": "Инструкции сборок, проверок, freeze и релиза; проверка файла в Git.",
+      "dependencies": [],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 7
+    },
+    {
+      "id": "BR4-10",
+      "title": "Beta Candidate readiness / rollback",
+      "phase": "Beta Readiness 4",
+      "priority": "P1",
+      "status": "planned",
+      "description": "Release checklist: не выпускать до всех Beta gates и ручного подтверждения.",
+      "dependencies": [
+        "BR4-01",
+        "BR4-02",
+        "BR4-03",
+        "BR4-04",
+        "BR4-05",
+        "BR4-06",
+        "BR4-07",
+        "BR4-08",
+        "BR4-09",
+        "BETA-04",
+        "BETA-05"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 7
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "BR3: CI Run #6 — 6/6 PASS, 53/53 static, React SSR 14/14 × 3, Avalonia 0/0 Windows/macOS. BR4 запущен, новые проверки ещё не подтверждены."
+    },
     {
       "at": "2026-11-23",
       "message": "Beta Readiness 3: 53/53 offline preflight; 12 адаптеров ключей Avalonia Tkn→Tk, проверена воспроизводимость. Реальные CI и React/Avalonia сборки открыты."

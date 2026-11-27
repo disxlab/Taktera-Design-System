@@ -1,0 +1,13 @@
+# Beta Readiness 4 — Engineering Hardening (in progress)
+Baseline: [Run #6](https://github.com/disxlab/Taktera-Design-System/actions/runs/46074642182) at `4621646e21d987b86d8c9c21662e04c94a0b4d0b`, all 6 jobs passed. BR4 is not Beta.
+
+## Scope and evidence
+- BR4-01–04: #11 (dependencies, actions, audits, static/freeze). Transitional runner lock generation is not a final lockfile until committed and npm ci is retested. Do not commit lockfile from multiple independent platforms.
+- BR4-05: #6; real HTTP Web Core browser/ESM tests on Chromium, Firefox, WebKit. WebKit is not native Safari. Screenshots are diagnostic, not approved baseline replacements.
+- BR4-06: #4; axe WCAG tags; failures remain blocking and incomplete results need manual review.
+- BR4-07: #3; real native Windows/macOS UI, keyboard/focus, sample screenshots. Build pass alone is insufficient.
+- BR4-08: #8; source roadmap + embedded seed + linked issue mapping; local browser changes retained; export before migration. No automatic two-way writes.
+- BR4-09/10: #7; AGENTS.md, release/rollback policy and evidence matrix.
+
+## Release gate and rollback
+Keep PR #10 Draft and preserve main. All Beta gates, security review, real browser and native accessibility testing, staging ERP/CRM and owner approval are required. Archive previous known-good SHA/version and evidence; rollback by reverting a reviewed release commit or redeploying its immutable verified build (never reset shared history). No publish/tag until approved. Manual tests must record OS/browser, build SHA, tester, result and defect links. Local Board seed may differ from browser user edits; export before any reset/import.
