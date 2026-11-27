@@ -18,3 +18,7 @@ BR5 initial implementation: see `29_product_integration/ARCHITECTURE.md`. Contra
 
 ## Independent consumer gate (BR6-02)
 Run #23 https://github.com/disxlab/Taktera-Design-System/actions/runs/46081513783: 11/14, browser test selector ambiguity, corrected exact names. New CI job packs both private npm packages, installs into a temporary independent project with locked direct tool/peer versions, compiles strict NodeNext TypeScript against public declarations, SSR and Chromium hydration/interactions. Artifacts include tarballs, SHA-256 and consumer lock/report if successful. This is not a registry publish, production staging, license approval or reproducibility proof; the generated consumer lock is evidence, not a committed lock yet. NuGet packaging and other release gates remain open.
+
+## BR6 native package gate
+Run #24 15/15 PASS, CRM/analytics 434/434 per engine; 1302/1302 total, npm clean consumer 16/16. https://github.com/disxlab/Taktera-Design-System/actions/runs/46082895789
+Taktera.UI.Avalonia candidate: compiled resource dictionaries and control themes, typed URI SDK; independent PackageReference consumer and headless checks on Windows/macOS. No registry publication. No native ERP component parity or manual native certification. See 30_distribution/SDK.md. New CI pending.
