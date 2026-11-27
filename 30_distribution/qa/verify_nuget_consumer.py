@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Pack compiled Avalonia library, build and headless-test a clean package-only consumer."""
-import hashlib, json, os, shutil, subprocess, tempfile, zipfile, time
+import hashlib, json, os, shutil, subprocess, tempfile, zipfile, time, sys
 from contextlib import contextmanager
 from pathlib import Path
 import xml.etree.ElementTree as ET
@@ -58,11 +58,14 @@ try:
             check('no sample or source in package',not any('/sample/' in n or n.endswith(('.cs','.csproj','.axaml')) for n in entries))
         report['package']={'name':package.name,'sha256':hashlib.sha256(package.read_bytes()).hexdigest(),'entries':entries}
         shutil.copy2(package,OUT/package.name)
-        host=tmp/'consumer';shutil.copytree(SOURCE,host,ignore=shutil.ignore_patterns('bin','obj'))
+        host=tmp/'consumer';host.mkdir()
+        run([sys.executable,str(ROOT/'30_distribution/taktera.py'),'init','avalonia','--packages',str(feed),'--output',str(host/'app')],ROOT,env)
+        check('Avalonia CLI creates verified local package inventory',json.loads((host/'app/package-inventory.json').read_text(encoding='utf-8'))[0]['sha256']==report['package']['sha256'])
+        shutil.copytree(SOURCE/'tests',host/'tests',ignore=shutil.ignore_patterns('bin','obj'))
         app=host/'app/Taktera.Reference.csproj';tests=host/'tests/Taktera.Reference.Tests.csproj'
         check('consumer has no library project reference',not ET.parse(app).findall('.//ProjectReference'))
         for p in (app,tests):
-            run(['dotnet','restore',str(p),'--configfile',str(cfg),*audit],host,env)
+            run(['dotnet','restore',str(p),'--configfile',str(app.parent/'NuGet.Config' if p==app else cfg),*audit],host,env)
         assets_json=json.loads((app.parent/'obj/project.assets.json').read_text(encoding='utf-8'))
         for p in (app,tests):
             resolved=json.loads((p.parent/'obj/project.assets.json').read_text(encoding='utf-8'))

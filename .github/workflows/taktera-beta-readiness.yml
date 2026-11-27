@@ -30,6 +30,7 @@ jobs:
       - run: node --version
       - run: node 25_internal_completion/src/test_formatters.mjs
       - run: python 28_engineering/qa/check_board.py
+      - run: python 30_distribution/qa/check_portal.py
       - name: Protect approved resources against BR3 baseline
         run: git diff --exit-code 4621646e21d987b86d8c9c21662e04c94a0b4d0b HEAD -- 01_brandbook 02_logos 03_icons 04_tokens 05_typography 06_templates 14_brand_extensions 25_internal_completion/src/tokens.canonical.json
   react:
@@ -203,7 +204,11 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
+          fetch-depth: 0
           persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
       - uses: actions/setup-node@v6
         with:
           node-version-file: '.node-version'
@@ -214,6 +219,7 @@ jobs:
         working-directory: 17_packages/react
       - run: npx playwright install --with-deps chromium
         working-directory: 17_packages/react
+      - run: python 30_distribution/qa/verify_api.py
       - run: node 30_distribution/qa/verify_npm_consumer.mjs
       - uses: actions/upload-artifact@v6
         if: ${{ always() }}
@@ -246,3 +252,37 @@ jobs:
           name: nuget-consumer-${{ matrix.os }}
           path: 30_distribution/qa/results/nuget
           if-no-files-found: warn
+
+  release-evidence:
+    name: Candidate release evidence (no publish)
+    needs: [static, react, avalonia, security, browser, headless, board-sync, npm-consumer, nuget-consumer]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v6
+        with:
+          name: npm-consumer-evidence
+          path: candidate-input/npm
+      - uses: actions/download-artifact@v6
+        with:
+          name: nuget-consumer-windows-latest
+          path: candidate-input/nuget-windows
+      - uses: actions/download-artifact@v6
+        with:
+          name: nuget-consumer-macos-latest
+          path: candidate-input/nuget-macos
+      - uses: actions/download-artifact@v6
+        with:
+          name: dependency-audit
+          path: candidate-input/audit
+      - run: python 30_distribution/qa/assemble_candidate.py candidate-input candidate-release
+      - uses: actions/upload-artifact@v6
+        with:
+          name: taktera-candidate-release-evidence
+          path: candidate-release
+          if-no-files-found: error
