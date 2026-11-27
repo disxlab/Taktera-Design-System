@@ -407,8 +407,8 @@
       "title": "React / TypeScript: реальная сборка и тесты",
       "phase": "Beta gates",
       "priority": "P0",
-      "status": "in_progress",
-      "description": "React build/SSR и npm ci на Node 26 PASS https://github.com/disxlab/Taktera-Design-System/actions/runs/46075425832; browser hydration/interaction и проверка audit reports ещё открыты.",
+      "status": "done",
+      "description": "Locked npm ci Node 26, React typecheck/build/SSR and hydration/interaction 181/181 on each of three engines; Run #10 14/14 PASS https://github.com/disxlab/Taktera-Design-System/actions/runs/46076078235. Manual accessibility remains BETA-03.",
       "dependencies": [
         "DS-004"
       ],
@@ -425,7 +425,7 @@
       "phase": "Beta gates",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Release build Windows/macOS 0/0 https://github.com/disxlab/Taktera-Design-System/actions/runs/46074642182; нативный UI QA ещё не подтверждён.",
+      "description": "Windows/macOS Release builds and 3/3 headless tests on each Linux/Windows/macOS passed https://github.com/disxlab/Taktera-Design-System/actions/runs/46076078235; real native UI QA remains open.",
       "dependencies": [
         "DS-007"
       ],
@@ -442,7 +442,7 @@
       "phase": "Beta gates",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Web Core axe 36 scans, 0 violations https://github.com/disxlab/Taktera-Design-System/actions/runs/46075133438; manual WCAG, NVDA/VoiceOver и React browser QA открыты.",
+      "description": "72 automated axe scans (Web Core + React, 12 each per engine), 0 detected violations https://github.com/disxlab/Taktera-Design-System/actions/runs/46076078235; manual WCAG/NVDA/VoiceOver and incomplete review remain.",
       "dependencies": [
         "DS-009"
       ],
@@ -752,8 +752,8 @@
       "title": "npm / NuGet аудит зависимостей",
       "phase": "Beta Readiness 4",
       "priority": "P0",
-      "status": "in_progress",
-      "description": "Audit gate PASS на фиксированном lockfile https://github.com/disxlab/Taktera-Design-System/actions/runs/46075425832; нужен анализ отчётов, включая low/moderate и новые test dependencies.",
+      "status": "done",
+      "description": "Run #9 raw npm audit total 0; NuGet sample vulnerability report empty. Run #10 audit and headless direct/transitive restore gates PASS https://github.com/disxlab/Taktera-Design-System/actions/runs/46076078235; no NU1900–NU1905 warnings in inspected headless logs. Scope: known vulnerabilities, not complete security certification.",
       "dependencies": [
         "BR4-01"
       ],
@@ -787,7 +787,7 @@
       "phase": "Beta Readiness 4",
       "priority": "P0",
       "status": "done",
-      "description": "Chromium, Firefox, WebKit: 38/38 HTTP/ESM checks на движок https://github.com/disxlab/Taktera-Design-System/actions/runs/46075133438; реальный Safari и React hydration остаются отдельными задачами. Повторно подтверждено на Node.js 26: https://github.com/disxlab/Taktera-Design-System/actions/runs/46075425832",
+      "description": "Web Core HTTP/ESM 38/38 per Chromium, Firefox, WebKit https://github.com/disxlab/Taktera-Design-System/actions/runs/46076078235; native Safari remains BETA-05.",
       "dependencies": [
         "BR4-01"
       ],
@@ -804,7 +804,7 @@
       "phase": "Beta Readiness 4",
       "priority": "P0",
       "status": "done",
-      "description": "36 axe scans (12 на движок), 0 обнаруженных violations https://github.com/disxlab/Taktera-Design-System/actions/runs/46075133438. Scope Web Core sample; incomplete/manual WCAG/NVDA/VoiceOver остаются открыты. Повторно подтверждено на Node.js 26: https://github.com/disxlab/Taktera-Design-System/actions/runs/46075425832",
+      "description": "72 axe scans across Web Core and React on three engines, 0 detected violations https://github.com/disxlab/Taktera-Design-System/actions/runs/46076078235; manual WCAG and incomplete checks open.",
       "dependencies": [
         "BR4-05"
       ],
@@ -821,7 +821,7 @@
       "phase": "Beta Readiness 4",
       "priority": "P1",
       "status": "in_progress",
-      "description": "Добавляется Avalonia.Headless.XUnit 11.3.22; ручное native QA остаётся обязательным.",
+      "description": "Headless 3/3 per OS PASS https://github.com/disxlab/Taktera-Design-System/actions/runs/46076078235; manual native Windows/macOS UI, focus, DPI and screenshots still required.",
       "dependencies": [
         "BETA-02"
       ],
@@ -838,7 +838,7 @@
       "phase": "Beta Readiness 4",
       "priority": "P1",
       "status": "in_progress",
-      "description": "Run #9 read-only snapshot PASS: 11 issues, 41 task links. https://github.com/disxlab/Taktera-Design-System/actions/runs/46075890817. UI import and preservation validation still needed.",
+      "description": "Read-only GitHub snapshot verified https://github.com/disxlab/Taktera-Design-System/actions/runs/46076078235: 11 issues, 41 task links. Dashboard separate import implemented; browser-level persistence/merge QA not yet confirmed. No two-way write.",
       "dependencies": [],
       "kind": "work",
       "source": "plan",
@@ -868,7 +868,7 @@
       "phase": "Beta Readiness 4",
       "priority": "P1",
       "status": "in_progress",
-      "description": "Release checklist и rollback policy подготовлены; остаются manual accessibility, native UI, staging pilot и distribution validation.",
+      "description": "Automated engineering baseline 14/14 jobs PASS https://github.com/disxlab/Taktera-Design-System/actions/runs/46076078235; manual accessibility, native UI, Safari, staging, board persistence QA and distribution acceptance remain.",
       "dependencies": [
         "BR4-01",
         "BR4-02",
@@ -880,7 +880,10 @@
         "BR4-08",
         "BR4-09",
         "BETA-04",
-        "BETA-05"
+        "BETA-05",
+        "BR4-11",
+        "BR4-12",
+        "BETA-03"
       ],
       "kind": "work",
       "source": "plan",
@@ -894,8 +897,8 @@
       "title": "React hydration и browser interaction",
       "phase": "Beta Readiness 4",
       "priority": "P0",
-      "status": "in_progress",
-      "description": "Run #9: 181/181 functional checks per engine; axe 2 color-contrast violations per engine. https://github.com/disxlab/Taktera-Design-System/actions/runs/46075890817. Active tab uses existing canvas accent-text token; revalidation pending.",
+      "status": "done",
+      "description": "React hydration + interaction: 181/181 per engine (543/543), axe 12 scans/engine, 0 detected violations after semantic tab token fix https://github.com/disxlab/Taktera-Design-System/actions/runs/46076078235.",
       "dependencies": [
         "BR4-01",
         "BR4-05"
@@ -912,8 +915,8 @@
       "title": "Avalonia headless XUnit",
       "phase": "Beta Readiness 4",
       "priority": "P0",
-      "status": "in_progress",
-      "description": "Run #9: 2/3 tests per OS; actual text field selector matched template internals. https://github.com/disxlab/Taktera-Design-System/actions/runs/46075890817. Narrowed selector by tku-field class; rerun pending.",
+      "status": "done",
+      "description": "Avalonia.Headless.XUnit 11.3.22: 3/3 on Linux, Windows, macOS (9/9) https://github.com/disxlab/Taktera-Design-System/actions/runs/46076078235; real native QA is separate.",
       "dependencies": [
         "BR4-04"
       ],
@@ -1146,6 +1149,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #10 (1682fb05d145): 14/14 jobs PASS, Web Core 114/114, React 543/543, 72 axe scans / 0 detected violations, Avalonia headless 9/9, issue snapshot 11 issues/41 links. Automated BR4 baseline confirmed; manual and staging gates remain. https://github.com/disxlab/Taktera-Design-System/actions/runs/46076078235"
+    },
     {
       "at": "2026-11-28",
       "message": "Run #9: React interaction 181/181 на каждом движке; axe нашёл 2 contrast-нарушения; headless 2/3 на каждой ОС; issue snapshot PASS. Исправлены ссылка на семантический токен вкладок и выбор текстового поля, ожидается повторный CI."

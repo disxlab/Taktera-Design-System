@@ -19,3 +19,6 @@ Run #7 evidence: https://github.com/disxlab/Taktera-Design-System/actions/runs/4
 
 ## BR4 continuation
 React hydration and interaction tests in `17_packages/react/qa/react-browser.ts`, Avalonia.Headless.XUnit tests in `17_packages/avalonia/tests`, live issue snapshot job. New checks pending CI. Manual evidence template: `28_engineering/MANUAL-QA.md`; BR5/BR6 plan: `28_engineering/BR5-BR6.md`.
+
+## Verified BR4 automation baseline
+Run #10: https://github.com/disxlab/Taktera-Design-System/actions/runs/46076078235; code commit `1682fb05d14530466585c85c0ec5c2e3f62a7b15`; 14/14 jobs passed. Web Core 38/38 and React hydration/interaction 181/181 on each Chromium/Firefox/WebKit; 72 axe scans total, no detected violations. Avalonia headless 3/3 per Linux/Windows/macOS. Static 53/53, token regression/freeze, 15 formatters and 67-task seed validated. Read-only issue snapshot 11 issues / 41 links; UI snapshot import and persistence still need validation. npm audit report (Run #9) total zero, NuGet sample no vulnerable packages, Run #10 audit/headless restore gates passed. This is automated evidence, not native/manual QA or release approval. The status-only commit re-triggers CI and must not be confused with the verified code commit.
