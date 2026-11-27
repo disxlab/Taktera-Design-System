@@ -135,7 +135,8 @@
       "source": "plan",
       "owner": "",
       "due": "",
-      "updated": "2026-11-22"
+      "updated": "2026-11-22",
+      "githubIssue": 8
     },
     {
       "id": "DS-009",
@@ -323,7 +324,8 @@
       "source": "plan",
       "owner": "",
       "due": "",
-      "updated": "2026-11-23"
+      "updated": "2026-11-23",
+      "githubIssue": 6
     },
     {
       "id": "DS-021",
@@ -353,7 +355,8 @@
       "source": "plan",
       "owner": "",
       "due": "",
-      "updated": "2026-11-22"
+      "updated": "2026-11-22",
+      "githubIssue": 9
     },
     {
       "id": "DS-023",
@@ -411,7 +414,8 @@
       "source": "plan",
       "owner": "",
       "due": "",
-      "updated": "2026-11-28"
+      "updated": "2026-11-28",
+      "githubIssue": 2
     },
     {
       "id": "BETA-02",
@@ -427,15 +431,16 @@
       "source": "plan",
       "owner": "",
       "due": "",
-      "updated": "2026-11-28"
+      "updated": "2026-11-28",
+      "githubIssue": 3
     },
     {
       "id": "BETA-03",
       "title": "Accessibility: axe + NVDA + VoiceOver",
       "phase": "Beta gates",
       "priority": "P0",
-      "status": "blocked",
-      "description": "Ручная проверка с ассистивными технологиями не проведена.",
+      "status": "in_progress",
+      "description": "Web Core axe 36 scans, 0 violations https://github.com/disxlab/Taktera-Design-System/actions/runs/46075133438; manual WCAG, NVDA/VoiceOver и React browser QA открыты.",
       "dependencies": [
         "DS-009"
       ],
@@ -443,7 +448,8 @@
       "source": "plan",
       "owner": "",
       "due": "",
-      "updated": "2026-11-22"
+      "updated": "2026-11-28",
+      "githubIssue": 4
     },
     {
       "id": "BETA-04",
@@ -460,15 +466,16 @@
       "source": "plan",
       "owner": "",
       "due": "",
-      "updated": "2026-11-22"
+      "updated": "2026-11-22",
+      "githubIssue": 5
     },
     {
       "id": "BETA-05",
       "title": "Web: Firefox/Safari/HTTP ES modules",
       "phase": "Beta gates",
       "priority": "P0",
-      "status": "blocked",
-      "description": "Локальный Chromium не подтверждает все браузеры и hosted интеграцию.",
+      "status": "in_progress",
+      "description": "Chromium/Firefox/WebKit HTTP/ESM 38/38 на движок https://github.com/disxlab/Taktera-Design-System/actions/runs/46075133438; Safari native и дополнительные сценарии не проверены.",
       "dependencies": [
         "DS-004"
       ],
@@ -476,7 +483,8 @@
       "source": "plan",
       "owner": "",
       "due": "",
-      "updated": "2026-11-22"
+      "updated": "2026-11-28",
+      "githubIssue": 6
     },
     {
       "id": "BETA-06",
@@ -493,7 +501,8 @@
       "source": "plan",
       "owner": "",
       "due": "",
-      "updated": "2026-11-28"
+      "updated": "2026-11-28",
+      "githubIssue": 7
     },
     {
       "id": "DS-026",
@@ -527,7 +536,8 @@
       "source": "plan",
       "owner": "",
       "due": "",
-      "updated": "2026-11-23"
+      "updated": "2026-11-23",
+      "githubIssue": 6
     },
     {
       "id": "DS-028",
@@ -544,7 +554,8 @@
       "source": "plan",
       "owner": "",
       "due": "",
-      "updated": "2026-11-23"
+      "updated": "2026-11-23",
+      "githubIssue": 9
     },
     {
       "id": "DS-029",
@@ -611,7 +622,8 @@
       "source": "plan",
       "owner": "",
       "due": "",
-      "updated": "2026-11-23"
+      "updated": "2026-11-23",
+      "githubIssue": 5
     },
     {
       "id": "DS-039",
@@ -628,7 +640,8 @@
       "source": "plan",
       "owner": "",
       "due": "",
-      "updated": "2026-11-23"
+      "updated": "2026-11-23",
+      "githubIssue": 6
     },
     {
       "id": "BR3-01",
@@ -642,7 +655,8 @@
       "source": "plan",
       "owner": "",
       "due": "",
-      "updated": "2026-11-23"
+      "updated": "2026-11-23",
+      "githubIssue": 7
     },
     {
       "id": "BR3-02",
@@ -658,7 +672,8 @@
       "source": "plan",
       "owner": "",
       "due": "",
-      "updated": "2026-11-28"
+      "updated": "2026-11-28",
+      "githubIssue": 2
     },
     {
       "id": "BR3-03",
@@ -674,7 +689,8 @@
       "source": "plan",
       "owner": "",
       "due": "",
-      "updated": "2026-11-23"
+      "updated": "2026-11-23",
+      "githubIssue": 3
     },
     {
       "id": "BR3-04",
@@ -692,7 +708,8 @@
       "source": "plan",
       "owner": "",
       "due": "",
-      "updated": "2026-11-28"
+      "updated": "2026-11-28",
+      "githubIssue": 7
     },
     {
       "id": "BR4-01",
@@ -700,7 +717,7 @@
       "phase": "Beta Readiness 4",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Генерация lockfile только сетевым runner; коммит и повторная проверка обязательны.",
+      "description": "Реальный npm lockfile v3 (42 записей) из Run #7 зафиксирован. CI переведён на npm ci без fallback и Node.js 26 LTS; требуется подтверждение нового запуска.",
       "dependencies": [
         "BR3-02"
       ],
@@ -716,8 +733,8 @@
       "title": "GitHub Actions: Node 24 runtime",
       "phase": "Beta Readiness 4",
       "priority": "P0",
-      "status": "in_progress",
-      "description": "Обновить runtime Actions, исключить дублирование push/PR; проверить реальный CI.",
+      "status": "done",
+      "description": "Actions с runtime Node.js 24 и все 10 jobs прошли https://github.com/disxlab/Taktera-Design-System/actions/runs/46075133438; Node 26 используется для проекта, а не для подмены внутреннего runtime Actions.",
       "dependencies": [
         "BR3-01"
       ],
@@ -734,7 +751,7 @@
       "phase": "Beta Readiness 4",
       "priority": "P0",
       "status": "in_progress",
-      "description": "npm audit, NuGetAuditMode=all, отчёты и блокировка high/critical.",
+      "description": "Audit gate PASS https://github.com/disxlab/Taktera-Design-System/actions/runs/46075133438; повторить на фиксированном lockfile и Node 26, изучить отчёты.",
       "dependencies": [
         "BR4-01"
       ],
@@ -750,8 +767,8 @@
       "title": "XAML, генерация токенов и brand freeze",
       "phase": "Beta Readiness 4",
       "priority": "P0",
-      "status": "in_progress",
-      "description": "Отдельный guard структуры XAML, сравнение sample/canonical, воспроизводимость токенов, Git freeze.",
+      "status": "done",
+      "description": "53/53 preflight, XAML regression guard, deterministic token generation, brand freeze и 15 Intl assertions PASS https://github.com/disxlab/Taktera-Design-System/actions/runs/46075133438.",
       "dependencies": [
         "BR3-03"
       ],
@@ -767,8 +784,8 @@
       "title": "HTTP browser QA Chromium/Firefox/WebKit",
       "phase": "Beta Readiness 4",
       "priority": "P0",
-      "status": "in_progress",
-      "description": "Web Core: реальная HTTP загрузка, ESM, темы, keyboard, dialogs. WebKit не Safari.",
+      "status": "done",
+      "description": "Chromium, Firefox, WebKit: 38/38 HTTP/ESM checks на движок https://github.com/disxlab/Taktera-Design-System/actions/runs/46075133438; реальный Safari и React hydration остаются отдельными задачами.",
       "dependencies": [
         "BR4-01"
       ],
@@ -784,8 +801,8 @@
       "title": "axe WCAG автоматические проверки",
       "phase": "Beta Readiness 4",
       "priority": "P0",
-      "status": "in_progress",
-      "description": "Отчёты axe по продуктам и темам; не заменяет ручной WCAG audit/NVDA/VoiceOver.",
+      "status": "done",
+      "description": "36 axe scans (12 на движок), 0 обнаруженных violations https://github.com/disxlab/Taktera-Design-System/actions/runs/46075133438. Scope Web Core sample; incomplete/manual WCAG/NVDA/VoiceOver остаются открыты.",
       "dependencies": [
         "BR4-05"
       ],
@@ -819,7 +836,7 @@
       "phase": "Beta Readiness 4",
       "priority": "P1",
       "status": "in_progress",
-      "description": "Явное соответствие ID и Issues; обновление seed без перезаписи локальных задач.",
+      "description": "ID→Issue mapping, локальная сохранность данных; добавлена CI-проверка согласованности JSON и embedded seed. Двусторонняя синхронизация не реализована.",
       "dependencies": [],
       "kind": "work",
       "source": "plan",
@@ -833,8 +850,8 @@
       "title": "AGENTS.md и инженерные правила",
       "phase": "Beta Readiness 4",
       "priority": "P1",
-      "status": "in_progress",
-      "description": "Инструкции сборок, проверок, freeze и релиза; проверка файла в Git.",
+      "status": "done",
+      "description": "AGENTS.md опубликован; правила сборки, CI, brand freeze, проверки и release/rollback документированы.",
       "dependencies": [],
       "kind": "work",
       "source": "plan",
@@ -872,6 +889,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #7: 10/10 PASS, 114 browser checks, 36 axe scans / 0 violations. Фиксация реального npm lockfile и миграция на Node.js 26 LTS; новый CI ещё требуется."
+    },
     {
       "at": "2026-11-28",
       "message": "BR3: CI Run #6 — 6/6 PASS, 53/53 static, React SSR 14/14 × 3, Avalonia 0/0 Windows/macOS. BR4 запущен, новые проверки ещё не подтверждены."

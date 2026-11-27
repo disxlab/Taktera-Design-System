@@ -23,7 +23,13 @@ jobs:
           python-version: '3.12'
       - run: python 27_beta_readiness_3/qa/check_sources.py
       - run: python 28_engineering/qa/check_hardening.py
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: '.node-version'
+          package-manager-cache: false
+      - run: node --version
       - run: node 25_internal_completion/src/test_formatters.mjs
+      - run: python 28_engineering/qa/check_board.py
       - name: Protect approved resources against BR3 baseline
         run: git diff --exit-code 4621646e21d987b86d8c9c21662e04c94a0b4d0b HEAD -- 01_brandbook 02_logos 03_icons 04_tokens 05_typography 06_templates 14_brand_extensions 25_internal_completion/src/tokens.canonical.json
   react:
@@ -39,17 +45,9 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@v6
         with:
-          node-version: '22'
+          node-version-file: '.node-version'
           package-manager-cache: false
-      # Transitional bootstrap only; remove fallback when actual generated lockfile is committed.
-      - name: Generate missing lockfile on networked runner
-        if: ${{ hashFiles('17_packages/react/package-lock.json') == '' }}
-        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
-        working-directory: 17_packages/react
-      - name: Emit generated lockfile for review
-        if: ${{ matrix.os == 'ubuntu-24.04' }}
-        run: node -e "const s=JSON.stringify(JSON.parse(require('fs').readFileSync('package-lock.json','utf8')));for(let i=0;i<s.length;i+=500)console.log('TAKTERA_LOCK:'+s.slice(i,i+500))"
-        working-directory: 17_packages/react
+      - run: node --version
       - run: npm ci --no-audit --no-fund
         working-directory: 17_packages/react
       - run: npm run verify
@@ -79,14 +77,11 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@v6
         with:
-          node-version: '22'
+          node-version-file: '.node-version'
           package-manager-cache: false
       - uses: actions/setup-dotnet@v5
         with:
           dotnet-version: '10.0.x'
-      - if: ${{ hashFiles('17_packages/react/package-lock.json') == '' }}
-        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
-        working-directory: 17_packages/react
       - name: npm audit (high/critical gate)
         run: npm audit --audit-level=high --json > ../../npm-audit.json
         working-directory: 17_packages/react
@@ -117,11 +112,9 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@v6
         with:
-          node-version: '22'
+          node-version-file: '.node-version'
           package-manager-cache: false
-      - if: ${{ hashFiles('17_packages/react/package-lock.json') == '' }}
-        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
-        working-directory: 17_packages/react
+      - run: node --version
       - run: npm ci --no-audit --no-fund
         working-directory: 17_packages/react
       - run: npx playwright install --with-deps ${{ matrix.engine }}
