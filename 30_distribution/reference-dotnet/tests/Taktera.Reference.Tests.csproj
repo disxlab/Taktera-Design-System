@@ -4,6 +4,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="../app/Taktera.Reference.csproj" />
+    <PackageReference Include="Taktera.UI.Avalonia" Version="[4.0.0-beta-readiness.3]" />
     <PackageReference Include="Avalonia.Headless.XUnit" Version="11.3.22" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
     <PackageReference Include="xunit" Version="2.9.3" />

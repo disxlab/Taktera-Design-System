@@ -18,6 +18,15 @@ public static class TestAppBuilder
 public class PackageTests
 {
     [AvaloniaFact]
+    public void PublicResourceContractRemainsCompatible()
+    {
+        Assert.Equal(new[] { "Platform", "Clinic", "Beauty", "Spa", "Fitness", "Travel" }, Enum.GetNames<TakteraProduct>());
+        Assert.Equal(new[] { "Light", "Dark" }, Enum.GetNames<TakteraTheme>());
+        Assert.Equal("avares://Taktera.UI.Avalonia/Assets/TkControls.axaml", TakteraResources.ControlThemes.OriginalString);
+        Assert.Equal("avares://Taktera.UI.Avalonia/Assets/TkFieldStyles.axaml", TakteraResources.FieldStyles.OriginalString);
+        Assert.Equal("avares://Taktera.UI.Avalonia/Assets/Taktera.Clinic.Dark.axaml", TakteraResources.Palette(TakteraProduct.Clinic,TakteraTheme.Dark).OriginalString);
+    }
+    [AvaloniaFact]
     public void AllTwelvePackagedPalettesResolveBrushes()
     {
         foreach (var product in Enum.GetValues<TakteraProduct>())

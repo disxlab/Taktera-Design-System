@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Pack compiled Avalonia library, build and headless-test a clean package-only consumer."""
-import hashlib, json, os, shutil, subprocess, tempfile, zipfile
+import hashlib, json, os, shutil, subprocess, tempfile, zipfile, time
+from contextlib import contextmanager
 from pathlib import Path
 import xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[2]
@@ -13,10 +14,25 @@ def check(name,ok):
     if not ok: raise AssertionError(name)
 def run(args,cwd,env):
     subprocess.run(args,cwd=cwd,env=env,check=True)
+@contextmanager
+def isolated_workspace():
+    tmp=Path(tempfile.mkdtemp(prefix='taktera-nuget-')).resolve()
+    env=dict(os.environ,NUGET_PACKAGES=str(tmp/'packages'),DOTNET_CLI_TELEMETRY_OPTOUT='1',MSBUILDDISABLENODEREUSE='1',DOTNET_CLI_USE_MSBUILD_SERVER='0')
+    try:
+        yield tmp,env
+    finally:
+        # Build task assemblies may be held by reusable MSBuild processes on Windows.
+        subprocess.run(['dotnet','build-server','shutdown'],cwd=tmp,env=env,check=True,timeout=60)
+        for attempt in range(6):
+            try:
+                shutil.rmtree(tmp)
+                break
+            except PermissionError:
+                if attempt==5: raise
+                time.sleep(1)
 try:
-    with tempfile.TemporaryDirectory(prefix='taktera-nuget-') as tmp:
-        tmp=Path(tmp); feed=tmp/'feed'; feed.mkdir()
-        env=dict(os.environ,NUGET_PACKAGES=str(tmp/'packages'),DOTNET_CLI_TELEMETRY_OPTOUT='1')
+    with isolated_workspace() as (tmp,env):
+        feed=tmp/'feed'; feed.mkdir()
         lib=tmp/'library'; shutil.copytree(ROOT/'17_packages/avalonia/library',lib,ignore=shutil.ignore_patterns('bin','obj','Assets'))
         assets=lib/'Assets'; assets.mkdir()
         canonical=ROOT/'17_packages/avalonia'
@@ -33,7 +49,7 @@ try:
         cfg=tmp/'NuGet.Config';ET.ElementTree(config).write(cfg,encoding='utf-8',xml_declaration=True)
         audit=['-p:NuGetAudit=true','-p:NuGetAuditMode=all','-warnaserror:NU1900,NU1903,NU1904,NU1905']
         run(['dotnet','restore',str(project),'--configfile',str(cfg),*audit],lib,env)
-        run(['dotnet','pack',str(project),'-c','Release','--no-restore','-o',str(feed),'-warnaserror'],lib,env)
+        run(['dotnet','pack',str(project),'-c','Release','--no-restore','--disable-build-servers','-o',str(feed),'-warnaserror'],lib,env)
         package,=feed.glob('*.nupkg')
         with zipfile.ZipFile(package) as z:
             entries=z.namelist()
@@ -48,11 +64,14 @@ try:
         for p in (app,tests):
             run(['dotnet','restore',str(p),'--configfile',str(cfg),*audit],host,env)
         assets_json=json.loads((app.parent/'obj/project.assets.json').read_text(encoding='utf-8'))
-        selected=[v for k,v in assets_json['libraries'].items() if k.lower().startswith('taktera.ui.avalonia/')]
-        check('resolved library is NuGet package',len(selected)==1 and selected[0]['type']=='package')
-        run(['dotnet','build',str(app),'-c','Release','--no-restore','-warnaserror'],host,env)
+        for p in (app,tests):
+            resolved=json.loads((p.parent/'obj/project.assets.json').read_text(encoding='utf-8'))
+            selected=[v for k,v in resolved['libraries'].items() if k.lower().startswith('taktera.ui.avalonia/')]
+            check(p.stem+' resolved library is NuGet package',len(selected)==1 and selected[0]['type']=='package')
+            check(p.stem+' has compiled package reference',any('lib/net10.0/Taktera.UI.Avalonia.dll' in item.get('compile',{}) for target in resolved['targets'].values() for key,item in target.items() if key.lower().startswith('taktera.ui.avalonia/')))
+        run(['dotnet','build',str(app),'-c','Release','--no-restore','--disable-build-servers','-warnaserror'],host,env)
         check('independent desktop compilation',True)
-        run(['dotnet','test',str(tests),'-c','Release','--no-restore','--logger','trx;LogFileName=consumer.trx','--results-directory',str(OUT)],host,env)
+        run(['dotnet','test',str(tests),'-c','Release','--no-restore','--disable-build-servers','--logger','trx;LogFileName=consumer.trx','--results-directory',str(OUT)],host,env)
         check('packaged runtime resource and interaction tests',True)
         shutil.copy2(app.parent/'obj/project.assets.json',OUT/'consumer-project.assets.json')
 except Exception as e:
