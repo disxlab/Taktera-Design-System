@@ -477,7 +477,7 @@
       "phase": "Beta gates",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Chromium/Firefox/WebKit HTTP/ESM 38/38 на движок https://github.com/disxlab/Taktera-Design-System/actions/runs/46075133438; Safari native и дополнительные сценарии не проверены.",
+      "description": "Chromium/Firefox/WebKit: Web Core 38/38, React 325/325 and 12 axe scans per engine PASS in Run #14 https://github.com/disxlab/Taktera-Design-System/actions/runs/46077631934; Firefox crash no longer reproduced after isolating accessibility page; native Safari remains open.",
       "dependencies": [
         "DS-004"
       ],
@@ -951,7 +951,7 @@
       "phase": "Beta Readiness 5",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Run #13 Chromium/WebKit 325/325 React including virtual DOM 10k; Firefox crashes after 27/27 before axe completes. Added isolated hydrated accessibility page, remote cursor controller, explicit bulk protocol; new CI pending. RemoteDataGrid UI, paginated group headers and confirmed partial bulk outcomes implemented; browser QA pending.",
+      "description": "Run #14 14/14: virtual DOM (10k) and React 325/325 per browser, 0 detected axe violations; remote controller/bulk core tests PASS. https://github.com/disxlab/Taktera-Design-System/actions/runs/46077631934 RemoteDataGrid UI, grouped page headers, partial bulk result UI and unknown-outcome lock added, new CI pending. Real API, performance budgets and manual QA remain open.",
       "dependencies": [
         "BR5-01",
         "DS-013"
@@ -969,7 +969,7 @@
       "phase": "Beta Readiness 5",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Started UTC half-open interval model, conflict checks by resource/status, DST offset tests and timezone formatting. No scheduler UI or actual backend yet.",
+      "description": "Scheduler core UTC half-open intervals, resource conflict detection, cancelled/self exclusions, DST and invalid date tests passed in Run #14 https://github.com/disxlab/Taktera-Design-System/actions/runs/46077631934. Scheduler UI and actual backend transaction/permissions remain open.",
       "dependencies": [
         "BR5-01",
         "DS-014"
@@ -1149,6 +1149,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #14: 14/14 PASS; 975 React functional checks, 114 Web Core checks, 72 axe scans / 0 detected violations, Board 57/57. Firefox recovered with fresh audit page. Remote controller, bulk core and Scheduler unit tests passed; remote UI requires new CI."
+    },
     {
       "at": "2026-11-28",
       "message": "BR5: remote UI, grouped rows and explicit bulk confirmation implemented; test transport only, CI pending."

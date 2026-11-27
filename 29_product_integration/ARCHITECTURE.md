@@ -16,3 +16,6 @@ RemoteGridController uses host-injected transport, cursor limits, abort and gene
 
 ## RemoteDataGrid UI
 Host injects a stable authenticated transport; remount on tenant/session change. Cursor navigation, search, sort, explicit row/version selection and confirmation dialog; partial results retain failed IDs and require refresh/reselection before repeat. Unknown outcomes require server reconciliation, no automatic replay. Paginated local grouping uses actual group header rows; virtual mode remains flat. Browser tests use synthetic transport only.
+
+## Evidence
+Run #14 (https://github.com/disxlab/Taktera-Design-System/actions/runs/46077631934) on `5a1228fad454e403ef3ebb970431fec09786a0fc`: 14/14 jobs PASS; React 325/325 and Web Core 38/38 per engine, 72 total axe scans / zero detected violations, Board 19/19 per engine; remote controller, bulk protocol and Scheduler core unit tests passed. Firefox crash no longer reproduced with separate hydrated audit page; root cause unproven. Subsequent remote UI and grouping changes await their own CI. Actual staging, native Safari, screen-reader validation and performance acceptance remain open.
