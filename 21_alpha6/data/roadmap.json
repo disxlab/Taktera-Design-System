@@ -1005,7 +1005,7 @@
       "phase": "Beta Readiness 5",
       "priority": "P1",
       "status": "in_progress",
-      "description": "Run #22 verified initial KPI chart/table and core. https://github.com/disxlab/Taktera-Design-System/actions/runs/46081132417 Advanced Analytics now adds equal-length comparison, completeness, goals, fixed-card builder, bar/line/combined, daily drilldown, gated CSV; new CI pending. Real reporting, manual acceptance open.",
+      "description": "Run #23: 11/14; 44/44 Linux unit tests, all three browsers stopped at ambiguous basic/advanced KPI locator after 23 passing checks. Exact region/button names fixed; full revalidation pending. https://github.com/disxlab/Taktera-Design-System/actions/runs/46081513783",
       "dependencies": [
         "BR5-01",
         "DS-016"
@@ -1022,8 +1022,8 @@
       "title": "Реальный staging pilot и приёмка",
       "phase": "Beta Readiness 5",
       "priority": "P0",
-      "status": "planned",
-      "description": "Реальные интеграционные проверки, synthetic data, perf/security/accessibility evidence; не объявлять локальный demo staging.",
+      "status": "in_progress",
+      "description": "Independent reference React workspace prepared using only packed public APIs, synthetic data and local callbacks. This is a local pilot, not actual Taktera Platform staging. CI pending; real host required.",
       "dependencies": [
         "BR5-02",
         "BR5-03",
@@ -1042,8 +1042,8 @@
       "title": "Public API и semver",
       "phase": "Beta Readiness 6",
       "priority": "P0",
-      "status": "planned",
-      "description": "Зафиксировать package contracts и version policy; breaking-change tests.",
+      "status": "in_progress",
+      "description": "Public npm exports and strict NodeNext TypeScript consumer checks prepared; API freeze and migration policy still open.",
       "dependencies": [
         "BR5-01"
       ],
@@ -1059,8 +1059,8 @@
       "title": "npm pack и clean consumer",
       "phase": "Beta Readiness 6",
       "priority": "P0",
-      "status": "planned",
-      "description": "Web Core/React pack, exports, CSS/types и независимая установка tarball.",
+      "status": "in_progress",
+      "description": "npm pack React/Web Core, clean independent install and TypeScript/SSR/browser checks added to CI; no publication. Evidence pending.",
       "dependencies": [
         "BR6-01",
         "BR4-11"
@@ -1113,8 +1113,8 @@
       "title": "Developer docs и migration/rollback",
       "phase": "Beta Readiness 6",
       "priority": "P1",
-      "status": "planned",
-      "description": "Quickstart, API docs, version upgrade, immutable release artifacts и rollback drill.",
+      "status": "in_progress",
+      "description": "Reference workspace and clean consumer quickstart added; complete API/migration/rollback documentation still open.",
       "dependencies": [
         "BR6-02",
         "BR6-03"
@@ -1149,6 +1149,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #23 11/14; analytics QA blocked by ambiguous locator on 3 engines. Exact selectors fixed; BR5 reference workspace and BR6 npm clean-consumer gate added. CI pending."
+    },
     {
       "at": "2026-11-28",
       "message": "Run #22 14/14 PASS; CRM 978/978; 288 total axe scans / zero detected violations. BR5-05 advanced analytics added; new CI required."

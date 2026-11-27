@@ -196,3 +196,28 @@ jobs:
           name: github-issues-snapshot
           path: github-issues-snapshot.json
           if-no-files-found: error
+
+  npm-consumer:
+    name: npm packaged clean consumer
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: '.node-version'
+          package-manager-cache: false
+      - run: npm ci --no-audit --no-fund
+        working-directory: 17_packages/react
+      - run: npm run verify
+        working-directory: 17_packages/react
+      - run: npx playwright install --with-deps chromium
+        working-directory: 17_packages/react
+      - run: node 30_distribution/qa/verify_npm_consumer.mjs
+      - uses: actions/upload-artifact@v6
+        if: ${{ always() }}
+        with:
+          name: npm-consumer-evidence
+          path: 30_distribution/qa/results/npm
+          if-no-files-found: warn
