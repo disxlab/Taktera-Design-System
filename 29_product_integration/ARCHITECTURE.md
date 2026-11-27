@@ -13,3 +13,6 @@ BR5-02: server adapter, visible grouped rows, virtual-mode manual screen-reader 
 
 ## BR5 transport and Scheduler core
 RemoteGridController uses host-injected transport, cursor limits, abort and generation checks. Bulk protocol requires explicit confirmation, ID/version, idempotency key and per-row outcomes. Actual server enforcement, remote UI and staging remain open. Scheduler core validates explicit-offset timestamps, half-open intervals, same-resource conflict and cancelled/self exclusion; DST is represented by explicit offsets. Client conflict checks are advisory; server transaction is authoritative. New QA pending.
+
+## RemoteDataGrid UI
+Host injects a stable authenticated transport; remount on tenant/session change. Cursor navigation, search, sort, explicit row/version selection and confirmation dialog; partial results retain failed IDs and require refresh/reselection before repeat. Unknown outcomes require server reconciliation, no automatic replay. Paginated local grouping uses actual group header rows; virtual mode remains flat. Browser tests use synthetic transport only.

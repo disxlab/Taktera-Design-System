@@ -78,3 +78,5 @@
 .tku-virtual-table tbody tr[data-grid-index]{height:48px}.tku-virtual-table tbody tr[data-grid-index] td{height:48px;padding:0 12px;overflow:hidden}
 .tku-virtual-table .tku-virtual-cell{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-height:46px}
 .tku-virtual-table .tku-virtual-spacer td{padding:0;border:0;font-size:0;line-height:0}
+
+.tku-table .tku-group-row th{background:var(--tk-disabled-bg);color:var(--tk-text);font-weight:700;text-align:left}

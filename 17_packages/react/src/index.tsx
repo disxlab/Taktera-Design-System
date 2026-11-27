@@ -138,3 +138,5 @@ export * from './AdvancedDataGrid.js';
 
 export * from './remote-grid.js';
 export * from './resource-scheduler.js';
+
+export * from './RemoteDataGrid.js';

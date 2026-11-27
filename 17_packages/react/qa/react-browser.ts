@@ -58,7 +58,7 @@ try{
   await page.getByRole('tab',{name:'Обзор'}).focus();await page.keyboard.press('ArrowRight');check(label+' keyboard tabs',await page.getByRole('tab',{name:'Настройки'}).getAttribute('aria-selected')==='true'&&await page.getByRole('tab',{name:'Настройки'}).evaluate(e=>document.activeElement===e));
   const col=page.getByRole('columnheader',{name:'Имя записи'});await col.getByRole('button').click();const cells=await page.locator('table').first().locator('tbody td').allTextContents();check(label+' numeric sorting',await col.getAttribute('aria-sort')==='ascending'&&cells.indexOf('2')<cells.indexOf('10'));
   check(label+' escaped HTML',cells.some(x=>x.startsWith('<img'))&&await page.locator('table').first().locator('tbody img').count()===0);
-  await page.getByRole('button',{name:'Далее'}).click();check(label+' pagination',await page.getByRole('navigation',{name:'Страницы'}).getByText('2 из 3').count()===1);
+  await page.getByRole('navigation',{name:'Страницы',exact:true}).getByRole('button',{name:'Далее'}).click();check(label+' pagination',await page.getByRole('navigation',{name:'Страницы'}).getByText('2 из 3').count()===1);
   const opener=page.getByRole('button',{name:'Открыть диалог'});await opener.focus();await opener.click();await page.getByRole('dialog',{name:'Новая запись'}).waitFor();check(label+' modal focus',await page.evaluate(()=>Boolean(document.activeElement?.closest('dialog'))));
   await page.keyboard.press('Escape');await page.getByRole('dialog').waitFor({state:'hidden'});await page.waitForFunction(()=>document.activeElement?.textContent==='Открыть диалог');check(label+' restore focus',await opener.evaluate(e=>document.activeElement===e));
   await opener.click();await page.getByRole('dialog').getByRole('button',{name:'Сохранить'}).click();await page.getByRole('dialog').waitFor({state:'hidden'});check(label+' confirm',true);
@@ -86,6 +86,18 @@ try{
   await virtual.getByRole('textbox',{name:'Поиск в реестре'}).fill('Synthetic 9999');
   check(label+' virtual filtered result',await rendered().count()===1&&await virtual.getByRole('checkbox',{name:'Выбрать запись v09999',exact:true}).count()===1);
   await virtual.getByRole('textbox',{name:'Поиск в реестре'}).fill('');
+  const grouped=page.getByRole('region',{name:'Групповой реестр BR5',exact:true});
+  check(label+' grouped rows',await grouped.locator('.tku-group-row').count()===2&&await grouped.locator('tbody tr[data-grid-index]').count()===3);
+  const remote=page.getByRole('region',{name:'Серверный реестр BR5',exact:true});
+  await remote.getByRole('checkbox',{name:'Выбрать серверную запись r1'}).waitFor();
+  await remote.getByRole('checkbox',{name:'Выбрать серверную запись r1'}).check();await remote.getByRole('checkbox',{name:'Выбрать серверную запись r2'}).check();
+  await remote.getByRole('button',{name:'Далее'}).click();await remote.getByRole('checkbox',{name:'Выбрать серверную запись r3'}).waitFor();
+  check(label+' remote cursor selection',await remote.getByText('Выбрано: 2',{exact:true}).count()===1);
+  await remote.getByRole('button',{name:'Архивировать выбранные'}).click();await remote.getByRole('dialog').getByRole('button',{name:'Отмена'}).click();await remote.getByRole('dialog').waitFor({state:'hidden'});
+  check(label+' remote cancel no mutation',await remote.getByText('Выбрано: 2',{exact:true}).count()===1&&await remote.getByRole('list',{name:'Результаты операции'}).count()===0);
+  await remote.getByRole('button',{name:'Архивировать выбранные'}).click();await remote.getByRole('dialog').getByRole('button',{name:'Выполнить'}).click();
+  await remote.getByText('r2: Конфликт версии',{exact:true}).waitFor();
+  check(label+' remote bulk partial result',await remote.getByText('r1: Выполнено',{exact:true}).count()===1&&await remote.getByText('Выбрано: 1',{exact:true}).count()===1);
   // Accessibility is evaluated on a fresh, separately hydrated page, not a reused
   // document after focus/scroll mutations. Reproduce both selected-tab and grid states.
   const auditPage=await browser.newPage({viewport:{width:1440,height:900},reducedMotion:'reduce'});
