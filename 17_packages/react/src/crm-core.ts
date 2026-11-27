@@ -36,3 +36,6 @@ export type WorkspaceCommand={id:string;label:string;keywords?:readonly string[]
 export function searchCommands(commands:readonly WorkspaceCommand[],query:string,locale:UiLocale='ru-RU'){
  const words=query.trim().toLocaleLowerCase(locale).split(/\s+/).filter(Boolean);return commands.filter(c=>{const hay=[c.label,...(c.keywords??[])].join(' ').toLocaleLowerCase(locale);return words.every(w=>hay.includes(w))})
 }
+
+/** Only active known field IDs and whitelisted codes may cross the validation boundary. */
+export function filterServerErrors(steps:readonly FormStep[],values:FormValues,errors:Record<string,FieldError>):Record<string,FieldError>{const ids=new Set(activeFields(steps,values).map(f=>f.id));return Object.fromEntries(Object.entries(errors).filter(([id,code])=>ids.has(id)&&['required','invalid','tooLong'].includes(code)))}

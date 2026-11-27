@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {chronological,timeLabel,activeFields,formPayload,formErrors,searchCommands} from './crm-core.js';
+import {chronological,timeLabel,activeFields,formPayload,formErrors,searchCommands,filterServerErrors} from './crm-core.js';
 import type {UiLocale,CustomerSummary,ActivityItem,CenterNotice,FormStep,FormValues,FormValue,FieldError,WorkspaceCommand} from './crm-core.js';
 const secondary='tku-button tku-button--secondary',primary='tku-button tku-button--primary';
 const tr=(locale:UiLocale,r:string,e:string)=>locale==='ru-RU'?r:e;
@@ -12,24 +12,33 @@ export function ActivityTimeline({items,zone,locale='ru-RU'}:{items:readonly Act
  {shown.length?<ol className="tku-activity">{shown.map(i=><li key={i.id}><time dateTime={i.at}>{timeLabel(i.at,zone)}</time><h3>{i.title}</h3><p>{i.kind}</p>{i.description&&<p>{i.description}</p>}</li>)}</ol>:<p>{tr(locale,'Нет событий','No events')}</p>}</section>
 }
 export type FormSaveRequest={values:Record<string,FormValue>;version:string;idempotencyKey:string};
-export type FormSaveResult={status:'applied'|'conflict'|'invalid'|'forbidden'};
-export function AdvancedForm({label,steps,initialValues,version,locale='ru-RU',onSave}:{label:string;steps:readonly FormStep[];initialValues:FormValues;version:string;locale?:UiLocale;onSave:(request:FormSaveRequest,signal:AbortSignal)=>Promise<FormSaveResult>}){
+export type FormSaveResult={status:'applied'|'conflict'|'invalid'|'forbidden';fieldErrors?:Record<string,FieldError>};
+export type FormDraftRequest={values:Record<string,FormValue>;version:string;revision:number;idempotencyKey:string};
+export function AdvancedForm({label,steps,initialValues,version,locale='ru-RU',onSave,onValidate,onDraft,onDirtyChange}:{label:string;steps:readonly FormStep[];initialValues:FormValues;version:string;locale?:UiLocale;onSave:(request:FormSaveRequest,signal:AbortSignal)=>Promise<FormSaveResult>;onValidate?:(values:Record<string,FormValue>,signal:AbortSignal)=>Promise<Record<string,FieldError>>;onDraft?:(request:FormDraftRequest,signal:AbortSignal)=>Promise<void>;onDirtyChange?:(dirty:boolean)=>void}){
  const id=React.useId(),[values,setValues]=React.useState<FormValues>(()=>({...initialValues})),[index,setIndex]=React.useState(0),[errors,setErrors]=React.useState<Record<string,FieldError>>({}),[message,setMessage]=React.useState(''),[failure,setFailure]=React.useState(''),[busy,setBusy]=React.useState(false),[locked,setLocked]=React.useState(false);
+ const [revision,setRevision]=React.useState(0),[draftState,setDraftState]=React.useState<'idle'|'saving'|'saved'|'failed'>('idle'),[retryDraft,setRetryDraft]=React.useState(0);
+ const dirty=revision>0&&!locked;const draftCallback=React.useRef(onDraft);draftCallback.current=onDraft;
+ const dirtyCallback=React.useRef(onDirtyChange);dirtyCallback.current=onDirtyChange;
+ React.useEffect(()=>{dirtyCallback.current?.(dirty)},[dirty]);
+ const draftActive=React.useRef<AbortController|undefined>(undefined),draftInFlight=React.useRef(false);
+ React.useEffect(()=>{if(!onDraft||!revision||locked||busy)return;let live=true;const timer=setTimeout(async()=>{if(!live||draftInFlight.current)return;const abort=new AbortController();draftActive.current=abort;draftInFlight.current=true;setDraftState('saving');try{await draftCallback.current?.({values:formPayload(steps,values),version,revision,idempotencyKey:globalThis.crypto.randomUUID()},abort.signal);if(!abort.signal.aborted)setDraftState('saved')}catch{if(!abort.signal.aborted)setDraftState('failed')}finally{draftInFlight.current=false;draftActive.current=undefined;if(!live&&!abort.signal.aborted)setRetryDraft(n=>n+1)}},600);return()=>{live=false;clearTimeout(timer)}},[revision,retryDraft,locked,busy,version,!!onDraft]);
+ React.useEffect(()=>()=>draftActive.current?.abort(),[]);
  const pending=React.useRef<AbortController|undefined>(undefined),summary=React.useRef<HTMLDivElement>(null),heading=React.useRef<HTMLHeadingElement>(null);
  React.useEffect(()=>()=>pending.current?.abort(),[]);
  React.useEffect(()=>{if(Object.keys(errors).length)summary.current?.focus()},[errors]);
  const step=steps[Math.min(index,steps.length-1)],active=new Set(activeFields(steps,values).map(f=>f.id));
  const translate=(e:FieldError)=>e==='required'?tr(locale,'Обязательное поле','Required field'):e==='tooLong'?tr(locale,'Слишком длинное значение','Value too long'):tr(locale,'Некорректное значение','Invalid value');
- function change(key:string,value:FormValue){setValues(v=>({...v,[key]:value}));setErrors({});setMessage('');setFailure('')}
+ function change(key:string,value:FormValue){setValues(v=>({...v,[key]:value}));setRevision(n=>n+1);setDraftState('idle');setErrors({});setMessage('');setFailure('')}
  function navigate(n:number){setIndex(n);setErrors({});requestAnimationFrame(()=>heading.current?.focus())}
- async function next(){if(busy||locked||pending.current)return;setFailure('');setMessage('');
+ async function next(){if(busy||locked||pending.current||draftInFlight.current)return;setFailure('');setMessage('');
   const last=index===steps.length-1,errs=formErrors(steps,values,last?undefined:step.id);setErrors(errs);
   if(Object.keys(errs).length){const first=steps.findIndex(s=>s.fields.some(f=>Object.hasOwn(errs,f.id)));if(first>=0)setIndex(first);return}
-  if(!last){navigate(index+1);return}
   const abort=new AbortController();pending.current=abort;setBusy(true);
-  try{const result=await onSave({values:formPayload(steps,values),version,idempotencyKey:globalThis.crypto.randomUUID()},abort.signal);if(abort.signal.aborted)return;
+  try{if(onValidate){let remote:Record<string,FieldError>;try{remote=filterServerErrors(steps,values,await onValidate(formPayload(steps,values),abort.signal))}catch{if(!abort.signal.aborted)setFailure(tr(locale,'Не удалось проверить данные','Validation unavailable'));return}if(abort.signal.aborted)return;const relevant=last?remote:Object.fromEntries(Object.entries(remote).filter(([k])=>step.fields.some(f=>f.id===k)));if(Object.keys(relevant).length){setErrors(relevant);const first=steps.findIndex(s=>s.fields.some(f=>Object.hasOwn(relevant,f.id)));if(first>=0)setIndex(first);return}}
+   if(!last){navigate(index+1);return}
+   const result=await onSave({values:formPayload(steps,values),version,idempotencyKey:globalThis.crypto.randomUUID()},abort.signal);if(abort.signal.aborted)return;
    if(result.status==='applied'){setMessage(tr(locale,'Сохранено','Saved'));setLocked(true)}
-   else if(['conflict','invalid','forbidden'].includes(result.status)){setFailure(tr(locale,'Сервер отклонил сохранение: ','Server rejected save: ')+result.status)}
+   else if(['conflict','invalid','forbidden'].includes(result.status)){if(result.status==='invalid'&&result.fieldErrors){const errs=filterServerErrors(steps,values,result.fieldErrors);setErrors(errs);const first=steps.findIndex(s=>s.fields.some(f=>Object.hasOwn(errs,f.id)));if(first>=0)setIndex(first)}setFailure(tr(locale,'Сервер отклонил сохранение: ','Server rejected save: ')+result.status)}
    else throw Error('Unknown result');
   }catch{if(!abort.signal.aborted){setLocked(true);setFailure(tr(locale,'Результат неизвестен. Сверьте данные с сервером.','Outcome unknown. Reconcile with server.'))}}
   finally{pending.current=undefined;if(!abort.signal.aborted)setBusy(false)}
@@ -40,16 +49,23 @@ export function AdvancedForm({label,steps,initialValues,version,locale='ru-RU',o
  {step.fields.filter(f=>active.has(f.id)).map(f=>{const fid=id+'-'+f.id,error=errors[f.id],v=values[f.id];const attrs={id:fid,disabled:busy||locked,required:!!f.required,'aria-invalid':!!error||undefined,'aria-describedby':error?fid+'-error':undefined};
  return <div key={f.id} className="tku-field"><label htmlFor={fid}>{f.label}</label>{f.kind==='select'?<select {...attrs} className="tku-input" value={typeof v==='string'?v:''} onChange={e=>change(f.id,e.target.value)}><option value="">{tr(locale,'Выберите','Select')}</option>{f.options?.map(o=><option key={o.value} value={o.value}>{o.label}</option>)}</select>:f.kind==='checkbox'?<input {...attrs} type="checkbox" checked={v===true} onChange={e=>change(f.id,e.target.checked)}/>:<input {...attrs} className="tku-input" type={f.kind} value={typeof v==='string'?v:''} maxLength={f.maxLength} onChange={e=>change(f.id,e.target.value)}/>}
  {error&&<span id={fid+'-error'} className="tku-field__error">{translate(error)}</span>}</div>})}
- <div className="tku-crm-actions"><button type="button" className={secondary} disabled={index===0||busy||locked} onClick={()=>navigate(index-1)}>{tr(locale,'Назад','Back')}</button><button type="submit" className={primary} disabled={busy||locked}>{index===steps.length-1?tr(locale,'Сохранить форму','Save form'):tr(locale,'Далее','Next')}</button></div></form>
+ <div className="tku-crm-actions"><button type="button" className={secondary} disabled={index===0||busy||locked} onClick={()=>navigate(index-1)}>{tr(locale,'Назад','Back')}</button><button type="submit" className={primary} disabled={busy||locked||draftState==='saving'}>{index===steps.length-1?tr(locale,'Сохранить форму','Save form'):tr(locale,'Далее','Next')}</button></div></form>
+ {onDraft&&revision>0&&!locked&&<p role="status">{draftState==='saving'?tr(locale,'Сохранение черновика…','Saving draft…'):draftState==='saved'?tr(locale,'Черновик сохранён','Draft saved'):draftState==='failed'?tr(locale,'Черновик не сохранён','Draft not saved'):tr(locale,'Есть изменения','Changes pending')}</p>}
+ {draftState==='failed'&&!locked&&<button type="button" className={secondary} onClick={()=>setRetryDraft(n=>n+1)}>{tr(locale,'Повторить сохранение черновика','Retry draft')}</button>}
  {message&&<p role="status">{message}</p>}{failure&&<p role="alert" className="tku-crm-error">{failure}</p>}</section>
 }
-export type WorkspacePage={id:string;label:string;content:React.ReactNode};
-export function ApplicationShell({label,pages,active,onNavigate,locale='ru-RU',tools}:{label:string;pages:readonly WorkspacePage[];active:string;onNavigate:(id:string)=>void;locale?:UiLocale;tools?:React.ReactNode}){
+export type WorkspacePage={id:string;label:string;content:React.ReactNode;closable?:boolean;dirty?:boolean};
+export function ApplicationShell({label,pages,active,onNavigate,locale='ru-RU',tools,onClosePage}:{label:string;pages:readonly WorkspacePage[];active:string;onNavigate:(id:string)=>void;locale?:UiLocale;tools?:React.ReactNode;onClosePage?:(id:string)=>void}){
  const id=React.useId(),selected=pages.some(p=>p.id===active)?active:pages[0]?.id,buttons=React.useRef<Array<HTMLButtonElement|null>>([]);
- function key(e:React.KeyboardEvent){const i=buttons.current.indexOf(document.activeElement as HTMLButtonElement);if(i<0||!pages.length)return;const n=e.key==='ArrowRight'?(i+1)%pages.length:e.key==='ArrowLeft'?(i+pages.length-1)%pages.length:e.key==='Home'?0:e.key==='End'?pages.length-1:-1;if(n>=0){e.preventDefault();onNavigate(pages[n].id);buttons.current[n]?.focus()}}
+ const [closing,setClosing]=React.useState<string|null>(null),closeDialog=React.useRef<HTMLDialogElement>(null),closeOpener=React.useRef<HTMLElement|null>(null);
+ React.useEffect(()=>{const node=closeDialog.current;if(closing&&node&&!node.open)node.showModal();if(!closing&&node?.open)node.close()},[closing]);
+ function requestClose(p:WorkspacePage){if(!p.closable||!onClosePage)return;if(p.dirty){closeOpener.current=document.activeElement as HTMLElement;setClosing(p.id)}else finishClose(p.id)}
+ function finishClose(key:string){if(selected===key){const index=pages.findIndex(p=>p.id===key);const next=pages[index+1]??pages[index-1];if(next)onNavigate(next.id)}onClosePage?.(key);setClosing(null);requestAnimationFrame(()=>{const el=buttons.current.find(b=>b?.getAttribute('aria-selected')==='true');el?.focus()})}
+ function key(e:React.KeyboardEvent){const i=buttons.current.indexOf(document.activeElement as HTMLButtonElement);if(i<0||!pages.length)return;if(e.key==='Delete'&&pages[i].closable&&onClosePage){e.preventDefault();requestClose(pages[i]);return}const n=e.key==='ArrowRight'?(i+1)%pages.length:e.key==='ArrowLeft'?(i+pages.length-1)%pages.length:e.key==='Home'?0:e.key==='End'?pages.length-1:-1;if(n>=0){e.preventDefault();onNavigate(pages[n].id);buttons.current[n]?.focus()}}
  return <section className="tku-app-shell" aria-labelledby={id}><header className="tku-app-header"><h2 id={id}>{label}</h2>{tools}</header><div className="tku-app-body"><nav aria-label={tr(locale,'Разделы приложения','Application sections')} className="tku-app-nav">{pages.map(p=><button type="button" key={p.id} className={secondary} aria-current={p.id===selected?'page':undefined} onClick={()=>onNavigate(p.id)}>{p.label}</button>)}</nav>
  <div className="tku-app-workspace"><div role="tablist" aria-label={tr(locale,'Рабочие вкладки','Workspace tabs')} className="tku-tablist" onKeyDown={key}>{pages.map((p,i)=><button key={p.id} type="button" ref={el=>{buttons.current[i]=el}} role="tab" id={id+'-tab-'+i} aria-controls={id+'-panel-'+i} aria-selected={p.id===selected} tabIndex={p.id===selected?0:-1} className="tku-tab" onClick={()=>onNavigate(p.id)}>{p.label}</button>)}</div>
- {pages.map((p,i)=><div key={p.id} role="tabpanel" id={id+'-panel-'+i} aria-labelledby={id+'-tab-'+i} hidden={p.id!==selected} tabIndex={0}>{p.content}</div>)}</div></div></section>
+ {onClosePage&&pages.some(p=>p.closable)&&<div className="tku-crm-actions">{pages.filter(p=>p.closable).map(p=><button type="button" key={p.id} className={secondary} onClick={()=>requestClose(p)}>{tr(locale,'Закрыть вкладку: ','Close tab: ')+p.label}{p.dirty?' *':''}</button>)}</div>}
+ {pages.map((p,i)=><div key={p.id} role="tabpanel" id={id+'-panel-'+i} aria-labelledby={id+'-tab-'+i} hidden={p.id!==selected} tabIndex={0}>{p.content}</div>)}</div></div><dialog ref={closeDialog} className="tku-dialog" aria-labelledby={id+'-close'} onCancel={e=>{e.preventDefault();setClosing(null)}} onClose={()=>{if(closeOpener.current?.isConnected)closeOpener.current.focus()}}><h2 id={id+'-close'}>{tr(locale,'Несохранённые изменения','Unsaved changes')}</h2><p>{tr(locale,'Закрыть вкладку без сохранения?','Close tab without saving?')}</p><button type="button" className={secondary} onClick={()=>setClosing(null)}>{tr(locale,'Оставить вкладку','Keep tab')}</button><button type="button" className={primary} onClick={()=>{if(closing)finishClose(closing)}}>{tr(locale,'Закрыть без сохранения','Discard and close')}</button></dialog></section>
 }
 export function CommandPalette({commands,onCommand,locale='ru-RU',shortcut=false}:{commands:readonly WorkspaceCommand[];onCommand:(id:string)=>void;locale?:UiLocale;shortcut?:boolean}){
  const id=React.useId(),dialog=React.useRef<HTMLDialogElement>(null),input=React.useRef<HTMLInputElement>(null),opener=React.useRef<HTMLElement|null>(null),[query,setQuery]=React.useState(''),[active,setActive]=React.useState(0);

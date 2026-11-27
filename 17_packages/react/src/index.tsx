@@ -145,3 +145,6 @@ export * from './ResourceScheduler.js';
 
 export * from './crm-core.js';
 export * from './CrmWorkspace.js';
+
+export * from './analytics-core.js';
+export * from './AnalyticsDashboard.js';

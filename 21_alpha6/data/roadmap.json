@@ -987,7 +987,7 @@
       "phase": "Beta Readiness 5",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Run #20 11/14; CRM 218/218 each engine, axe label-content-name-mismatch on notification buttons (12 violations per engine). Accessible names corrected RU/EN; revalidation pending. https://github.com/disxlab/Taktera-Design-System/actions/runs/46080161796",
+      "description": "Run #20 CRM 654/654 functional; accessible notification name fixed separately. Added optional async validation, server field errors, host draft autosave and controlled close/dirty guard for dynamic tabs. New CI pending.",
       "dependencies": [
         "BR5-01",
         "DS-015"
@@ -1004,8 +1004,8 @@
       "title": "Analytics/KPI и отраслевые сценарии",
       "phase": "Beta Readiness 5",
       "priority": "P1",
-      "status": "planned",
-      "description": "Шесть продуктов × две темы, KPI, chart/table alternatives и сценарии.",
+      "status": "in_progress",
+      "description": "Initial React AnalyticsDashboard: integer minor-unit revenue, weighted completion/utilization, average revenue per completed visit, period delta, chart/table, RU/EN; synthetic fixture and unit/browser QA pending.",
       "dependencies": [
         "BR5-01",
         "DS-016"
@@ -1149,6 +1149,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "BR5-04 extended forms/workspace and BR5-05 Analytics KPI foundation prepared; CI pending."
+    },
     {
       "at": "2026-11-28",
       "message": "Run #20 CRM functional 654/654; notification accessible-name mismatch failed axe on all engines. Corrected accessible label, no rule exclusions."

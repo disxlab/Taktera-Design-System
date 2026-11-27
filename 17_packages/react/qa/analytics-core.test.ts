@@ -1,0 +1,10 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {aggregateMetrics,metricDelta,formatMetric} from '../src/analytics-core.js';
+import {filterServerErrors} from '../src/crm-core.js';
+import type {DailyMetric} from '../src/analytics-core.js';
+const a:DailyMetric={date:'2026-12-01',revenueMinor:10000,visits:4,completed:2,capacity:10,used:5},b:DailyMetric={date:'2026-12-02',revenueMinor:20000,visits:6,completed:6,capacity:30,used:10};
+test('weighted ratios and integer revenue totals',()=>{const r=aggregateMetrics([a,b]);assert.equal(r.revenueMinor,30000);assert.equal(r.completionRate,.8);assert.equal(r.utilization,.375);assert.equal(r.averageMinor,3750)});
+test('empty metrics and zero baseline do not claim a rate',()=>{assert.equal(aggregateMetrics([]).utilization,null);assert.equal(metricDelta(10,0),null);assert.equal(formatMetric(null,'ru-RU','ratio'),'—');assert.equal(metricDelta(12,10),.2)});
+test('invalid or duplicate dates, invalid counts and unsafe sums rejected',()=>{assert.throws(()=>aggregateMetrics([a,a]));assert.throws(()=>aggregateMetrics([{...a,date:'2026-02-30'}]));assert.throws(()=>aggregateMetrics([{...a,completed:5}]));assert.throws(()=>aggregateMetrics([{...a,revenueMinor:Number.MAX_SAFE_INTEGER},b]));assert.throws(()=>aggregateMetrics([{...a,used:-1}]))});
+test('server errors exclude unknown and hidden fields',()=>{assert.deepEqual(filterServerErrors([{id:'a',label:'A',fields:[{id:'toggle',label:'Toggle',kind:'checkbox'},{id:'secret',label:'Secret',kind:'text',when:{field:'toggle',equals:true}}]}],{toggle:false},{secret:'invalid',toggle:'required',unknown:'invalid'}),{toggle:'required'})});
