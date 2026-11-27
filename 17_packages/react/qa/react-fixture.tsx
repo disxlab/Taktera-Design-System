@@ -5,6 +5,7 @@ const rows=[{id:'a',name:'10'},{id:'b',name:'2'},{id:'c',name:'<img src=x onerro
 const gridRows=[{id:'r1',name:'Record 10',amount:10,status:'open'},{id:'r2',name:'Record 2',amount:2,status:'open'},{id:'r3',name:'Other',amount:30,status:'closed'}];
 const gridColumns=[{id:'name',label:'Название записи',value:(r:typeof gridRows[number])=>r.name},{id:'amount',label:'Сумма',value:(r:typeof gridRows[number])=>r.amount},{id:'status',label:'Статус записи',value:(r:typeof gridRows[number])=>r.status}];
 const gridKey=(r:typeof gridRows[number])=>r.id;
+const largeRows=Array.from({length:10000},(_,i)=>({id:'v'+String(i).padStart(5,'0'),name:'Synthetic '+i,amount:i,status:i%2?'open':'closed'}));
 export function Fixture({product,theme}:{product:Product;theme:Theme}){
   const [open,setOpen]=React.useState(false),[value,setValue]=React.useState(''),[page,setPage]=React.useState(1),[checked,setChecked]=React.useState(false);
   React.useEffect(()=>{document.documentElement.dataset.hydrated='yes'},[]);
@@ -18,6 +19,6 @@ export function Fixture({product,theme}:{product:Product;theme:Theme}){
     <DataTable columns={[{key:'name',label:'Имя записи',sortable:true}]} rows={rows} rowKey={r=>r.id}/>
     <Pagination page={page} pageCount={3} onPageChange={setPage}/>
     <Button onClick={()=>setOpen(true)}>Открыть диалог</Button><Dialog open={open} title="Новая запись" onClose={()=>setOpen(false)} onConfirm={()=>setOpen(false)}><p>Тестовый диалог</p></Dialog>
-    <Status tone="success">Готово</Status><AdvancedDataGrid rows={gridRows} columns={gridColumns} rowKey={gridKey} label="Реестр BR5" searchColumn="name" groupBy="status" pageSize={2}/>
+    <Status tone="success">Готово</Status><AdvancedDataGrid rows={gridRows} columns={gridColumns} rowKey={gridKey} label="Реестр BR5" searchColumn="name" groupBy="status" pageSize={2}/><AdvancedDataGrid rows={largeRows} columns={gridColumns} rowKey={gridKey} label="Виртуальный реестр BR5" searchColumn="name" pageSize={25} virtualization/>
   </main></TakteraProvider>;
 }

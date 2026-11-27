@@ -68,3 +68,13 @@
   .tku-status,.tku-alert { border:1px solid CanvasText }
   .tku-button:disabled { border-color:GrayText;color:GrayText }
 }
+
+/* BR5 virtual table layout: existing semantic token values are unchanged. */
+.tku-virtual-scroll{overflow:auto;max-width:100%;border:1px solid var(--tk-control-border)}
+.tku-virtual-scroll:focus-visible{outline:3px solid var(--tk-focus-ring);outline-offset:2px}
+.tku-virtual-table{table-layout:fixed;border-collapse:separate;border-spacing:0;width:100%}
+.tku-virtual-table thead{position:sticky;top:0;z-index:1;background:var(--tk-surface)}
+.tku-virtual-table th{padding:0 12px;height:48px;overflow:hidden}.tku-virtual-table th:first-child{width:64px}
+.tku-virtual-table tbody tr[data-grid-index]{height:48px}.tku-virtual-table tbody tr[data-grid-index] td{height:48px;padding:0 12px;overflow:hidden}
+.tku-virtual-table .tku-virtual-cell{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-height:46px}
+.tku-virtual-table .tku-virtual-spacer td{padding:0;border:0;font-size:0;line-height:0}
