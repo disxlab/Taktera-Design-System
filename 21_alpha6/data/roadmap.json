@@ -987,7 +987,7 @@
       "phase": "Beta Readiness 5",
       "priority": "P0",
       "status": "in_progress",
-      "description": "CRM React foundations: customer profile, activity timeline, conditional wizard with versioned host callback, controlled workspace, command palette, notification center. Synthetic fixture, unit/browser QA added; CI and real host acceptance pending.",
+      "description": "Run #20 11/14; CRM 218/218 each engine, axe label-content-name-mismatch on notification buttons (12 violations per engine). Accessible names corrected RU/EN; revalidation pending. https://github.com/disxlab/Taktera-Design-System/actions/runs/46080161796",
       "dependencies": [
         "BR5-01",
         "DS-015"
@@ -1149,6 +1149,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #20 CRM functional 654/654; notification accessible-name mismatch failed axe on all engines. Corrected accessible label, no rule exclusions."
+    },
     {
       "at": "2026-11-28",
       "message": "Run #19 14/14 PASS; Scheduler 681/681; 144 axe scans with zero detected violations. BR5-04 source and QA ready; new CI required."
