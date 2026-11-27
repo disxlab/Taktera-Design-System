@@ -64,6 +64,7 @@ try{
   await page.addScriptTag({path:require.resolve('axe-core/axe.min.js')});
   const scan=await page.evaluate(async()=>{const x=await (window as any).axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']}});return {violations:x.violations.map((v:any)=>({id:v.id,nodes:v.nodes.map((n:any)=>n.target)})),incomplete:x.incomplete.map((v:any)=>({id:v.id,nodes:v.nodes.map((n:any)=>n.target)}))}});
   report.axe.push({product,theme,...scan});
+  if(scan.violations.length)console.log(JSON.stringify({engine,product,theme,axeViolations:scan.violations}));
  }
  check('no console/hydration/page errors',report.errors.length===0);
 }catch(e){report.errors.push(String(e))}

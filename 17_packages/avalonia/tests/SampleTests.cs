@@ -23,8 +23,8 @@ public class SampleTests
         {
             window.Show();
             var buttons = window.GetVisualDescendants().OfType<Button>().ToArray();
-            var primary = Assert.Single(buttons.Where(b => Equals(b.Content, "Сохранить")));
-            var secondary = Assert.Single(buttons.Where(b => Equals(b.Content, "Отмена")));
+            var primary = Assert.Single(buttons, b => Equals(b.Content, "Сохранить"));
+            var secondary = Assert.Single(buttons, b => Equals(b.Content, "Отмена"));
             Assert.NotNull(primary.Theme);
             Assert.NotNull(secondary.Theme);
             Assert.NotSame(primary.Theme, secondary.Theme);
@@ -42,7 +42,7 @@ public class SampleTests
         try
         {
             window.Show();
-            var field = Assert.Single(window.GetVisualDescendants().OfType<TextBox>());
+            var field = Assert.Single(window.GetVisualDescendants().OfType<TextBox>(), field => field.Classes.Contains("tku-field"));
             Assert.True(field.Focus());
             Assert.True(field.IsFocused);
             window.KeyTextInput("Taktera test");

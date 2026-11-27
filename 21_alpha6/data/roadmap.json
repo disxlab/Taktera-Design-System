@@ -838,7 +838,7 @@
       "phase": "Beta Readiness 4",
       "priority": "P1",
       "status": "in_progress",
-      "description": "Добавляется read-only snapshot Issues в CI и импорт отдельного снимка в Board без изменения пользовательских задач.",
+      "description": "Run #9 read-only snapshot PASS: 11 issues, 41 task links. https://github.com/disxlab/Taktera-Design-System/actions/runs/46075890817. UI import and preservation validation still needed.",
       "dependencies": [],
       "kind": "work",
       "source": "plan",
@@ -895,7 +895,7 @@
       "phase": "Beta Readiness 4",
       "priority": "P0",
       "status": "in_progress",
-      "description": "SSR → hydrateRoot, сохраняем DOM identity, формы, tabs, сортировка, dialog/focus, XSS; Chromium/Firefox/WebKit; CI evidence.",
+      "description": "Run #9: 181/181 functional checks per engine; axe 2 color-contrast violations per engine. https://github.com/disxlab/Taktera-Design-System/actions/runs/46075890817. Active tab uses existing canvas accent-text token; revalidation pending.",
       "dependencies": [
         "BR4-01",
         "BR4-05"
@@ -913,7 +913,7 @@
       "phase": "Beta Readiness 4",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Проверка реального sample App/MainWindow, тем, ввода, выбора, focus; не заменяет native OS.",
+      "description": "Run #9: 2/3 tests per OS; actual text field selector matched template internals. https://github.com/disxlab/Taktera-Design-System/actions/runs/46075890817. Narrowed selector by tku-field class; rerun pending.",
       "dependencies": [
         "BR4-04"
       ],
@@ -1146,6 +1146,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #9: React interaction 181/181 на каждом движке; axe нашёл 2 contrast-нарушения; headless 2/3 на каждой ОС; issue snapshot PASS. Исправлены ссылка на семантический токен вкладок и выбор текстового поля, ожидается повторный CI."
+    },
     {
       "at": "2026-11-28",
       "message": "Run #8: 10/10 PASS на Node.js 26.13.1, npm ci, static/freeze, React, Avalonia, audit и Web Core 114 checks / 36 axe scans. Добавлены BR4-11/12 и планы BR5/6; новые проверки ещё не подтверждены."
