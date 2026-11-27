@@ -47,19 +47,4 @@
     <Style Selector="^:focus-visible"><Setter Property="BorderBrush" Value="{DynamicResource TkFocusRingBrush}"/>
       <Setter Property="BorderThickness" Value="3"/></Style>
   </ControlTheme>
-  <Style Selector="TextBox.tku-field">
-    <Setter Property="Background" Value="{DynamicResource TkSurfaceBrush}"/>
-    <Setter Property="Foreground" Value="{DynamicResource TkTextBrush}"/>
-    <Setter Property="BorderBrush" Value="{DynamicResource TkControlBorderBrush}"/>
-    <Setter Property="BorderThickness" Value="1"/>
-    <Setter Property="MinHeight" Value="42"/>
-  </Style>
-  <Style Selector="TextBox.tku-field:focus-visible"><Setter Property="BorderBrush" Value="{DynamicResource TkFocusRingBrush}"/>
-    <Setter Property="BorderThickness" Value="2"/></Style>
-  <Style Selector="ComboBox.tku-field">
-    <Setter Property="Background" Value="{DynamicResource TkSurfaceBrush}"/>
-    <Setter Property="Foreground" Value="{DynamicResource TkTextBrush}"/>
-    <Setter Property="BorderBrush" Value="{DynamicResource TkControlBorderBrush}"/>
-  </Style>
-  <Style Selector="CheckBox.tku-check"><Setter Property="Foreground" Value="{DynamicResource TkTextBrush}"/></Style>
 </ResourceDictionary>
