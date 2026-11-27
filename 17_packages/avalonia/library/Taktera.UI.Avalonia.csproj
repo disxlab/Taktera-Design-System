@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <AssemblyName>Taktera.UI.Avalonia</AssemblyName>
+    <RootNamespace>Taktera.UI.Avalonia</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <PackageId>Taktera.UI.Avalonia</PackageId>
+    <Version>4.0.0-beta-readiness.3</Version>
+    <Authors>Taktera</Authors>
+    <Description>Pre-release Taktera resource dictionaries, named ControlThemes and opt-in field styles for Avalonia.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <IsPackable>true</IsPackable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <AvaloniaUseCompiledBindingsByDefault>false</AvaloniaUseCompiledBindingsByDefault>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.3.22" />
+    <None Update="README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
+  <Target Name="RequirePalettes" BeforeTargets="PrepareForBuild">
+    <Error Condition="!Exists('Assets/Taktera.Clinic.Light.axaml')" Text="Use 30_distribution/qa/verify_nuget_consumer.py to stage canonical assets before compiling." />
+  </Target>
+</Project>

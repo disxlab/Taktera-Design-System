@@ -1,0 +1,4 @@
+# Taktera.UI.Avalonia — private pre-release candidate
+.NET 10, Avalonia 11.3.22. The pack verifier stages byte-identical copies of 12 existing product/theme dictionaries, named ControlThemes and field styles into a temporary library before compilation. No source dictionary duplication in git. Not approved for registry publication; license/redistribution terms pending owner approval.
+
+Host App.axaml: add FluentTheme, StyleInclude for avares://Taktera.UI.Avalonia/Assets/TkFieldStyles.axaml, ResourceInclude for selected Taktera.Product.Theme.axaml and TkControls.axaml. See 30_distribution/reference-dotnet. TakteraResources exposes typed URIs; runtime theme replacement is host-owned. Native manual accessibility/visual acceptance remains required. No advanced native DataGrid/Scheduler/CRM parity claim.
