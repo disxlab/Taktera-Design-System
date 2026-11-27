@@ -17,18 +17,22 @@ export type FormDraftRequest={values:Record<string,FormValue>;version:string;rev
 export function AdvancedForm({label,steps,initialValues,version,locale='ru-RU',onSave,onValidate,onDraft,onDirtyChange}:{label:string;steps:readonly FormStep[];initialValues:FormValues;version:string;locale?:UiLocale;onSave:(request:FormSaveRequest,signal:AbortSignal)=>Promise<FormSaveResult>;onValidate?:(values:Record<string,FormValue>,signal:AbortSignal)=>Promise<Record<string,FieldError>>;onDraft?:(request:FormDraftRequest,signal:AbortSignal)=>Promise<void>;onDirtyChange?:(dirty:boolean)=>void}){
  const id=React.useId(),[values,setValues]=React.useState<FormValues>(()=>({...initialValues})),[index,setIndex]=React.useState(0),[errors,setErrors]=React.useState<Record<string,FieldError>>({}),[message,setMessage]=React.useState(''),[failure,setFailure]=React.useState(''),[busy,setBusy]=React.useState(false),[locked,setLocked]=React.useState(false);
  const [revision,setRevision]=React.useState(0),[draftState,setDraftState]=React.useState<'idle'|'saving'|'saved'|'failed'>('idle'),[retryDraft,setRetryDraft]=React.useState(0);
- const dirty=revision>0&&!locked;const draftCallback=React.useRef(onDraft);draftCallback.current=onDraft;
+ const [committed,setCommitted]=React.useState(false);const dirty=revision>0&&!committed;const draftCallback=React.useRef(onDraft);draftCallback.current=onDraft;
  const dirtyCallback=React.useRef(onDirtyChange);dirtyCallback.current=onDirtyChange;
  React.useEffect(()=>{dirtyCallback.current?.(dirty)},[dirty]);
- const draftActive=React.useRef<AbortController|undefined>(undefined),draftInFlight=React.useRef(false);
- React.useEffect(()=>{if(!onDraft||!revision||locked||busy)return;let live=true;const timer=setTimeout(async()=>{if(!live||draftInFlight.current)return;const abort=new AbortController();draftActive.current=abort;draftInFlight.current=true;setDraftState('saving');try{await draftCallback.current?.({values:formPayload(steps,values),version,revision,idempotencyKey:globalThis.crypto.randomUUID()},abort.signal);if(!abort.signal.aborted)setDraftState('saved')}catch{if(!abort.signal.aborted)setDraftState('failed')}finally{draftInFlight.current=false;draftActive.current=undefined;if(!live&&!abort.signal.aborted)setRetryDraft(n=>n+1)}},600);return()=>{live=false;clearTimeout(timer)}},[revision,retryDraft,locked,busy,version,!!onDraft]);
+ const draftActive=React.useRef<AbortController|undefined>(undefined),draftInFlight=React.useRef(false),draftAck=React.useRef(0),draftKey=React.useRef<{revision:number;key:string}|null>(null),latestRevision=React.useRef(revision);
+ latestRevision.current=revision;
+ React.useEffect(()=>{if(!onDraft||!revision||locked||busy||revision<=draftAck.current)return;let live=true;const timer=setTimeout(async()=>{if(!live||draftInFlight.current||revision<=draftAck.current)return;const abort=new AbortController();draftActive.current=abort;draftInFlight.current=true;setDraftState('saving');
+ try{if(draftKey.current?.revision!==revision)draftKey.current={revision,key:globalThis.crypto.randomUUID()};await draftCallback.current?.({values:formPayload(steps,values),version,revision,idempotencyKey:draftKey.current.key},abort.signal);if(!abort.signal.aborted){draftAck.current=revision;if(latestRevision.current===revision)setDraftState('saved')}}
+ catch{if(!abort.signal.aborted&&latestRevision.current===revision)setDraftState('failed')}
+ finally{draftInFlight.current=false;draftActive.current=undefined;if(latestRevision.current!==revision&&!abort.signal.aborted)setRetryDraft(n=>n+1)}},600);return()=>{live=false;clearTimeout(timer)}},[revision,retryDraft,locked,busy,version,!!onDraft]);
  React.useEffect(()=>()=>draftActive.current?.abort(),[]);
  const pending=React.useRef<AbortController|undefined>(undefined),summary=React.useRef<HTMLDivElement>(null),heading=React.useRef<HTMLHeadingElement>(null);
  React.useEffect(()=>()=>pending.current?.abort(),[]);
  React.useEffect(()=>{if(Object.keys(errors).length)summary.current?.focus()},[errors]);
  const step=steps[Math.min(index,steps.length-1)],active=new Set(activeFields(steps,values).map(f=>f.id));
  const translate=(e:FieldError)=>e==='required'?tr(locale,'Обязательное поле','Required field'):e==='tooLong'?tr(locale,'Слишком длинное значение','Value too long'):tr(locale,'Некорректное значение','Invalid value');
- function change(key:string,value:FormValue){setValues(v=>({...v,[key]:value}));setRevision(n=>n+1);setDraftState('idle');setErrors({});setMessage('');setFailure('')}
+ function change(key:string,value:FormValue){setValues(v=>({...v,[key]:value}));setRevision(n=>n+1);if(!draftInFlight.current)setDraftState('idle');setErrors({});setMessage('');setFailure('')}
  function navigate(n:number){setIndex(n);setErrors({});requestAnimationFrame(()=>heading.current?.focus())}
  async function next(){if(busy||locked||pending.current||draftInFlight.current)return;setFailure('');setMessage('');
   const last=index===steps.length-1,errs=formErrors(steps,values,last?undefined:step.id);setErrors(errs);
@@ -37,7 +41,7 @@ export function AdvancedForm({label,steps,initialValues,version,locale='ru-RU',o
   try{if(onValidate){let remote:Record<string,FieldError>;try{remote=filterServerErrors(steps,values,await onValidate(formPayload(steps,values),abort.signal))}catch{if(!abort.signal.aborted)setFailure(tr(locale,'Не удалось проверить данные','Validation unavailable'));return}if(abort.signal.aborted)return;const relevant=last?remote:Object.fromEntries(Object.entries(remote).filter(([k])=>step.fields.some(f=>f.id===k)));if(Object.keys(relevant).length){setErrors(relevant);const first=steps.findIndex(s=>s.fields.some(f=>Object.hasOwn(relevant,f.id)));if(first>=0)setIndex(first);return}}
    if(!last){navigate(index+1);return}
    const result=await onSave({values:formPayload(steps,values),version,idempotencyKey:globalThis.crypto.randomUUID()},abort.signal);if(abort.signal.aborted)return;
-   if(result.status==='applied'){setMessage(tr(locale,'Сохранено','Saved'));setLocked(true)}
+   if(result.status==='applied'){setMessage(tr(locale,'Сохранено','Saved'));setCommitted(true);setLocked(true)}
    else if(['conflict','invalid','forbidden'].includes(result.status)){if(result.status==='invalid'&&result.fieldErrors){const errs=filterServerErrors(steps,values,result.fieldErrors);setErrors(errs);const first=steps.findIndex(s=>s.fields.some(f=>Object.hasOwn(errs,f.id)));if(first>=0)setIndex(first)}setFailure(tr(locale,'Сервер отклонил сохранение: ','Server rejected save: ')+result.status)}
    else throw Error('Unknown result');
   }catch{if(!abort.signal.aborted){setLocked(true);setFailure(tr(locale,'Результат неизвестен. Сверьте данные с сервером.','Outcome unknown. Reconcile with server.'))}}
