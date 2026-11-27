@@ -20,7 +20,9 @@
     "Beta Readiness 1",
     "Beta Readiness 2",
     "Beta Readiness 3",
-    "Beta Readiness 4"
+    "Beta Readiness 4",
+    "Beta Readiness 5",
+    "Beta Readiness 6"
   ],
   "tasks": [
     {
@@ -406,7 +408,7 @@
       "phase": "Beta gates",
       "priority": "P0",
       "status": "in_progress",
-      "description": "React CI 3/3 и SSR 14/14 подтверждены https://github.com/disxlab/Taktera-Design-System/actions/runs/46074642182; ожидаются lockfile/npm ci и audit.",
+      "description": "React build/SSR и npm ci на Node 26 PASS https://github.com/disxlab/Taktera-Design-System/actions/runs/46075425832; browser hydration/interaction и проверка audit reports ещё открыты.",
       "dependencies": [
         "DS-004"
       ],
@@ -716,8 +718,8 @@
       "title": "React lockfile и npm ci",
       "phase": "Beta Readiness 4",
       "priority": "P0",
-      "status": "in_progress",
-      "description": "Реальный npm lockfile v3 (42 записей) из Run #7 зафиксирован. CI переведён на npm ci без fallback и Node.js 26 LTS; требуется подтверждение нового запуска.",
+      "status": "done",
+      "description": "Node.js 26.13.1, npm ci с зафиксированным lockfile v3, React Linux/Windows/macOS PASS: https://github.com/disxlab/Taktera-Design-System/actions/runs/46075425832",
       "dependencies": [
         "BR3-02"
       ],
@@ -751,7 +753,7 @@
       "phase": "Beta Readiness 4",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Audit gate PASS https://github.com/disxlab/Taktera-Design-System/actions/runs/46075133438; повторить на фиксированном lockfile и Node 26, изучить отчёты.",
+      "description": "Audit gate PASS на фиксированном lockfile https://github.com/disxlab/Taktera-Design-System/actions/runs/46075425832; нужен анализ отчётов, включая low/moderate и новые test dependencies.",
       "dependencies": [
         "BR4-01"
       ],
@@ -785,7 +787,7 @@
       "phase": "Beta Readiness 4",
       "priority": "P0",
       "status": "done",
-      "description": "Chromium, Firefox, WebKit: 38/38 HTTP/ESM checks на движок https://github.com/disxlab/Taktera-Design-System/actions/runs/46075133438; реальный Safari и React hydration остаются отдельными задачами.",
+      "description": "Chromium, Firefox, WebKit: 38/38 HTTP/ESM checks на движок https://github.com/disxlab/Taktera-Design-System/actions/runs/46075133438; реальный Safari и React hydration остаются отдельными задачами. Повторно подтверждено на Node.js 26: https://github.com/disxlab/Taktera-Design-System/actions/runs/46075425832",
       "dependencies": [
         "BR4-01"
       ],
@@ -802,7 +804,7 @@
       "phase": "Beta Readiness 4",
       "priority": "P0",
       "status": "done",
-      "description": "36 axe scans (12 на движок), 0 обнаруженных violations https://github.com/disxlab/Taktera-Design-System/actions/runs/46075133438. Scope Web Core sample; incomplete/manual WCAG/NVDA/VoiceOver остаются открыты.",
+      "description": "36 axe scans (12 на движок), 0 обнаруженных violations https://github.com/disxlab/Taktera-Design-System/actions/runs/46075133438. Scope Web Core sample; incomplete/manual WCAG/NVDA/VoiceOver остаются открыты. Повторно подтверждено на Node.js 26: https://github.com/disxlab/Taktera-Design-System/actions/runs/46075425832",
       "dependencies": [
         "BR4-05"
       ],
@@ -818,8 +820,8 @@
       "title": "Avalonia native UI QA",
       "phase": "Beta Readiness 4",
       "priority": "P1",
-      "status": "planned",
-      "description": "Ручной запуск Windows/macOS, keyboard/focus, UI screenshots; CI build недостаточен.",
+      "status": "in_progress",
+      "description": "Добавляется Avalonia.Headless.XUnit 11.3.22; ручное native QA остаётся обязательным.",
       "dependencies": [
         "BETA-02"
       ],
@@ -836,7 +838,7 @@
       "phase": "Beta Readiness 4",
       "priority": "P1",
       "status": "in_progress",
-      "description": "ID→Issue mapping, локальная сохранность данных; добавлена CI-проверка согласованности JSON и embedded seed. Двусторонняя синхронизация не реализована.",
+      "description": "Добавляется read-only snapshot Issues в CI и импорт отдельного снимка в Board без изменения пользовательских задач.",
       "dependencies": [],
       "kind": "work",
       "source": "plan",
@@ -865,8 +867,8 @@
       "title": "Beta Candidate readiness / rollback",
       "phase": "Beta Readiness 4",
       "priority": "P1",
-      "status": "planned",
-      "description": "Release checklist: не выпускать до всех Beta gates и ручного подтверждения.",
+      "status": "in_progress",
+      "description": "Release checklist и rollback policy подготовлены; остаются manual accessibility, native UI, staging pilot и distribution validation.",
       "dependencies": [
         "BR4-01",
         "BR4-02",
@@ -886,9 +888,268 @@
       "due": "",
       "updated": "2026-11-28",
       "githubIssue": 7
+    },
+    {
+      "id": "BR4-11",
+      "title": "React hydration и browser interaction",
+      "phase": "Beta Readiness 4",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "SSR → hydrateRoot, сохраняем DOM identity, формы, tabs, сортировка, dialog/focus, XSS; Chromium/Firefox/WebKit; CI evidence.",
+      "dependencies": [
+        "BR4-01",
+        "BR4-05"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 2
+    },
+    {
+      "id": "BR4-12",
+      "title": "Avalonia headless XUnit",
+      "phase": "Beta Readiness 4",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Проверка реального sample App/MainWindow, тем, ввода, выбора, focus; не заменяет native OS.",
+      "dependencies": [
+        "BR4-04"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 3
+    },
+    {
+      "id": "BR5-01",
+      "title": "Контракт ERP/CRM pilot и staging",
+      "phase": "Beta Readiness 5",
+      "priority": "P0",
+      "status": "planned",
+      "description": "Подтвердить host repo/staging, API, синтетические fixtures и performance/security acceptance.",
+      "dependencies": [
+        "BR4-11",
+        "BR4-12"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 12
+    },
+    {
+      "id": "BR5-02",
+      "title": "DataGrid: группировка и виртуализация",
+      "phase": "Beta Readiness 5",
+      "priority": "P0",
+      "status": "planned",
+      "description": "Большие синтетические наборы, фильтрация, sorting, selection, bulk actions, keyboard и измерения.",
+      "dependencies": [
+        "BR5-01",
+        "DS-013"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 12
+    },
+    {
+      "id": "BR5-03",
+      "title": "Resource Scheduler",
+      "phase": "Beta Readiness 5",
+      "priority": "P0",
+      "status": "planned",
+      "description": "Ресурсы/кабинеты, конфликты, timezone, keyboard, локализация, тесты.",
+      "dependencies": [
+        "BR5-01",
+        "DS-014"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 12
+    },
+    {
+      "id": "BR5-04",
+      "title": "CRM, Forms, Application Shell",
+      "phase": "Beta Readiness 5",
+      "priority": "P0",
+      "status": "planned",
+      "description": "Карточки клиента, история, валидация, навигация, вкладки, RU/EN.",
+      "dependencies": [
+        "BR5-01",
+        "DS-015"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 12
+    },
+    {
+      "id": "BR5-05",
+      "title": "Analytics/KPI и отраслевые сценарии",
+      "phase": "Beta Readiness 5",
+      "priority": "P1",
+      "status": "planned",
+      "description": "Шесть продуктов × две темы, KPI, chart/table alternatives и сценарии.",
+      "dependencies": [
+        "BR5-01",
+        "DS-016"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 12
+    },
+    {
+      "id": "BR5-06",
+      "title": "Реальный staging pilot и приёмка",
+      "phase": "Beta Readiness 5",
+      "priority": "P0",
+      "status": "planned",
+      "description": "Реальные интеграционные проверки, synthetic data, perf/security/accessibility evidence; не объявлять локальный demo staging.",
+      "dependencies": [
+        "BR5-02",
+        "BR5-03",
+        "BR5-04",
+        "BR5-05"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 12
+    },
+    {
+      "id": "BR6-01",
+      "title": "Public API и semver",
+      "phase": "Beta Readiness 6",
+      "priority": "P0",
+      "status": "planned",
+      "description": "Зафиксировать package contracts и version policy; breaking-change tests.",
+      "dependencies": [
+        "BR5-01"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 13
+    },
+    {
+      "id": "BR6-02",
+      "title": "npm pack и clean consumer",
+      "phase": "Beta Readiness 6",
+      "priority": "P0",
+      "status": "planned",
+      "description": "Web Core/React pack, exports, CSS/types и независимая установка tarball.",
+      "dependencies": [
+        "BR6-01",
+        "BR4-11"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 13
+    },
+    {
+      "id": "BR6-03",
+      "title": "NuGet packaging и clean consumer",
+      "phase": "Beta Readiness 6",
+      "priority": "P0",
+      "status": "planned",
+      "description": "Пакет Avalonia resources/themes, независимый sample consumer, native build.",
+      "dependencies": [
+        "BR6-01",
+        "BR4-12"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 13
+    },
+    {
+      "id": "BR6-04",
+      "title": "Private registry, SBOM, license, provenance",
+      "phase": "Beta Readiness 6",
+      "priority": "P0",
+      "status": "planned",
+      "description": "Лицензирование/third-party notices, SBOM, checksums, provenance, доступ; не публиковать без approval.",
+      "dependencies": [
+        "BR6-02",
+        "BR6-03"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 13
+    },
+    {
+      "id": "BR6-05",
+      "title": "Developer docs и migration/rollback",
+      "phase": "Beta Readiness 6",
+      "priority": "P1",
+      "status": "planned",
+      "description": "Quickstart, API docs, version upgrade, immutable release artifacts и rollback drill.",
+      "dependencies": [
+        "BR6-02",
+        "BR6-03"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 13
+    },
+    {
+      "id": "BR6-06",
+      "title": "Beta Candidate package acceptance",
+      "phase": "Beta Readiness 6",
+      "priority": "P0",
+      "status": "planned",
+      "description": "Все Beta gates, staging, native/manual QA, release evidence и owner approval.",
+      "dependencies": [
+        "BR6-04",
+        "BR6-05",
+        "BR5-06",
+        "BR4-10",
+        "BETA-03"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 13
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #8: 10/10 PASS на Node.js 26.13.1, npm ci, static/freeze, React, Avalonia, audit и Web Core 114 checks / 36 axe scans. Добавлены BR4-11/12 и планы BR5/6; новые проверки ещё не подтверждены."
+    },
     {
       "at": "2026-11-28",
       "message": "Run #7: 10/10 PASS, 114 browser checks, 36 axe scans / 0 violations. Фиксация реального npm lockfile и миграция на Node.js 26 LTS; новый CI ещё требуется."

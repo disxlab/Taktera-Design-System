@@ -121,9 +121,61 @@ jobs:
         working-directory: 17_packages/react
       - run: npm run qa:browser -- ${{ matrix.engine }}
         working-directory: 17_packages/react
+      - name: React hydration and interaction
+        if: ${{ !cancelled() }}
+        run: npx --no-install tsx qa/react-browser.ts ${{ matrix.engine }}
+        working-directory: 17_packages/react
       - uses: actions/upload-artifact@v6
         if: ${{ always() }}
         with:
           name: browser-${{ matrix.engine }}
-          path: 28_engineering/qa/results/${{ matrix.engine }}
+          path: |
+            28_engineering/qa/results/${{ matrix.engine }}
+            28_engineering/qa/results/react-${{ matrix.engine }}
           if-no-files-found: warn
+  headless:
+    name: Avalonia headless XUnit
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.x'
+      - run: dotnet restore 17_packages/avalonia/tests/Taktera.Headless.Tests.csproj -p:NuGetAudit=true -p:NuGetAuditMode=all -warnaserror:NU1900,NU1903,NU1904,NU1905
+      - run: dotnet test 17_packages/avalonia/tests/Taktera.Headless.Tests.csproj -c Release --no-restore --logger "trx;LogFileName=headless.trx" --results-directory headless-results
+      - uses: actions/upload-artifact@v6
+        if: ${{ always() }}
+        with:
+          name: headless-${{ matrix.os }}
+          path: headless-results
+          if-no-files-found: warn
+  board-sync:
+    name: Project Board GitHub issue snapshot
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      issues: read
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Read issue states (no write permission)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api --paginate --slurp 'repos/${{ github.repository }}/issues?state=all&per_page=100' > issues-api.json
+          python 28_engineering/qa/sync_issues.py issues-api.json github-issues-snapshot.json
+      - uses: actions/upload-artifact@v6
+        with:
+          name: github-issues-snapshot
+          path: github-issues-snapshot.json
+          if-no-files-found: error

@@ -13,3 +13,5 @@
 - Avalonia: `dotnet restore 17_packages/avalonia/sample/TakteraUiAvalonia.Sample.csproj`, then `dotnet build 17_packages/avalonia/sample/TakteraUiAvalonia.Sample.csproj -c Release --no-restore -warnaserror`.
 - Do not weaken tests, silence vulnerabilities, or automatically regenerate approved baselines to make CI green. Record actual SHA/run and unresolved issues.
 - `28_engineering/README.md` defines BR4 scope and handoff; use existing GitHub issue IDs.
+
+- Extended QA: `npx --no-install tsx qa/react-browser.ts chromium` (also firefox/webkit) from React package; `dotnet test 17_packages/avalonia/tests/Taktera.Headless.Tests.csproj -c Release`; see MANUAL-QA.md. Issue snapshot is read-only; never overwrite local user state.
