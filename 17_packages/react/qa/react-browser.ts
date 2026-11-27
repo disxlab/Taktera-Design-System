@@ -61,7 +61,7 @@ try{
   const opener=page.getByRole('button',{name:'Открыть диалог'});await opener.focus();await opener.click();await page.getByRole('dialog',{name:'Новая запись'}).waitFor();check(label+' modal focus',await page.evaluate(()=>Boolean(document.activeElement?.closest('dialog'))));
   await page.keyboard.press('Escape');await page.getByRole('dialog').waitFor({state:'hidden'});await page.waitForFunction(()=>document.activeElement?.textContent==='Открыть диалог');check(label+' restore focus',await opener.evaluate(e=>document.activeElement===e));
   await opener.click();await page.getByRole('dialog').getByRole('button',{name:'Сохранить'}).click();await page.getByRole('dialog').waitFor({state:'hidden'});check(label+' confirm',true);
-  const grid=page.getByRole('region',{name:'Реестр BR5'});
+  const grid=page.getByRole('region',{name:'Реестр BR5',exact:true});
   check(label+' grid initial page',await grid.locator('tbody tr').count()===2);
   await grid.getByRole('button',{name:'Сумма'}).click();check(label+' grid numeric sort',(await grid.locator('tbody tr').first().textContent())?.includes('Record 2'));
   await grid.getByRole('checkbox',{name:'Выбрать запись r2'}).check();await grid.getByRole('button',{name:'Следующая'}).click();check(label+' grid selection across pages',await grid.getByText('Выбрано: 1',{exact:true}).count()===1&&await grid.locator('tbody tr').count()===1);
