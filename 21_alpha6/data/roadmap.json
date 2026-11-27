@@ -838,7 +838,7 @@
       "phase": "Beta Readiness 4",
       "priority": "P1",
       "status": "in_progress",
-      "description": "Read-only GitHub snapshot verified https://github.com/disxlab/Taktera-Design-System/actions/runs/46076078235: 11 issues, 41 task links. Dashboard separate import implemented; browser-level persistence/merge QA not yet confirmed. No two-way write.",
+      "description": "Run #11 14/14 PASS; mergeSeed, tombstones for deleted seed tasks, independent validated snapshots and real persistent browser QA added; new CI pending.",
       "dependencies": [],
       "kind": "work",
       "source": "plan",
@@ -932,8 +932,8 @@
       "title": "Контракт ERP/CRM pilot и staging",
       "phase": "Beta Readiness 5",
       "priority": "P0",
-      "status": "planned",
-      "description": "Подтвердить host repo/staging, API, синтетические fixtures и performance/security acceptance.",
+      "status": "in_progress",
+      "description": "Draft ERP/CRM contract and synthetic fixture strategy implemented in 29_product_integration; host repo/staging and budgets require agreement.",
       "dependencies": [
         "BR4-11",
         "BR4-12"
@@ -950,8 +950,8 @@
       "title": "DataGrid: группировка и виртуализация",
       "phase": "Beta Readiness 5",
       "priority": "P0",
-      "status": "planned",
-      "description": "Большие синтетические наборы, фильтрация, sorting, selection, bulk actions, keyboard и измерения.",
+      "status": "in_progress",
+      "description": "Reusable React AdvancedDataGrid + typed query core: filtering, stable sorting, grouping summaries, selection, accessible paginated rendering and bounded-window calculation; browser/unit verification pending. Virtualized DOM and server adapter still open.",
       "dependencies": [
         "BR5-01",
         "DS-013"
@@ -1149,6 +1149,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #11 14/14 PASS (https://github.com/disxlab/Taktera-Design-System/actions/runs/46076262919). Added Project Board persistence regression tests and BR5 ERP/CRM architecture / AdvancedDataGrid initial implementation; new CI pending."
+    },
     {
       "at": "2026-11-28",
       "message": "Run #10 (1682fb05d145): 14/14 jobs PASS, Web Core 114/114, React 543/543, 72 axe scans / 0 detected violations, Avalonia headless 9/9, issue snapshot 11 issues/41 links. Automated BR4 baseline confirmed; manual and staging gates remain. https://github.com/disxlab/Taktera-Design-System/actions/runs/46076078235"

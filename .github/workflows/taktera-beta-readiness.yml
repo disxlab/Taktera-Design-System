@@ -52,6 +52,8 @@ jobs:
         working-directory: 17_packages/react
       - run: npm run verify
         working-directory: 17_packages/react
+      - run: npx --no-install tsx --test qa/advanced-grid.test.ts
+        working-directory: 17_packages/react
   avalonia:
     name: Avalonia Release compilation
     strategy:
@@ -125,6 +127,10 @@ jobs:
         if: ${{ !cancelled() }}
         run: npx --no-install tsx qa/react-browser.ts ${{ matrix.engine }}
         working-directory: 17_packages/react
+      - name: Project Board persistence and snapshot QA
+        if: ${{ !cancelled() }}
+        run: node qa/board-browser.mjs ${{ matrix.engine }}
+        working-directory: 17_packages/react
       - uses: actions/upload-artifact@v6
         if: ${{ always() }}
         with:
@@ -132,6 +138,7 @@ jobs:
           path: |
             28_engineering/qa/results/${{ matrix.engine }}
             28_engineering/qa/results/react-${{ matrix.engine }}
+            28_engineering/qa/results/board-${{ matrix.engine }}
           if-no-files-found: warn
   headless:
     name: Avalonia headless XUnit
