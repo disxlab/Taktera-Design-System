@@ -52,7 +52,7 @@ jobs:
         working-directory: 17_packages/react
       - run: npm run verify
         working-directory: 17_packages/react
-      - run: npx --no-install tsx --test qa/advanced-grid.test.ts
+      - run: npx --no-install tsx --test qa/advanced-grid.test.ts qa/integration-core.test.ts
         working-directory: 17_packages/react
   avalonia:
     name: Avalonia Release compilation

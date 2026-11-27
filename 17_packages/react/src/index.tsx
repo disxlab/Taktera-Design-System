@@ -135,3 +135,6 @@ export function ToastRegion({notices,onDismiss}:{notices:ReadonlyArray<Notice>;o
 
 export * from './advanced-grid.js';
 export * from './AdvancedDataGrid.js';
+
+export * from './remote-grid.js';
+export * from './resource-scheduler.js';

@@ -38,6 +38,7 @@ let browser;
 const check=(name:string,ok:unknown)=>{report.checks.push({name,ok:Boolean(ok)});assert.ok(ok,name)};
 try{
  browser=await engines[engine].launch();const page=await browser.newPage({viewport:{width:1440,height:900},reducedMotion:'reduce'});
+ page.on('crash',()=>report.errors.push('Interaction page crashed'));
  page.on('pageerror',e=>report.errors.push(String(e)));page.on('console',m=>{if(m.type()==='error'&&!m.text().includes('favicon.ico')&&!m.text().includes('Failed to load resource: the server responded with a status of 404'))report.errors.push(m.text())});
  for(const product of products)for(const theme of themes){
   const label=product+'/'+theme;
@@ -85,10 +86,24 @@ try{
   await virtual.getByRole('textbox',{name:'Поиск в реестре'}).fill('Synthetic 9999');
   check(label+' virtual filtered result',await rendered().count()===1&&await virtual.getByRole('checkbox',{name:'Выбрать запись v09999',exact:true}).count()===1);
   await virtual.getByRole('textbox',{name:'Поиск в реестре'}).fill('');
-  await page.addScriptTag({path:require.resolve('axe-core/axe.min.js')});
-  const scan=await page.evaluate(async()=>{const x=await (window as any).axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']}});return {violations:x.violations.map((v:any)=>({id:v.id,nodes:v.nodes.map((n:any)=>n.target)})),incomplete:x.incomplete.map((v:any)=>({id:v.id,nodes:v.nodes.map((n:any)=>n.target)}))}});
-  report.axe.push({product,theme,...scan});
-  if(scan.violations.length)console.log(JSON.stringify({engine,product,theme,axeViolations:scan.violations}));
+  // Accessibility is evaluated on a fresh, separately hydrated page, not a reused
+  // document after focus/scroll mutations. Reproduce both selected-tab and grid states.
+  const auditPage=await browser.newPage({viewport:{width:1440,height:900},reducedMotion:'reduce'});
+  auditPage.on('crash',()=>report.errors.push(label+' accessibility page crashed'));
+  auditPage.on('pageerror',e=>report.errors.push(label+' audit '+String(e)));
+  auditPage.on('console',m=>{if(m.type()==='error'&&!m.text().includes('favicon.ico'))report.errors.push(label+' audit '+m.text())});
+  try{
+   await auditPage.goto('http://127.0.0.1:'+address.port+'/?product='+product+'&theme='+theme);
+   await auditPage.addScriptTag({url:'/client.js'});
+   await auditPage.waitForFunction(()=>document.documentElement.dataset.hydrated==='yes');
+   await auditPage.getByRole('tab',{name:'Настройки'}).click();
+   await auditPage.addScriptTag({path:require.resolve('axe-core/axe.min.js')});
+   console.log('AXE_START '+engine+' '+label);
+   const scan=await auditPage.evaluate(async()=>{const x=await (window as any).axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']}});return {violations:x.violations.map((v:any)=>({id:v.id,nodes:v.nodes.map((n:any)=>n.target)})),incomplete:x.incomplete.map((v:any)=>({id:v.id,nodes:v.nodes.map((n:any)=>n.target)}))}});
+   report.axe.push({product,theme,...scan});
+   if(scan.violations.length)console.log(JSON.stringify({engine,product,theme,axeViolations:scan.violations}));
+  }finally{await auditPage.close()}
+
  }
  check('no console/hydration/page errors',report.errors.length===0);
 }catch(e){report.errors.push(String(e))}
