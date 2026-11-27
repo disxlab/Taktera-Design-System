@@ -98,6 +98,12 @@ try{
   await remote.getByRole('button',{name:'Архивировать выбранные'}).click();await remote.getByRole('dialog').getByRole('button',{name:'Выполнить'}).click();
   await remote.getByText('r2: Конфликт версии',{exact:true}).waitFor();
   check(label+' remote bulk partial result',await remote.getByText('r1: Выполнено',{exact:true}).count()===1&&await remote.getByText('Выбрано: 1',{exact:true}).count()===1);
+  await remote.getByRole('textbox',{name:'Серверный поиск'}).fill('Other');await remote.getByRole('checkbox',{name:'Выбрать серверную запись r3'}).waitFor();
+  check(label+' remote filter resets cursor and selection',await remote.locator('tbody tr').count()===1&&await remote.getByText('Выбрано: 0',{exact:true}).count()===1);
+  await remote.getByRole('textbox',{name:'Серверный поиск'}).fill('');await remote.getByRole('checkbox',{name:'Выбрать серверную запись r1'}).waitFor();
+  await remote.getByRole('button',{name:'Сумма'}).click();await remote.getByRole('checkbox',{name:'Выбрать серверную запись r2'}).waitFor();
+  await remote.locator('tbody tr').first().getByRole('checkbox',{name:'Выбрать серверную запись r2'}).waitFor();
+  check(label+' remote sort', (await remote.locator('tbody tr').first().textContent())?.includes('Record 2'));
   // Accessibility is evaluated on a fresh, separately hydrated page, not a reused
   // document after focus/scroll mutations. Reproduce both selected-tab and grid states.
   const auditPage=await browser.newPage({viewport:{width:1440,height:900},reducedMotion:'reduce'});

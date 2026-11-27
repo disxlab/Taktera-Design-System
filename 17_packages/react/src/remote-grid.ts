@@ -33,6 +33,8 @@ export function prepareBulk(action:string,items:readonly BulkItem[],idempotencyK
 }
 export async function executeBulk<T>(transport:GridTransport<T>,request:BulkRequest,signal:AbortSignal):Promise<readonly BulkResult[]>{
  if(!transport.bulk)throw Error('Bulk unsupported');
+ if(signal.aborted)throw Error('Bulk aborted before dispatch');
+ prepareBulk(request.action,request.items,request.idempotencyKey,true);
  const result=await transport.bulk(request,signal);
  const expected=new Set(request.items.map(i=>i.id));
  if(result.length!==expected.size||new Set(result.map(i=>i.id)).size!==expected.size||result.some(i=>!expected.has(i.id)||!['applied','conflict','forbidden','invalid','failed'].includes(i.status)))throw Error('Invalid bulk response; reconcile with server before retry');

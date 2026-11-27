@@ -15,11 +15,11 @@ export function RemoteDataGrid<T>({transport,columns,label,searchColumn,pageSize
  React.useEffect(()=>{const controller=new RemoteGridController(transport);void controller.read({query:{locale,filters:search?[{column:searchColumn,op:'contains',value:search}]:[],sort},cursor,limit:pageSize},setState).catch(error=>setState({status:'error',error}));return()=>controller.dispose()},[transport,search,searchColumn,sort,cursor,pageSize,locale,reload]);
  React.useEffect(()=>()=>pending.current?.abort(),[]);
  React.useEffect(()=>{const node=dialog.current;if(!node)return;if(confirm&&!node.open)node.showModal();if(!confirm&&node.open)node.close()},[confirm]);
- const reset=()=>{setCursors([undefined]);setSelected([]);setOutcomes([]);setUncertain(false)};
- const disabled=busy||confirm||state.status==='loading';
+ const reset=()=>{setCursors([undefined]);setSelected([]);setOutcomes([])};
+ const disabled=busy||confirm||state.status!=='ready';
  function toggle(item:BulkItem,checked:boolean){setSelected(old=>checked?[...old.filter(x=>x.id!==item.id),item]:old.filter(x=>x.id!==item.id))}
  async function runBulk(){
-  if(!bulkAction||!confirm||busy||pending.current||uncertain)return;
+  if(!bulkAction||!confirm||busy||pending.current||uncertain||state.status!=='ready')return;
   setConfirm(false);setBusy(true);setOutcomes([]);
   const abort=new AbortController();pending.current=abort;
   try{
@@ -43,6 +43,6 @@ export function RemoteDataGrid<T>({transport,columns,label,searchColumn,pageSize
  {bulkAction&&transport.bulk&&<button ref={opener} type="button" className="tku-button tku-button--secondary" disabled={!selected.length||disabled||uncertain||outcomes.length>0} onClick={()=>setConfirm(true)}>{bulkAction.label}</button>}
  <dialog ref={dialog} className="tku-dialog" aria-labelledby={id+'-confirm'} onCancel={e=>{e.preventDefault();setConfirm(false)}} onClose={()=>{setConfirm(false);opener.current?.focus()}}><h2 id={id+'-confirm'}>{ru?'Подтвердить массовую операцию':'Confirm bulk action'}</h2><p>{bulkAction?.label}: {selected.length}</p><div className="tku-dialog__footer"><button type="button" className="tku-button tku-button--secondary" onClick={()=>setConfirm(false)}>{ru?'Отмена':'Cancel'}</button><button type="button" className="tku-button tku-button--primary" onClick={()=>void runBulk()}>{ru?'Выполнить':'Execute'}</button></div></dialog>
  {outcomes.length>0&&<><ul aria-label={ru?'Результаты операции':'Operation results'}>{outcomes.map(o=><li key={o.id}>{o.id}: {statusLabels[o.status]}</li>)}</ul><button type="button" className="tku-button tku-button--secondary" disabled={busy} onClick={()=>{setSelected([]);setOutcomes([]);setReload(n=>n+1)}}>{ru?'Обновить и выбрать заново':'Refresh and reselect'}</button></>}
- {uncertain&&<p role="alert">{ru?'Результат неизвестен. Сверьте состояние с сервером перед повтором.':'Outcome unknown. Reconcile with the server before retrying.'}</p>}
+ {uncertain&&<p role="alert">{ru?'Результат неизвестен. Сверьте состояние с сервером и заново откройте реестр перед повтором.':'Outcome unknown. Reconcile with the server and reopen this grid before retrying.'}</p>}
  </section>
 }
