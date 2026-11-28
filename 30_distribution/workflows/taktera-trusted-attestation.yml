@@ -32,6 +32,7 @@ jobs:
     permissions:
       contents: read
       issues: read
+      actions: read
     uses: ./.github/workflows/taktera-beta-readiness.yml
   attest:
     needs: [authorize, rebuild]

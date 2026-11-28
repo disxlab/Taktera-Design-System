@@ -511,3 +511,59 @@ jobs:
           name: release-preflight-evidence
           path: release-plan
           if-no-files-found: error
+
+  rollback-rehearsal:
+    name: BR7 historical candidate recovery rehearsal (no publish)
+    needs: [release-preflight, canonical]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: '.node-version'
+          package-manager-cache: false
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
+        with:
+          dotnet-version: '10.0.404'
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: taktera-candidate-release-evidence
+          path: candidate-download
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: canonical-packages
+          path: canonical-download
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: release-preflight-evidence
+          path: release-plan
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          artifact-ids: '15243307004'
+          run-id: '46094888319'
+          repository: disxlab/Taktera-Design-System
+          github-token: ${{ github.token }}
+          path: historical-candidate
+          merge-multiple: true
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          artifact-ids: '15242641664'
+          run-id: '46094888319'
+          repository: disxlab/Taktera-Design-System
+          github-token: ${{ github.token }}
+          path: historical-canonical
+          merge-multiple: true
+      - run: python 30_distribution/qa/verify_rollback_rehearsal.py candidate-download canonical-download historical-candidate historical-canonical release-plan rollback-evidence
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: rollback-rehearsal-evidence
+          path: rollback-evidence
+          if-no-files-found: error

@@ -88,12 +88,12 @@ def inspect_workflow(text,pins,trusted=False):
     require(perms.get("root")=={"contents":"read"},"Unexpected root permissions")
     for name,values in perms.items():
         if trusted:
-            allowed={"root":{"contents":"read"},"rebuild":{"contents":"read","issues":"read"},
+            allowed={"root":{"contents":"read"},"rebuild":{"contents":"read","issues":"read","actions":"read"},
                      "attest":{"contents":"read","id-token":"write","attestations":"write"},
                      "verify-signature":{"contents":"read","attestations":"read"}}
             require(name in allowed and values==allowed[name],"Unexpected trusted permissions: "+str(name))
         else:
-            allowed={"contents":"read","issues":"read"} if name=="board-sync" else {"contents":"read"}
+            allowed={"contents":"read","issues":"read"} if name=="board-sync" else ({"contents":"read","actions":"read"} if name=="rollback-rehearsal" else {"contents":"read"})
             require(values==allowed,"Unexpected PR permissions: "+str(name))
     if trusted:
         require(set(perms)=={"root","rebuild","attest","verify-signature"},"Incomplete trusted permission scope")
