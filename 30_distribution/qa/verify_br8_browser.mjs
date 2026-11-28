@@ -17,7 +17,7 @@ assert.equal(input.sourceCommit,process.env.GITHUB_SHA);
 assert.equal(input.githubRunId,process.env.GITHUB_RUN_ID);
 assert.equal(input.githubRunAttempt,process.env.GITHUB_RUN_ATTEMPT);
 assert.equal(input.publicationAllowed,false);
-const report={...input,engine,scope:'Canonical npm package-only reference workspace, English SDK workflows plus RU/EN host-owned synthetic transport; not production/native Safari or complete accessibility acceptance',checks:[],axe:[],errors:[],scenarios:[],performance:{method:'runner wall-clock, fresh context, local loopback; not production SLA',reactNavigationMs:[],webNavigationMs:[],reactSaveMs:[],webSaveMs:[]},publicationAllowed:false};
+const report={...input,engine,scope:'Canonical npm package-only reference workspace, English SDK workflows plus RU/EN host-owned synthetic transport; not production/native Safari or complete accessibility acceptance',checks:[],axe:[],localizedAxe:[],errors:[],scenarios:[],performance:{method:'runner wall-clock, fresh context, local loopback; not production SLA',reactNavigationMs:[],webNavigationMs:[],reactSaveMs:[],webSaveMs:[]},publicationAllowed:false};
 const products=['platform','clinic','beauty','spa','fitness','travel'],themes=['light','dark'];
 // Intercept external network requests only, not local resources or axe's internal
 // about:blank/data/blob documents. Keep the independent request observation.
@@ -216,6 +216,64 @@ async function localizedTransport(page,name,standalone=false){
 }
 
 
+
+// Full-document scans in fresh contexts; avoid isolated-world ARIA reads in Firefox.
+async function auditLocalized(url,product,theme,locale,surface){
+ const errors=[],external=[],web=surface==='web',name=product+'/'+theme+' '+locale+' '+surface+' audit';
+ const context=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce',serviceWorkers:'block'});
+ try{
+  await guardContext(context,url,external);
+  const page=await context.newPage();
+  page.on('crash',()=>errors.push('audit page crashed'));page.on('pageerror',e=>errors.push(String(e)));
+  page.on('console',m=>{if(m.type()==='error'&&!m.text().includes('404'))errors.push(m.text());});
+  await page.goto(url);
+  await page.waitForFunction(web=>document.documentElement.dataset[web?'webHydrated':'referenceHydrated']==='yes',web);
+  await page.evaluate(({product,theme,web})=>{
+   function select(label,value){
+    const labelled=document.querySelector('select[aria-label="'+label+'"]');
+    const nativeLabel=Array.from(document.querySelectorAll('label')).find(l=>l.textContent.trim()===label);
+    const element=labelled??nativeLabel?.control;
+    if(!(element instanceof HTMLSelectElement))throw Error('Missing audit select '+label);
+    Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype,'value').set.call(element,value);
+    element.dispatchEvent(new Event('change',{bubbles:true}));
+   }
+   select(web?'Web product':'Product',product);select(web?'Web theme':'Theme',theme);
+  },{product,theme,web});
+  if(!web){
+   await page.evaluate(surface=>{
+    const label=surface==='transport'?'Transport':'Operations';
+    const tab=Array.from(document.querySelectorAll('[role="tab"]')).find(e=>e.textContent.trim()===label);
+    if(!tab)throw Error('Missing audit tab '+label);
+    tab.click();
+   },surface);
+  }
+  const label=web?'Web language / Язык':surface==='transport'?'Language / Язык':'Operations language / Язык операций';
+  await page.waitForFunction(label=>Array.from(document.querySelectorAll('label')).some(l=>l.textContent.trim()===label&&l.control instanceof HTMLSelectElement),label);
+  await page.evaluate(({label,locale})=>{
+   const el=Array.from(document.querySelectorAll('label')).find(l=>l.textContent.trim()===label)?.control;
+   if(!(el instanceof HTMLSelectElement))throw Error('Missing locale control');
+   Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype,'value').set.call(el,locale);
+   el.dispatchEvent(new Event('change',{bubbles:true}));
+  },{label,locale});
+  const expected=web?(locale==='ru'?'Web синтетический транспорт':'Web synthetic transport'):surface==='transport'?(locale==='ru'?'Синтетический транспорт':'Synthetic transport'):(locale==='ru'?'Тестовые операции':'Synthetic operations');
+  await page.waitForFunction(({product,theme,locale,expected,web})=>{
+   const root=document.querySelector(web?'#root':'#root .tku-root');
+   const region=Array.from(document.querySelectorAll('section[lang]')).find(e=>e.lang===locale&&e.getAttribute('aria-label')===expected);
+   return root?.dataset.product===product&&root?.dataset.theme===theme&&!!region&&region.getClientRects().length>0;
+  },{product,theme,locale,expected,web});
+  check(name+' state',true);
+  await page.addScriptTag({path:axePath});
+  const scan=await page.evaluate(async()=>{
+   const x=await window.axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']}});
+   return {violations:x.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))})),
+           incomplete:x.incomplete.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)}))};
+  });
+  report.localizedAxe.push({product,theme,locale,surface,...scan});
+  check(name+' no browser errors',errors.length===0);
+  check(name+' no external requests',external.length===0);
+ }finally{await context.close();}
+}
+
 async function standaloneWeb(){
  const web=host+'-web';
  const inventory=await read(join(web,'package-inventory.json'));
@@ -247,6 +305,9 @@ async function standaloneWeb(){
    check(name+' standalone Web no browser errors',errors.length===0);
    check(name+' standalone Web no external requests',external.length===0);
   }finally{await context.close();}
+ }
+ for(const product of products)for(const theme of themes)for(const locale of ['en','ru']){
+  try{await auditLocalized(url,product,theme,locale,'web');}catch(e){report.errors.push('Web localized axe '+product+'/'+theme+'/'+locale+': '+String(e));}
  }
 }
 
@@ -318,7 +379,12 @@ try{
   try{await auditRegistry(browser,url,product,theme);}
   catch(e){report.errors.push(product+'/'+theme+' [separate axe document]: '+String(e));}
  }
+ for(const product of products)for(const theme of themes)for(const locale of ['en','ru'])for(const surface of ['transport','operations']){
+  try{await auditLocalized(url,product,theme,locale,surface);}catch(e){report.errors.push('React localized axe '+product+'/'+theme+'/'+locale+'/'+surface+': '+String(e));}
+ }
  await standaloneWeb();
+ check('all 72 localized axe scans',report.localizedAxe.length===72);
+ check('no detected localized axe violations',report.localizedAxe.every(x=>x.violations.length===0));
  check('all 12 scenarios completed',report.scenarios.length===12&&report.scenarios.every(x=>x.status==='passed'));
  check('all 12 registry axe scans',report.axe.length===12);
  check('no detected axe violations',report.axe.every(x=>x.violations.length===0));

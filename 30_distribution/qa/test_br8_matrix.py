@@ -13,6 +13,7 @@ class EvidenceTests(unittest.TestCase):
                       "scenarios":[{"product":p,"theme":t,"status":"passed"} for p,t in sorted(SCENARIOS)],
                       "axe":[{"product":p,"theme":t,"page":"registry","violations":[],"incomplete":[]} for p,t in sorted(SCENARIOS)],
                       "checks":[{"name":n,"ok":True} for n in sorted(EXPECTED_CHECKS)]}
+        self.browser["localizedAxe"]=[{"product":p,"theme":t,"locale":l,"surface":s,"violations":[],"incomplete":[]} for p,t in sorted(SCENARIOS) for l in ("en","ru") for s in ("transport","operations","web")]
         self.browser["performance"]={k:[{"product":p,"theme":t,"ms":10,**({"locale":l} if l else {})} for p,t in sorted(SCENARIOS) for l in (("en","ru") if k.endswith("SaveMs") else ("",))] for k in ("reactNavigationMs","webNavigationMs","reactSaveMs","webSaveMs")}
         self.native={**identity,"os":"windows","dependencyGraphMatch":True,
                      "package":{"name":"Taktera.UI.Avalonia.4.0.0.nupkg","sha256":"c"*64},
@@ -43,6 +44,8 @@ class EvidenceTests(unittest.TestCase):
             ("missing perf sample",lambda r:r["performance"]["reactSaveMs"].pop()),
             ("slow perf",lambda r:[v.update(ms=99999) for v in r["performance"]["webNavigationMs"]]),
             ("nonfinite perf",lambda r:r["performance"]["webSaveMs"][0].update(ms=float("nan"))),
+            ("missing localized axe",lambda r:r["localizedAxe"].pop()),
+            ("localized axe violation",lambda r:r["localizedAxe"][0].update(violations=[{"id":"test"}])),
             ("failed check",lambda r:r["checks"][0].update(ok=False)),
             ("errors",lambda r:r.update(errors=["crash"]))):
             with self.subTest(label=label):

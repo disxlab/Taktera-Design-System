@@ -15,12 +15,13 @@ SYSTEMS=("windows","macos")
 SCENARIOS={(p,t) for p in ("platform","clinic","beauty","spa","fitness","travel") for t in ("light","dark")}
 BASE_CHECKS={"exact Node","exact npm","original consumer lock","lock unchanged after npm ci","strict TypeScript build from packages",
              "all 12 scenarios completed","all 12 registry axe scans","no detected axe violations"}
+BASE_CHECKS.update({"all 72 localized axe scans","no detected localized axe violations"})
 BASE_CHECKS.update({"standalone Web canonical archive","standalone Web exact lock","standalone Web installed identity"})
 BASE_CHECKS.update(p+" "+label for p in ("@taktera/ui-core","@taktera/ui-react") for label in ("canonical archive","exact npm integrity","installed identity"))
 SCENARIO_CHECKS=("product/theme","registry filtering","scheduler booking","CRM host save","analytics export available","notification state","Web Core callback","synthetic state reset","no browser errors","no external requests","separate audit document state","audit no browser errors","audit no external requests")
 TRANSPORT_CHECKS=("initial","locale","validation","accessible error","unavailable","retry","idempotent replay","competing write","conflict","reload current","draft reloaded","resolved save","literal markup saved","markup stays inert")
 OPERATIONS_CHECKS=("locale","initial booking","week mode","timezone","scheduler conflict","scheduler applied","analytics complete","invalid period retained","incomplete export denied","table mode","day details","csv exact bytes","local overlap blocked","scheduler create","scheduler cancellation","atomic series create","series occurrences visible")
-EXPECTED_CHECKS=BASE_CHECKS|{p+"/"+t+" "+label for p,t in SCENARIOS for label in SCENARIO_CHECKS}|{p+"/"+t+" "+locale+" transport "+label for p,t in SCENARIOS for locale in ("en","ru") for label in TRANSPORT_CHECKS}|{p+"/"+t+" "+locale+" operations "+label for p,t in SCENARIOS for locale in ("en","ru") for label in OPERATIONS_CHECKS}|{p+"/"+t+" "+locale+" web transport "+label for p,t in SCENARIOS for locale in ("en","ru") for label in TRANSPORT_CHECKS}|{p+"/"+t+" standalone Web "+label for p,t in SCENARIOS for label in ("product/theme","no browser errors","no external requests")}
+EXPECTED_CHECKS=BASE_CHECKS|{p+"/"+t+" "+label for p,t in SCENARIOS for label in SCENARIO_CHECKS}|{p+"/"+t+" "+locale+" transport "+label for p,t in SCENARIOS for locale in ("en","ru") for label in TRANSPORT_CHECKS}|{p+"/"+t+" "+locale+" operations "+label for p,t in SCENARIOS for locale in ("en","ru") for label in OPERATIONS_CHECKS}|{p+"/"+t+" "+locale+" web transport "+label for p,t in SCENARIOS for locale in ("en","ru") for label in TRANSPORT_CHECKS}|{p+"/"+t+" standalone Web "+label for p,t in SCENARIOS for label in ("product/theme","no browser errors","no external requests")}|{p+"/"+t+" "+locale+" "+surface+" audit "+label for p,t in SCENARIOS for locale in ("en","ru") for surface in ("transport","operations","web") for label in ("state","no browser errors","no external requests")}
 
 
 # Provisional engineering smoke thresholds, not approved product SLA.
@@ -58,13 +59,18 @@ def browser_report(record,engine,actual,dossier_sha,lock_sha):
     require(all(r["status"]=="passed" for r in record["scenarios"]),"Failed browser scenario")
     exact_matrix(record["axe"])
     require(all(r["page"]=="registry" and r["violations"]==[] and isinstance(r["incomplete"],list) for r in record["axe"]),"Failed/missing accessibility scan")
+    localized=record["localizedAxe"]
+    localized_keys=[(r["product"],r["theme"],r["locale"],r["surface"]) for r in localized]
+    expected_localized={(p,t,l,s) for p,t in SCENARIOS for l in ("en","ru") for s in ("transport","operations","web")}
+    require(len(localized_keys)==len(expected_localized) and set(localized_keys)==expected_localized,"Incomplete localized axe matrix")
+    require(all(r["violations"]==[] and isinstance(r["incomplete"],list) for r in localized),"Localized axe violation or incomplete report")
     checks=record["checks"]
     names={r["name"] for r in checks}
     require(len(checks)==len(names),"Duplicate browser check")
     require(names==EXPECTED_CHECKS,"Browser check name mismatch; missing="+repr(sorted(EXPECTED_CHECKS-names))+"; unexpected="+repr(sorted(names-EXPECTED_CHECKS)))
     require(all(r["ok"] is True for r in checks),"Failed browser check")
     return {"checks":len(checks),"scenarios":len(record["scenarios"]),"axeScans":len(record["axe"]),
-            "violations":0,"incompleteFindings":sum(len(r["incomplete"]) for r in record["axe"]),"performance":performance_report(record)}
+            "localizedAxeScans":len(localized),"violations":0,"incompleteFindings":sum(len(r["incomplete"]) for r in record["axe"]+localized),"performance":performance_report(record)}
 
 def native_report(record,system,actual,dossier_sha):
     identity(record,actual,dossier_sha)

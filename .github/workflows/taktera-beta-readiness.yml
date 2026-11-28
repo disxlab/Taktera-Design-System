@@ -37,6 +37,7 @@ jobs:
       - run: python 30_distribution/qa/test_release_dossier.py
       - run: python 30_distribution/qa/test_br8_native_evidence.py
       - run: python 30_distribution/qa/test_br8_matrix.py
+      - run: python 30_distribution/qa/test_br9_manual.py
       - run: node 30_distribution/acceptance/transport/test-synthetic-transport.mjs
       - name: Protect approved resources against BR3 baseline
         run: git diff --exit-code 4621646e21d987b86d8c9c21662e04c94a0b4d0b HEAD -- 01_brandbook 02_logos 03_icons 04_tokens 05_typography 06_templates 14_brand_extensions 25_internal_completion/src/tokens.canonical.json
