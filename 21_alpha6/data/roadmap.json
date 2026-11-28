@@ -1182,7 +1182,7 @@
       "phase": "Beta Readiness 7",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Run #30 17/19 PASS, 1 failure, 1 skipped. Exact SDK selection fixed (.NET 10.0.404). Both clean builds completed, npm Web Core and React SHA-256 identical; NuGet differed in ZIP timestamps and Avalonia DLL bytes. Six other ZIP member payloads identical. https://github.com/disxlab/Taktera-Design-System/actions/runs/46087100433 Next: commit-derived deterministic timestamp, same relative checkout/cache layout with PathMap covering build root, Release-only no PDB profile, capture raw pre/post-XAML DLL evidence. Exact raw package hash gate retained; new CI pending. Committed lock and canonical cross-OS consumer remain open.",
+      "description": "Run #31 19/19 PASS: exact 3/3 packages, pre/post-XAML DLL byte-identical, candidate artifact 15239888971. https://github.com/disxlab/Taktera-Design-System/actions/runs/46089374458 New CI matrix: two independent jobs with two clean builds each; compare four sets and restore-generated lock; canonical NuGet tested on Windows/macOS, npm consumer archives must match canonical; one package per ID/version. CI pending. Lock source inclusion still pending.",
       "dependencies": [
         "BR6-02",
         "BR6-03"
@@ -1410,6 +1410,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #31 19/19 PASS: exact 3/3 packages, pre/post-XAML DLL byte-identical, candidate artifact 15239888971. https://github.com/disxlab/Taktera-Design-System/actions/runs/46089374458 Four-build independent runner/canonical consumer gates implemented; CI pending."
+    },
     {
       "at": "2026-11-28",
       "message": "Run #30 17/19 PASS, 1 failure, 1 skipped. Exact SDK selection fixed (.NET 10.0.404). Both clean builds completed, npm Web Core and React SHA-256 identical; NuGet differed in ZIP timestamps and Avalonia DLL bytes. Six other ZIP member payloads identical. https://github.com/disxlab/Taktera-Design-System/actions/runs/46087100433 Reproducibility fix and stage diagnostics implemented; CI pending."

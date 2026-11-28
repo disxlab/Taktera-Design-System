@@ -61,6 +61,10 @@ def main(inp,out):
     api=read(npm/'api-contract.json')
     source=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
     require(api['source']==source,'API evidence belongs to a different checkout')
+    canonical=inp/'canonical';manifest=read(canonical/'canonical.json')
+    require(manifest['source']==source and manifest['published'] is False and manifest['independentRunnerJobs']==2 and manifest['cleanBuilds']==4,'Invalid canonical evidence')
+    require(sha(canonical/'packages.lock.json')==manifest['nugetLockSha256'],'Canonical lock checksum mismatch')
+    for file in ('canonical.json','packages.lock.json','repro-primary.json','repro-secondary.json'):copy(canonical/file,out/'evidence/reproducibility'/file)
     packages=[]
     require({p['name'] for p in report['packages']}=={'@taktera/ui-react','@taktera/ui-core'} and len(report['packages'])==2,'Unexpected npm package set')
     for p in report['packages']:
@@ -72,15 +76,22 @@ def main(inp,out):
             names={m.name for m in archive.getmembers() if m.isfile() and m.name.startswith(prefix) and (m.name.endswith('.d.ts') or m.name.endswith('.d.mts'))}
             require(names=={prefix+k for k in expected},'Packaged declaration set differs from baseline')
             for key,digest in expected.items():require(normalized_digest(archive.extractfile(prefix+key).read())==digest,'Packaged declaration mismatch '+key)
-        dest=out/'packages/npm'/filename;copy(src,dest);packages.append({'name':p['name'],'version':p['version'],'file':dest.relative_to(out).as_posix(),'sha256':sha(dest)})
+        require(sha(src)==manifest['packages'][filename]==sha(canonical/filename),'Tested npm package differs from reproducible canonical archive')
+        dest=out/'packages/npm'/filename;copy(canonical/filename,dest);packages.append({'name':p['name'],'version':p['version'],'file':dest.relative_to(out).as_posix(),'sha256':sha(dest)})
     for file in ('report.json','api-contract.json','consumer-package-lock.json'):copy(npm/file,out/'evidence/npm'/file)
     write(out/'sbom/npm-consumer.cdx.json',npm_bom(read(npm/'consumer-package-lock.json')))
     for platform in ('windows','macos'):
         native=inp/('nuget-'+platform);report=read(native/'report.json');passed(report);p=report['package']
         filename=safe_name(p['name']);src=native/filename;require(sha(src)==p['sha256'],'NuGet checksum mismatch '+platform)
-        dest=out/'packages'/('nuget-'+platform)/filename;copy(src,dest);packages.append({'name':'Taktera.UI.Avalonia','file':dest.relative_to(out).as_posix(),'platform':platform,'sha256':sha(dest)})
+        require(report.get('mode')=='canonical' and report.get('canonicalSource')==source,'Expected canonical consumer evidence '+platform)
+        require(sha(src)==manifest['packages'][filename]==sha(canonical/filename),'Canonical NuGet differs '+platform)
+        dest=out/'packages'/'nuget'/filename
+        if platform=='windows':
+            copy(canonical/filename,dest);packages.append({'name':'Taktera.UI.Avalonia','file':dest.relative_to(out).as_posix(),'platforms':['windows','macos'],'sha256':sha(dest)})
+        else:require(sha(dest)==sha(src),'Cross-OS package mismatch')
         for file in ('report.json','consumer-project.assets.json','consumer.trx'):copy(native/file,out/'evidence'/('nuget-'+platform)/file)
         write(out/'sbom'/('nuget-'+platform+'-consumer.cdx.json'),nuget_bom(read(native/'consumer-project.assets.json'),platform))
+    require(len(packages)==3 and {Path(p['file']).name:p['sha256'] for p in packages}==manifest['packages'],'Candidate does not equal canonical set')
     for file in ('npm-audit.json','nuget-audit.json'):
         read(inp/'audit'/file);copy(inp/'audit'/file,out/'evidence/audit'/file)
     write(out/'build-evidence.json',{'sourceCommit':source,'githubRunId':os.environ.get('GITHUB_RUN_ID'),'githubRunAttempt':os.environ.get('GITHUB_RUN_ATTEMPT'),'workflowRef':os.environ.get('GITHUB_WORKFLOW_REF'),'packages':packages,'apiBaseline':api['baseline'],'status':'automated candidate evidence only','signed':False,'registryPublished':False,'licenseReview':'pending','manualAndStagingAcceptance':'pending'})

@@ -255,6 +255,10 @@ jobs:
 
   reproducible:
     name: BR7 exact package reproducibility
+    strategy:
+      fail-fast: false
+      matrix:
+        replica: [primary, secondary]
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v6
@@ -275,13 +279,71 @@ jobs:
       - uses: actions/upload-artifact@v6
         if: ${{ always() }}
         with:
-          name: reproducibility-evidence
+          name: reproducibility-evidence-${{ matrix.replica }}
           path: 30_distribution/qa/results/reproducible
           if-no-files-found: error
 
+  canonical:
+    name: BR7 independent runner package agreement
+    needs: [reproducible]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v6
+        with:
+          name: reproducibility-evidence-primary
+          path: repro-primary
+      - uses: actions/download-artifact@v6
+        with:
+          name: reproducibility-evidence-secondary
+          path: repro-secondary
+      - run: python 30_distribution/qa/verify_canonical.py repro-primary repro-secondary canonical-packages
+      - uses: actions/upload-artifact@v6
+        with:
+          name: canonical-packages
+          path: canonical-packages
+          if-no-files-found: error
+
+  canonical-nuget-consumer:
+    name: BR7 canonical NuGet clean consumer
+    needs: [canonical]
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.404'
+      - uses: actions/download-artifact@v6
+        with:
+          name: canonical-packages
+          path: canonical-input
+      - run: python 30_distribution/qa/verify_nuget_consumer.py
+        env:
+          TAKTERA_CANONICAL_INPUT: canonical-input
+      - uses: actions/upload-artifact@v6
+        if: ${{ always() }}
+        with:
+          name: canonical-nuget-consumer-${{ matrix.os }}
+          path: 30_distribution/qa/results/nuget
+          if-no-files-found: warn
+
   release-evidence:
     name: Candidate release evidence (no publish)
-    needs: [static, react, avalonia, security, browser, headless, board-sync, npm-consumer, nuget-consumer, reproducible]
+    needs: [static, react, avalonia, security, browser, headless, board-sync, npm-consumer, nuget-consumer, reproducible, canonical, canonical-nuget-consumer]
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v6
@@ -296,16 +358,20 @@ jobs:
           path: candidate-input/npm
       - uses: actions/download-artifact@v6
         with:
-          name: nuget-consumer-windows-latest
+          name: canonical-nuget-consumer-windows-latest
           path: candidate-input/nuget-windows
       - uses: actions/download-artifact@v6
         with:
-          name: nuget-consumer-macos-latest
+          name: canonical-nuget-consumer-macos-latest
           path: candidate-input/nuget-macos
       - uses: actions/download-artifact@v6
         with:
           name: dependency-audit
           path: candidate-input/audit
+      - uses: actions/download-artifact@v6
+        with:
+          name: canonical-packages
+          path: candidate-input/canonical
       - run: python 30_distribution/qa/assemble_candidate.py candidate-input candidate-release
       - uses: actions/upload-artifact@v6
         with:
