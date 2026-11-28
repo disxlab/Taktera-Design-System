@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "Taktera Design System",
-  "release": "4.0-beta-readiness.4",
+  "release": "4.0-beta-readiness.7",
   "referenceDate": "2026-11-28",
   "statuses": [
     "planned",
@@ -22,7 +22,9 @@
     "Beta Readiness 3",
     "Beta Readiness 4",
     "Beta Readiness 5",
-    "Beta Readiness 6"
+    "Beta Readiness 6",
+    "Beta Readiness 7",
+    "Release milestones"
   ],
   "tasks": [
     {
@@ -458,17 +460,18 @@
       "title": "Реальный ERP/CRM pilot: staging/performance/security",
       "phase": "Beta gates",
       "priority": "P0",
-      "status": "blocked",
-      "description": "Локальный пилот не равен интеграции в реальный продукт.",
+      "status": "deferred",
+      "description": "Локальный пилот не равен интеграции в реальный продукт. Owner decision 2026-11-28: real product integration only AFTER Design System 4.0 Stable; standalone SDK acceptance is BR5-07.",
       "dependencies": [
         "DS-013",
-        "DS-014"
+        "DS-014",
+        "REL-STABLE"
       ],
       "kind": "work",
       "source": "plan",
       "owner": "",
       "due": "",
-      "updated": "2026-11-22",
+      "updated": "2026-11-28",
       "githubIssue": 5
     },
     {
@@ -613,18 +616,19 @@
       "title": "Сверка локализации и токенов в реальном приложении",
       "phase": "Beta Readiness 1",
       "priority": "P0",
-      "status": "planned",
-      "description": "Локализацию и токены необходимо проверить в реальном приложении на Windows/macOS; визуальный diff Chromium этого не заменяет.",
+      "status": "deferred",
+      "description": "Локализацию и токены необходимо проверить в реальном приложении на Windows/macOS; визуальный diff Chromium этого не заменяет. Owner decision 2026-11-28: real product integration only AFTER Design System 4.0 Stable; standalone SDK acceptance is BR5-07.",
       "dependencies": [
         "DS-010",
         "DS-011",
-        "DS-012"
+        "DS-012",
+        "REL-STABLE"
       ],
       "kind": "work",
       "source": "plan",
       "owner": "",
       "due": "",
-      "updated": "2026-11-23",
+      "updated": "2026-11-28",
       "githubIssue": 5
     },
     {
@@ -868,7 +872,7 @@
       "phase": "Beta Readiness 4",
       "priority": "P1",
       "status": "in_progress",
-      "description": "Automated engineering baseline 14/14 jobs PASS https://github.com/disxlab/Taktera-Design-System/actions/runs/46076078235; manual accessibility, native UI, Safari, staging, board persistence QA and distribution acceptance remain.",
+      "description": "Automated engineering baseline 14/14 jobs PASS https://github.com/disxlab/Taktera-Design-System/actions/runs/46076078235; manual accessibility, native UI, Safari, staging, board persistence QA and distribution acceptance remain. Real Platform staging deferred; independent synthetic host acceptance required before release.",
       "dependencies": [
         "BR4-01",
         "BR4-02",
@@ -879,7 +883,7 @@
         "BR4-07",
         "BR4-08",
         "BR4-09",
-        "BETA-04",
+        "BR5-07",
         "BETA-05",
         "BR4-11",
         "BR4-12",
@@ -933,7 +937,7 @@
       "phase": "Beta Readiness 5",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Draft ERP/CRM contract and synthetic fixture strategy implemented in 29_product_integration; host repo/staging and budgets require agreement.",
+      "description": "Draft ERP/CRM contract and synthetic fixture strategy implemented in 29_product_integration; host repo/staging and budgets require agreement. Pre-Stable: validate in isolated synthetic reference hosts; actual Platform integration is deferred to BR5-06.",
       "dependencies": [
         "BR4-11",
         "BR4-12"
@@ -951,7 +955,7 @@
       "phase": "Beta Readiness 5",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Run #15: 14/14, 397/397 React per engine, remote cursor/filter/sort, group headers, partial bulk UI verified with synthetic transport. https://github.com/disxlab/Taktera-Design-System/actions/runs/46077847394 Real staging, virtual-mode grouping and manual/performance acceptance remain.",
+      "description": "Run #15: 14/14, 397/397 React per engine, remote cursor/filter/sort, group headers, partial bulk UI verified with synthetic transport. https://github.com/disxlab/Taktera-Design-System/actions/runs/46077847394 Real staging, virtual-mode grouping and manual/performance acceptance remain. Pre-Stable: validate in isolated synthetic reference hosts; actual Platform integration is deferred to BR5-06.",
       "dependencies": [
         "BR5-01",
         "DS-013"
@@ -969,7 +973,7 @@
       "phase": "Beta Readiness 5",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Run #19 14/14 PASS on a87de024: Scheduler 227/227 each Chromium/Firefox/WebKit (681/681), separate agenda/timeline axe scans (72 Scheduler, 144 total), zero detected violations. https://github.com/disxlab/Taktera-Design-System/actions/runs/46079874046 Core and UI verified with synthetic transport. Actual ERP transaction, manual accessibility, touch drag and series-wide edit remain open.",
+      "description": "Run #19 14/14 PASS on a87de024: Scheduler 227/227 each Chromium/Firefox/WebKit (681/681), separate agenda/timeline axe scans (72 Scheduler, 144 total), zero detected violations. https://github.com/disxlab/Taktera-Design-System/actions/runs/46079874046 Core and UI verified with synthetic transport. Actual ERP transaction, manual accessibility, touch drag and series-wide edit remain open. Pre-Stable: validate in isolated synthetic reference hosts; actual Platform integration is deferred to BR5-06.",
       "dependencies": [
         "BR5-01",
         "DS-014"
@@ -987,7 +991,7 @@
       "phase": "Beta Readiness 5",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Run #22 14/14 PASS: CRM 326/326 per engine (978/978), async validation, draft callback, field errors, tab guard and reopen verified with synthetic host. https://github.com/disxlab/Taktera-Design-System/actions/runs/46081132417 Actual ERP endpoints, global routing/manual QA remain open.",
+      "description": "Run #22 14/14 PASS: CRM 326/326 per engine (978/978), async validation, draft callback, field errors, tab guard and reopen verified with synthetic host. https://github.com/disxlab/Taktera-Design-System/actions/runs/46081132417 Actual ERP endpoints, global routing/manual QA remain open. Pre-Stable: validate in isolated synthetic reference hosts; actual Platform integration is deferred to BR5-06.",
       "dependencies": [
         "BR5-01",
         "DS-015"
@@ -1005,7 +1009,7 @@
       "phase": "Beta Readiness 5",
       "priority": "P1",
       "status": "in_progress",
-      "description": "Run #24 15/15 PASS, CRM/analytics 434/434 per engine; 1302/1302 total, npm clean consumer 16/16. https://github.com/disxlab/Taktera-Design-System/actions/runs/46082895789 Actual ERP reporting and manual acceptance remain.",
+      "description": "Run #24 15/15 PASS, CRM/analytics 434/434 per engine; 1302/1302 total, npm clean consumer 16/16. https://github.com/disxlab/Taktera-Design-System/actions/runs/46082895789 Actual ERP reporting and manual acceptance remain. Pre-Stable: validate in isolated synthetic reference hosts; actual Platform integration is deferred to BR5-06.",
       "dependencies": [
         "BR5-01",
         "DS-016"
@@ -1022,13 +1026,14 @@
       "title": "Реальный staging pilot и приёмка",
       "phase": "Beta Readiness 5",
       "priority": "P0",
-      "status": "in_progress",
-      "description": "Independent reference React workspace prepared using only packed public APIs, synthetic data and local callbacks. This is a local pilot, not actual Taktera Platform staging. CI pending; real host required.",
+      "status": "deferred",
+      "description": "Independent reference React workspace prepared using only packed public APIs, synthetic data and local callbacks. This is a local pilot, not actual Taktera Platform staging. CI pending; real host required. Owner decision 2026-11-28: real product integration only AFTER Design System 4.0 Stable; standalone SDK acceptance is BR5-07.",
       "dependencies": [
         "BR5-02",
         "BR5-03",
         "BR5-04",
-        "BR5-05"
+        "BR5-05",
+        "REL-STABLE"
       ],
       "kind": "work",
       "source": "plan",
@@ -1132,13 +1137,17 @@
       "phase": "Beta Readiness 6",
       "priority": "P0",
       "status": "blocked",
-      "description": "Automated candidate evidence generated in Run #27, not published; full Beta acceptance remains blocked by BR6-04/05, real staging, manual/native QA and owner approval. https://github.com/disxlab/Taktera-Design-System/actions/runs/46084256928",
+      "description": "Run #28 18/18 PASS; Beta acceptance requires BR7 release gates, independent SDK reference host, manual/native/accessibility QA and owner approval. Actual Platform integration deferred until after Stable. https://github.com/disxlab/Taktera-Design-System/actions/runs/46085839752",
       "dependencies": [
         "BR6-04",
         "BR6-05",
-        "BR5-06",
+        "BR5-07",
         "BR4-10",
-        "BETA-03"
+        "BETA-03",
+        "BR7-07",
+        "BR7-08",
+        "BR7-09",
+        "BR7-10"
       ],
       "kind": "work",
       "source": "plan",
@@ -1146,9 +1155,265 @@
       "due": "",
       "updated": "2026-11-28",
       "githubIssue": 13
+    },
+    {
+      "id": "BR5-07",
+      "title": "Независимая SDK-приёмка ERP/CRM",
+      "phase": "Beta Readiness 5",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Package-only reference consumers, six product variants, RU/EN, light/dark, synthetic transport, agreed performance budgets, keyboard/manual accessibility and security boundaries. No real Taktera Platform connection. Run #28 package gates PASS; expanded acceptance pending.",
+      "dependencies": [
+        "BR5-02",
+        "BR5-03",
+        "BR5-04",
+        "BR5-05"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 12
+    },
+    {
+      "id": "BR7-01",
+      "title": "Reproducible Builds",
+      "phase": "Beta Readiness 7",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "CI performs two fresh Git worktrees with isolated npm/NuGet caches, pinned Node and .NET SDK, compares exact archive SHA-256 and entry-level diagnostics. NuGet lock generated on first build and enforced on second; committed lock and canonical cross-OS consumer still required. No pass claimed until CI.",
+      "dependencies": [
+        "BR6-02",
+        "BR6-03"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 14
+    },
+    {
+      "id": "BR7-02",
+      "title": "Product SBOM — CycloneDX / SPDX",
+      "phase": "Beta Readiness 7",
+      "priority": "P0",
+      "status": "planned",
+      "description": "Inventory exact released archives and runtime/peer dependency closure, hashes, embedded assets and known licenses; schema and completeness checks. Consumer inventories alone insufficient.",
+      "dependencies": [
+        "BR7-01"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 14
+    },
+    {
+      "id": "BR7-03",
+      "title": "Third-Party Notices",
+      "phase": "Beta Readiness 7",
+      "priority": "P0",
+      "status": "planned",
+      "description": "Collect verified license texts and attribution for redistributable assets and dependencies; fail on unresolved obligations and require owner license approval.",
+      "dependencies": [
+        "BR7-02"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 14
+    },
+    {
+      "id": "BR7-04",
+      "title": "Signed Build Provenance",
+      "phase": "Beta Readiness 7",
+      "priority": "P0",
+      "status": "planned",
+      "description": "Attest exact canonical artifacts in approved release workflow, verify signature/source identity; no PR write credentials.",
+      "dependencies": [
+        "BR7-01",
+        "BR7-02"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 14
+    },
+    {
+      "id": "BR7-05",
+      "title": "Private npm / NuGet Registry",
+      "phase": "Beta Readiness 7",
+      "priority": "P0",
+      "status": "planned",
+      "description": "Owner-approved private destination, scoped access, authenticated clean restore and denied unauthorized access; immutable versions. No publishing without approval.",
+      "dependencies": [
+        "BR7-03",
+        "BR7-04"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 14
+    },
+    {
+      "id": "BR7-06",
+      "title": "Supply Chain Security",
+      "phase": "Beta Readiness 7",
+      "priority": "P0",
+      "status": "planned",
+      "description": "Pinned actions and toolchains, dependency audit, secret-free PR workflows, registry mapping and negative security tests.",
+      "dependencies": [
+        "BR7-02",
+        "BR7-04"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 14
+    },
+    {
+      "id": "BR7-07",
+      "title": "Release Automation",
+      "phase": "Beta Readiness 7",
+      "priority": "P0",
+      "status": "planned",
+      "description": "Fail-closed release approval, candidate manifest and exact package hash verification, approved release identity, no automatic publication from PR.",
+      "dependencies": [
+        "BR7-01",
+        "BR7-03",
+        "BR7-04",
+        "BR7-05",
+        "BR7-06"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 14
+    },
+    {
+      "id": "BR7-08",
+      "title": "Rollback",
+      "phase": "Beta Readiness 7",
+      "priority": "P0",
+      "status": "planned",
+      "description": "Verify restoration of previous immutable approved SDK version in independent reference consumers; document recovery and test failure path.",
+      "dependencies": [
+        "BR7-05",
+        "BR7-07"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 14
+    },
+    {
+      "id": "BR7-09",
+      "title": "Versioning & Compatibility Policy",
+      "phase": "Beta Readiness 7",
+      "priority": "P1",
+      "status": "planned",
+      "description": "Align npm/NuGet release version policy, API baseline and breaking-change review; no version promotion without approval.",
+      "dependencies": [
+        "BR6-01"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 14
+    },
+    {
+      "id": "BR7-10",
+      "title": "Release Documentation",
+      "phase": "Beta Readiness 7",
+      "priority": "P1",
+      "status": "planned",
+      "description": "Release notes, installation, migration, licenses, known limitations, provenance and rollback evidence; owner approval.",
+      "dependencies": [
+        "BR7-03",
+        "BR7-08",
+        "BR7-09"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 14
+    },
+    {
+      "id": "REL-BETA",
+      "title": "4.0.0-beta.1",
+      "phase": "Release milestones",
+      "priority": "P0",
+      "status": "blocked",
+      "description": "Standalone SDK acceptance and all Beta gates; no real product integration.",
+      "dependencies": [
+        "BR6-06"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 7
+    },
+    {
+      "id": "REL-RC",
+      "title": "4.0.0-rc.1",
+      "phase": "Release milestones",
+      "priority": "P0",
+      "status": "planned",
+      "description": "Freeze public API, manual/native accessibility, performance and security evidence; approved candidate.",
+      "dependencies": [
+        "REL-BETA"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 7
+    },
+    {
+      "id": "REL-STABLE",
+      "title": "4.0.0 Stable",
+      "phase": "Release milestones",
+      "priority": "P0",
+      "status": "planned",
+      "description": "Independent consumer acceptance, versioned SDK, signed release, documented migration and rollback, owner approval. Actual Taktera Platform integration is explicitly post-Stable.",
+      "dependencies": [
+        "REL-RC"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 7
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #28 18/18 PASS, candidate artifact 15239062367. Owner decision: Platform integration after Stable only; BR5-07 synthetic independent acceptance and BR7-01–10/REL milestones added. First reproducibility gate implemented; CI pending. https://github.com/disxlab/Taktera-Design-System/actions/runs/46085839752"
+    },
     {
       "at": "2026-11-28",
       "message": "Run #27 18/18 PASS; npm 22/22, Windows/macOS NuGet 26/26 + 5/5 each including mandatory cleanup; candidate evidence 4 packages, 3 consumer inventories, 19 hashes, artifact 15238208262. No publishing; product SBOM, license review, reproducibility, registry and manual/staging gates remain. https://github.com/disxlab/Taktera-Design-System/actions/runs/46084256928"

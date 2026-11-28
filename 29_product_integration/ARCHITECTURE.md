@@ -57,3 +57,6 @@ Run #22 evidence: https://github.com/disxlab/Taktera-Design-System/actions/runs/
 
 ## Reference workspace
 30_distribution/reference-react contains a synthetic local host imported solely through package exports. Read-only scheduler, local CRM save and notification callbacks, registry, analytics and product/theme switching. No domain backend or persistence. New CI verifies independently packed tarballs. BR5-06 actual staging remains open.
+
+## Owner decision — 2026-11-28 (supersedes earlier integration gates)
+Real Taktera Platform integration is forbidden before Design System 4.0 Stable. No changes to the Platform repository, real ERP endpoints or staging credentials. Pre-Stable acceptance uses independent package-only reference consumers and synthetic data; retain manual/native accessibility, security and performance gates. BR5-07 is standalone acceptance; BETA-04, DS-032 and BR5-06 are deferred until REL-STABLE. Earlier real-staging prerequisites are historical and superseded.

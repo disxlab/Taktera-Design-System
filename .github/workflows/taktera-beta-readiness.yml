@@ -253,9 +253,35 @@ jobs:
           path: 30_distribution/qa/results/nuget
           if-no-files-found: warn
 
+  reproducible:
+    name: BR7 exact package reproducibility
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '26.13.1'
+          package-manager-cache: false
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.404'
+      - run: python 30_distribution/qa/verify_reproducible.py
+      - uses: actions/upload-artifact@v6
+        if: ${{ always() }}
+        with:
+          name: reproducibility-evidence
+          path: 30_distribution/qa/results/reproducible
+          if-no-files-found: error
+
   release-evidence:
     name: Candidate release evidence (no publish)
-    needs: [static, react, avalonia, security, browser, headless, board-sync, npm-consumer, nuget-consumer]
+    needs: [static, react, avalonia, security, browser, headless, board-sync, npm-consumer, nuget-consumer, reproducible]
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v6
