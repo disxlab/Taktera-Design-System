@@ -17,7 +17,7 @@ assert.equal(input.sourceCommit,process.env.GITHUB_SHA);
 assert.equal(input.githubRunId,process.env.GITHUB_RUN_ID);
 assert.equal(input.githubRunAttempt,process.env.GITHUB_RUN_ATTEMPT);
 assert.equal(input.publicationAllowed,false);
-const report={...input,engine,scope:'Canonical npm package-only reference workspace, English synthetic data; not production/native Safari or complete accessibility acceptance',checks:[],axe:[],errors:[],scenarios:[],publicationAllowed:false};
+const report={...input,engine,scope:'Canonical npm package-only reference workspace, English SDK workflows plus RU/EN host-owned synthetic transport; not production/native Safari or complete accessibility acceptance',checks:[],axe:[],errors:[],scenarios:[],publicationAllowed:false};
 const products=['platform','clinic','beauty','spa','fitness','travel'],themes=['light','dark'];
 // Intercept external network requests only, not local resources or axe's internal
 // about:blank/data/blob documents. Keep the independent request observation.
@@ -96,6 +96,41 @@ async function auditRegistry(browser,url,product,theme){
  }finally{await context.close();}
 }
 
+// Host-owned localized transport acceptance; existing English workflows remain mandatory.
+const transportLabels={
+ en:{region:'Synthetic transport',name:'Customer name',save:'Save record',fail:'Fail next request',retry:'Retry same request',replay:'Replay last request',compete:'Simulate competing write',reload:'Reload record',external:'Synthetic competing name',validation:'Invalid customer name',unavailable:'Temporarily unavailable',applied:'Saved',conflict:'Version conflict',idle:'Ready',newName:'Synthetic updated name',finalName:'Synthetic resolved name'},
+ ru:{region:'Синтетический транспорт',name:'Имя клиента',save:'Сохранить запись',fail:'Ошибка следующего запроса',retry:'Повторить тот же запрос',replay:'Повторить сохранённый запрос',compete:'Имитировать параллельную запись',reload:'Загрузить запись',external:'Синтетическое конкурентное имя',validation:'Недопустимое имя клиента',unavailable:'Временно недоступно',applied:'Сохранено',conflict:'Конфликт версий',idle:'Готово',newName:'Синтетическое новое имя',finalName:'Синтетическое исправленное имя'}
+};
+async function localizedTransport(page,name){
+ await page.getByRole('tab',{name:'Transport',exact:true}).click();
+ for(const locale of ['en','ru']){
+  const l=transportLabels[locale],prefix=name+' '+locale+' transport ';
+  await page.getByLabel('Language / Язык',{exact:true}).selectOption(locale);
+  const region=page.getByRole('region',{name:l.region,exact:true});
+  const field=region.getByRole('textbox',{name:l.name,exact:true});
+  const button=label=>region.getByRole('button',{name:label,exact:true});
+  const record=region.getByTestId('transport-record'),version=region.getByTestId('transport-version'),status=region.getByTestId('transport-status');
+  async function state(label,code,message,expectedName,expectedVersion){
+   await status.getByText(message,{exact:true}).waitFor();
+   check(prefix+label,await status.getAttribute('data-status')===code&&await record.textContent()===expectedName&&await version.textContent()===expectedVersion);
+  }
+  await state('initial','idle',l.idle,'Synthetic Alice','1');
+  check(prefix+' locale',await region.getAttribute('lang')===locale&&await field.isVisible());
+  await field.fill('');await button(l.save).click();
+  await state('validation','validation',l.validation,'Synthetic Alice','1');
+  check(prefix+' accessible error',await field.getAttribute('aria-invalid')==='true'&&Boolean(await field.getAttribute('aria-describedby')));
+  await field.fill(l.newName);await button(l.fail).click();await button(l.save).click();
+  await state('unavailable','unavailable',l.unavailable,'Synthetic Alice','1');
+  await button(l.retry).click();await state('retry','applied',l.applied,l.newName,'2');
+  await button(l.replay).click();await state('idempotent replay','applied',l.applied,l.newName,'2');
+  await button(l.compete).click();await state('competing write','idle',l.idle,l.external,'3');
+  await field.fill(l.finalName);await button(l.save).click();await state('conflict','conflict',l.conflict,l.external,'3');
+  await button(l.reload).click();await state('reload current','idle',l.idle,l.external,'3');
+  check(prefix+' draft reloaded',await field.inputValue()===l.external);
+  await field.fill(l.finalName);await button(l.save).click();await state('resolved save','applied',l.applied,l.finalName,'4');
+ }
+}
+
 try{
  check('exact Node',process.version==='v26.13.1');
  check('exact npm',run('npm',['--version'])==='11.20.0');
@@ -151,6 +186,7 @@ try{
    await page.reload();await page.waitForFunction(()=>document.documentElement.dataset.referenceHydrated==='yes');
    await page.getByRole('tab',{name:'CRM',exact:true}).click();
    check(name+' synthetic state reset',await page.getByRole('heading',{name:'Synthetic Alice',exact:true}).isVisible());
+   phase='localized transport';await localizedTransport(page,name);
    check(name+' no browser errors',errors.length===0);
    check(name+' no external requests',external.length===0);
    report.scenarios.push({product,theme,status:'passed'});

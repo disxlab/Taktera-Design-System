@@ -33,6 +33,7 @@ class EvidenceTests(unittest.TestCase):
             ("duplicate scan",lambda r:r["axe"].__setitem__(0,r["axe"][1])),
             ("violation",lambda r:r["axe"][0].update(violations=[{"id":"x"}])),
             ("missing check",lambda r:r["checks"].pop()),
+            ("missing RU transport",lambda r:r["checks"].__setitem__(next(i for i,c in enumerate(r["checks"]) if " ru transport " in c["name"]),{"name":"unrelated","ok":True})),
             ("failed check",lambda r:r["checks"][0].update(ok=False)),
             ("errors",lambda r:r.update(errors=["crash"]))):
             with self.subTest(label=label):

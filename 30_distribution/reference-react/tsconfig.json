@@ -5,6 +5,7 @@
     "moduleResolution": "NodeNext",
     "jsx": "react-jsx",
     "strict": true,
+    "allowJs": true,
     "skipLibCheck": false,
     "outDir": "dist",
     "lib": [
@@ -16,6 +17,9 @@
   },
   "include": [
     "App.tsx",
-    "client.tsx"
+    "client.tsx",
+    "LocalizedTransport.tsx",
+    "synthetic-transport.mjs",
+    "synthetic-transport.d.mts"
   ]
 }
