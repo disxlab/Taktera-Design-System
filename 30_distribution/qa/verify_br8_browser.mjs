@@ -101,6 +101,56 @@ const transportLabels={
  en:{region:'Synthetic transport',name:'Customer name',save:'Save record',fail:'Fail next request',retry:'Retry same request',replay:'Replay last request',compete:'Simulate competing write',reload:'Reload record',external:'Synthetic competing name',validation:'Invalid customer name',unavailable:'Temporarily unavailable',applied:'Saved',conflict:'Version conflict',idle:'Ready',newName:'Synthetic updated name',finalName:'Synthetic resolved name'},
  ru:{region:'Синтетический транспорт',name:'Имя клиента',save:'Сохранить запись',fail:'Ошибка следующего запроса',retry:'Повторить тот же запрос',replay:'Повторить сохранённый запрос',compete:'Имитировать параллельную запись',reload:'Загрузить запись',external:'Синтетическое конкурентное имя',validation:'Недопустимое имя клиента',unavailable:'Временно недоступно',applied:'Сохранено',conflict:'Конфликт версий',idle:'Готово',newName:'Синтетическое новое имя',finalName:'Синтетическое исправленное имя'}
 };
+
+const operationsLabels={
+ en:{section:'Synthetic operations',scheduler:'Localized schedule',analytics:'Localized analytics',visit:'Synthetic appointment',reject:'Synthetic conflict',updated:'Synthetic revised appointment',zone:'Time zone',week:'Week',day:'Day',editor:'Booking editor',title:'Title',save:'Save booking',conflict:'Server rejected operation: conflict',saved:'Saved',start:'Period start',end:'Period end',apply:'Apply period',invalid:'Choose a valid period of 1 to 366 days',incomplete:'Incomplete data: totals and export unavailable',export:'Export CSV',table:'Data table',details:'Details: 2026-12-01',detail:'Day details'},
+ ru:{section:'Тестовые операции',scheduler:'Локализованное расписание',analytics:'Локализованная аналитика',visit:'Тестовая запись',reject:'Тестовый конфликт',updated:'Тестовая изменённая запись',zone:'Часовой пояс',week:'Неделя',day:'День',editor:'Редактор записи',title:'Название',save:'Сохранить запись',conflict:'Сервер отклонил операцию: конфликт',saved:'Сохранено',start:'Начало периода',end:'Конец периода',apply:'Применить период',invalid:'Укажите корректный период от 1 до 366 дней',incomplete:'Неполные данные: итоговые KPI и экспорт недоступны',export:'Экспорт CSV',table:'Таблица данных',details:'Подробнее: 2026-12-01',detail:'Показатели дня'}
+};
+async function localizedOperations(page,name){
+ await page.getByRole('tab',{name:'Operations',exact:true}).click();
+ for(const locale of ['en','ru']){
+  const l=operationsLabels[locale],prefix=name+' '+locale+' operations ';
+  await page.getByLabel('Operations language / Язык операций',{exact:true}).selectOption(locale);
+  const host=page.getByRole('region',{name:l.section,exact:true}),sched=host.getByRole('region',{name:l.scheduler,exact:true}),analytics=host.getByRole('region',{name:l.analytics,exact:true});
+  const booking=()=>sched.getByRole('button',{name:new RegExp('^'+l.visit+'(?:$| ·)')}).first();
+  const calls=host.getByTestId('schedule-calls'),version=host.getByTestId('schedule-version');
+  check(prefix+'locale',await host.getAttribute('lang')===locale&&await sched.getByLabel(l.zone).isVisible()&&await analytics.getByLabel(l.start).isVisible());
+  check(prefix+'initial booking',await booking().isVisible()&&await version.textContent()==='v1'&&await calls.textContent()==='0');
+  await sched.getByRole('button',{name:l.week,exact:true}).click();
+  check(prefix+'week mode',await sched.getByRole('button',{name:l.week,exact:true}).getAttribute('aria-pressed')==='true');
+  await sched.getByRole('button',{name:l.day,exact:true}).click();
+  await sched.getByLabel(l.zone).selectOption('Europe/Amsterdam');
+  check(prefix+'timezone',await sched.getByLabel(l.zone).inputValue()==='Europe/Amsterdam'&&(await sched.textContent()).includes('10:00'));
+  await sched.getByLabel(l.zone).selectOption('UTC');
+  await booking().click();
+  const editor=sched.getByRole('form',{name:l.editor,exact:true}),title=editor.getByLabel(l.title,{exact:true});
+  await title.fill(l.reject);await editor.getByRole('button',{name:l.save,exact:true}).click();
+  await sched.getByRole('alert').filter({hasText:l.conflict}).waitFor();
+  check(prefix+'scheduler conflict',await title.inputValue()===l.reject&&await calls.textContent()==='1'&&await version.textContent()==='v1');
+  await title.fill(l.updated);await editor.getByRole('button',{name:l.save,exact:true}).click();
+  await editor.waitFor({state:'hidden'});
+  check(prefix+'scheduler applied',await sched.getByText(l.updated,{exact:true}).first().isVisible()&&await calls.textContent()==='2'&&await version.textContent()==='v2');
+  const start=analytics.getByLabel(l.start),end=analytics.getByLabel(l.end),apply=analytics.getByRole('button',{name:l.apply,exact:true}),exportButton=analytics.getByRole('button',{name:l.export,exact:true});
+  check(prefix+'analytics complete',await exportButton.isEnabled());
+  await start.fill('2026-12-03');await apply.click();
+  await analytics.getByRole('alert').filter({hasText:l.invalid}).waitFor();
+  check(prefix+'invalid period retained',await exportButton.isEnabled()&&(await analytics.textContent()).includes('2026-12-01 — 2026-12-02'));
+  await start.fill('2026-12-01');await end.fill('2026-12-03');await apply.click();
+  await analytics.getByRole('status').filter({hasText:l.incomplete}).waitFor();
+  check(prefix+'incomplete export denied',await exportButton.isDisabled());
+  await end.fill('2026-12-02');await apply.click();
+  await analytics.getByRole('button',{name:l.table,exact:true}).click();
+  check(prefix+'table mode',await analytics.getByRole('button',{name:l.table,exact:true}).getAttribute('aria-pressed')==='true');
+  await analytics.getByRole('button',{name:l.details,exact:true}).click();
+  check(prefix+'day details',await analytics.getByRole('region',{name:l.detail,exact:true}).isVisible());
+  const pending=page.waitForEvent('download');
+  await exportButton.click();
+  const download=await pending;
+  const bytes=await readFile(await download.path(),'utf8');
+  check(prefix+'csv exact bytes',download.suggestedFilename()==='taktera-metrics-2026-12-01-2026-12-02.csv'&&bytes==='date,currency,revenue_minor,visits,completed,capacity,used\r\n2026-12-01,RUB,12000,4,3,8,4\r\n2026-12-02,RUB,18000,6,5,8,5\r\n');
+ }
+}
+
 async function localizedTransport(page,name){
  await page.getByRole('tab',{name:'Transport',exact:true}).click();
  for(const locale of ['en','ru']){
@@ -187,6 +237,7 @@ try{
    await page.getByRole('tab',{name:'CRM',exact:true}).click();
    check(name+' synthetic state reset',await page.getByRole('heading',{name:'Synthetic Alice',exact:true}).isVisible());
    phase='localized transport';await localizedTransport(page,name);
+   phase='localized operations';await localizedOperations(page,name);
    check(name+' no browser errors',errors.length===0);
    check(name+' no external requests',external.length===0);
    report.scenarios.push({product,theme,status:'passed'});

@@ -18,6 +18,7 @@
     "App.tsx",
     "client.tsx",
     "LocalizedTransport.tsx",
-    "synthetic-transport.d.mts"
+    "synthetic-transport.d.mts",
+    "LocalizedOperations.tsx"
   ]
 }
