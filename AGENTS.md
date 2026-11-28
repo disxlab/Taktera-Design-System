@@ -17,3 +17,5 @@
 - Extended QA: `npx --no-install tsx qa/react-browser.ts chromium` (also firefox/webkit) from React package; `dotnet test 17_packages/avalonia/tests/Taktera.Headless.Tests.csproj -c Release`; see MANUAL-QA.md. Issue snapshot is read-only; never overwrite local user state.
 
 - Owner decision 2026-11-28: no real Taktera Platform integration or repository changes until Design System 4.0 Stable. Use independent package-only reference hosts and synthetic data before Stable; actual product staging is a post-Stable task.
+
+- Use exact .NET SDK from root global.json (10.0.404, roll-forward disabled); copy the pin to isolated build/consumer roots outside the repository. BR7 exact build gate also verifies Node 26.13.1 and npm 11.20.0. Do not bypass version guards.

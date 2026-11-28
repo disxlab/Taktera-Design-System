@@ -15,6 +15,7 @@ OUT = ROOT / "30_distribution/qa/results/reproducible"
 OUT.mkdir(parents=True, exist_ok=True)
 NODE = "v26.13.1"
 DOTNET = "10.0.404"
+NPM = "11.20.0"
 report = {"scope": "same source, same pinned toolchain, isolated worktrees and caches",
           "source": None, "toolchain": {}, "builds": [], "comparisons": [], "errors": [],
           "nugetLockPolicy": "first restore generates lock; second uses locked mode; committed lock pending",
@@ -42,6 +43,11 @@ def build(tree, work, lock):
                DOTNET_CLI_TELEMETRY_OPTOUT="1", AVALONIA_TELEMETRY_OPTOUT="1",
                MSBUILDDISABLENODEREUSE="1", DOTNET_CLI_USE_MSBUILD_SERVER="0",
                TZ="UTC", LC_ALL="C.UTF-8")
+    actual = {"node": run(["node", "--version"], tree, env),
+              "npm": run(["npm", "--version"], tree, env),
+              "dotnet": run(["dotnet", "--version"], tree, env)}
+    if actual != {"node": NODE, "npm": NPM, "dotnet": DOTNET}:
+        raise RuntimeError(f"Unexpected isolated build toolchain: {actual}")
     react = tree / "17_packages/react"
     web = tree / "17_packages/web-core"
     run(["npm", "ci", "--no-audit", "--no-fund"], react, env)
@@ -92,8 +98,9 @@ try:
     report["source"] = run(["git", "rev-parse", "HEAD"])
     report["toolchain"] = {"node": run(["node", "--version"]), "npm": run(["npm", "--version"]),
                            "dotnet": run(["dotnet", "--version"]), "python": run(["python", "--version"])}
-    if report["toolchain"]["node"] != NODE or report["toolchain"]["dotnet"] != DOTNET:
-        raise RuntimeError("Unexpected release toolchain")
+    if (report["toolchain"]["node"] != NODE or report["toolchain"]["dotnet"] != DOTNET
+            or report["toolchain"]["npm"] != NPM):
+        raise RuntimeError(f"Unexpected release toolchain: {report['toolchain']}")
     with tempfile.TemporaryDirectory(prefix="taktera-repro-") as tmp:
         temp = Path(tmp).resolve()
         lock = temp / "packages.lock.json"

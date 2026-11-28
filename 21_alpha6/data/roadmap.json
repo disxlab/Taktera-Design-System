@@ -1182,7 +1182,7 @@
       "phase": "Beta Readiness 7",
       "priority": "P0",
       "status": "in_progress",
-      "description": "CI performs two fresh Git worktrees with isolated npm/NuGet caches, pinned Node and .NET SDK, compares exact archive SHA-256 and entry-level diagnostics. NuGet lock generated on first build and enforced on second; committed lock and canonical cross-OS consumer still required. No pass claimed until CI.",
+      "description": "Run #29: 17/19 PASS, 1 failed, 1 skipped. BR7-01 stopped before builds: runner selected .NET SDK 11.0.100 despite installing 10.0.404. Node 26.13.1 and npm 11.20.0 confirmed. Candidate gate correctly skipped. https://github.com/disxlab/Taktera-Design-System/actions/runs/46086531837 Fix: root global.json exact SDK with rollForward disabled, exact SDK in all CI jobs, copy pin into isolated native consumer, verify Node/npm/.NET in each clean worktree. New CI pending; lock and canonical artifact validation remain open.",
       "dependencies": [
         "BR6-02",
         "BR6-03"
@@ -1410,6 +1410,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #29: 17/19 PASS, 1 failed, 1 skipped. BR7-01 stopped before builds: runner selected .NET SDK 11.0.100 despite installing 10.0.404. Node 26.13.1 and npm 11.20.0 confirmed. Candidate gate correctly skipped. https://github.com/disxlab/Taktera-Design-System/actions/runs/46086531837 SDK selection fixed in source; revalidation pending."
+    },
     {
       "at": "2026-11-28",
       "message": "Run #28 18/18 PASS, candidate artifact 15239062367. Owner decision: Platform integration after Stable only; BR5-07 synthetic independent acceptance and BR7-01–10/REL milestones added. First reproducibility gate implemented; CI pending. https://github.com/disxlab/Taktera-Design-System/actions/runs/46085839752"

@@ -16,3 +16,7 @@ Real Taktera Platform integration is forbidden before Design System 4.0 Stable. 
 
 ## BR7-01 first executable gate
 Run #28: 18/18 PASS, artifact 15239062367. New job runs two independent clean worktrees with isolated caches and pinned Node v26.13.1/.NET 10.0.404, compares exact raw package hashes and reports ZIP member differences. First NuGet restore generates a lock, second enforces it; a committed lock, independent runner evidence and testing one canonical artifact on Windows/macOS remain required. A mismatch fails the job and skips candidate assembly. No normalization, signing, promotion or publication. No success claim before CI.
+
+## Run #29 — SDK selection failure
+Run #29: 17/19 PASS, 1 failed, 1 skipped. BR7-01 stopped before builds: runner selected .NET SDK 11.0.100 despite installing 10.0.404. Node 26.13.1 and npm 11.20.0 confirmed. Candidate gate correctly skipped. https://github.com/disxlab/Taktera-Design-System/actions/runs/46086531837
+Root `global.json` pins .NET SDK 10.0.404 with rollForward disabled and prerelease disallowed. All CI setup-dotnet jobs now request the exact SDK. Isolated native consumers inherit the pin from a copied global.json; each reproducibility worktree independently verifies Node 26.13.1, npm 11.20.0 and SDK 10.0.404 before build. New CI required. No package comparison was performed in Run #29.

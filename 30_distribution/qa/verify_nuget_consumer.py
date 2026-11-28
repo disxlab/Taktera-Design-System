@@ -19,6 +19,12 @@ def isolated_workspace():
     tmp=Path(tempfile.mkdtemp(prefix='taktera-nuget-')).resolve()
     env=dict(os.environ,NUGET_PACKAGES=str(tmp/'packages'),DOTNET_CLI_TELEMETRY_OPTOUT='1',MSBUILDDISABLENODEREUSE='1',DOTNET_CLI_USE_MSBUILD_SERVER='0',AVALONIA_TELEMETRY_OPTOUT='1')
     try:
+        # SDK discovery starts from the working directory, which is outside the repo.
+        shutil.copyfile(ROOT/"global.json", tmp/"global.json")
+        expected=json.loads((tmp/"global.json").read_text(encoding="utf-8"))["sdk"]["version"]
+        actual=subprocess.check_output(["dotnet","--version"],cwd=tmp,env=env,text=True).strip()
+        if actual != expected: raise RuntimeError(f"Expected .NET SDK {expected}, got {actual}")
+        report["dotnetSdk"]=actual
         yield tmp,env
     finally:
         # Build task assemblies may be held by reusable MSBuild processes on Windows.
