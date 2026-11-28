@@ -4,6 +4,7 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
+  workflow_call:
 permissions:
   contents: read
 concurrency:
@@ -417,6 +418,7 @@ jobs:
           name: canonical-packages
           path: canonical-download
       - run: python 30_distribution/qa/verify_candidate_download.py candidate-download canonical-download verification/candidate-verification.json
+      - run: python 30_distribution/qa/prepare_attestation_subjects.py candidate-download canonical-download verification
       - uses: actions/upload-artifact@v6
         with:
           name: candidate-independent-verification

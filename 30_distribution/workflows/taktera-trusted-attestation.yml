@@ -1,0 +1,119 @@
+# REVIEW TEMPLATE ONLY. Activate as .github/workflows/taktera-trusted-attestation.yml
+# after owner approval and protected environment configuration.
+name: Taktera — trusted candidate attestation
+on:
+  workflow_dispatch:
+    inputs:
+      approved_source_sha:
+        description: Exact reviewed main commit SHA
+        type: string
+        required: true
+      approve_attestation:
+        description: Approve public provenance metadata (no package publication)
+        type: boolean
+        default: false
+        required: true
+permissions:
+  contents: read
+jobs:
+  authorize:
+    if: github.repository == 'disxlab/Taktera-Design-System' && github.ref == 'refs/heads/main' && inputs.approve_attestation == true && vars.TAKTERA_ATTESTATION_ENABLED == 'true'
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Require exact approved SHA
+        env:
+          APPROVED_SHA: ${{ inputs.approved_source_sha }}
+        run: |
+          set -euo pipefail
+          [[ "$APPROVED_SHA" =~ ^[0-9a-f]{40}$ ]]
+          test "$APPROVED_SHA" = "$GITHUB_SHA"
+  rebuild:
+    needs: authorize
+    permissions:
+      contents: read
+    uses: ./.github/workflows/taktera-beta-readiness.yml
+  attest:
+    needs: [authorize, rebuild]
+    if: github.repository == 'disxlab/Taktera-Design-System' && github.ref == 'refs/heads/main' && github.event_name == 'workflow_dispatch' && inputs.approve_attestation == true && vars.TAKTERA_ATTESTATION_ENABLED == 'true'
+    environment: taktera-provenance-approval
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v6
+        with:
+          name: taktera-candidate-release-evidence
+          path: candidate-download
+      - uses: actions/download-artifact@v6
+        with:
+          name: canonical-packages
+          path: canonical-download
+      - uses: actions/download-artifact@v6
+        with:
+          name: candidate-independent-verification
+          path: verification
+      - run: python 30_distribution/qa/prepare_attestation_subjects.py candidate-download canonical-download verification
+      - name: Attest exact subjects
+        id: attest
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4.2.2
+        with:
+          subject-checksums: verification/attestation-subjects.sha256
+          push-to-registry: false
+          create-storage-record: false
+      - name: Retain bundle separately
+        env:
+          BUNDLE: ${{ steps.attest.outputs.bundle-path }}
+        run: |
+          mkdir -p signed-evidence
+          cp "$BUNDLE" signed-evidence/provenance.json
+      - uses: actions/upload-artifact@v6
+        with:
+          name: candidate-attestation-bundle
+          path: signed-evidence
+          if-no-files-found: error
+  verify-signature:
+    needs: attest
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      attestations: read
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v6
+        with:
+          name: taktera-candidate-release-evidence
+          path: candidate-download
+      - uses: actions/download-artifact@v6
+        with:
+          name: canonical-packages
+          path: canonical-download
+      - uses: actions/download-artifact@v6
+        with:
+          name: candidate-independent-verification
+          path: verification
+      - uses: actions/download-artifact@v6
+        with:
+          name: candidate-attestation-bundle
+          path: signed-evidence
+      - name: Verify trusted signer and every subject
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python 30_distribution/qa/verify_signed_provenance.py candidate-download canonical-download verification signed-evidence/provenance.json signature-verification
+      - uses: actions/upload-artifact@v6
+        with:
+          name: candidate-signature-verification
+          path: signature-verification
+          if-no-files-found: error

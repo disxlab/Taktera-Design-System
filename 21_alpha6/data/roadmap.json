@@ -1200,7 +1200,7 @@
       "phase": "Beta Readiness 7",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Run #36 23/23 PASS; 5 SBOM schemas pass, 41 archive members, 14 embedded XAML sources, 19 flagged files, no separate asset files, 3 embedded license texts + 2 pinned upstream, 2 missing texts, 37 hashed files; candidate 15241378664. https://github.com/disxlab/Taktera-Design-System/actions/runs/46092700331 Archive/embedded source inventory confirmed. Marker-level asset provenance review remains open; added independently downloaded candidate and member inventory cross-check.",
+      "description": "Run #37 Candidate PASS: 3 SDKs, 5 schema-validated SBOMs, 41 archive members, 14 XAML sources, 19 marker files, 7/7 license texts found (3 embedded + 4 pinned source), zero missing, one unconfirmed binary-source association (MicroCom), 40 hashed files. Independent verification log PASS and all four negative controls rejected; final job state pending at initial review. https://github.com/disxlab/Taktera-Design-System/actions/runs/46093427123 Product inventory and independent download hash verification evidenced; detailed marker attribution review still open.",
       "dependencies": [
         "BR7-01"
       ],
@@ -1217,7 +1217,7 @@
       "phase": "Beta Readiness 7",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Run #36 23/23 PASS; 5 SBOM schemas pass, 41 archive members, 14 embedded XAML sources, 19 flagged files, no separate asset files, 3 embedded license texts + 2 pinned upstream, 2 missing texts, 37 hashed files; candidate 15241378664. https://github.com/disxlab/Taktera-Design-System/actions/runs/46092700331 BuildServices package repository commit 777f975b0a0cecf0311273711d56697212c558c0 confirmed, license pinned. MicroCom 0.11.0 historical source commit 918f1a7d13193beda39b78d70a99ee4c7b188f8b has exact version/declared MIT but NuGet package has no commit; source association explicitly unconfirmed. All seven text evidence paths implemented, not yet verified by CI. Detailed asset markers logged; license/attribution approval remains pending.",
+      "description": "Run #37 Candidate PASS: 3 SDKs, 5 schema-validated SBOMs, 41 archive members, 14 XAML sources, 19 marker files, 7/7 license texts found (3 embedded + 4 pinned source), zero missing, one unconfirmed binary-source association (MicroCom), 40 hashed files. Independent verification log PASS and all four negative controls rejected; final job state pending at initial review. https://github.com/disxlab/Taktera-Design-System/actions/runs/46093427123 Exact package-declared upstream commits confirmed for three NuGet dependencies; MicroCom historical version only. All license text evidence retrieved; legal and asset approval still open.",
       "dependencies": [
         "BR7-02"
       ],
@@ -1234,7 +1234,7 @@
       "phase": "Beta Readiness 7",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Read-only provenance preflight: independent CI runner downloads candidate and canonical artifacts, checks exact file set, SHA-256, source/run identity, canonical package and member hashes, five schema report hashes, asset and license evidence, four negative controls. Fresh CI pending. No signing yet; approved trusted release workflow and independent signature verification remain mandatory. PR has no write or OIDC permission.",
+      "description": "Run #37 Candidate PASS: 3 SDKs, 5 schema-validated SBOMs, 41 archive members, 14 XAML sources, 19 marker files, 7/7 license texts found (3 embedded + 4 pinned source), zero missing, one unconfirmed binary-source association (MicroCom), 40 hashed files. Independent verification log PASS and all four negative controls rejected; final job state pending at initial review. https://github.com/disxlab/Taktera-Design-System/actions/runs/46093427123 Added exact eight-subject attestation preflight, read-only reusable CI and inactive owner-approved main-only signing workflow template with SHA-pinned actions/attest and independent gh signature verification. No OIDC or write in active PR workflows. Activation, protected environment and real signature remain pending.",
       "dependencies": [
         "BR7-01",
         "BR7-02"
@@ -1410,6 +1410,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #37 Candidate PASS: 3 SDKs, 5 schema-validated SBOMs, 41 archive members, 14 XAML sources, 19 marker files, 7/7 license texts found (3 embedded + 4 pinned source), zero missing, one unconfirmed binary-source association (MicroCom), 40 hashed files. Independent verification log PASS and all four negative controls rejected; final job state pending at initial review. https://github.com/disxlab/Taktera-Design-System/actions/runs/46093427123 Trusted signing template and read-only subject preflight implemented; new CI pending."
+    },
     {
       "at": "2026-11-28",
       "message": "Run #36 23/23 PASS; 5 SBOM schemas pass, 41 archive members, 14 embedded XAML sources, 19 flagged files, no separate asset files, 3 embedded license texts + 2 pinned upstream, 2 missing texts, 37 hashed files; candidate 15241378664. https://github.com/disxlab/Taktera-Design-System/actions/runs/46092700331 Added two historical license sources and read-only independent candidate verification (BR7-04 preflight); new CI pending."
