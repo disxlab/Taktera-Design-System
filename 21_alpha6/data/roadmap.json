@@ -1234,7 +1234,7 @@
       "phase": "Beta Readiness 7",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Run #37 Candidate PASS: 3 SDKs, 5 schema-validated SBOMs, 41 archive members, 14 XAML sources, 19 marker files, 7/7 license texts found (3 embedded + 4 pinned source), zero missing, one unconfirmed binary-source association (MicroCom), 40 hashed files. Independent verification log PASS and all four negative controls rejected; final job state pending at initial review. https://github.com/disxlab/Taktera-Design-System/actions/runs/46093427123 Added exact eight-subject attestation preflight, read-only reusable CI and inactive owner-approved main-only signing workflow template with SHA-pinned actions/attest and independent gh signature verification. No OIDC or write in active PR workflows. Activation, protected environment and real signature remain pending.",
+      "description": "Run #38 FINAL 24/24 PASS; eight-subject attestation preflight PASS, independent download verifies 40 files, 41 archive members, 5 SBOMs and 4 negative controls; candidate 15241709397, independent verification 15242915608. https://github.com/disxlab/Taktera-Design-System/actions/runs/46093859272 Real signature remains inactive; owner approval and trusted main workflow required.",
       "dependencies": [
         "BR7-01",
         "BR7-02"
@@ -1251,8 +1251,8 @@
       "title": "Private npm / NuGet Registry",
       "phase": "Beta Readiness 7",
       "priority": "P0",
-      "status": "planned",
-      "description": "Owner-approved private destination, scoped access, authenticated clean restore and denied unauthorized access; immutable versions. No publishing without approval.",
+      "status": "in_progress",
+      "description": "Provider-neutral fail-closed policy (no destination configured), read-only authenticated loopback protocol fixture for exact canonical SDK archives, actual pinned npm pack / NuGet restore with isolated caches and explicit package-source mapping, anonymous/wrong credentials/unknown package/write denial checks. Fresh CI pending. Real HTTPS provider, immutable storage, authenticated clean apps and unauthorized negative tests on that provider, signed provenance, license and owner publication approval remain mandatory. npm private flag retained; no real credentials or publishing.",
       "dependencies": [
         "BR7-03",
         "BR7-04"
@@ -1410,6 +1410,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #38 FINAL 24/24 PASS; eight-subject attestation preflight PASS, independent download verifies 40 files, 41 archive members, 5 SBOMs and 4 negative controls; candidate 15241709397, independent verification 15242915608. https://github.com/disxlab/Taktera-Design-System/actions/runs/46093859272 Added BR7-05 read-only registry protocol fixture and unconfigured policy; new CI pending."
+    },
     {
       "at": "2026-11-28",
       "message": "Run #37 Candidate PASS: 3 SDKs, 5 schema-validated SBOMs, 41 archive members, 14 XAML sources, 19 marker files, 7/7 license texts found (3 embedded + 4 pinned source), zero missing, one unconfirmed binary-source association (MicroCom), 40 hashed files. Independent verification log PASS and all four negative controls rejected; final job state pending at initial review. https://github.com/disxlab/Taktera-Design-System/actions/runs/46093427123 Trusted signing template and read-only subject preflight implemented; new CI pending."
