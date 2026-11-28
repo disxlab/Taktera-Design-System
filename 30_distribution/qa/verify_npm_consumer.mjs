@@ -36,7 +36,8 @@ try{
  npm(['install','--package-lock-only','--ignore-scripts','--no-audit','--no-fund'],consumer);
  npm(['ci','--no-audit','--no-fund'],consumer);
  check('independent clean npm install',true);
- run(process.execPath,['node_modules/typescript/bin/tsc','-p','tsconfig.json'],consumer);check('strict public TypeScript consumer',true);
+ run('npm',['run','build'],consumer);check('strict public TypeScript consumer',true);
+ check('starter transport runtime staged byte-for-byte',(await readFile(join(consumer,'dist/synthetic-transport.mjs'))).equals(await readFile(join(consumer,'synthetic-transport.mjs'))));
  const req=createRequire(join(consumer,'package.json')),React=req('react'),{renderToString}=req('react-dom/server'),{App}=await import(pathToFileURL(join(consumer,'dist/App.js')).href);
  const markup=renderToString(React.createElement(App));check('installed package SSR',markup.includes('Taktera reference workspace')&&markup.includes('Synthetic Alice'));
  const bundle=await req('esbuild').build({entryPoints:[join(consumer,'client.tsx')],bundle:true,write:false,platform:'browser',format:'iife',jsx:'automatic',define:{'process.env.NODE_ENV':'"production"'}});

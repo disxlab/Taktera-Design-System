@@ -52,11 +52,11 @@ def init(target,packages,output):
                 def version(n):return lock['packages']['node_modules/'+n]['version']
                 deps.update({n:version(n) for n in ('react','react-dom')})
                 dev={n:version(n) for n in ('typescript','@types/react','@types/react-dom','esbuild')}
-                for file in ('App.tsx','client.tsx','tsconfig.json','LocalizedTransport.tsx','synthetic-transport.d.mts'):
+                for file in ('App.tsx','client.tsx','tsconfig.json','LocalizedTransport.tsx','synthetic-transport.d.mts','build.mjs'):
                     shutil.copy2(ROOT/'reference-react'/file,stage/file)
                 shutil.copy2(ROOT/'acceptance/transport/synthetic-transport.mjs',stage/'synthetic-transport.mjs')
                 shutil.copy2(ROOT/'templates/react/serve.mjs',stage/'serve.mjs')
-                scripts={'build':'tsc -p tsconfig.json','start':'node serve.mjs'}
+                scripts={'build':'node build.mjs','start':'node serve.mjs'}
                 quick='npm install --package-lock-only\nnpm ci\nnpm run build\nnpm start'
             else:
                 for file in ('index.html','app.js','serve.mjs'):
