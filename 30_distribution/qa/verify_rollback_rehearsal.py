@@ -88,21 +88,45 @@ def consumers(feed,work,expected,env):
     tree=ET.parse(config)
     mapping=tree.find("./packageSourceMapping/packageSource[@key='nuget.org']")
     for child in list(mapping): mapping.remove(child)
-    for name in sorted(read(feed.parent/"historical-lock.json")["dependencies"]["net10.0"]):
-        ET.SubElement(mapping,"package",pattern=name)
+    historical_assets=read(feed.parent/"historical-consumer-assets.json")
+    public={}
+    for identity,entry in historical_assets["libraries"].items():
+        if entry["type"]!="package":
+            continue
+        name,version=identity.rsplit("/",1)
+        if name.lower()=="taktera.ui.avalonia":
+            continue
+        require(not name.lower().startswith("taktera.") and "*" not in name,"Unexpected historical dependency")
+        public[name.lower()]={"name":name,"version":version,"sha512":entry["sha512"]}
+    require(public,"Missing historical consumer dependency graph")
+    for entry in sorted(public.values(),key=lambda x:x["name"].lower()):
+        ET.SubElement(mapping,"package",pattern=entry["name"])
     tree.write(config,encoding="utf-8",xml_declaration=True)
     proj=native/"Taktera.Reference.csproj"
     require(not ET.parse(proj).findall(".//ProjectReference"),"Non-independent native consumer")
     run(["dotnet","restore",str(proj),"--configfile",str(config),"-p:NuGetAudit=true","-p:NuGetAuditMode=all",
          "-warnaserror:NU1900,NU1903,NU1904,NU1905"],native,env)
     run(["dotnet","build",str(proj),"-c","Release","--no-restore","--disable-build-servers","-warnaserror"],native,env)
+    assets=read(native/"obj/project.assets.json")
+    restored_public=set()
+    for identity,entry in assets["libraries"].items():
+        if entry["type"]!="package":
+            continue
+        name,version=identity.rsplit("/",1)
+        if name.lower()==item["name"].lower():
+            continue
+        key=name.lower()
+        require(key in public and public[key]["version"]==version and public[key]["sha512"]==entry["sha512"],
+                "Restored dependency differs from historical consumer: "+identity)
+        restored_public.add(key)
+    require(restored_public==set(public),"Historical consumer dependency set differs")
     restored=Path(env["NUGET_PACKAGES"])/item["name"].lower()/item["version"].lower()
     package=restored/(item["name"].lower()+"."+item["version"].lower()+".nupkg")
     require(sha(package.read_bytes())==expected[archive.name],"Restored NuGet package differs")
     require((restored/"lib/net10.0/Taktera.UI.Avalonia.dll").read_bytes()==archive_files(archive)["lib/net10.0/Taktera.UI.Avalonia.dll"],
             "Restored NuGet assembly differs")
     return ["fresh-react-install","npm-lock-and-installed-bytes","react-typescript-build","react-ssr",
-            "fresh-avalonia-restore","nuget-archive-and-dll-bytes","avalonia-release-build"]
+            "fresh-avalonia-restore","nuget-archive-and-dll-bytes","historical-native-dependency-graph","avalonia-release-build"]
 
 def main(candidate,canonical,historical,historical_canonical,preflight,out):
     source=subprocess.check_output(["git","rev-parse","HEAD"],text=True).strip()
@@ -121,7 +145,7 @@ def main(candidate,canonical,historical,historical_canonical,preflight,out):
     with tempfile.TemporaryDirectory(prefix="taktera-rollback-") as temp:
         work=Path(temp)
         shutil.copyfile(ROOT/"global.json",work/"global.json")
-        shutil.copyfile(historical_canonical/"packages.lock.json",work/"historical-lock.json")
+        shutil.copyfile(historical/"evidence/nuget-windows/consumer-project.assets.json",work/"historical-consumer-assets.json")
         env=dict(os.environ,NPM_CONFIG_CACHE=str(work/"npm-cache"),NUGET_PACKAGES=str(work/"nuget-cache"),
                  NUGET_HTTP_CACHE_PATH=str(work/"nuget-http"),DOTNET_CLI_HOME=str(work/"dotnet-home"),
                  DOTNET_CLI_TELEMETRY_OPTOUT="1",AVALONIA_TELEMETRY_OPTOUT="1",MSBUILDDISABLENODEREUSE="1")
