@@ -1200,7 +1200,7 @@
       "phase": "Beta Readiness 7",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Implemented product-scoped CycloneDX 1.6 and SPDX 2.3, archive-member hashes and resolved npm reference peer/NuGet library restore graph; 14 XAML source hashes, explicit unresolved license review. Structural checks included; official schema validation, embedded/inline attribution completeness and new CI pending.",
+      "description": "Implemented product-scoped CycloneDX 1.6 and SPDX 2.3, archive-member hashes and resolved npm reference peer/NuGet library restore graph; 14 XAML source hashes, explicit unresolved license review. Structural checks included; official schema validation, embedded/inline attribution completeness and new CI pending. Added mandatory five-document Draft 7 validation with four official schema SHA-256 pins, locally resolved schema references, schema validation evidence; CI pending.",
       "dependencies": [
         "BR7-01"
       ],
@@ -1216,8 +1216,8 @@
       "title": "Third-Party Notices",
       "phase": "Beta Readiness 7",
       "priority": "P0",
-      "status": "planned",
-      "description": "Collect verified license texts and attribution for redistributable assets and dependencies; fail on unresolved obligations and require owner license approval. Preliminary third-party review JSON generated with declared metadata and NOASSERTION conclusions; verified notices and license texts still pending.",
+      "status": "in_progress",
+      "description": "Implemented exact npm tarball integrity verification and locked NuGet cache license evidence, raw embedded license/notice texts and review-only THIRD-PARTY-NOTICES draft. Missing texts, asset attribution and owner license approval remain open; CI pending.",
       "dependencies": [
         "BR7-02"
       ],
@@ -1410,6 +1410,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #33 independent locked-build agreement PASS; final candidate status pending at initial verification. Added official pinned schema validation and dependency license evidence / draft notices; new CI pending. https://github.com/disxlab/Taktera-Design-System/actions/runs/46090391495"
+    },
     {
       "at": "2026-11-28",
       "message": "Run #32 23/23 PASS, four clean builds on two runner jobs, exact three canonical packages, Windows/macOS each canonical consumer 19/19 and 5/5 headless, candidate artifact 15240697879. https://github.com/disxlab/Taktera-Design-System/actions/runs/46089799082 Exact CI lock committed; initial product SBOM generator added. New CI pending."
