@@ -562,8 +562,14 @@ jobs:
           path: historical-canonical
           merge-multiple: true
       - run: python 30_distribution/qa/verify_rollback_rehearsal.py candidate-download canonical-download historical-candidate historical-canonical release-plan rollback-evidence
+      - run: python 30_distribution/qa/verify_version_policy.py candidate-download canonical-download historical-candidate historical-canonical release-plan version-evidence
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:
           name: rollback-rehearsal-evidence
           path: rollback-evidence
+          if-no-files-found: error
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: version-policy-evidence
+          path: version-evidence
           if-no-files-found: error

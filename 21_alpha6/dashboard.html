@@ -1327,8 +1327,8 @@
       "title": "Versioning & Compatibility Policy",
       "phase": "Beta Readiness 7",
       "priority": "P1",
-      "status": "planned",
-      "description": "Align npm/NuGet release version policy, API baseline and breaking-change review; no version promotion without approval.",
+      "status": "in_progress",
+      "description": "Prepared provider-neutral coordinated SemVer policy (proposed beta/rc/stable versions; no version edits), archive identity/version validation, historical npm declaration/manifest contract and native XML documentation member/dependency comparison, same-version different-byte detection, ten negative controls, no promotion or publication. Native ABI and semantic review/owner approval remain pending. New CI required.",
       "dependencies": [
         "BR6-01"
       ],
@@ -1411,6 +1411,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "BR7-09 version and compatibility preflight prepared. Run #42 recovery still pending at initial review; retain running CI."
+    },
     {
       "at": "2026-11-28",
       "message": "Run #41 FINAL 26/26 PASS, committed-match for all six Python wheels, pip check PASS, release preflight PASS and eleven negative controls rejected; publicationAllowed=false, artifact 15243779215. https://github.com/disxlab/Taktera-Design-System/actions/runs/46098015946 Activate historical recovery rehearsal on draft branch, not production."

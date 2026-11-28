@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "status": "proposal-awaiting-owner-approval",
+  "productMajor": 4,
+  "releaseSeries": "4.0.0",
+  "publicationEnabled": false,
+  "packageIds": {
+    "npm:@taktera/ui-core": "4.0.0-alpha.5",
+    "npm:@taktera/ui-react": "4.0.0-beta-readiness.3",
+    "nuget:taktera.ui.avalonia": "4.0.0-beta-readiness.3"
+  },
+  "candidateIdentity": "source SHA + run ID + attempt + archive SHA-256; never registry version alone",
+  "targetVersions": {
+    "beta": "4.0.0-beta.1",
+    "rc": "4.0.0-rc.1",
+    "stable": "4.0.0"
+  },
+  "requirements": [
+    "Single coordinated release version across all three packages at promotion",
+    "Version immutable after publication; no build metadata as a collision workaround",
+    "Review public API changes, migration and peer/framework compatibility before promotion",
+    "Rebuild and rerun all gates for every changed package identity",
+    "Owner approval and signed release evidence before publication"
+  ]
+}
