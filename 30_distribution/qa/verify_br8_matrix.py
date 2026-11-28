@@ -14,11 +14,12 @@ SYSTEMS=("windows","macos")
 SCENARIOS={(p,t) for p in ("platform","clinic","beauty","spa","fitness","travel") for t in ("light","dark")}
 BASE_CHECKS={"exact Node","exact npm","original consumer lock","lock unchanged after npm ci","strict TypeScript build from packages",
              "all 12 scenarios completed","all 12 registry axe scans","no detected axe violations"}
+BASE_CHECKS.update({"standalone Web canonical archive","standalone Web exact lock","standalone Web installed identity"})
 BASE_CHECKS.update(p+" "+label for p in ("@taktera/ui-core","@taktera/ui-react") for label in ("canonical archive","exact npm integrity","installed identity"))
 SCENARIO_CHECKS=("product/theme","registry filtering","scheduler booking","CRM host save","analytics export available","notification state","Web Core callback","synthetic state reset","no browser errors","no external requests","separate audit document state","audit no browser errors","audit no external requests")
 TRANSPORT_CHECKS=("initial","locale","validation","accessible error","unavailable","retry","idempotent replay","competing write","conflict","reload current","draft reloaded","resolved save")
 OPERATIONS_CHECKS=("locale","initial booking","week mode","timezone","scheduler conflict","scheduler applied","analytics complete","invalid period retained","incomplete export denied","table mode","day details","csv exact bytes")
-EXPECTED_CHECKS=BASE_CHECKS|{p+"/"+t+" "+label for p,t in SCENARIOS for label in SCENARIO_CHECKS}|{p+"/"+t+" "+locale+" transport "+label for p,t in SCENARIOS for locale in ("en","ru") for label in TRANSPORT_CHECKS}|{p+"/"+t+" "+locale+" operations "+label for p,t in SCENARIOS for locale in ("en","ru") for label in OPERATIONS_CHECKS}
+EXPECTED_CHECKS=BASE_CHECKS|{p+"/"+t+" "+label for p,t in SCENARIOS for label in SCENARIO_CHECKS}|{p+"/"+t+" "+locale+" transport "+label for p,t in SCENARIOS for locale in ("en","ru") for label in TRANSPORT_CHECKS}|{p+"/"+t+" "+locale+" operations "+label for p,t in SCENARIOS for locale in ("en","ru") for label in OPERATIONS_CHECKS}|{p+"/"+t+" "+locale+" web transport "+label for p,t in SCENARIOS for locale in ("en","ru") for label in TRANSPORT_CHECKS}|{p+"/"+t+" standalone Web "+label for p,t in SCENARIOS for label in ("product/theme","no browser errors","no external requests")}
 
 def identity(record,actual,dossier_sha):
     for key in ("sourceCommit","githubRunId","githubRunAttempt","candidateManifestSha256"):
@@ -80,7 +81,7 @@ def main(candidate,canonical,dossier,download,out):
     result={**{k:actual[k] for k in ("sourceCommit","githubRunId","githubRunAttempt","candidateManifestSha256","canonicalPackages")},
             "status":"automated-matrix-passed","dossierSha256":digest,"browser":browser,"native":native,"evidenceSha256":evidence,
             "publicationAllowed":False,"ownerApproved":False,"signed":False,"manualAcceptance":"pending",
-            "localizationTransportAcceptance":"localized-react-host-transport-scheduler-analytics-automated-only","scope":"English package-only browser workflows and registry axe; RU/EN host transport, scheduler single-record updates and analytics CSV; native headless RU/EN host labels; not full BR8/BR9, production, native graphical or WCAG certification"}
+            "localizationTransportAcceptance":"localized-react-and-web-host-transport-scheduler-analytics-automated-only","scope":"English package-only browser workflows and registry axe; RU/EN host transport, scheduler single-record updates and analytics CSV; native headless RU/EN host labels; not full BR8/BR9, production, native graphical or WCAG certification"}
     (out/"acceptance-summary.json").write_text(json.dumps(result,indent=2,sort_keys=True)+"\n",encoding="utf-8")
     print(json.dumps({"br8Acceptance":result},sort_keys=True))
 

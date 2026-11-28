@@ -21,6 +21,14 @@ def main(candidate,canonical,dossier_dir,out):
     for item in inventory:
         p=safe_path(out,item["file"])
         require(sha(p.read_bytes())==item["sha256"]==actual["canonicalPackages"][p.name],"Vendor digest mismatch")
+    web=out.with_name(out.name+"-web")
+    require(not web.exists(),"Refusing existing standalone Web consumer")
+    subprocess.run([sys.executable,str(ROOT/"30_distribution/taktera.py"),"init","web","--packages",str(canonical.resolve()),"--output",str(web)],cwd=ROOT,check=True)
+    web_inventory=read(web/"package-inventory.json")
+    require(len(web_inventory)==1 and web_inventory[0]["name"]=="@taktera/ui-core","Unexpected standalone dependencies")
+    item=web_inventory[0]
+    p=safe_path(web,item["file"])
+    require(sha(p.read_bytes())==item["sha256"]==actual["canonicalPackages"][p.name],"Standalone Core archive mismatch")
     lock=safe_path(candidate,"evidence/npm/consumer-package-lock.json")
     shutil.copyfile(lock,out/"package-lock.json")
     report={"sourceCommit":source,"githubRunId":actual["githubRunId"],"githubRunAttempt":actual["githubRunAttempt"],

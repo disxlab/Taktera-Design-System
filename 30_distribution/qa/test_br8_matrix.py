@@ -37,6 +37,7 @@ class EvidenceTests(unittest.TestCase):
             ("extra space in transport name",lambda r:next(c for c in r["checks"] if " en transport locale" in c["name"]).update(name="beauty/dark en transport  locale")),
             ("duplicate check",lambda r:r["checks"].__setitem__(0,copy.deepcopy(r["checks"][1]))),
             ("missing localized CSV",lambda r:r["checks"].__setitem__(next(i for i,c in enumerate(r["checks"]) if c["name"].endswith("ru operations csv exact bytes")),{"name":"unrelated","ok":True})),
+            ("missing standalone transport",lambda r:r["checks"].__setitem__(next(i for i,c in enumerate(r["checks"]) if c["name"].endswith("ru web transport retry")),{"name":"unrelated","ok":True})),
             ("failed check",lambda r:r["checks"][0].update(ok=False)),
             ("errors",lambda r:r.update(errors=["crash"]))):
             with self.subTest(label=label):

@@ -61,6 +61,7 @@ def init(target,packages,output):
             else:
                 for file in ('index.html','app.js','serve.mjs'):
                     shutil.copy2(ROOT/'templates/web'/file,stage/file)
+                shutil.copy2(ROOT/'acceptance/transport/synthetic-transport.mjs',stage/'synthetic-transport.mjs')
                 scripts={'start':'node serve.mjs'}
                 quick='npm install --package-lock-only\nnpm ci\nnpm start'
             (stage/'package.json').write_text(json.dumps({'name':'taktera-starter','version':'0.0.0','private':True,'type':'module','dependencies':deps,'devDependencies':dev,'scripts':scripts},indent=2)+'\n',encoding='utf-8')

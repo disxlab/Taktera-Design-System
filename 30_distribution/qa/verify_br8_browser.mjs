@@ -35,10 +35,11 @@ assert.equal(externalNetwork('http://127.0.0.1:43211/',probe),true);
 assert.equal(externalNetwork('wss://example.invalid/',probe),true);
 await mkdir(out,{recursive:true});
 function check(name,ok){assert.equal(name,name.trim().replace(/\s+/g,' '),'Noncanonical check name: '+JSON.stringify(name));assert.ok(!report.checks.some(c=>c.name===name),'Duplicate check name: '+name);report.checks.push({name,ok:Boolean(ok)});assert.ok(ok,name);}
-function run(command,args){const p=spawnSync(command,args,{cwd:host,encoding:'utf8',maxBuffer:16*1024*1024,env:{...process.env,NPM_CONFIG_CACHE:join(host,'.npm-cache')}});if(p.error||p.status!==0)throw Error(command+' failed: '+String(p.error??'')+'\n'+p.stdout+'\n'+p.stderr);return p.stdout.trim();}
-let child,browser;
-async function start(){
- child=spawn(process.execPath,['serve.mjs'],{cwd:host,env:{...process.env,PORT:'0'},stdio:['ignore','pipe','pipe']});
+function run(command,args,cwd=host){const p=spawnSync(command,args,{cwd,encoding:'utf8',maxBuffer:16*1024*1024,env:{...process.env,NPM_CONFIG_CACHE:join(cwd,'.npm-cache')}});if(p.error||p.status!==0)throw Error(command+' failed: '+String(p.error??'')+'\n'+p.stdout+'\n'+p.stderr);return p.stdout.trim();}
+let child,browser;const servers=[];
+async function start(cwd=host){
+ child=spawn(process.execPath,['serve.mjs'],{cwd,env:{...process.env,PORT:'0'},stdio:['ignore','pipe','pipe']});
+ servers.push(child);
  return new Promise((ok,fail)=>{let output='';const timer=setTimeout(()=>fail(Error('Reference server timeout: '+output)),30000);
  child.stdout.on('data',buf=>{output+=buf;const m=output.match(/http:\/\/127\.0\.0\.1:(\d+)/);if(m){clearTimeout(timer);ok(m[0]);}});
  child.stderr.on('data',buf=>{output+=buf;});child.once('error',e=>{clearTimeout(timer);fail(e);});
@@ -151,12 +152,12 @@ async function localizedOperations(page,name){
  }
 }
 
-async function localizedTransport(page,name){
- await page.getByRole('tab',{name:'Transport',exact:true}).click();
+async function localizedTransport(page,name,standalone=false){
+ if(!standalone)await page.getByRole('tab',{name:'Transport',exact:true}).click();
  for(const locale of ['en','ru']){
-  const l=transportLabels[locale],prefix=name+' '+locale+' transport ';
-  await page.getByLabel('Language / Язык',{exact:true}).selectOption(locale);
-  const region=page.getByRole('region',{name:l.region,exact:true});
+  const l=transportLabels[locale],prefix=name+' '+locale+(standalone?' web transport ':' transport ');
+  await page.getByLabel(standalone?'Web language / Язык':'Language / Язык',{exact:true}).selectOption(locale);
+  const region=page.getByRole('region',{name:standalone?(locale==='ru'?'Web синтетический транспорт':'Web synthetic transport'):l.region,exact:true});
   const field=region.getByRole('textbox',{name:l.name,exact:true});
   const button=label=>region.getByRole('button',{name:label,exact:true});
   const record=region.getByTestId('transport-record'),version=region.getByTestId('transport-version'),status=region.getByTestId('transport-status');
@@ -178,6 +179,40 @@ async function localizedTransport(page,name){
   await button(l.reload).click();await state('reload current','idle',l.idle,l.external,'3');
   check(prefix+'draft reloaded',await field.inputValue()===l.external);
   await field.fill(l.finalName);await button(l.save).click();await state('resolved save','applied',l.applied,l.finalName,'4');
+ }
+}
+
+
+async function standaloneWeb(){
+ const web=host+'-web';
+ const inventory=await read(join(web,'package-inventory.json'));
+ assert.equal(inventory.length,1);
+ const item=inventory[0],archive=await readFile(join(web,item.file));
+ check('standalone Web canonical archive',item.name==='@taktera/ui-core'&&hash(archive)===input.canonicalPackages[item.file.split('/').at(-1)]);
+ run('npm',['install','--package-lock-only','--ignore-scripts','--no-audit','--no-fund','--offline'],web);
+ run('npm',['ci','--ignore-scripts','--no-audit','--no-fund','--offline'],web);
+ const lock=await read(join(web,'package-lock.json'));
+ check('standalone Web exact lock',Object.keys(lock.packages).sort().join('|')==='|node_modules/@taktera/ui-core'&&lock.packages['node_modules/@taktera/ui-core'].integrity==='sha512-'+createHash('sha512').update(archive).digest('base64'));
+ const meta=await read(join(web,'node_modules/@taktera/ui-core/package.json'));
+ check('standalone Web installed identity',meta.name===item.name&&meta.version===item.version);
+ const url=await start(web);
+ for(const product of products)for(const theme of themes){
+  const name=product+'/'+theme,errors=[],external=[];
+  const context=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce',serviceWorkers:'block'});
+  try{
+   await guardContext(context,url,external);
+   const page=await context.newPage();
+   page.on('pageerror',e=>errors.push(String(e)));page.on('crash',()=>errors.push('page crashed'));
+   page.on('console',m=>{if(m.type()==='error'&&!m.text().includes('404'))errors.push(m.text());});
+   await page.goto(url);await page.waitForFunction(()=>document.documentElement.dataset.webHydrated==='yes');
+   await page.getByLabel('Web product',{exact:true}).selectOption(product);
+   await page.getByLabel('Web theme',{exact:true}).selectOption(theme);
+   const root=page.locator('#root');
+   check(name+' standalone Web product/theme',await root.getAttribute('data-product')===product&&await root.getAttribute('data-theme')===theme);
+   await localizedTransport(page,name,true);
+   check(name+' standalone Web no browser errors',errors.length===0);
+   check(name+' standalone Web no external requests',external.length===0);
+  }finally{await context.close();}
  }
 }
 
@@ -248,13 +283,14 @@ try{
   try{await auditRegistry(browser,url,product,theme);}
   catch(e){report.errors.push(product+'/'+theme+' [separate axe document]: '+String(e));}
  }
+ await standaloneWeb();
  check('all 12 scenarios completed',report.scenarios.length===12&&report.scenarios.every(x=>x.status==='passed'));
  check('all 12 registry axe scans',report.axe.length===12);
  check('no detected axe violations',report.axe.every(x=>x.violations.length===0));
 }catch(e){report.errors.push(String(e));}
 finally{
  if(browser)await browser.close();
- if(child&&child.exitCode===null&&child.signalCode===null){await new Promise(ok=>{child.once('exit',ok);if(!child.kill()||child.exitCode!==null||child.signalCode!==null)ok();});}
+ for(const server of servers)if(server.exitCode===null&&server.signalCode===null){await new Promise(ok=>{server.once('exit',ok);if(!server.kill()||server.exitCode!==null||server.signalCode!==null)ok();});}
  report.status=report.errors.length?'failed':'passed';
  await writeFile(join(out,'canonical-browser-acceptance.json'),JSON.stringify(report,null,2)+'\n');
  console.log(JSON.stringify({canonicalBrowserAcceptance:{engine,status:report.status,checks:report.checks.length,passed:report.checks.filter(x=>x.ok).length,scenarios:report.scenarios.length,axeScans:report.axe.length,violations:report.axe.reduce((n,x)=>n+x.violations.length,0),errors:report.errors}}));
