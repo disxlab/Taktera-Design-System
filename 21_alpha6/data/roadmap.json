@@ -1270,7 +1270,7 @@
       "phase": "Beta Readiness 7",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Run #40 static policy PASS (66 active and 14 template pins, 41 npm / 4 NuGet lock dependencies, 17/17 tests); Candidate job PASS, six actual validator wheel hashes observed, pip check PASS, artifact 15243339848. https://github.com/disxlab/Taktera-Design-System/actions/runs/46097626668 Exact wheel lock recovered from real CI logs and committed. Fetch only pinned HTTPS wheel URLs, verify SHA-256 before install plus PyPI metadata, require committed lock and run-bound evidence; fresh CI pending. Broader audit/real release controls remain open.",
+      "description": "Run #41 FINAL 26/26 PASS, committed-match for all six Python wheels, pip check PASS, release preflight PASS and eleven negative controls rejected; publicationAllowed=false, artifact 15243779215. https://github.com/disxlab/Taktera-Design-System/actions/runs/46098015946 Static guard, action and dependency pins, mandatory wheel lock confirmed. Broader security review, trusted environment and real release controls remain open.",
       "dependencies": [
         "BR7-02",
         "BR7-04"
@@ -1288,7 +1288,7 @@
       "phase": "Beta Readiness 7",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Read-only release plan preflight independently verifies same-run candidate, attestation subjects, exact registry check set, wheel lock and evidence source/run/attempt. Eleven negative controls; explicit publicationAllowed=false with blockers; no executable publication path. Fresh CI pending. Actual approved release workflow, signature, licenses, real private registry and manual acceptance remain required.",
+      "description": "Run #41 FINAL 26/26 PASS, committed-match for all six Python wheels, pip check PASS, release preflight PASS and eleven negative controls rejected; publicationAllowed=false, artifact 15243779215. https://github.com/disxlab/Taktera-Design-System/actions/runs/46098015946 Read-only release plan verified; no executable publish mode, owner approval/signature/licensing/actual registry/manual acceptance remain required.",
       "dependencies": [
         "BR7-01",
         "BR7-03",
@@ -1309,7 +1309,7 @@
       "phase": "Beta Readiness 7",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Historical unsigned candidate Run #39 recovery rehearsal with pinned run/artifact IDs, source and package/manifest hashes, local atomic snapshot pointer, current/historical exact byte validation, fresh React and Avalonia package-only consumers, same-version/different-byte collision detection and five failure controls. No overwrite, production rollback or publication. Historical artifact availability and new CI remain mandatory; real approved immutable version, provider and staging recovery are not yet available.",
+      "description": "Historical unsigned candidate Run #39 recovery rehearsal with pinned run/artifact IDs, source and package/manifest hashes, local atomic snapshot pointer, current/historical exact byte validation, fresh React and Avalonia package-only consumers, same-version/different-byte collision detection and five failure controls. No overwrite, production rollback or publication. Historical artifact availability and new CI remain mandatory; real approved immutable version, provider and staging recovery are not yet available. Previous gate Run #41 now confirmed; recovery uses historical full native consumer graph. Fresh recovery CI pending.",
       "dependencies": [
         "BR7-05",
         "BR7-07"
@@ -1410,6 +1410,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #41 FINAL 26/26 PASS, committed-match for all six Python wheels, pip check PASS, release preflight PASS and eleven negative controls rejected; publicationAllowed=false, artifact 15243779215. https://github.com/disxlab/Taktera-Design-System/actions/runs/46098015946 Activate historical recovery rehearsal on draft branch, not production."
+    },
     {
       "at": "2026-11-28",
       "message": "BR7-08 historical recovery rehearsal implemented using exact Run #39 evidence. Run #41 final status pending at initial review; do not push until successful."
