@@ -19,6 +19,20 @@ assert.equal(input.githubRunAttempt,process.env.GITHUB_RUN_ATTEMPT);
 assert.equal(input.publicationAllowed,false);
 const report={...input,engine,scope:'Canonical npm package-only reference workspace, English synthetic data; not production/native Safari or complete accessibility acceptance',checks:[],axe:[],errors:[],scenarios:[],publicationAllowed:false};
 const products=['platform','clinic','beauty','spa','fitness','travel'],themes=['light','dark'];
+// Intercept external network requests only, not local resources or axe's internal
+// about:blank/data/blob documents. Keep the independent request observation.
+function externalNetwork(target,origin){
+ const u=new URL(target);
+ return ['http:','https:','ws:','wss:'].includes(u.protocol)&&u.origin!==origin;
+}
+const probe='http://127.0.0.1:43210';
+assert.equal(externalNetwork(probe+'/app.js',probe),false);
+assert.equal(externalNetwork('about:blank',probe),false);
+assert.equal(externalNetwork('data:text/html,test',probe),false);
+assert.equal(externalNetwork('blob:'+probe+'/test',probe),false);
+assert.equal(externalNetwork('https://example.invalid/',probe),true);
+assert.equal(externalNetwork('http://127.0.0.1:43211/',probe),true);
+assert.equal(externalNetwork('wss://example.invalid/',probe),true);
 await mkdir(out,{recursive:true});
 function check(name,ok){report.checks.push({name,ok:Boolean(ok)});assert.ok(ok,name);}
 function run(command,args){const p=spawnSync(command,args,{cwd:host,encoding:'utf8',maxBuffer:16*1024*1024,env:{...process.env,NPM_CONFIG_CACHE:join(host,'.npm-cache')}});if(p.error||p.status!==0)throw Error(command+' failed: '+String(p.error??'')+'\n'+p.stdout+'\n'+p.stderr);return p.stdout.trim();}
@@ -49,13 +63,17 @@ try{
  const url=await start();browser=await playwright[engine].launch();
  for(const product of products)for(const theme of themes){
   const name=product+'/'+theme,errors=[],external=[];
-  const context=await browser.newContext({viewport:{width:1440,height:1000}});
+  let phase='context';
+  const context=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce',serviceWorkers:'block'});
   try{
-   await context.route('**/*',route=>{const target=new URL(route.request().url());if(target.origin!==url){external.push(target.origin);return route.abort();}return route.continue();});
+   await context.route(target=>externalNetwork(target,url),route=>route.abort());
+   context.on('request',req=>{if(externalNetwork(req.url(),url))external.push(new URL(req.url()).origin);});
+   await context.routeWebSocket('**/*',ws=>{external.push('websocket:'+new URL(ws.url()).origin);ws.close();});
    const page=await context.newPage();
+   page.on('crash',()=>errors.push('page crashed at '+phase));
    page.on('pageerror',e=>errors.push(String(e)));
    page.on('console',m=>{if(m.type()==='error'&&!m.text().includes('404'))errors.push(m.text());});
-   await page.goto(url);await page.waitForFunction(()=>document.documentElement.dataset.referenceHydrated==='yes');
+   phase='navigation/hydration';await page.goto(url);await page.waitForFunction(()=>document.documentElement.dataset.referenceHydrated==='yes');
    await page.getByLabel('Product',{exact:true}).selectOption(product);
    await page.getByLabel('Theme',{exact:true}).selectOption(theme);
    const app=page.locator('#root .tku-root');
@@ -64,9 +82,17 @@ try{
    await grid.getByRole('textbox',{name:'Search registry'}).fill('Bob');
    check(name+' registry filtering',await grid.getByText('Synthetic Bob',{exact:true}).count()===1&&await grid.getByText('Synthetic Alice',{exact:true}).count()===0);
    await grid.getByRole('textbox',{name:'Search registry'}).fill('');
-   await page.addScriptTag({path:axePath});
-   const scan=await page.evaluate(async()=>window.axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']}}));
-   report.axe.push({product,theme,page:'registry',violations:scan.violations.map(x=>({id:x.id,impact:x.impact,nodes:x.nodes.map(n=>({target:n.target,summary:n.failureSummary}))})),incomplete:scan.incomplete.map(x=>({id:x.id,nodes:x.nodes.map(n=>n.target)}))});
+   phase='axe injection';await page.addScriptTag({path:axePath});
+   phase='axe scan';
+   // Match the passing source-browser harness: project the actual scan result
+   // in the page instead of serializing the entire axe result across CDP/Juggler.
+   const scan=await page.evaluate(async()=>{
+    const x=await window.axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']}});
+    return {violations:x.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))})),
+            incomplete:x.incomplete.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)}))};
+   });
+   report.axe.push({product,theme,page:'registry',...scan});
+   phase='workflow interactions';
    await page.getByRole('tab',{name:'Schedule',exact:true}).click();
    check(name+' scheduler booking',await page.getByText('Synthetic visit',{exact:true}).first().isVisible());
    await page.getByRole('tab',{name:'CRM',exact:true}).click();
@@ -88,7 +114,7 @@ try{
    check(name+' no browser errors',errors.length===0);
    check(name+' no external requests',external.length===0);
    report.scenarios.push({product,theme,status:'passed'});
-  }catch(e){report.scenarios.push({product,theme,status:'failed'});report.errors.push(name+': '+String(e));}
+  }catch(e){report.scenarios.push({product,theme,status:'failed',phase,errors,external});report.errors.push(name+' ['+phase+']: '+String(e));}
   finally{await context.close();}
  }
  check('all 12 scenarios completed',report.scenarios.length===12&&report.scenarios.every(x=>x.status==='passed'));

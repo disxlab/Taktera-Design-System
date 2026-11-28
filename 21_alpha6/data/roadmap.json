@@ -1168,7 +1168,7 @@
       "phase": "Beta Readiness 5",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Package-only reference consumers, six product variants, RU/EN, light/dark, synthetic transport, agreed performance budgets, keyboard/manual accessibility and security boundaries. No real Taktera Platform connection. Run #28 package gates PASS; expanded acceptance pending. BR8 canonical browser acceptance matrix implemented: same-run canonical archives and dossier, exact consumer lock, 3 browsers x 6 products x 2 themes, registry axe, workflow callbacks and synthetic state isolation. New CI pending.",
+      "description": "Package-only reference consumers, six product variants, RU/EN, light/dark, synthetic transport, agreed performance budgets, keyboard/manual accessibility and security boundaries. No real Taktera Platform connection. Run #28 package gates PASS; expanded acceptance pending. BR8 canonical browser acceptance matrix implemented: same-run canonical archives and dossier, exact consumer lock, 3 browsers x 6 products x 2 themes, registry axe, workflow callbacks and synthetic state isolation. New CI pending. Run #45 FINAL failure; first-page API shows 29 successes, Firefox failure, Chromium 134/134, 12 scenarios/12 axe scans, zero violations. Firefox 35/36 reported checks, 12 page crashes in axe evaluation, zero completed axe scans; full WebKit job outside first-page API, artifact exists but conclusion unverified. https://github.com/disxlab/Taktera-Design-System/actions/runs/46110955155 Firefox harness repair pending CI.",
       "dependencies": [
         "BR5-02",
         "BR5-03",
@@ -1420,7 +1420,7 @@
       "phase": "Beta Readiness 8",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Three browsers, 12 product/theme scenarios each, exact canonical npm archives, locked package-only React host, English synthetic workflows, registry axe and request isolation. Fresh CI pending.",
+      "description": "Run #45 FINAL failure; first-page API shows 29 successes, Firefox failure, Chromium 134/134, 12 scenarios/12 axe scans, zero violations. Firefox 35/36 reported checks, 12 page crashes in axe evaluation, zero completed axe scans; full WebKit job outside first-page API, artifact exists but conclusion unverified. https://github.com/disxlab/Taktera-Design-System/actions/runs/46110955155 Patch: external-only network interception, explicit WebSocket denial, no service workers, reduced motion, in-page axe result projection matching passing source harness, per-phase crash diagnostics and browser debug logs. Preserve all 12 scenarios, tags and violation gates; root cause hypothesis not yet confirmed; fresh CI required.",
       "dependencies": [
         "BR7-09",
         "BR7-10",
@@ -1491,6 +1491,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #45 FINAL failure; first-page API shows 29 successes, Firefox failure, Chromium 134/134, 12 scenarios/12 axe scans, zero violations. Firefox 35/36 reported checks, 12 page crashes in axe evaluation, zero completed axe scans; full WebKit job outside first-page API, artifact exists but conclusion unverified. https://github.com/disxlab/Taktera-Design-System/actions/runs/46110955155 BR8 harness diagnostic fix; no SDK/brand changes or weakened acceptance."
+    },
     {
       "at": "2026-11-28",
       "message": "Run #44 FINAL 28/28 PASS; JSON-stable native contracts fixed Run #43, 5 regression tests, 10 version negative controls, zero checked API differences, 7 dossier negative controls, four draft documentation files. Version artifact 15245761539, dossier 15245493735, rollback 15245991122. https://github.com/disxlab/Taktera-Design-System/actions/runs/46101649794 BR8/BR9 explicit acceptance work items and first canonical browser matrix implemented; new CI pending."

@@ -654,6 +654,8 @@ jobs:
           path: release-documentation
       - run: python 30_distribution/qa/prepare_br8_consumer.py candidate-download canonical-download release-documentation "${RUNNER_TEMP}/taktera-br8"
       - run: node 30_distribution/qa/verify_br8_browser.mjs ${{ matrix.engine }} "${RUNNER_TEMP}/taktera-br8" br8-evidence
+        env:
+          DEBUG: pw:browser
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: always()
         with:
