@@ -471,3 +471,43 @@ jobs:
           name: registry-fixture-verification
           path: registry-verification
           if-no-files-found: error
+
+  release-preflight:
+    name: BR7 fail-closed release plan (no publish)
+    needs: [static, release-evidence, candidate-verification, registry-fixture, canonical]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: taktera-candidate-release-evidence
+          path: candidate-download
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: canonical-packages
+          path: canonical-download
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: candidate-independent-verification
+          path: verification
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: registry-fixture-verification
+          path: registry-verification
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: validator-wheel-lock-evidence
+          path: validator-lock-evidence
+      - run: python 30_distribution/qa/release_preflight.py candidate-download canonical-download verification registry-verification validator-lock-evidence release-plan
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: release-preflight-evidence
+          path: release-plan
+          if-no-files-found: error

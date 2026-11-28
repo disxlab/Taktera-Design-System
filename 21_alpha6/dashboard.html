@@ -1271,7 +1271,7 @@
       "phase": "Beta Readiness 7",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Pinned six active Actions identities and reviewed attest commit (seven total) by official repository SHA. Static guard of current workflow subset, exact lock integrity/source policies, no PR write/secrets, explicit checkout credential policy, hardened registry configuration and 17 regression controls. Validator wheels downloaded only as binaries, SHA-256 cross-checked with PyPI metadata, installed offline in isolated venv via --require-hashes. First CI observes lock; committed wheel hash allowlist still pending. Actual CI pending; not a complete security certification. Real provider and trusted signing activation remain open.",
+      "description": "Run #40 static policy PASS (66 active and 14 template pins, 41 npm / 4 NuGet lock dependencies, 17/17 tests); Candidate job PASS, six actual validator wheel hashes observed, pip check PASS, artifact 15243339848. https://github.com/disxlab/Taktera-Design-System/actions/runs/46097626668 Exact wheel lock recovered from real CI logs and committed. Fetch only pinned HTTPS wheel URLs, verify SHA-256 before install plus PyPI metadata, require committed lock and run-bound evidence; fresh CI pending. Broader audit/real release controls remain open.",
       "dependencies": [
         "BR7-02",
         "BR7-04"
@@ -1288,8 +1288,8 @@
       "title": "Release Automation",
       "phase": "Beta Readiness 7",
       "priority": "P0",
-      "status": "planned",
-      "description": "Fail-closed release approval, candidate manifest and exact package hash verification, approved release identity, no automatic publication from PR.",
+      "status": "in_progress",
+      "description": "Read-only release plan preflight independently verifies same-run candidate, attestation subjects, exact registry check set, wheel lock and evidence source/run/attempt. Eleven negative controls; explicit publicationAllowed=false with blockers; no executable publication path. Fresh CI pending. Actual approved release workflow, signature, licenses, real private registry and manual acceptance remain required.",
       "dependencies": [
         "BR7-01",
         "BR7-03",
@@ -1411,6 +1411,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #40 static policy PASS (66 active and 14 template pins, 41 npm / 4 NuGet lock dependencies, 17/17 tests); Candidate job PASS, six actual validator wheel hashes observed, pip check PASS, artifact 15243339848. https://github.com/disxlab/Taktera-Design-System/actions/runs/46097626668 Committed observed wheel hashes and implemented release preflight; final Run #40 pending at initial review, fresh CI required."
+    },
     {
       "at": "2026-11-28",
       "message": "Run #39 FINAL 25/25 PASS; registry fixture 31/31 PASS, npm CLI exact two archives, NuGet exact archive and private/public source mapping, negative auth/write checks; registry artifact 15242503754, candidate 15243307004. https://github.com/disxlab/Taktera-Design-System/actions/runs/46094888319 BR7-06 action pins, static policy controls, wheel integrity evidence and negative tests implemented; fresh CI pending."

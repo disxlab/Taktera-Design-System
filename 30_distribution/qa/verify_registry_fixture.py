@@ -227,7 +227,7 @@ def main(candidate,canonical,out):
         check("fixture has no write implementation",stats["writesDenied"]==6)
     finally:
         s.shutdown();s.server_close();t.join(timeout=5)
-    report={"status":"passed","sourceCommit":source,"githubRunId":verified["githubRunId"],
+    report={"status":"passed","sourceCommit":source,"githubRunId":verified["githubRunId"],"githubRunAttempt":verified["githubRunAttempt"],
             "candidateManifestSha256":verified["candidateManifestSha256"],"canonicalPackages":expected,
             "checks":checks,"requestCounts":stats,"scope":"isolated loopback read-only protocol fixture; npm pack and NuGet restore",
             "realRegistryTested":False,"registryPublished":False,"signed":False,"licenseReview":"pending"}
