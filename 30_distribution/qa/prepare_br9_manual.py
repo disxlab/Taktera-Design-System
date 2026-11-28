@@ -2,6 +2,7 @@
 """Generate a run-bound NOT RUN manual acceptance checklist; never grant approval."""
 import argparse
 import json
+from datetime import date
 from pathlib import Path
 from verify_candidate_download import read,require,sha,safe_path
 PRODUCTS=("platform","clinic","beauty","spa","fitness","travel")
@@ -49,8 +50,14 @@ def verify_manual(summary_path,record_path,evidence_root):
         key=r["id"]
         require(key in expected and key not in seen,"Missing, duplicate or unknown manual case")
         seen.add(key)
+        require(all(r.get(k)==v for k,v in expected[key].items()),"Manual case metadata mismatch: "+key)
         require(r["status"]=="PASS" and all(isinstance(r[k],str) and r[k].strip() for k in ("tester","date","environment","notes")),"Incomplete manual case: "+key)
+        try:
+            require(date.fromisoformat(r["date"]).isoformat()==r["date"],"Invalid evidence date: "+key)
+        except ValueError as exc:
+            raise ValueError("Invalid evidence date: "+key) from exc
         require(isinstance(r["evidence"],list) and r["evidence"],"Missing evidence: "+key)
+        require(len({e["file"] for e in r["evidence"]})==len(r["evidence"]),"Duplicate evidence path: "+key)
         for e in r["evidence"]:
             p=safe_path(evidence_root,e["file"])
             require(sha(p.read_bytes())==e["sha256"],"Manual evidence digest mismatch: "+key)

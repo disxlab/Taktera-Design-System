@@ -3,6 +3,7 @@
 import argparse
 import json
 import math
+import statistics
 import os
 import subprocess
 from pathlib import Path
@@ -19,7 +20,7 @@ BASE_CHECKS.update({"all 72 localized axe scans","no detected localized axe viol
 BASE_CHECKS.update({"standalone Web canonical archive","standalone Web exact lock","standalone Web installed identity"})
 BASE_CHECKS.update(p+" "+label for p in ("@taktera/ui-core","@taktera/ui-react") for label in ("canonical archive","exact npm integrity","installed identity"))
 SCENARIO_CHECKS=("product/theme","registry filtering","scheduler booking","CRM host save","analytics export available","notification state","Web Core callback","synthetic state reset","no browser errors","no external requests","separate audit document state","audit no browser errors","audit no external requests")
-TRANSPORT_CHECKS=("initial","locale","validation","accessible error","unavailable","retry","idempotent replay","competing write","conflict","reload current","draft reloaded","resolved save","literal markup saved","markup stays inert")
+TRANSPORT_CHECKS=("initial","locale","validation","accessible error","unavailable","retry","idempotent replay","competing write","conflict","reload current","draft reloaded","resolved save","literal markup saved","markup stays inert","keyboard focus forward","keyboard focus reverse","keyboard save","event attribute inert")
 OPERATIONS_CHECKS=("locale","initial booking","week mode","timezone","scheduler conflict","scheduler applied","analytics complete","invalid period retained","incomplete export denied","table mode","day details","csv exact bytes","local overlap blocked","scheduler create","scheduler cancellation","atomic series create","series occurrences visible")
 EXPECTED_CHECKS=BASE_CHECKS|{p+"/"+t+" "+label for p,t in SCENARIOS for label in SCENARIO_CHECKS}|{p+"/"+t+" "+locale+" transport "+label for p,t in SCENARIOS for locale in ("en","ru") for label in TRANSPORT_CHECKS}|{p+"/"+t+" "+locale+" operations "+label for p,t in SCENARIOS for locale in ("en","ru") for label in OPERATIONS_CHECKS}|{p+"/"+t+" "+locale+" web transport "+label for p,t in SCENARIOS for locale in ("en","ru") for label in TRANSPORT_CHECKS}|{p+"/"+t+" standalone Web "+label for p,t in SCENARIOS for label in ("product/theme","no browser errors","no external requests")}|{p+"/"+t+" "+locale+" "+surface+" audit "+label for p,t in SCENARIOS for locale in ("en","ru") for surface in ("transport","operations","web") for label in ("state","no browser errors","no external requests")}
 
@@ -38,7 +39,7 @@ def performance_report(record):
         require(all(type(v) in (int,float) and math.isfinite(v) and v>0 for v in values),"Invalid performance sample: "+metric)
         p95=values[math.ceil(.95*len(values))-1]
         require(p95<=limit,"Provisional performance smoke budget exceeded: "+metric)
-        result[metric]={"samples":len(values),"p95Ms":p95,"maxMs":values[-1],"provisionalLimitMs":limit}
+        result[metric]={"samples":len(values),"p50Ms":statistics.median(values),"p95Ms":p95,"maxMs":values[-1],"provisionalLimitMs":limit}
     return result
 
 def identity(record,actual,dossier_sha):

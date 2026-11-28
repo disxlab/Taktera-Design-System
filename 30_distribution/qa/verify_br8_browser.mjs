@@ -212,6 +212,16 @@ async function localizedTransport(page,name,standalone=false){
   const marker='<b data-taktera-probe="yes">Synthetic</b>';
   await field.fill(marker);await button(l.save).click();await state('literal markup saved','applied',l.applied,marker,'5');
   check(prefix+'markup stays inert',await record.textContent()===marker&&await region.locator('[data-taktera-probe]').count()===0);
+  await field.focus();
+  await page.keyboard.press('Tab');
+  const forward=await page.evaluate(()=>document.activeElement?.outerHTML??'');
+  check(prefix+'keyboard focus forward',forward.length>0&&!(await field.evaluate(e=>document.activeElement===e)));
+  await page.keyboard.press('Shift+Tab');
+  check(prefix+'keyboard focus reverse',await field.evaluate(e=>document.activeElement===e));
+  const eventProbe='<img src=x onerror="window.__takteraProbe=1">';
+  await field.fill(eventProbe);await button(l.save).focus();await page.keyboard.press('Enter');
+  await state('keyboard save','applied',l.applied,eventProbe,'6');
+  check(prefix+'event attribute inert',await record.textContent()===eventProbe&&await region.locator('img[onerror]').count()===0&&await page.evaluate(()=>window.__takteraProbe===undefined));
  }
 }
 

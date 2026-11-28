@@ -28,6 +28,9 @@ class ManualEvidenceTests(unittest.TestCase):
             record.write_text(json.dumps(good))
             with contextlib.redirect_stdout(io.StringIO()):verify_manual(summary,record,p)
             for label,change in (
+                ("wrong metadata",lambda r:r["records"][0].update(surface="other")),
+                ("invalid date",lambda r:r["records"][0].update(date="yesterday")),
+                ("duplicate evidence",lambda r:r["records"][0]["evidence"].append(r["records"][0]["evidence"][0])),
                 ("missing case",lambda r:r["records"].pop()),
                 ("duplicate",lambda r:r["records"].append(r["records"][0])),
                 ("failed",lambda r:r["records"][0].update(status="FAIL")),

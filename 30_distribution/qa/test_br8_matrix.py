@@ -22,6 +22,7 @@ class EvidenceTests(unittest.TestCase):
     def native_ok(self,r):return native_report(r,"windows",self.actual,self.digest)
     def test_valid(self):
         self.assertEqual(self.browser_ok(self.browser)["axeScans"],12)
+        self.assertEqual(self.browser_ok(self.browser)["performance"]["reactSaveMs"]["p50Ms"],10)
         self.assertEqual(self.native_ok(self.native)["tests"],29)
     def test_browser_negatives(self):
         for label,mutate in (
@@ -41,6 +42,8 @@ class EvidenceTests(unittest.TestCase):
             ("missing localized CSV",lambda r:r["checks"].__setitem__(next(i for i,c in enumerate(r["checks"]) if c["name"].endswith("ru operations csv exact bytes")),{"name":"unrelated","ok":True})),
             ("missing standalone transport",lambda r:r["checks"].__setitem__(next(i for i,c in enumerate(r["checks"]) if c["name"].endswith("ru web transport retry")),{"name":"unrelated","ok":True})),
             ("missing series",lambda r:r["checks"].__setitem__(next(i for i,c in enumerate(r["checks"]) if c["name"].endswith("ru operations atomic series create")),{"name":"unrelated","ok":True})),
+            ("missing keyboard check",lambda r:r["checks"].pop(next(i for i,c in enumerate(r["checks"]) if c["name"].endswith("keyboard save")))),
+            ("boolean perf",lambda r:r["performance"]["webSaveMs"][0].update(ms=True)),
             ("missing perf sample",lambda r:r["performance"]["reactSaveMs"].pop()),
             ("slow perf",lambda r:[v.update(ms=99999) for v in r["performance"]["webNavigationMs"]]),
             ("nonfinite perf",lambda r:r["performance"]["webSaveMs"][0].update(ms=float("nan"))),
