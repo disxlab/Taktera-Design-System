@@ -13,9 +13,10 @@ class EvidenceTests(unittest.TestCase):
                       "scenarios":[{"product":p,"theme":t,"status":"passed"} for p,t in sorted(SCENARIOS)],
                       "axe":[{"product":p,"theme":t,"page":"registry","violations":[],"incomplete":[]} for p,t in sorted(SCENARIOS)],
                       "checks":[{"name":n,"ok":True} for n in sorted(EXPECTED_CHECKS)]}
+        self.browser["performance"]={k:[{"product":p,"theme":t,"ms":10,**({"locale":l} if l else {})} for p,t in sorted(SCENARIOS) for l in (("en","ru") if k.endswith("SaveMs") else ("",))] for k in ("reactNavigationMs","webNavigationMs","reactSaveMs","webSaveMs")}
         self.native={**identity,"os":"windows","dependencyGraphMatch":True,
                      "package":{"name":"Taktera.UI.Avalonia.4.0.0.nupkg","sha256":"c"*64},
-                     "scenarios":{n:"Passed" for n in MATRIX_TESTS},"totalTests":len(MATRIX_TESTS|BASELINE_TESTS)}
+                     "scenarios":{n:"Passed" for n in MATRIX_TESTS},"totalTests":len(MATRIX_TESTS|BASELINE_TESTS),"performance":{"cleanConsumerWallSeconds":30}}
     def browser_ok(self,r):return browser_report(r,"firefox",self.actual,self.digest,self.lock)
     def native_ok(self,r):return native_report(r,"windows",self.actual,self.digest)
     def test_valid(self):
@@ -39,6 +40,9 @@ class EvidenceTests(unittest.TestCase):
             ("missing localized CSV",lambda r:r["checks"].__setitem__(next(i for i,c in enumerate(r["checks"]) if c["name"].endswith("ru operations csv exact bytes")),{"name":"unrelated","ok":True})),
             ("missing standalone transport",lambda r:r["checks"].__setitem__(next(i for i,c in enumerate(r["checks"]) if c["name"].endswith("ru web transport retry")),{"name":"unrelated","ok":True})),
             ("missing series",lambda r:r["checks"].__setitem__(next(i for i,c in enumerate(r["checks"]) if c["name"].endswith("ru operations atomic series create")),{"name":"unrelated","ok":True})),
+            ("missing perf sample",lambda r:r["performance"]["reactSaveMs"].pop()),
+            ("slow perf",lambda r:[v.update(ms=99999) for v in r["performance"]["webNavigationMs"]]),
+            ("nonfinite perf",lambda r:r["performance"]["webSaveMs"][0].update(ms=float("nan"))),
             ("failed check",lambda r:r["checks"][0].update(ok=False)),
             ("errors",lambda r:r.update(errors=["crash"]))):
             with self.subTest(label=label):
@@ -51,6 +55,7 @@ class EvidenceTests(unittest.TestCase):
             ("bad graph",lambda r:r.update(dependencyGraphMatch=False)),
             ("wrong package",lambda r:r["package"].update(sha256="0"*64)),
             ("missing test",lambda r:r["scenarios"].pop(next(iter(r["scenarios"])))),
+            ("slow native",lambda r:r["performance"].update(cleanConsumerWallSeconds=901)),
             ("false count",lambda r:r.update(totalTests=28))):
             with self.subTest(label=label):
                 record=copy.deepcopy(self.native);mutate(record)

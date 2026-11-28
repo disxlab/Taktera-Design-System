@@ -739,6 +739,7 @@ jobs:
           path: br8-download
           merge-multiple: false
       - run: python 30_distribution/qa/verify_br8_matrix.py candidate-download canonical-download release-documentation br8-download br8-summary
+      - run: python 30_distribution/qa/prepare_br9_manual.py br8-summary/acceptance-summary.json br8-summary/manual-acceptance.template.json
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:
           name: br8-acceptance-summary

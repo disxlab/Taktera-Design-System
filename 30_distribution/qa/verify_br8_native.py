@@ -6,6 +6,7 @@ import os
 import platform
 import subprocess
 import sys
+import time
 import xml.etree.ElementTree as ET
 from pathlib import Path
 from verify_candidate_download import verify, require, read, sha, safe_path
@@ -42,7 +43,9 @@ def main(candidate,canonical,dossier,out):
     os_name={"Windows":"windows","Darwin":"macos"}.get(platform.system())
     require(os_name is not None,"Unsupported native acceptance OS")
     env=dict(os.environ,TAKTERA_CANONICAL_INPUT=str(canonical.resolve()),TAKTERA_BR8_NATIVE="1")
+    started=time.monotonic()
     subprocess.run([sys.executable,str(ROOT/"30_distribution/qa/verify_nuget_consumer.py")],cwd=ROOT,env=env,check=True)
+    elapsed=time.monotonic()-started
     results=ROOT/"30_distribution/qa/results/nuget"
     report=read(results/"report.json")
     require(report["errors"]==[] and report["mode"]=="canonical" and report["canonicalSource"]==source
@@ -58,6 +61,7 @@ def main(candidate,canonical,dossier,out):
             "githubRunAttempt":actual["githubRunAttempt"],"candidateManifestSha256":actual["candidateManifestSha256"],
             "dossierSha256":sha(dpath.read_bytes()),"os":os_name,"package":pkg,
             "scenarios":cases,"totalTests":tests_count,"dependencyGraphMatch":True,"publicationAllowed":False,
+            "performance":{"cleanConsumerWallSeconds":elapsed,"scope":"Restore, build and headless test wall time on CI; not native UI latency"},
             "scope":"Headless package-only palette, local host localization and interaction tests; not graphical desktop, actual pointer input, accessibility or production acceptance"}
     (out/"native-acceptance.json").write_text(json.dumps(result,indent=2,sort_keys=True)+"\n",encoding="utf-8")
     print(json.dumps({"nativeAcceptance":{"status":"passed","os":os_name,"scenarios":len(cases),"tests":tests_count,"dependencyGraphMatch":True}}))

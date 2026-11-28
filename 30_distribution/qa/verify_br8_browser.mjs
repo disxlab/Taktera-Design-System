@@ -17,7 +17,7 @@ assert.equal(input.sourceCommit,process.env.GITHUB_SHA);
 assert.equal(input.githubRunId,process.env.GITHUB_RUN_ID);
 assert.equal(input.githubRunAttempt,process.env.GITHUB_RUN_ATTEMPT);
 assert.equal(input.publicationAllowed,false);
-const report={...input,engine,scope:'Canonical npm package-only reference workspace, English SDK workflows plus RU/EN host-owned synthetic transport; not production/native Safari or complete accessibility acceptance',checks:[],axe:[],errors:[],scenarios:[],publicationAllowed:false};
+const report={...input,engine,scope:'Canonical npm package-only reference workspace, English SDK workflows plus RU/EN host-owned synthetic transport; not production/native Safari or complete accessibility acceptance',checks:[],axe:[],errors:[],scenarios:[],performance:{method:'runner wall-clock, fresh context, local loopback; not production SLA',reactNavigationMs:[],webNavigationMs:[],reactSaveMs:[],webSaveMs:[]},publicationAllowed:false};
 const products=['platform','clinic','beauty','spa','fitness','travel'],themes=['light','dark'];
 // Intercept external network requests only, not local resources or axe's internal
 // about:blank/data/blob documents. Keep the independent request observation.
@@ -206,7 +206,12 @@ async function localizedTransport(page,name,standalone=false){
   await field.fill(l.finalName);await button(l.save).click();await state('conflict','conflict',l.conflict,l.external,'3');
   await button(l.reload).click();await state('reload current','idle',l.idle,l.external,'3');
   check(prefix+'draft reloaded',await field.inputValue()===l.external);
-  await field.fill(l.finalName);await button(l.save).click();await state('resolved save','applied',l.applied,l.finalName,'4');
+  await field.fill(l.finalName);const saveStarted=performance.now();await button(l.save).click();await state('resolved save','applied',l.applied,l.finalName,'4');
+  const [product,theme]=name.split('/');
+  report.performance[standalone?'webSaveMs':'reactSaveMs'].push({product,theme,locale,ms:performance.now()-saveStarted});
+  const marker='<b data-taktera-probe="yes">Synthetic</b>';
+  await field.fill(marker);await button(l.save).click();await state('literal markup saved','applied',l.applied,marker,'5');
+  check(prefix+'markup stays inert',await record.textContent()===marker&&await region.locator('[data-taktera-probe]').count()===0);
  }
 }
 
@@ -232,7 +237,8 @@ async function standaloneWeb(){
    const page=await context.newPage();
    page.on('pageerror',e=>errors.push(String(e)));page.on('crash',()=>errors.push('page crashed'));
    page.on('console',m=>{if(m.type()==='error'&&!m.text().includes('404'))errors.push(m.text());});
-   await page.goto(url);await page.waitForFunction(()=>document.documentElement.dataset.webHydrated==='yes');
+   const navigationStarted=performance.now();await page.goto(url);await page.waitForFunction(()=>document.documentElement.dataset.webHydrated==='yes');
+   report.performance.webNavigationMs.push({product,theme,ms:performance.now()-navigationStarted});
    await page.getByLabel('Web product',{exact:true}).selectOption(product);
    await page.getByLabel('Web theme',{exact:true}).selectOption(theme);
    const root=page.locator('#root');
@@ -271,7 +277,8 @@ try{
    page.on('crash',()=>errors.push('page crashed at '+phase));
    page.on('pageerror',e=>errors.push(String(e)));
    page.on('console',m=>{if(m.type()==='error'&&!m.text().includes('404'))errors.push(m.text());});
-   phase='navigation/hydration';await page.goto(url);await page.waitForFunction(()=>document.documentElement.dataset.referenceHydrated==='yes');
+   phase='navigation/hydration';const navigationStarted=performance.now();await page.goto(url);await page.waitForFunction(()=>document.documentElement.dataset.referenceHydrated==='yes');
+   report.performance.reactNavigationMs.push({product,theme,ms:performance.now()-navigationStarted});
    await page.getByLabel('Product',{exact:true}).selectOption(product);
    await page.getByLabel('Theme',{exact:true}).selectOption(theme);
    const app=page.locator('#root .tku-root');
