@@ -82,16 +82,6 @@ try{
    await grid.getByRole('textbox',{name:'Search registry'}).fill('Bob');
    check(name+' registry filtering',await grid.getByText('Synthetic Bob',{exact:true}).count()===1&&await grid.getByText('Synthetic Alice',{exact:true}).count()===0);
    await grid.getByRole('textbox',{name:'Search registry'}).fill('');
-   phase='axe injection';await page.addScriptTag({path:axePath});
-   phase='axe scan';
-   // Match the passing source-browser harness: project the actual scan result
-   // in the page instead of serializing the entire axe result across CDP/Juggler.
-   const scan=await page.evaluate(async()=>{
-    const x=await window.axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']}});
-    return {violations:x.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))})),
-            incomplete:x.incomplete.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)}))};
-   });
-   report.axe.push({product,theme,page:'registry',...scan});
    phase='workflow interactions';
    await page.getByRole('tab',{name:'Schedule',exact:true}).click();
    check(name+' scheduler booking',await page.getByText('Synthetic visit',{exact:true}).first().isVisible());
@@ -113,6 +103,31 @@ try{
    check(name+' synthetic state reset',await page.getByRole('heading',{name:'Synthetic Alice',exact:true}).isVisible());
    check(name+' no browser errors',errors.length===0);
    check(name+' no external requests',external.length===0);
+   phase='fresh audit page';
+   const auditPage=await context.newPage();
+   try{
+    auditPage.on('crash',()=>errors.push('audit page crashed at '+phase));
+    auditPage.on('pageerror',e=>errors.push(String(e)));
+    await auditPage.goto(url);
+    await auditPage.waitForFunction(()=>document.documentElement.dataset.referenceHydrated==='yes');
+    await auditPage.getByLabel('Product',{exact:true}).selectOption(product);
+    await auditPage.getByLabel('Theme',{exact:true}).selectOption(theme);
+    const auditRoot=auditPage.locator('#root .tku-root');
+    check(name+' audit product/theme',await auditRoot.getAttribute('data-product')===product&&await auditRoot.getAttribute('data-theme')===theme);
+    check(name+' fresh registry audit',await auditPage.getByRole('region',{name:'Reference registry',exact:true}).isVisible()&&await auditPage.getByRole('textbox',{name:'Search registry'}).inputValue()==='');
+   phase='axe injection';await auditPage.addScriptTag({path:axePath});
+   phase='axe scan';
+   // Match the passing source-browser harness: project the actual scan result
+   // in the page instead of serializing the entire axe result across CDP/Juggler.
+   const scan=await auditPage.evaluate(async()=>{
+    const x=await window.axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']}});
+    return {violations:x.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))})),
+            incomplete:x.incomplete.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)}))};
+   });
+   report.axe.push({product,theme,page:'registry',...scan});
+   }finally{await auditPage.close();}
+   check(name+' audit browser errors',errors.length===0);
+   check(name+' audit external requests',external.length===0);
    report.scenarios.push({product,theme,status:'passed'});
   }catch(e){report.scenarios.push({product,theme,status:'failed',phase,errors,external});report.errors.push(name+' ['+phase+']: '+String(e));}
   finally{await context.close();}

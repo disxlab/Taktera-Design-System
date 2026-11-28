@@ -1421,7 +1421,7 @@
       "phase": "Beta Readiness 8",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Run #45 FINAL failure; first-page API shows 29 successes, Firefox failure, Chromium 134/134, 12 scenarios/12 axe scans, zero violations. Firefox 35/36 reported checks, 12 page crashes in axe evaluation, zero completed axe scans; full WebKit job outside first-page API, artifact exists but conclusion unverified. https://github.com/disxlab/Taktera-Design-System/actions/runs/46110955155 Patch: external-only network interception, explicit WebSocket denial, no service workers, reduced motion, in-page axe result projection matching passing source harness, per-phase crash diagnostics and browser debug logs. Preserve all 12 scenarios, tags and violation gates; root cause hypothesis not yet confirmed; fresh CI required.",
+      "description": "Run #46 FINAL failure: Firefox content process SIGSEGV (11), 35/36 checks, 12 crashes during axe evaluation, 0 completed scans; Chromium job success, WebKit conclusion outside first-page API. Firefox artifact 15250825018. https://github.com/disxlab/Taktera-Design-System/actions/runs/46111723612 . Prior routing/projection patch did not resolve crash. Passing source harness uses a fresh separately hydrated audit page; apply same lifecycle to canonical consumer after workflow checks, verify audit product/theme and fresh registry, retain full document scan, tags, 12 scans, error and network gates. Root cause hypothesis remains unconfirmed; fresh CI required.",
       "dependencies": [
         "BR7-09",
         "BR7-10",
@@ -1492,6 +1492,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #46 FINAL failure: Firefox content process SIGSEGV (11), 35/36 checks, 12 crashes during axe evaluation, 0 completed scans; Chromium job success, WebKit conclusion outside first-page API. Firefox artifact 15250825018. https://github.com/disxlab/Taktera-Design-System/actions/runs/46111723612 . Prior routing/projection patch did not resolve crash. Passing source harness uses a fresh separately hydrated audit page; apply same lifecycle to canonical consumer after workflow checks, verify audit product/theme and fresh registry, retain full document scan, tags, 12 scans, error and network gates. Root cause hypothesis remains unconfirmed; fresh CI required."
+    },
     {
       "at": "2026-11-28",
       "message": "Run #45 FINAL failure; first-page API shows 29 successes, Firefox failure, Chromium 134/134, 12 scenarios/12 axe scans, zero violations. Firefox 35/36 reported checks, 12 page crashes in axe evaluation, zero completed axe scans; full WebKit job outside first-page API, artifact exists but conclusion unverified. https://github.com/disxlab/Taktera-Design-System/actions/runs/46110955155 BR8 harness diagnostic fix; no SDK/brand changes or weakened acceptance."
