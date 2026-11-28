@@ -1420,7 +1420,7 @@
       "phase": "Beta Readiness 8",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Run #45 FINAL failure; first-page API shows 29 successes, Firefox failure, Chromium 134/134, 12 scenarios/12 axe scans, zero violations. Firefox 35/36 reported checks, 12 page crashes in axe evaluation, zero completed axe scans; full WebKit job outside first-page API, artifact exists but conclusion unverified. https://github.com/disxlab/Taktera-Design-System/actions/runs/46110955155 Patch: external-only network interception, explicit WebSocket denial, no service workers, reduced motion, in-page axe result projection matching passing source harness, per-phase crash diagnostics and browser debug logs. Preserve all 12 scenarios, tags and violation gates; root cause hypothesis not yet confirmed; fresh CI required.",
+      "description": "Run #46 FINAL failure. Chromium 134/134, 12 axe scans, zero violations. Firefox 12/12 SIGSEGV crashes at axe scan, actual Playwright 1.65.1 Firefox 159.0 build 1572 axe-core 4.14.1. Upstream https://github.com/microsoft/playwright/issues/44135 documents same Firefox build ARIA reflection cross-world regression (fixed in later development builds); exact Taktera cause not yet confirmed. https://github.com/disxlab/Taktera-Design-System/actions/runs/46111723612 Separate functional and axe contexts for all 12 product/theme combinations; axe uses main-world DOM theme setup with actual state verification and no role/label locator reads, original WCAG tags and zero-violation gate preserved. Both contexts enforce network boundary. New CI pending. Native matrix prepared separately (3294cf7), not activated.",
       "dependencies": [
         "BR7-09",
         "BR7-10",
@@ -1491,6 +1491,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #46 FINAL failure. Chromium 134/134, 12 axe scans, zero violations. Firefox 12/12 SIGSEGV crashes at axe scan, actual Playwright 1.65.1 Firefox 159.0 build 1572 axe-core 4.14.1. Upstream https://github.com/microsoft/playwright/issues/44135 documents same Firefox build ARIA reflection cross-world regression (fixed in later development builds); exact Taktera cause not yet confirmed. https://github.com/disxlab/Taktera-Design-System/actions/runs/46111723612 Implement separate main-world audit documents; no dependency or SDK change."
+    },
     {
       "at": "2026-11-28",
       "message": "Run #45 FINAL failure; first-page API shows 29 successes, Firefox failure, Chromium 134/134, 12 scenarios/12 axe scans, zero violations. Firefox 35/36 reported checks, 12 page crashes in axe evaluation, zero completed axe scans; full WebKit job outside first-page API, artifact exists but conclusion unverified. https://github.com/disxlab/Taktera-Design-System/actions/runs/46110955155 BR8 harness diagnostic fix; no SDK/brand changes or weakened acceptance."
