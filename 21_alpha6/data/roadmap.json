@@ -1200,7 +1200,7 @@
       "phase": "Beta Readiness 7",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Run #34 22/23 PASS; all 5 SBOM documents passed official pinned JSON schemas. Candidate failed later at NuGet license evidence: raw archive SHA-512 sidecar incorrectly compared to lock contentHash. No Candidate artifact. https://github.com/disxlab/Taktera-Design-System/actions/runs/46090733578 Product and consumer schema validation confirmed; correct external NuGet contentHash representation to avoid implying raw archive hash. Inline/embedded attribution completeness remains open; fresh CI pending.",
+      "description": "Run #35 23/23 PASS; seven hash regression tests PASS, five official SBOM schemas PASS, 7 external components, 3 original embedded license texts, 4 missing embedded texts, candidate artifact 15241269003, 33 hashed files. https://github.com/disxlab/Taktera-Design-System/actions/runs/46091839760 Corrected native hash semantics confirmed. Product inventory covers 41 archive members, 14 source resources, 8 dependency edges. Asset attribution marker audit implemented; fresh CI and completeness review remain.",
       "dependencies": [
         "BR7-01"
       ],
@@ -1217,7 +1217,7 @@
       "phase": "Beta Readiness 7",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Run #34 22/23 PASS; all 5 SBOM documents passed official pinned JSON schemas. Candidate failed later at NuGet license evidence: raw archive SHA-512 sidecar incorrectly compared to lock contentHash. No Candidate artifact. https://github.com/disxlab/Taktera-Design-System/actions/runs/46090733578 Fix compares .nupkg.metadata contentHash to committed lock and SBOM; independently hashes actual .nupkg against .sha512; seven positive/negative controls and separate failure diagnostics. Missing texts, asset attribution and owner license approval remain open; new CI pending.",
+      "description": "Run #35 23/23 PASS; seven hash regression tests PASS, five official SBOM schemas PASS, 7 external components, 3 original embedded license texts, 4 missing embedded texts, candidate artifact 15241269003, 33 hashed files. https://github.com/disxlab/Taktera-Design-System/actions/runs/46091839760 Added pinned exact release upstream source evidence for Avalonia 11.3.22 and Avalonia.Remote.Protocol 11.3.22; package repository metadata retained, association/approval pending. BuildServices and MicroCom exact source versions not yet established. Added review of all shipped and embedded-source asset markers. Legal clearance still open; new CI pending.",
       "dependencies": [
         "BR7-02"
       ],
@@ -1410,6 +1410,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #35 23/23 PASS; seven hash regression tests PASS, five official SBOM schemas PASS, 7 external components, 3 original embedded license texts, 4 missing embedded texts, candidate artifact 15241269003, 33 hashed files. https://github.com/disxlab/Taktera-Design-System/actions/runs/46091839760 Added exact-release upstream license evidence and archive/XAML asset attribution audit, new CI pending."
+    },
     {
       "at": "2026-11-28",
       "message": "Run #34 22/23 PASS; all 5 SBOM documents passed official pinned JSON schemas. Candidate failed later at NuGet license evidence: raw archive SHA-512 sidecar incorrectly compared to lock contentHash. No Candidate artifact. https://github.com/disxlab/Taktera-Design-System/actions/runs/46090733578 Native content/raw hash distinction fixed; schema and license gate retained; new CI pending."

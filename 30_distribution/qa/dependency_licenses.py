@@ -40,10 +40,12 @@ def read_nuspec(data):
     meta=root.find("metadata")
     require(meta is not None,"Missing NuGet metadata")
     element=meta.find("license")
+    repository=meta.find("repository")
     return {"name":meta.findtext("id"),"version":meta.findtext("version"),
             "licenseType":element.get("type") if element is not None else None,
             "license":element.text if element is not None else None,
-            "licenseUrl":meta.findtext("licenseUrl"),"copyright":meta.findtext("copyright")}
+            "licenseUrl":meta.findtext("licenseUrl"),"copyright":meta.findtext("copyright"),
+            "repository":dict(repository.attrib) if repository is not None else None}
 
 def capture(out, component, archive, metadata, entries, provenance):
     slug=sha(component["ref"].encode("utf-8"))[:20]
@@ -163,6 +165,8 @@ def build(out,npm_lock,native_lock):
                 records.append(npm_evidence(out,component,npm_lock))
     require({r["ref"] for r in records}=={c["ref"] for c in external},"Missing external license evidence")
     records.sort(key=lambda r:r["ref"])
+    for record in records:
+        print(json.dumps({"licenseComponent":{"ref":record["ref"],"metadata":record["metadata"],"embeddedTexts":len(record["texts"])}},sort_keys=True))
     license_dir=out/"licenses"
     license_dir.mkdir(parents=True,exist_ok=True)
     report={"status":"pending","releaseApproval":False,"components":records,
