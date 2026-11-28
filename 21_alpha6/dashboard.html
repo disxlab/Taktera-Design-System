@@ -1328,7 +1328,7 @@
       "phase": "Beta Readiness 7",
       "priority": "P1",
       "status": "in_progress",
-      "description": "Prepared provider-neutral coordinated SemVer policy (proposed beta/rc/stable versions; no version edits), archive identity/version validation, historical npm declaration/manifest contract and native XML documentation member/dependency comparison, same-version different-byte detection, ten negative controls, no promotion or publication. Native ABI and semantic review/owner approval remain pending. New CI required. Run #42 PASS; version policy now added to active branch with SemVer precedence controls and explicit first-publication warning: beta.1 sorts below beta-readiness.3. Fresh CI pending.",
+      "description": "Run #43 FINAL 27/28; recovery and version policy PASS (8 recovery controls, 5 negative recovery controls, 10 version negative controls, zero checked API differences, version artifact 15244797422); only release documentation failed with ValueError: Version archive contracts differ. https://github.com/disxlab/Taktera-Design-System/actions/runs/46099306231 Version gate confirmed; first-publication SemVer precedence warning retained. Native ABI and owner approval remain open.",
       "dependencies": [
         "BR6-01"
       ],
@@ -1345,7 +1345,7 @@
       "phase": "Beta Readiness 7",
       "priority": "P1",
       "status": "in_progress",
-      "description": "Draft release guide, independently generated run-bound dossier/notes/checksums, exact package and report identity cross-checks, seven negative controls, explicit blockers and no approval/publication. Fresh CI pending; owner review, real signed release documentation and migration/manual acceptance remain open.",
+      "description": "Run #43 FINAL 27/28; recovery and version policy PASS (8 recovery controls, 5 negative recovery controls, 10 version negative controls, zero checked API differences, version artifact 15244797422); only release documentation failed with ValueError: Version archive contracts differ. https://github.com/disxlab/Taktera-Design-System/actions/runs/46099306231 Root cause: Python tuples in native dependency rows serialize to JSON lists, breaking strict cross-job equality. Emit native JSON arrays directly and require JSON-stable contracts. Added five regressions (three positive and two negative), no relaxed equality. Fresh CI pending; draft-only dossier.",
       "dependencies": [
         "BR7-03",
         "BR7-08",
@@ -1411,6 +1411,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #43 FINAL 27/28; recovery and version policy PASS (8 recovery controls, 5 negative recovery controls, 10 version negative controls, zero checked API differences, version artifact 15244797422); only release documentation failed with ValueError: Version archive contracts differ. https://github.com/disxlab/Taktera-Design-System/actions/runs/46099306231 Fix JSON representation and add cross-job regression tests."
+    },
     {
       "at": "2026-11-28",
       "message": "Run #42 FINAL 27/27 PASS; historical Run #39 recovered, eight consumer checks, five negative rollback controls, 20.13 s local drill, Avalonia same-version/different-bytes collision detected; rollback artifact 15244762254. https://github.com/disxlab/Taktera-Design-System/actions/runs/46098533423 Version preflight and draft release dossier automation implemented, fresh CI pending."

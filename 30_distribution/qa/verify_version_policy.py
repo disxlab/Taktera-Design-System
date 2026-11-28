@@ -74,9 +74,9 @@ def contract(path):
     docs=ET.fromstring(files["lib/net10.0/Taktera.UI.Avalonia.xml"])
     member_ids=[e.attrib["name"] for e in docs.findall("./members/member")]
     require(len(member_ids)==len(set(member_ids)),"Duplicate XML documentation member ID")
-    deps=sorted((g.get("targetFramework",""),d.get("id","").lower(),d.get("version",""))
+    deps=sorted([g.get("targetFramework",""),d.get("id","").lower(),d.get("version","")]
                 for g in m.findall("./dependencies/group") for d in g.findall("dependency"))
-    direct=sorted((d.get("id","").lower(),d.get("version","")) for d in m.findall("./dependencies/dependency"))
+    direct=sorted([d.get("id","").lower(),d.get("version","")] for d in m.findall("./dependencies/dependency"))
     return key,ver,{"documentedMemberIds":sorted(member_ids),"dependencyGroups":deps,"directDependencies":direct,
                     "assemblyName":docs.findtext("./assembly/name"),
                     "libraryPaths":sorted(n for n in files if n.startswith("lib/") and n.endswith(".dll"))}
@@ -89,6 +89,7 @@ def inventory(canonical,expected):
         key,ver,api=contract(p)
         version(ver)
         require(key not in packages,"Duplicate package identity")
+        require(json.loads(json.dumps(api))==api,"Archive API contract is not JSON-stable")
         packages[key]={"version":ver,"filename":filename,"sha256":digest,"api":api}
     return packages
 

@@ -34,6 +34,7 @@ jobs:
       - run: python 30_distribution/qa/check_portal.py
       - run: python 30_distribution/qa/check_supply_chain.py
       - run: python 30_distribution/qa/test_supply_chain.py
+      - run: python 30_distribution/qa/test_release_dossier.py
       - name: Protect approved resources against BR3 baseline
         run: git diff --exit-code 4621646e21d987b86d8c9c21662e04c94a0b4d0b HEAD -- 01_brandbook 02_logos 03_icons 04_tokens 05_typography 06_templates 14_brand_extensions 25_internal_completion/src/tokens.canonical.json
   react:
