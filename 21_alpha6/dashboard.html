@@ -1439,11 +1439,12 @@
       "title": "Native SDK independent acceptance",
       "phase": "Beta Readiness 8",
       "priority": "P0",
-      "status": "planned",
-      "description": "Expand canonical Avalonia package-only consumer acceptance for supported native OSes, product/theme coverage and manual graphical evidence.",
+      "status": "in_progress",
+      "description": "Rebased prepared native matrix onto current browser fix, 24 product/theme/host-language scenarios per Windows/macOS and five existing tests per OS; canonical archive, DLL and application dependency graph checks; strict exact named TRX results and seven evidence-parser tests (one positive, six negative). Native jobs require successful BR8 browser and release gates. Pending CI and actual graphical/accessibility acceptance.",
       "dependencies": [
         "BR7-08",
-        "BR5-07"
+        "BR5-07",
+        "BR8-01"
       ],
       "kind": "work",
       "source": "plan",
@@ -1492,6 +1493,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Prepared rebased BR8-02 canonical native matrix with strict named TRX coverage and evidence parser regressions; preserve running Run #47, no premature completion."
+    },
     {
       "at": "2026-11-28",
       "message": "Reconciled the prepared independent audit-context variant onto actual working-branch head b918b14 (parallel fresh audit-page fix). Current branch compare confirms b918b14; PR #10 metadata still reports 77e7972 and CI/status lookup returns no runs/checks for b918b14. Preserve existing parallel documentation and all gates. Functional role locators and axe scans use distinct fresh browser contexts; audit uses main-world DOM theme selection and verifies theme and both synthetic registry rows. Full WCAG tags, exactly 12 scans per engine, external request/WebSocket denial, and failure on any error remain mandatory. No SDK/brand/dependency change; root cause and effectiveness unconfirmed pending CI."

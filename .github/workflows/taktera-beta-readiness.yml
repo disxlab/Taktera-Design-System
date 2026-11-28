@@ -35,6 +35,7 @@ jobs:
       - run: python 30_distribution/qa/check_supply_chain.py
       - run: python 30_distribution/qa/test_supply_chain.py
       - run: python 30_distribution/qa/test_release_dossier.py
+      - run: python 30_distribution/qa/test_br8_native_evidence.py
       - name: Protect approved resources against BR3 baseline
         run: git diff --exit-code 4621646e21d987b86d8c9c21662e04c94a0b4d0b HEAD -- 01_brandbook 02_logos 03_icons 04_tokens 05_typography 06_templates 14_brand_extensions 25_internal_completion/src/tokens.canonical.json
   react:
@@ -661,4 +662,46 @@ jobs:
         with:
           name: br8-canonical-browser-${{ matrix.engine }}
           path: br8-evidence
+          if-no-files-found: error
+
+  br8-canonical-native:
+    name: BR8 canonical Avalonia headless acceptance (${{ matrix.os }})
+    needs: [release-documentation, canonical, release-evidence, br8-canonical-browser]
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c61a1 # v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
+        with:
+          dotnet-version: '10.0.404'
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: taktera-candidate-release-evidence
+          path: candidate-download
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: canonical-packages
+          path: canonical-download
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: release-documentation-evidence
+          path: release-documentation
+      - run: python 30_distribution/qa/verify_br8_native.py candidate-download canonical-download release-documentation br8-native-evidence
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: always()
+        with:
+          name: br8-canonical-native-${{ matrix.os }}
+          path: |
+            br8-native-evidence
+            30_distribution/qa/results/nuget
           if-no-files-found: error

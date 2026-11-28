@@ -87,6 +87,9 @@ try:
         run([sys.executable,str(ROOT/'30_distribution/taktera.py'),'init','avalonia','--packages',str(feed),'--output',str(host/'app')],ROOT,env)
         check('Avalonia CLI creates verified local package inventory',json.loads((host/'app/package-inventory.json').read_text(encoding='utf-8'))[0]['sha256']==report['package']['sha256'])
         shutil.copytree(SOURCE/'tests',host/'tests',ignore=shutil.ignore_patterns('bin','obj'))
+        if os.environ.get('TAKTERA_BR8_NATIVE')=='1':
+            check('BR8 requires canonical archive',bool(canonical_input))
+            shutil.copyfile(ROOT/'30_distribution/acceptance/native/NativeAcceptanceTests.cs',host/'tests/NativeAcceptanceTests.cs')
         app=host/'app/Taktera.Reference.csproj';tests=host/'tests/Taktera.Reference.Tests.csproj'
         check('consumer has no library project reference',not ET.parse(app).findall('.//ProjectReference'))
         for p in (app,tests):
