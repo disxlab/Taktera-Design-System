@@ -20,7 +20,7 @@ DOTNET = "10.0.404"
 NPM = "11.20.0"
 report = {"scope": "same source, same pinned toolchain, isolated worktrees and caches",
           "source": None, "toolchain": {}, "builds": [], "comparisons": [], "errors": [],
-          "nugetLockPolicy": "first restore generates lock; second uses locked mode; committed lock pending",
+          "nugetLockPolicy": "committed NuGet lock; all four restores use locked mode",
           "canonicalCrossOsConsumer": False, "passed": False}
 
 def run(args, cwd=ROOT, env=None):
@@ -96,11 +96,10 @@ def build(tree, work, lock):
     restore = ["dotnet", "restore", project, "--configfile", cfg, "--use-lock-file",
                "-p:NuGetAudit=true", "-p:NuGetAuditMode=all",
                "-warnaserror:NU1900,NU1903,NU1904,NU1905"]
-    if lock.exists() or local_lock.exists():
-        restore.append("--locked-mode")
+    if not local_lock.is_file():
+        raise RuntimeError("Committed NuGet lock is required")
+    restore.append("--locked-mode")
     run(restore, lib, env)
-    if not lock.exists():
-        shutil.copyfile(local_lock, lock)
     if local_lock.read_bytes() != lock.read_bytes():
         raise RuntimeError("NuGet lock changed between builds")
     diagnostics = work / "diagnostics"
@@ -128,6 +127,7 @@ try:
     with tempfile.TemporaryDirectory(prefix="taktera-repro-") as tmp:
         temp = Path(tmp).resolve()
         lock = temp / "packages.lock.json"
+        shutil.copyfile(ROOT / "17_packages/avalonia/library/packages.lock.json", lock)
         results = []
         for name in ("a", "b"):
             work = temp / ("build-" + name)

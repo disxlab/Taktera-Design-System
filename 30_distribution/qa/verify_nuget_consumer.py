@@ -73,7 +73,7 @@ try:
             shutil.copyfile(package,feed/name)
             report['canonicalSource']=source
         else:
-            run(['dotnet','restore',str(project),'--configfile',str(cfg),*audit],lib,env)
+            run(['dotnet','restore',str(project),'--configfile',str(cfg),'--locked-mode',*audit],lib,env)
             run(['dotnet','pack',str(project),'-c','Release','--no-restore','--disable-build-servers','-o',str(feed),'-warnaserror'],lib,env)
         package,=feed.glob('*.nupkg')
         with zipfile.ZipFile(package) as z:

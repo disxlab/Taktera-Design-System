@@ -3,6 +3,7 @@
 import argparse,base64,hashlib,json,os,re,shutil,subprocess,tarfile
 from pathlib import Path
 from urllib.parse import quote
+from product_sbom import build as build_product_sbom
 def require(ok,message):
     if not ok:raise AssertionError(message)
 def read(path):return json.loads(path.read_text(encoding='utf-8'))
@@ -94,10 +95,11 @@ def main(inp,out):
     require(len(packages)==3 and {Path(p['file']).name:p['sha256'] for p in packages}==manifest['packages'],'Candidate does not equal canonical set')
     for file in ('npm-audit.json','nuget-audit.json'):
         read(inp/'audit'/file);copy(inp/'audit'/file,out/'evidence/audit'/file)
+    product_stats=build_product_sbom(out,packages,source,read(npm/'consumer-package-lock.json'),read(canonical/'packages.lock.json'))
     write(out/'build-evidence.json',{'sourceCommit':source,'githubRunId':os.environ.get('GITHUB_RUN_ID'),'githubRunAttempt':os.environ.get('GITHUB_RUN_ATTEMPT'),'workflowRef':os.environ.get('GITHUB_WORKFLOW_REF'),'packages':packages,'apiBaseline':api['baseline'],'status':'automated candidate evidence only','signed':False,'registryPublished':False,'licenseReview':'pending','manualAndStagingAcceptance':'pending'})
     sums={p.relative_to(out).as_posix():sha(p) for p in sorted(out.rglob('*')) if p.is_file()}
     (out/'SHA256SUMS.txt').write_text(''.join(d+'  '+name+'\n' for name,d in sorted(sums.items())),encoding='utf-8')
     require(all(sha(out/name)==d for name,d in sums.items()),'Candidate evidence changed during assembly')
-    print(json.dumps({'candidatePackages':len(packages),'sbomInventories':3,'hashedFiles':len(sums),'source':source,'published':False}))
+    print(json.dumps({'candidatePackages':len(packages),'sbomInventories':5,'productInventory':product_stats,'hashedFiles':len(sums),'source':source,'published':False}))
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('input',type=Path);parser.add_argument('output',type=Path);args=parser.parse_args();main(args.input,args.output)

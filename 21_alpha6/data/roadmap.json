@@ -1182,7 +1182,7 @@
       "phase": "Beta Readiness 7",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Run #31 19/19 PASS: exact 3/3 packages, pre/post-XAML DLL byte-identical, candidate artifact 15239888971. https://github.com/disxlab/Taktera-Design-System/actions/runs/46089374458 New CI matrix: two independent jobs with two clean builds each; compare four sets and restore-generated lock; canonical NuGet tested on Windows/macOS, npm consumer archives must match canonical; one package per ID/version. CI pending. Lock source inclusion still pending.",
+      "description": "Run #32 23/23 PASS, four clean builds on two runner jobs, exact three canonical packages, Windows/macOS each canonical consumer 19/19 and 5/5 headless, candidate artifact 15240697879. https://github.com/disxlab/Taktera-Design-System/actions/runs/46089799082 Restore-generated lock recovered from CI log, exact SHA-256 bdfca6b9b1323041c51eb1c7ab85b230b89656fcd1d5ec4359acf305c330fdb3 verified and committed; all four release restores now locked from source. Fresh CI required before closing.",
       "dependencies": [
         "BR6-02",
         "BR6-03"
@@ -1199,8 +1199,8 @@
       "title": "Product SBOM — CycloneDX / SPDX",
       "phase": "Beta Readiness 7",
       "priority": "P0",
-      "status": "planned",
-      "description": "Inventory exact released archives and runtime/peer dependency closure, hashes, embedded assets and known licenses; schema and completeness checks. Consumer inventories alone insufficient.",
+      "status": "in_progress",
+      "description": "Implemented product-scoped CycloneDX 1.6 and SPDX 2.3, archive-member hashes and resolved npm reference peer/NuGet library restore graph; 14 XAML source hashes, explicit unresolved license review. Structural checks included; official schema validation, embedded/inline attribution completeness and new CI pending.",
       "dependencies": [
         "BR7-01"
       ],
@@ -1217,7 +1217,7 @@
       "phase": "Beta Readiness 7",
       "priority": "P0",
       "status": "planned",
-      "description": "Collect verified license texts and attribution for redistributable assets and dependencies; fail on unresolved obligations and require owner license approval.",
+      "description": "Collect verified license texts and attribution for redistributable assets and dependencies; fail on unresolved obligations and require owner license approval. Preliminary third-party review JSON generated with declared metadata and NOASSERTION conclusions; verified notices and license texts still pending.",
       "dependencies": [
         "BR7-02"
       ],
@@ -1410,6 +1410,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #32 23/23 PASS, four clean builds on two runner jobs, exact three canonical packages, Windows/macOS each canonical consumer 19/19 and 5/5 headless, candidate artifact 15240697879. https://github.com/disxlab/Taktera-Design-System/actions/runs/46089799082 Exact CI lock committed; initial product SBOM generator added. New CI pending."
+    },
     {
       "at": "2026-11-28",
       "message": "Run #31 19/19 PASS: exact 3/3 packages, pre/post-XAML DLL byte-identical, candidate artifact 15239888971. https://github.com/disxlab/Taktera-Design-System/actions/runs/46089374458 Four-build independent runner/canonical consumer gates implemented; CI pending."
