@@ -24,6 +24,18 @@ def version(value):
     require(not any(p.isdigit() and len(p)>1 and p[0]=="0" for p in parts),"Leading zero in prerelease")
     return int(major),int(minor),int(patch),parts,build
 
+def precedence(left,right):
+    a,b=version(left),version(right)
+    if a[:3]!=b[:3]: return (a[:3]>b[:3])-(a[:3]<b[:3])
+    x,y=a[3],b[3]
+    if not x or not y: return (not x)-(not y)
+    for p,q in zip(x,y):
+        if p==q: continue
+        if p.isdigit() and q.isdigit(): return (int(p)>int(q))-(int(p)<int(q))
+        if p.isdigit()!=q.isdigit(): return -1 if p.isdigit() else 1
+        return (p>q)-(p<q)
+    return (len(x)>len(y))-(len(x)<len(y))
+
 def promotion(versions,target,policy):
     require(target in ("beta","rc","stable"),"Unknown promotion stage")
     require(set(versions)==set(policy["packageIds"]),"Incomplete release package set")
@@ -101,6 +113,10 @@ def controls(policy,previous,current):
     deny("mixed candidate versions cannot promote",lambda:promotion(actual,"beta",policy))
     good={k:policy["targetVersions"]["beta"] for k in policy["packageIds"]}
     require(promotion(good,"beta",policy)==policy["targetVersions"]["beta"],"Valid beta promotion rejected")
+    require(precedence("4.0.0-beta.1","4.0.0-beta-readiness.3")<0,"Prerelease precedence warning lost")
+    require(precedence("4.0.0-beta.2","4.0.0-beta.10")<0,"Numeric prerelease precedence")
+    require(precedence("4.0.0-beta.1","4.0.0-rc.1")<0 and precedence("4.0.0-rc.1","4.0.0")<0,"Release stage order")
+    require(precedence("4.0.0+one","4.0.0+two")==0,"Build metadata must not affect precedence")
     bad=dict(good);bad.pop(next(iter(bad)))
     deny("incomplete promotion",lambda:promotion(bad,"beta",policy))
     bad=dict(good);bad[next(iter(bad))]+="+build.2"
@@ -139,6 +155,7 @@ def main(candidate,canonical,historical,historical_canonical,preflight,out):
             "apiContracts":{k:v["api"] for k,v in after.items()},"apiDifferences":diffs,
             "sameVersionDifferentBytes":collisions,"negativeControls":negative,
             "promotionAllowed":False,"publicationAllowed":False,"signed":False,
+            "versionPrecedenceWarning":"4.0.0-beta.1 sorts below 4.0.0-beta-readiness.3; first publication only, not an upgrade from that version.",
             "limitations":["Native XML member IDs and dependencies are not complete CLR ABI or behavioral compatibility.",
                            "Strict npm declaration equality does not establish semantic compatibility.",
                            "Historical candidate is not an approved published baseline.",

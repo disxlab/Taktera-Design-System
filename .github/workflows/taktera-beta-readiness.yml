@@ -573,3 +573,43 @@ jobs:
           name: version-policy-evidence
           path: version-evidence
           if-no-files-found: error
+
+  release-documentation:
+    name: BR7 run-bound release documentation (no publish)
+    needs: [rollback-rehearsal, release-preflight, canonical]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: taktera-candidate-release-evidence
+          path: candidate-download
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: canonical-packages
+          path: canonical-download
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: release-preflight-evidence
+          path: release-plan
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: rollback-rehearsal-evidence
+          path: rollback-evidence
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: version-policy-evidence
+          path: version-evidence
+      - run: python 30_distribution/qa/generate_release_dossier.py candidate-download canonical-download release-plan rollback-evidence version-evidence release-documentation
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: release-documentation-evidence
+          path: release-documentation
+          if-no-files-found: error
