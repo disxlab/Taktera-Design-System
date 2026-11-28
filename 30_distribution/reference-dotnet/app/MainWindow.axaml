@@ -4,7 +4,7 @@
   <StackPanel Margin="32" Spacing="14">
     <TextBlock Text="Taktera Clinic" FontSize="24" FontWeight="Bold" Foreground="{DynamicResource TkAccentTextBrush}"/>
     <TextBlock Text="Packaged Taktera UI · synthetic reference consumer"/>
-    <TextBox Classes="tku-field" Watermark="Название услуги" Width="360" HorizontalAlignment="Left"/>
+    <TextBox x:Name="ServiceNameField" Classes="tku-field" Watermark="Название услуги" Width="360" HorizontalAlignment="Left"/>
     <ComboBox Classes="tku-field" Width="240" HorizontalAlignment="Left" SelectedIndex="0">
       <ComboBoxItem Content="Консультация"/><ComboBoxItem Content="Повторный приём"/>
     </ComboBox>

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Headless;
@@ -93,6 +94,9 @@ public class NativeAcceptanceTests
         Assert.True(palette.TryGetResource(key, null, out var value), key);
         return Assert.IsAssignableFrom<ISolidColorBrush>(value).Color;
     }
+    private static TextBox ServiceField(IEnumerable<TextBox> fields) =>
+        Assert.Single(fields, field => field.Name == "ServiceNameField");
+
     private static void Exercise(TakteraProduct product, TakteraTheme theme, string locale)
     {
         var uri = TakteraResources.Palette(product, theme);
@@ -103,7 +107,12 @@ public class NativeAcceptanceTests
         try
         {
             window.Show();
-            var field = Assert.Single(window.GetVisualDescendants().OfType<TextBox>());
+            var textBoxes = window.GetVisualDescendants().OfType<TextBox>().ToArray();
+            var field = ServiceField(textBoxes);
+            Assert.Same(window.FindControl<TextBox>("ServiceNameField"), field);
+            Assert.Contains("tku-field", field.Classes);
+            // Regression: a template-owned or unrelated TextBox must not be selected.
+            Assert.Same(field, ServiceField(textBoxes.Prepend(new TextBox { Name = "UnrelatedField" })));
             var combo = Assert.Single(window.GetVisualDescendants().OfType<ComboBox>());
             var checkbox = Assert.Single(window.GetVisualDescendants().OfType<CheckBox>());
             var buttons = window.GetVisualDescendants().OfType<Button>().ToArray();
