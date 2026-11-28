@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {ResourceScheduler,AdvancedAnalyticsDashboard,Select,validateDraft} from '@taktera/ui-react';
+import {ResourceScheduler,AdvancedAnalyticsDashboard,Select,validateDraft,validateSeries} from '@taktera/ui-react';
 import type {SchedulerBooking,SchedulerResource,SchedulerTransport} from '@taktera/ui-react';
 const labels={
  en:{scheduler:'Localized schedule',analytics:'Localized analytics',room:'Synthetic room',visit:'Synthetic appointment',reject:'Synthetic conflict'},
@@ -19,16 +19,29 @@ function Operations({language}:{language:Language}){
  const mutate:SchedulerTransport=async(request,signal)=>{
   if(signal.aborted)return {status:'conflict'};
   setCalls(n=>n+1);
-  // This isolated fixture supports single-record updates only; no network or persistent writes.
-  if(request.kind!=='update')return {status:'invalid'};
-  const old=current.current, match=old.find(b=>b.id===request.id);
-  if(!match||match.version!==request.version||request.draft.title===l.reject)return {status:'conflict'};
-  if(validateDraft(request.draft,resources,old,request.id).length)return {status:'conflict'};
-  const next=old.map(b=>b.id===request.id?{...b,...request.draft,version:'v'+(Number(b.version.slice(1))+1)}:b);
+  const old=current.current;
+  let next:SchedulerBooking[];
+  try{
+   if(request.kind==='cancel'){
+    const match=old.find(b=>b.id===request.id);
+    if(!match||match.version!==request.version||match.status==='cancelled')return {status:'conflict'};
+    next=old.map(b=>b.id===request.id?{...b,status:'cancelled',version:'v'+(Number(b.version.slice(1))+1)}:b);
+   }else if(request.kind==='create-series'){
+    validateSeries(request.occurrences,resources,old);
+    next=[...old,...request.occurrences.map((d,i):SchedulerBooking=>({...d,id:request.idempotencyKey+'-'+i,seriesId:request.idempotencyKey,version:'v1',status:'confirmed'}))];
+   }else{
+    if(request.draft.title===l.reject||validateDraft(request.draft,resources,old,request.kind==='update'?request.id:undefined).length)return {status:'conflict'};
+    if(request.kind==='update'){
+     const match=old.find(b=>b.id===request.id);
+     if(!match||match.version!==request.version||match.status==='cancelled')return {status:'conflict'};
+     next=old.map(b=>b.id===request.id?{...b,...request.draft,version:'v'+(Number(b.version.slice(1))+1)}:b);
+    }else next=[...old,{...request.draft,id:request.idempotencyKey,version:'v1',status:'confirmed'}];
+   }
+  }catch{return {status:'conflict'};}
   current.current=next;setRows(next);return {status:'applied'};
  };
  return <section aria-label={language==='ru'?'Тестовые операции':'Synthetic operations'} lang={language}>
-  <p data-testid="schedule-calls">{calls}</p><p data-testid="schedule-version">{rows[0].version}</p>
+  <p data-testid="schedule-calls">{calls}</p><p data-testid="schedule-version">{rows[0].version}</p><p data-testid="schedule-active">{rows.filter(b=>b.status!=='cancelled').length}</p><p data-testid="schedule-series">{rows.filter(b=>b.seriesId&&b.status!=='cancelled').length}</p>
   <ResourceScheduler label={l.scheduler} resources={resources} bookings={rows} initialDate="2026-12-01" initialZone="UTC" zones={['Europe/Amsterdam']} locale={locale} mutate={mutate} advanced/>
   <AdvancedAnalyticsDashboard label={l.analytics} rows={metrics} initialPeriod={{start:'2026-12-01',end:'2026-12-02'}} locale={locale} allowExport/>
  </section>;

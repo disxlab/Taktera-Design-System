@@ -131,6 +131,34 @@ async function localizedOperations(page,name){
   await title.fill(l.updated);await editor.getByRole('button',{name:l.save,exact:true}).click();
   await editor.waitFor({state:'hidden'});
   check(prefix+'scheduler applied',await sched.getByText(l.updated,{exact:true}).first().isVisible()&&await calls.textContent()==='2'&&await version.textContent()==='v2');
+
+  const mutation=locale==='ru'?{create:'Новая запись',room:'Тестовый кабинет',name:'Тестовая новая запись',series:'Тестовая серия',start:'Начало',end:'Окончание',frequency:'Частота',count:'Количество повторений',cancel:'Отменить запись',confirm:'Подтвердить отмену',overlap:'Конфликт ресурса:'}:{create:'New booking',room:'Synthetic room',name:'Synthetic new booking',series:'Synthetic series',start:'Start',end:'End',frequency:'Frequency',count:'Occurrence count',cancel:'Cancel booking',confirm:'Confirm cancellation',overlap:'Resource conflict:'};
+  const active=host.getByTestId('schedule-active'),series=host.getByTestId('schedule-series');
+  const openNew=()=>sched.getByRole('button',{name:mutation.create+' '+mutation.room+' 2026-12-01',exact:true}).click();
+  await openNew();
+  await title.fill(mutation.name);
+  await editor.getByRole('button',{name:l.save,exact:true}).click();
+  await sched.getByRole('alert').filter({hasText:mutation.overlap}).waitFor();
+  check(prefix+'local overlap blocked',await calls.textContent()==='2'&&await active.textContent()==='1');
+  await editor.getByLabel(mutation.start,{exact:true}).fill('2026-12-01T11:00');
+  await editor.getByLabel(mutation.end,{exact:true}).fill('2026-12-01T12:00');
+  await editor.getByRole('button',{name:l.save,exact:true}).click();await editor.waitFor({state:'hidden'});
+  check(prefix+'scheduler create',await sched.getByRole('button',{name:mutation.name,exact:true}).isVisible()&&await active.textContent()==='2'&&await calls.textContent()==='3');
+  await sched.getByRole('button',{name:mutation.name,exact:true}).click();
+  await editor.getByRole('button',{name:mutation.cancel,exact:true}).click();
+  await editor.getByRole('button',{name:mutation.confirm,exact:true}).click();await editor.waitFor({state:'hidden'});
+  check(prefix+'scheduler cancellation',await sched.getByRole('button',{name:mutation.name,exact:true}).count()===0&&await active.textContent()==='1'&&await calls.textContent()==='4');
+  await openNew();
+  await title.fill(mutation.series);
+  await editor.getByLabel(mutation.start,{exact:true}).fill('2026-12-01T13:00');
+  await editor.getByLabel(mutation.end,{exact:true}).fill('2026-12-01T14:00');
+  await editor.getByLabel(mutation.frequency,{exact:true}).selectOption('daily');
+  await editor.getByLabel(mutation.count,{exact:true}).fill('2');
+  await editor.getByRole('button',{name:l.save,exact:true}).click();await editor.waitFor({state:'hidden'});
+  check(prefix+'atomic series create',await series.textContent()==='2'&&await active.textContent()==='3'&&await calls.textContent()==='5');
+  await sched.getByRole('button',{name:l.week,exact:true}).click();
+  check(prefix+'series occurrences visible',await sched.getByRole('button',{name:mutation.series,exact:true}).count()===2);
+
   const start=analytics.getByLabel(l.start),end=analytics.getByLabel(l.end),apply=analytics.getByRole('button',{name:l.apply,exact:true}),exportButton=analytics.getByRole('button',{name:l.export,exact:true});
   check(prefix+'analytics complete',await exportButton.isEnabled());
   await start.fill('2026-12-03');await apply.click();

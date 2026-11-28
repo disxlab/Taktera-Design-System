@@ -153,3 +153,7 @@ All release approval restrictions retained.
 ## Standalone Web Core localization (prepared)
 Prepared standalone CLI Web Core host with package-only DOM controls, RU/EN fixture, exact archive/lock/install identity, 12 transport checks per locale x 12 product/theme combinations per engine, isolated network and browser errors. Expected 1073 checks/engine (746+288+36+3), all existing checks retained; fresh CI required. Run #54 still active at preparation; no interruption. Scheduler creation/cancellation/series and BR9 manual evidence remain separate.
 Synthetic transport is hosted in memory only. Standalone npm installation is offline (single local archive, no public dependency), no real ERP requests or storage. No SDK/brand change or publication.
+
+## Localized scheduler mutation acceptance (prepared)
+Extended localized Scheduler fixture and real UI checks for local overlap blocked before transport, create, cancellation, atomic two-occurrence series and both occurrences visible. Five extra checks per locale x 12 product/theme combinations per engine; expected 1193 browser checks per engine including standalone Web. Exact previous evidence gate retained; no live data or endpoints. New CI required.
+Host fixture revalidates all series occurrences before atomic state replacement; conflict or invalid request leaves prior state untouched. This is a synthetic local host, not production concurrency or persistence.
