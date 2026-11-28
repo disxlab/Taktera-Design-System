@@ -1065,7 +1065,7 @@
       "phase": "Beta Readiness 6",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Run #27 npm clean consumer 22/22 PASS, both tarballs and CLI/portal verified. Stable version/reproducibility/registry approval remain. https://github.com/disxlab/Taktera-Design-System/actions/runs/46084256928",
+      "description": "Run #27 npm clean consumer 22/22 PASS, both tarballs and CLI/portal verified. Stable version/reproducibility/registry approval remain. https://github.com/disxlab/Taktera-Design-System/actions/runs/46084256928 Run #33 canonical npm archive agreement and clean consumer PASS; registry/stable approval remain.",
       "dependencies": [
         "BR6-01",
         "BR4-11"
@@ -1083,7 +1083,7 @@
       "phase": "Beta Readiness 6",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Run #27 Windows and macOS each 26/26 and 5/5 headless PASS, mandatory cleanup succeeded after scoped telemetry opt-out. NuGet bytes differ between OSes; canonical artifact/reproducibility and release acceptance remain. https://github.com/disxlab/Taktera-Design-System/actions/runs/46084256928",
+      "description": "Run #27 Windows and macOS each 26/26 and 5/5 headless PASS, mandatory cleanup succeeded after scoped telemetry opt-out. NuGet bytes differ between OSes; canonical artifact/reproducibility and release acceptance remain. https://github.com/disxlab/Taktera-Design-System/actions/runs/46084256928 Run #33 independent canonical NuGet reproducibility, committed lock and same-package consumers Windows/macOS PASS; release acceptance remains.",
       "dependencies": [
         "BR6-01",
         "BR4-12"
@@ -1101,7 +1101,7 @@
       "phase": "Beta Readiness 6",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Run #27 candidate job PASS: 4 package files, 3 CycloneDX consumer inventories, 19 hashed files, artifact 15238208262. Product SBOM, third-party notices/license review, reproducibility, signed provenance and private registry remain open. https://github.com/disxlab/Taktera-Design-System/actions/runs/46084256928",
+      "description": "Run #27 candidate job PASS: 4 package files, 3 CycloneDX consumer inventories, 19 hashed files, artifact 15238208262. Product SBOM, third-party notices/license review, reproducibility, signed provenance and private registry remain open. https://github.com/disxlab/Taktera-Design-System/actions/runs/46084256928 Run #33 first product SBOMs generated; official schema and license validation remain.",
       "dependencies": [
         "BR6-02",
         "BR6-03"
@@ -1181,8 +1181,8 @@
       "title": "Reproducible Builds",
       "phase": "Beta Readiness 7",
       "priority": "P0",
-      "status": "in_progress",
-      "description": "Run #32 23/23 PASS, four clean builds on two runner jobs, exact three canonical packages, Windows/macOS each canonical consumer 19/19 and 5/5 headless, candidate artifact 15240697879. https://github.com/disxlab/Taktera-Design-System/actions/runs/46089799082 Restore-generated lock recovered from CI log, exact SHA-256 bdfca6b9b1323041c51eb1c7ab85b230b89656fcd1d5ec4359acf305c330fdb3 verified and committed; all four release restores now locked from source. Fresh CI required before closing.",
+      "status": "done",
+      "description": "Run #33 23/23 PASS, four exact locked builds on two independent runner jobs, canonical Windows/macOS consumers PASS, candidate artifact 15240739920: 3 shipped packages, 5 SBOMs, 41 archive members, 7 external components, 8 dependency edges, 14 XAML source hashes, 27 hashed files. https://github.com/disxlab/Taktera-Design-System/actions/runs/46090391495 Committed NuGet lock from Run #32 verified under --locked-mode. Exact reproducibility and canonical cross-OS consumption confirmed; subsequent release CI retains these gates.",
       "dependencies": [
         "BR6-02",
         "BR6-03"
@@ -1200,7 +1200,7 @@
       "phase": "Beta Readiness 7",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Implemented product-scoped CycloneDX 1.6 and SPDX 2.3, archive-member hashes and resolved npm reference peer/NuGet library restore graph; 14 XAML source hashes, explicit unresolved license review. Structural checks included; official schema validation, embedded/inline attribution completeness and new CI pending. Added mandatory five-document Draft 7 validation with four official schema SHA-256 pins, locally resolved schema references, schema validation evidence; CI pending.",
+      "description": "Run #33 23/23 PASS, four exact locked builds on two independent runner jobs, canonical Windows/macOS consumers PASS, candidate artifact 15240739920: 3 shipped packages, 5 SBOMs, 41 archive members, 7 external components, 8 dependency edges, 14 XAML source hashes, 27 hashed files. https://github.com/disxlab/Taktera-Design-System/actions/runs/46090391495 Initial Product CycloneDX/SPDX generation confirmed. Mandatory official pinned-schema validation and attribution completeness still pending; new validator implemented, fresh CI required.",
       "dependencies": [
         "BR7-01"
       ],
@@ -1410,6 +1410,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #33 23/23 PASS, four exact locked builds on two independent runner jobs, canonical Windows/macOS consumers PASS, candidate artifact 15240739920: 3 shipped packages, 5 SBOMs, 41 archive members, 7 external components, 8 dependency edges, 14 XAML source hashes, 27 hashed files. https://github.com/disxlab/Taktera-Design-System/actions/runs/46090391495 BR7-01 completed; BR7-02/03 ongoing; official schemas and original license evidence review draft implemented for next CI."
+    },
     {
       "at": "2026-11-28",
       "message": "Run #33 independent locked-build agreement PASS; final candidate status pending at initial verification. Added official pinned schema validation and dependency license evidence / draft notices; new CI pending. https://github.com/disxlab/Taktera-Design-System/actions/runs/46090391495"
