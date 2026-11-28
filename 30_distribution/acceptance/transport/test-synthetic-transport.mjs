@@ -1,0 +1,32 @@
+import {createSyntheticTransport} from './synthetic-transport.mjs';
+async function runContractTests(create) {
+ const cases=[];
+ const check=(name,ok)=>{if(!ok)throw Error(name);cases.push(name);};
+ const api=create();
+ const req={id:"p1",version:"1",requestId:"op-1",name:"Synthetic updated"};
+ const before=api.read("p1");before.name="external mutation";
+ check("read is isolated",api.read("p1").name==="Synthetic Alice");
+ check("validation error", (await api.save({...req,requestId:"invalid",name:" "})).status==="validation");
+ check("validation does not mutate",api.read("p1").version==="1");
+ api.failNext();
+ check("transient failure",(await api.save(req)).status==="unavailable");
+ check("failure does not mutate",api.read("p1").version==="1");
+ const applied=await api.save(req);
+ check("retry applies once",applied.status==="applied"&&applied.record.version==="2");
+ check("exact duplicate idempotent",JSON.stringify(await api.save(req))===JSON.stringify(applied)&&api.read("p1").version==="2");
+ check("request id payload collision",(await api.save({...req,name:"Changed payload"})).status==="request-id-conflict");
+ check("stale write conflict",(await api.save({...req,requestId:"op-stale"})).status==="conflict");
+ check("conflict preserves committed name",api.read("p1").name==="Synthetic updated");
+ check("missing record",(await api.save({...req,id:"missing",requestId:"missing"})).status==="not-found");
+ const concurrent=await Promise.all([api.save({...req,requestId:"op-2a",version:"2",name:"Синтетическое имя"}),api.save({...req,requestId:"op-2b",version:"2",name:"Synthetic competing"})]);
+ check("concurrent optimistic writes",concurrent.filter(x=>x.status==="applied").length===1&&concurrent.filter(x=>x.status==="conflict").length===1);
+ check("single version increment",api.read("p1").version==="3");
+ check("Russian text preserved",api.read("p1").name==="Синтетическое имя");
+ check("other record unaffected",api.read("p2").version==="1");
+ const trace=api.trace();trace.length=0;
+ check("trace isolated",api.trace().length>0);
+ check("new fixture resets state",create().read("p1").version==="1"&&create().read("p1").name==="Synthetic Alice");
+ return cases;
+}
+const checks=await runContractTests(createSyntheticTransport);
+console.log(JSON.stringify({syntheticTransportContract:{status:'passed',checks}}));

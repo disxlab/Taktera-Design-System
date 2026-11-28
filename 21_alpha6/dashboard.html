@@ -1459,7 +1459,7 @@
       "phase": "Beta Readiness 8",
       "priority": "P0",
       "status": "planned",
-      "description": "Package-only localized reference hosts, transport errors, conflict/validation, scheduler and analytics scenarios; no real data or endpoints.",
+      "description": "Package-only localized reference hosts, transport errors, conflict/validation, scheduler and analytics scenarios; no real data or endpoints. Prepared independent in-memory host transport fixture: optimistic version conflict, field validation, transient failure/retry, exact request-ID idempotency and collision rejection, missing record, concurrent writes, isolated state, RU text. 17 pure JS checks executed successfully during preparation; committed CI and actual package-only UI integration not yet verified. No HTTP, real endpoints, persistent data or Platform connection.",
       "dependencies": [
         "BR8-01",
         "BR5-04"
@@ -1493,6 +1493,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "BR8-03 synthetic host transport foundation prepared; 17 in-memory JS checks passed at authoring, package-only localized UI and CI still pending. Preserve Run #47."
+    },
     {
       "at": "2026-11-28",
       "message": "Prepared combined BR8 acceptance evidence gate and regression fixtures; retain running Run #47, no approval or manual acceptance claim."

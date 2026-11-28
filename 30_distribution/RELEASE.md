@@ -117,3 +117,6 @@ Rebased the 24-case-per-OS native acceptance matrix onto the browser isolation f
 
 ## Combined automated BR8 evidence (prepared)
 A downstream job requires successful browser and native matrices and verifies same-run source, attempt, candidate/dossier, archive digests and npm lock, exact scenario/check names, all 12 registry axe scans per engine and both 29-test native results. Record SHA-256 of each report and incomplete axe findings; 18 synthetic negative controls plus positive browser/native cases. This is partial automated acceptance only: BR8-03 localization/transport, BR9 manual/native/AT/performance/security and owner approvals remain pending. No publish or Platform integration. New CI required.
+
+## BR8-03 — synthetic transport foundation (prepared)
+A separate host-owned in-memory fixture with two synthetic records, optimistic version checks, validation, unavailable/retry, exact request-ID deduplication, changed-payload rejection, concurrent writes, copy-isolated records/trace, and reset. Seventeen pure JavaScript checks executed on the authored functions; static Node execution in CI pending. This is not the SDK's public API, not a network or production transport, and not full localized package-only UI acceptance. Adapter and RU/EN browser scenarios remain to be built after BR8-01/02. No real endpoints or Platform integration.
