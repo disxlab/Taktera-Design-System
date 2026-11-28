@@ -25,6 +25,8 @@ PATTERNS={
     "attribution-marker":re.compile(r"\b(?:Lucide|Inter|JetBrains Mono|copyright|SPDX-License-Identifier|third.party|attribution)\b",re.I),
 }
 UPSTREAM={
+    ("Avalonia.BuildServices","11.3.2"):("AvaloniaUI/Avalonia.BuildServices","777f975b0a0cecf0311273711d56697212c558c0","LICENSE","4a02b0b2ea96f3a8b9cb88af64a3c061c6ef4426"),
+    ("MicroCom.Runtime","0.11.0"):("kekekeks/MicroCom","918f1a7d13193beda39b78d70a99ee4c7b188f8b","LICENSE","6bcf96f0b4029b873c3d9b55d4c1117bbd157e28"),
     ("Avalonia","11.3.22"):("AvaloniaUI/Avalonia","627ae9ef921621e27e7aa58df2796fbadb50af88","licence.md","41951805ac6a5cdb91373db7725fbaa9c004d912"),
     ("Avalonia.Remote.Protocol","11.3.22"):("AvaloniaUI/Avalonia","627ae9ef921621e27e7aa58df2796fbadb50af88","licence.md","41951805ac6a5cdb91373db7725fbaa9c004d912"),
 }
@@ -56,17 +58,21 @@ def scan(name,data,scope):
                     {"line":text.count("\n",0,m.start())+1,"match":m.group(0)[:200]} for m in matches[:10]]}
     return result
 
+def pinned_blob(repo,commit,path,blob):
+    url="https://raw.githubusercontent.com/"+repo+"/"+commit+"/"+path
+    with urlopen(url,timeout=60) as response:
+        data=response.read(2_000_001)
+    require(len(data)<=2_000_000,"Oversized upstream evidence")
+    actual=hashlib.sha1(b"blob "+str(len(data)).encode("ascii")+b"\0"+data).hexdigest()
+    require(actual==blob,"Pinned upstream Git blob mismatch: "+url)
+    return url,data
+
 def upstream_license(out,record):
     key=(record["name"],record["version"])
     if key not in UPSTREAM:
         return None
     repo,commit,path,blob=UPSTREAM[key]
-    url="https://raw.githubusercontent.com/"+repo+"/"+commit+"/"+path
-    with urlopen(url,timeout=60) as response:
-        data=response.read(2_000_001)
-    require(len(data)<=2_000_000,"Oversized upstream license")
-    actual=hashlib.sha1(b"blob "+str(len(data)).encode("ascii")+b"\0"+data).hexdigest()
-    require(actual==blob,"Pinned upstream Git blob mismatch: "+record["ref"])
+    url,data=pinned_blob(repo,commit,path,blob)
     dest=out/"licenses"/"upstream"/(sha(record["ref"].encode("utf-8"))[:20]+".txt")
     dest.parent.mkdir(parents=True,exist_ok=True)
     dest.write_bytes(data)
@@ -74,11 +80,30 @@ def upstream_license(out,record):
     normalized=metadata.get("url","").lower().rstrip("/").removesuffix(".git")
     identity_match=normalized in ("https://github.com/"+repo.lower(),"http://github.com/"+repo.lower())
     commit_match=metadata.get("commit","").lower()==commit
+    association="package-repository-and-commit-match" if identity_match and commit_match else "unconfirmed-package-source"
+    version_evidence=None
+    if key==("MicroCom.Runtime","0.11.0"):
+        props_blob="29b9d47e15b0bfab6161871ed4ff8bca5e1053ff"
+        props_url,props=pinned_blob(repo,commit,"Directory.Build.props",props_blob)
+        import xml.etree.ElementTree as ET
+        parsed=ET.fromstring(props)
+        require(parsed.findtext(".//Version")==record["version"] and parsed.findtext(".//PackageLicenseExpression")=="MIT",
+                "Historical MicroCom version evidence differs")
+        evidence_path=dest.with_suffix(".props")
+        evidence_path.write_bytes(props)
+        version_evidence={"source":props_url,"gitBlobSha1":props_blob,"sha256":sha(props),
+                          "file":evidence_path.relative_to(out).as_posix(),"declaredVersion":record["version"],
+                          "licenseExpression":"MIT"}
+        if identity_match and not metadata.get("commit"):
+            association="repository-and-historical-version-match-only"
+    require(identity_match,"Package repository differs from pinned upstream: "+record["ref"])
+    if key!=("MicroCom.Runtime","0.11.0"):
+        require(commit_match,"Package commit differs from pinned upstream: "+record["ref"])
     return {"ref":record["ref"],"repository":repo,"commit":commit,"source":url,"gitBlobSha1":blob,
             "sha256":sha(data),"file":dest.relative_to(out).as_posix(),
             "packageRepositoryMatches":identity_match,"packageCommitMatches":commit_match,
-            "reviewStatus":"pending",
-            "note":"Exact-version upstream source license evidence; scope and package-to-source attribution require review."}
+            "association":association,"versionEvidence":version_evidence,"reviewStatus":"pending",
+            "note":"Historical source license evidence, not a grant or verification of binary-to-source provenance."}
 
 def build(out,packages,source):
     inventory=read(out/"sbom/product-file-inventory.json")
@@ -106,6 +131,10 @@ def build(out,packages,source):
                 upstream.append(entry)
     missing=[r["ref"] for r in license_evidence["components"] if not r["texts"] and not any(u["ref"]==r["ref"] for u in upstream)]
     flagged=[f for f in actual+embedded if f["binaryAssetExtension"] or f["markers"]]
+    for item in flagged:
+        print(json.dumps({"assetReviewMarker":{"path":item["path"],"sha256":item["sha256"],"markers":item["markers"],"binaryAssetExtension":item["binaryAssetExtension"]}},sort_keys=True))
+    for item in upstream:
+        print(json.dumps({"upstreamLicenseAssociation":{"ref":item["ref"],"association":item["association"],"commit":item["commit"],"sha256":item["sha256"]}},sort_keys=True))
     report={"source":source,"status":"pending","releaseApproval":False,
             "shippedArchiveMembers":actual,"embeddedXamlSources":embedded,
             "upstreamLicenseEvidence":upstream,"missingEmbeddedOrPinnedUpstreamText":missing,
@@ -127,6 +156,7 @@ def build(out,packages,source):
         f.write("\nAsset attribution review: licenses/asset-attribution-review.json\n")
     stats={"archiveMembers":len(actual),"embeddedSources":len(embedded),"markerFiles":len(flagged),
            "directAssetFiles":sum(f["binaryAssetExtension"] for f in actual),
-           "pinnedUpstreamTexts":len(upstream),"stillMissingText":len(missing),"review":"pending"}
+           "pinnedUpstreamTexts":len(upstream),"stillMissingText":len(missing),
+           "unconfirmedBinarySourceAssociations":sum(not u["packageCommitMatches"] for u in upstream),"review":"pending"}
     print(json.dumps({"assetAttribution":stats},sort_keys=True))
     return stats

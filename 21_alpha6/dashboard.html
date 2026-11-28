@@ -1201,7 +1201,7 @@
       "phase": "Beta Readiness 7",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Run #35 23/23 PASS; seven hash regression tests PASS, five official SBOM schemas PASS, 7 external components, 3 original embedded license texts, 4 missing embedded texts, candidate artifact 15241269003, 33 hashed files. https://github.com/disxlab/Taktera-Design-System/actions/runs/46091839760 Corrected native hash semantics confirmed. Product inventory covers 41 archive members, 14 source resources, 8 dependency edges. Asset attribution marker audit implemented; fresh CI and completeness review remain.",
+      "description": "Run #36 23/23 PASS; 5 SBOM schemas pass, 41 archive members, 14 embedded XAML sources, 19 flagged files, no separate asset files, 3 embedded license texts + 2 pinned upstream, 2 missing texts, 37 hashed files; candidate 15241378664. https://github.com/disxlab/Taktera-Design-System/actions/runs/46092700331 Archive/embedded source inventory confirmed. Marker-level asset provenance review remains open; added independently downloaded candidate and member inventory cross-check.",
       "dependencies": [
         "BR7-01"
       ],
@@ -1218,7 +1218,7 @@
       "phase": "Beta Readiness 7",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Run #35 23/23 PASS; seven hash regression tests PASS, five official SBOM schemas PASS, 7 external components, 3 original embedded license texts, 4 missing embedded texts, candidate artifact 15241269003, 33 hashed files. https://github.com/disxlab/Taktera-Design-System/actions/runs/46091839760 Added pinned exact release upstream source evidence for Avalonia 11.3.22 and Avalonia.Remote.Protocol 11.3.22; package repository metadata retained, association/approval pending. BuildServices and MicroCom exact source versions not yet established. Added review of all shipped and embedded-source asset markers. Legal clearance still open; new CI pending.",
+      "description": "Run #36 23/23 PASS; 5 SBOM schemas pass, 41 archive members, 14 embedded XAML sources, 19 flagged files, no separate asset files, 3 embedded license texts + 2 pinned upstream, 2 missing texts, 37 hashed files; candidate 15241378664. https://github.com/disxlab/Taktera-Design-System/actions/runs/46092700331 BuildServices package repository commit 777f975b0a0cecf0311273711d56697212c558c0 confirmed, license pinned. MicroCom 0.11.0 historical source commit 918f1a7d13193beda39b78d70a99ee4c7b188f8b has exact version/declared MIT but NuGet package has no commit; source association explicitly unconfirmed. All seven text evidence paths implemented, not yet verified by CI. Detailed asset markers logged; license/attribution approval remains pending.",
       "dependencies": [
         "BR7-02"
       ],
@@ -1234,8 +1234,8 @@
       "title": "Signed Build Provenance",
       "phase": "Beta Readiness 7",
       "priority": "P0",
-      "status": "planned",
-      "description": "Attest exact canonical artifacts in approved release workflow, verify signature/source identity; no PR write credentials.",
+      "status": "in_progress",
+      "description": "Read-only provenance preflight: independent CI runner downloads candidate and canonical artifacts, checks exact file set, SHA-256, source/run identity, canonical package and member hashes, five schema report hashes, asset and license evidence, four negative controls. Fresh CI pending. No signing yet; approved trusted release workflow and independent signature verification remain mandatory. PR has no write or OIDC permission.",
       "dependencies": [
         "BR7-01",
         "BR7-02"
@@ -1411,6 +1411,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #36 23/23 PASS; 5 SBOM schemas pass, 41 archive members, 14 embedded XAML sources, 19 flagged files, no separate asset files, 3 embedded license texts + 2 pinned upstream, 2 missing texts, 37 hashed files; candidate 15241378664. https://github.com/disxlab/Taktera-Design-System/actions/runs/46092700331 Added two historical license sources and read-only independent candidate verification (BR7-04 preflight); new CI pending."
+    },
     {
       "at": "2026-11-28",
       "message": "Run #35 23/23 PASS; seven hash regression tests PASS, five official SBOM schemas PASS, 7 external components, 3 original embedded license texts, 4 missing embedded texts, candidate artifact 15241269003, 33 hashed files. https://github.com/disxlab/Taktera-Design-System/actions/runs/46091839760 Added exact-release upstream license evidence and archive/XAML asset attribution audit, new CI pending."

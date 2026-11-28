@@ -394,3 +394,31 @@ jobs:
             candidate-release/sbom
             candidate-release/licenses
           if-no-files-found: warn
+
+  candidate-verification:
+    name: BR7 independent candidate download verification
+    needs: [release-evidence, canonical]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v6
+        with:
+          name: taktera-candidate-release-evidence
+          path: candidate-download
+      - uses: actions/download-artifact@v6
+        with:
+          name: canonical-packages
+          path: canonical-download
+      - run: python 30_distribution/qa/verify_candidate_download.py candidate-download canonical-download verification/candidate-verification.json
+      - uses: actions/upload-artifact@v6
+        with:
+          name: candidate-independent-verification
+          path: verification
+          if-no-files-found: error
