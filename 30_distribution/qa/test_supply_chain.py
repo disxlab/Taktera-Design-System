@@ -17,6 +17,10 @@ class PolicyTests(unittest.TestCase):
         with self.assertRaises(ValueError): inspect_workflow(text,self.pins)
     def test_real_workflow(self):
         self.assertGreater(inspect_workflow(self.wf,self.pins),0)
+    def test_truncated_python_pin(self):
+        pin=self.pins["actions/setup-python"]["sha"]
+        self.assertIn("actions/setup-python@"+pin,self.wf)
+        self.reject_wf(self.wf.replace("actions/setup-python@"+pin,"actions/setup-python@"+pin[:-5],1))
     def test_mutable_action(self):
         self.reject_wf(self.wf.replace("actions/checkout@"+self.pins["actions/checkout"]["sha"],"actions/checkout@v6",1))
     def test_unknown_commit(self):

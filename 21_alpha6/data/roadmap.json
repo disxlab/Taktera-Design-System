@@ -1439,7 +1439,7 @@
       "phase": "Beta Readiness 8",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Rebased prepared native matrix onto current browser fix, 24 product/theme/host-language scenarios per Windows/macOS and five existing tests per OS; canonical archive, DLL and application dependency graph checks; strict exact named TRX results and seven evidence-parser tests (one positive, six negative). Native jobs require successful BR8 browser and release gates. Pending CI and actual graphical/accessibility acceptance. Combined acceptance evidence gate prepared: exact browser check/scenario/axe sets and both native matrices, same source/run/attempt/candidate/dossier/package/lock identities, evidence SHA-256, 18 negative controls and positive browser/native controls. No publication or manual acceptance. Run #47 browser prerequisite passed; activate native matrix and combined evidence job. New CI pending.",
+      "description": "Rebased prepared native matrix onto current browser fix, 24 product/theme/host-language scenarios per Windows/macOS and five existing tests per OS; canonical archive, DLL and application dependency graph checks; strict exact named TRX results and seven evidence-parser tests (one positive, six negative). Native jobs require successful BR8 browser and release gates. Pending CI and actual graphical/accessibility acceptance. Combined acceptance evidence gate prepared: exact browser check/scenario/axe sets and both native matrices, same source/run/attempt/candidate/dossier/package/lock identities, evidence SHA-256, 18 negative controls and positive browser/native controls. No publication or manual acceptance. Run #47 browser prerequisite passed; activate native matrix and combined evidence job. New CI pending. Run #48 failed static supply-chain gate: combined acceptance job setup-python pin was truncated to 35 characters (workflow line 683). Restored exact existing reviewed 40-character lock SHA, added truncated-pin negative regression; no lock, permission or validator changes. 21 successful, 1 failed, 8 skipped on first-page API; native/combined acceptance not executed. New CI required.",
       "dependencies": [
         "BR7-08",
         "BR5-07",
@@ -1492,6 +1492,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #48 failed static supply-chain gate: combined acceptance job setup-python pin was truncated to 35 characters (workflow line 683). Restored exact existing reviewed 40-character lock SHA, added truncated-pin negative regression; no lock, permission or validator changes. 21 successful, 1 failed, 8 skipped on first-page API; native/combined acceptance not executed. New CI required."
+    },
     {
       "at": "2026-11-28",
       "message": "Run #47 FINAL success, all 30 returned jobs success (31-job workflow; first-page API limitation); all three canonical browser artifacts exist: chromium 15251014792, firefox 15251396350, webkit 15250329495. Firefox and WebKit logs explicitly 170/170 each, 12 scenarios, 12 axe scans, zero violations/errors. Chromium success via overall run and artifact; individual job log unavailable on first page. https://github.com/disxlab/Taktera-Design-System/actions/runs/46114720283 . Separate independent functional and main-world axe contexts resolve observed Firefox crash in CI, without skipping WCAG checks. Scope: English synthetic registry/workflows, no complete manual accessibility or production acceptance. Activate prepared BR8-02, combined evidence and BR8-03 synthetic transport foundation; new CI required."
