@@ -44,6 +44,58 @@ async function start(){
  child.stderr.on('data',buf=>{output+=buf;});child.once('error',e=>{clearTimeout(timer);fail(e);});
  child.once('exit',code=>{clearTimeout(timer);fail(Error('Reference server exited '+code+': '+output));});});
 }
+
+// Firefox 1572 cross-world ARIA reflection regression:
+// https://github.com/microsoft/playwright/issues/44135
+// Separate role-locator interactions from main-world axe scans.
+async function guardContext(context,url,external){
+ await context.route(target=>externalNetwork(target,url),route=>route.abort());
+ context.on('request',req=>{if(externalNetwork(req.url(),url))external.push(new URL(req.url()).origin);});
+ await context.routeWebSocket('**/*',ws=>{external.push('websocket:'+new URL(ws.url()).origin);ws.close();});
+}
+async function auditRegistry(browser,url,product,theme){
+ const errors=[],external=[];
+ const context=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce',serviceWorkers:'block'});
+ try{
+  await guardContext(context,url,external);
+  const page=await context.newPage();
+  page.on('crash',()=>errors.push('audit page crashed'));
+  page.on('pageerror',e=>errors.push(String(e)));
+  page.on('console',m=>{if(m.type()==='error'&&!m.text().includes('404'))errors.push(m.text());});
+  await page.goto(url);
+  await page.waitForFunction(()=>document.documentElement.dataset.referenceHydrated==='yes');
+  await page.evaluate(({product,theme})=>{
+   const set=(label,value)=>{
+    const element=document.querySelector('select[aria-label="'+label+'"]');
+    if(!(element instanceof HTMLSelectElement))throw Error('Missing audit select '+label);
+    const setter=Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype,'value')?.set;
+    if(!setter)throw Error('Missing native select setter');
+    setter.call(element,value);
+    element.dispatchEvent(new Event('change',{bubbles:true}));
+   };
+   set('Product',product);set('Theme',theme);
+  },{product,theme});
+  await page.waitForFunction(({product,theme})=>{
+   const app=document.querySelector('#root .tku-root');
+   return app?.dataset.product===product&&app?.dataset.theme===theme;
+  },{product,theme});
+  const state=await page.evaluate(()=>{
+   const app=document.querySelector('#root .tku-root'),text=app?.textContent??'';
+   return {product:app?.dataset.product,theme:app?.dataset.theme,registry:text.includes('Synthetic Alice')&&text.includes('Synthetic Bob')};
+  });
+  check(product+'/'+theme+' separate audit document state',state.product===product&&state.theme===theme&&state.registry);
+  await page.addScriptTag({path:axePath});
+  const scan=await page.evaluate(async()=>{
+   const x=await window.axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']}});
+   return {violations:x.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))})),
+           incomplete:x.incomplete.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)}))};
+  });
+  report.axe.push({product,theme,page:'registry',...scan});
+  check(product+'/'+theme+' audit no browser errors',errors.length===0);
+  check(product+'/'+theme+' audit no external requests',external.length===0);
+ }finally{await context.close();}
+}
+
 try{
  check('exact Node',process.version==='v26.13.1');
  check('exact npm',run('npm',['--version'])==='11.20.0');
@@ -66,9 +118,7 @@ try{
   let phase='context';
   const context=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce',serviceWorkers:'block'});
   try{
-   await context.route(target=>externalNetwork(target,url),route=>route.abort());
-   context.on('request',req=>{if(externalNetwork(req.url(),url))external.push(new URL(req.url()).origin);});
-   await context.routeWebSocket('**/*',ws=>{external.push('websocket:'+new URL(ws.url()).origin);ws.close();});
+   await guardContext(context,url,external);
    const page=await context.newPage();
    page.on('crash',()=>errors.push('page crashed at '+phase));
    page.on('pageerror',e=>errors.push(String(e)));
@@ -103,34 +153,13 @@ try{
    check(name+' synthetic state reset',await page.getByRole('heading',{name:'Synthetic Alice',exact:true}).isVisible());
    check(name+' no browser errors',errors.length===0);
    check(name+' no external requests',external.length===0);
-   phase='fresh audit page';
-   const auditPage=await context.newPage();
-   try{
-    auditPage.on('crash',()=>errors.push('audit page crashed at '+phase));
-    auditPage.on('pageerror',e=>errors.push(String(e)));
-    await auditPage.goto(url);
-    await auditPage.waitForFunction(()=>document.documentElement.dataset.referenceHydrated==='yes');
-    await auditPage.getByLabel('Product',{exact:true}).selectOption(product);
-    await auditPage.getByLabel('Theme',{exact:true}).selectOption(theme);
-    const auditRoot=auditPage.locator('#root .tku-root');
-    check(name+' audit product/theme',await auditRoot.getAttribute('data-product')===product&&await auditRoot.getAttribute('data-theme')===theme);
-    check(name+' fresh registry audit',await auditPage.getByRole('region',{name:'Reference registry',exact:true}).isVisible()&&await auditPage.getByRole('textbox',{name:'Search registry'}).inputValue()==='');
-   phase='axe injection';await auditPage.addScriptTag({path:axePath});
-   phase='axe scan';
-   // Match the passing source-browser harness: project the actual scan result
-   // in the page instead of serializing the entire axe result across CDP/Juggler.
-   const scan=await auditPage.evaluate(async()=>{
-    const x=await window.axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']}});
-    return {violations:x.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))})),
-            incomplete:x.incomplete.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)}))};
-   });
-   report.axe.push({product,theme,page:'registry',...scan});
-   }finally{await auditPage.close();}
-   check(name+' audit browser errors',errors.length===0);
-   check(name+' audit external requests',external.length===0);
    report.scenarios.push({product,theme,status:'passed'});
   }catch(e){report.scenarios.push({product,theme,status:'failed',phase,errors,external});report.errors.push(name+' ['+phase+']: '+String(e));}
   finally{await context.close();}
+ }
+ for(const product of products)for(const theme of themes){
+  try{await auditRegistry(browser,url,product,theme);}
+  catch(e){report.errors.push(product+'/'+theme+' [separate axe document]: '+String(e));}
  }
  check('all 12 scenarios completed',report.scenarios.length===12&&report.scenarios.every(x=>x.status==='passed'));
  check('all 12 registry axe scans',report.axe.length===12);

@@ -1421,7 +1421,7 @@
       "phase": "Beta Readiness 8",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Run #46 FINAL failure: Firefox content process SIGSEGV (11), 35/36 checks, 12 crashes during axe evaluation, 0 completed scans; Chromium job success, WebKit conclusion outside first-page API. Firefox artifact 15250825018. https://github.com/disxlab/Taktera-Design-System/actions/runs/46111723612 . Prior routing/projection patch did not resolve crash. Passing source harness uses a fresh separately hydrated audit page; apply same lifecycle to canonical consumer after workflow checks, verify audit product/theme and fresh registry, retain full document scan, tags, 12 scans, error and network gates. Root cause hypothesis remains unconfirmed; fresh CI required.",
+      "description": "Run #46 FINAL failure: Firefox content process SIGSEGV (11), 35/36 checks, 12 crashes during axe evaluation, 0 completed scans; Chromium job success, WebKit conclusion outside first-page API. Firefox artifact 15250825018. https://github.com/disxlab/Taktera-Design-System/actions/runs/46111723612 . Prior routing/projection patch did not resolve crash. Passing source harness uses a fresh separately hydrated audit page; apply same lifecycle to canonical consumer after workflow checks, verify audit product/theme and fresh registry, retain full document scan, tags, 12 scans, error and network gates. Root cause hypothesis remains unconfirmed; fresh CI required. Reconciled the prepared independent audit-context variant onto actual working-branch head b918b14 (parallel fresh audit-page fix). Current branch compare confirms b918b14; PR #10 metadata still reports 77e7972 and CI/status lookup returns no runs/checks for b918b14. Preserve existing parallel documentation and all gates. Functional role locators and axe scans use distinct fresh browser contexts; audit uses main-world DOM theme selection and verifies theme and both synthetic registry rows. Full WCAG tags, exactly 12 scans per engine, external request/WebSocket denial, and failure on any error remain mandatory. No SDK/brand/dependency change; root cause and effectiveness unconfirmed pending CI.",
       "dependencies": [
         "BR7-09",
         "BR7-10",
@@ -1492,6 +1492,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Reconciled the prepared independent audit-context variant onto actual working-branch head b918b14 (parallel fresh audit-page fix). Current branch compare confirms b918b14; PR #10 metadata still reports 77e7972 and CI/status lookup returns no runs/checks for b918b14. Preserve existing parallel documentation and all gates. Functional role locators and axe scans use distinct fresh browser contexts; audit uses main-world DOM theme selection and verifies theme and both synthetic registry rows. Full WCAG tags, exactly 12 scans per engine, external request/WebSocket denial, and failure on any error remain mandatory. No SDK/brand/dependency change; root cause and effectiveness unconfirmed pending CI."
+    },
     {
       "at": "2026-11-28",
       "message": "Run #46 FINAL failure: Firefox content process SIGSEGV (11), 35/36 checks, 12 crashes during axe evaluation, 0 completed scans; Chromium job success, WebKit conclusion outside first-page API. Firefox artifact 15250825018. https://github.com/disxlab/Taktera-Design-System/actions/runs/46111723612 . Prior routing/projection patch did not resolve crash. Passing source harness uses a fresh separately hydrated audit page; apply same lifecycle to canonical consumer after workflow checks, verify audit product/theme and fresh registry, retain full document scan, tags, 12 scans, error and network gates. Root cause hypothesis remains unconfirmed; fresh CI required."
