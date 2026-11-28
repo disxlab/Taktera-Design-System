@@ -94,6 +94,20 @@ def npm_evidence(out, component, lock):
     return capture(out,component,archive,{"license":meta.get("license"),"author":meta.get("author")},
                    files,{"kind":"npm locked registry tarball","url":url,"sha512":expected})
 
+def verify_nuget_hashes(archive, raw_sidecar, metadata, locked, sbom_hash, identity):
+    """NuGet's raw archive hash and unsigned-content hash are distinct for signed packages."""
+    raw=base64.b64decode(raw_sidecar,validate=True)
+    require(len(raw)==64 and hashlib.sha512(archive).digest()==raw,
+            "NuGet raw archive SHA-512 mismatch: "+identity)
+    content=metadata.get("contentHash")
+    require(isinstance(content,str) and content==locked,
+            "NuGet locked content hash mismatch: "+identity)
+    content_bytes=base64.b64decode(content,validate=True)
+    require(len(content_bytes)==64 and content_bytes.hex()==sbom_hash,
+            "NuGet SBOM content hash mismatch: "+identity)
+    return {"contentHash":content,"rawArchiveSha512":raw.hex(),
+            "contentHashMatchesRawArchive":content_bytes==raw}
+
 def nuget_evidence(out, component, cache, lock):
     name,version=component["name"],component["version"]
     entry=lock["dependencies"]["net10.0"][name]
@@ -101,11 +115,12 @@ def nuget_evidence(out, component, cache, lock):
     folder=cache/name.lower()/version.lower()
     package=folder/(name.lower()+"."+version.lower()+".nupkg")
     sidecar=folder/(package.name+".sha512")
-    actual=sidecar.read_text(encoding="utf-8-sig").strip()
-    require(actual==entry["contentHash"],"NuGet restore content hash mismatch")
-    require(base64.b64decode(actual,validate=True).hex()==component["hashes"]["SHA-512"],
-            "NuGet SBOM hash mismatch")
+    raw_sidecar=sidecar.read_text(encoding="utf-8-sig").strip()
+    metadata=json.loads((folder/".nupkg.metadata").read_text(encoding="utf-8-sig"))
     archive=package.read_bytes()
+    hashes=verify_nuget_hashes(archive,raw_sidecar,metadata,entry["contentHash"],
+                              component["hashes"]["SHA-512"],name+"/"+version)
+    print(json.dumps({"nugetLicenseIntegrity":{"name":name,"version":version,**hashes}},sort_keys=True))
     files=[]
     with zipfile.ZipFile(io.BytesIO(archive)) as z:
         manifests=[n for n in z.namelist() if n.endswith(".nuspec")]
@@ -118,8 +133,8 @@ def nuget_evidence(out, component, cache, lock):
                 require(member.file_size<=2_000_000,"Oversized NuGet license")
                 files.append((member.filename,z.read(member)))
     return capture(out,component,archive,meta,files,
-                   {"kind":"locked NuGet restore cache","contentHash":actual,
-                    "note":"NuGet restore content hash, not a claim of raw signed archive SHA-512"})
+                   {"kind":"locked NuGet restore cache",**hashes,
+                    "note":"Lock-verified contentHash from .nupkg.metadata; raw archive SHA-512 independently matches .nupkg.sha512."})
 
 def build(out,npm_lock,native_lock):
     review=json.loads((out/"sbom/third-party-review.json").read_text(encoding="utf-8"))

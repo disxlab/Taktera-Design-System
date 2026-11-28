@@ -377,9 +377,20 @@ jobs:
         with:
           name: canonical-packages
           path: candidate-input/canonical
+      - name: NuGet license integrity regression tests
+        run: python 30_distribution/qa/test_dependency_licenses.py
       - run: python 30_distribution/qa/assemble_candidate.py candidate-input candidate-release
       - uses: actions/upload-artifact@v6
         with:
           name: taktera-candidate-release-evidence
           path: candidate-release
           if-no-files-found: error
+      - name: Upload failed release diagnostics (not a candidate)
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v6
+        with:
+          name: failed-release-diagnostics
+          path: |
+            candidate-release/sbom
+            candidate-release/licenses
+          if-no-files-found: warn

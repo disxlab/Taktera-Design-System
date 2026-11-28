@@ -190,6 +190,10 @@ def build(out, packages, source, npm_lock, native_lock):
                    "purl":ref,"hashes":cdx_hashes(n["hashes"]),
                    "properties":[{"name":"taktera:scope","value":n["scope"]},
                                  {"name":"taktera:declaredLicense","value":n["declaredLicense"]}]}
+        if n["ecosystem"]=="nuget" and n["scope"]!="shipped package":
+            # NuGet contentHash is not necessarily a digest of the downloaded signed archive.
+            component.pop("hashes")
+            component["properties"].append({"name":"taktera:nugetContentHashSha512","value":n["hashes"]["SHA-512"]})
         if license_value(n["declaredLicense"])!="NOASSERTION":
             component["licenses"]=[{"license":{"id":license_value(n["declaredLicense"])}}]
         if ref in by_package:
@@ -214,6 +218,9 @@ def build(out, packages, source, npm_lock, native_lock):
            "copyrightText":"NOASSERTION","checksums":[{"algorithm":k.replace("-",""),"checksumValue":v} for k,v in sorted(n["hashes"].items())],
            "externalRefs":[{"referenceCategory":"PACKAGE-MANAGER","referenceType":"purl","referenceLocator":ref}],
            "comment":n["scope"]}
+        if n["ecosystem"]=="nuget" and n["scope"]!="shipped package":
+            p.pop("checksums")
+            p["comment"]+="; NuGet lock contentHash SHA-512 (not raw archive hash): "+n["hashes"]["SHA-512"]
         if files:
             verification=digest("".join(sorted(f["sha1"] for f in files)).encode("ascii"),"sha1")
             p["packageVerificationCode"]={"packageVerificationCodeValue":verification}
