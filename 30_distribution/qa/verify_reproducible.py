@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """BR7-01: compare exact npm and NuGet archives from two isolated clean builds."""
 import hashlib
+import datetime
+import struct
 import json
 import os
 import shutil
@@ -34,15 +36,31 @@ def zip_entries(path):
                              "timestamp": list(i.date_time), "compression": i.compress_type}
                 for i in z.infolist()}
 
+def pe_comparison(a, b):
+    """Read-only diagnostics; never mutate or normalize compiled assemblies."""
+    x, y = a.read_bytes(), b.read_bytes()
+    def header(data):
+        offset = struct.unpack_from("<I", data, 0x3c)[0]
+        if data[:2] != b"MZ" or data[offset:offset+4] != b"PE\0\0":
+            raise RuntimeError("Invalid PE diagnostic assembly")
+        return {"coffTimestamp": struct.unpack_from("<I", data, offset+8)[0],
+                "size": len(data), "sha256": hashlib.sha256(data).hexdigest()}
+    differences = [i for i, (u, v) in enumerate(zip(x, y)) if u != v]
+    return {"a": header(x), "b": header(y), "identical": x == y,
+            "differentByteCount": len(differences) + abs(len(x)-len(y)),
+            "firstDifferentOffsets": differences[:32]}
+
 def build(tree, work, lock):
     dest = work / "out"
     dest.mkdir()
+    epoch = run(["git", "show", "-s", "--format=%ct", report["source"]], tree)
+    stamp = datetime.datetime.fromtimestamp(int(epoch), datetime.timezone.utc).isoformat().replace("+00:00", "Z")
     env = dict(os.environ, npm_config_cache=str(work / "npm-cache"),
                NUGET_PACKAGES=str(work / "nuget-cache"),
                DOTNET_CLI_HOME=str(work / "dotnet-home"),
                DOTNET_CLI_TELEMETRY_OPTOUT="1", AVALONIA_TELEMETRY_OPTOUT="1",
                MSBUILDDISABLENODEREUSE="1", DOTNET_CLI_USE_MSBUILD_SERVER="0",
-               TZ="UTC", LC_ALL="C.UTF-8")
+               TZ="UTC", LC_ALL="C.UTF-8", SOURCE_DATE_EPOCH=epoch)
     actual = {"node": run(["node", "--version"], tree, env),
               "npm": run(["npm", "--version"], tree, env),
               "dotnet": run(["dotnet", "--version"], tree, env)}
@@ -85,10 +103,16 @@ def build(tree, work, lock):
         shutil.copyfile(local_lock, lock)
     if local_lock.read_bytes() != lock.read_bytes():
         raise RuntimeError("NuGet lock changed between builds")
+    diagnostics = work / "diagnostics"
+    diagnostics.mkdir()
     run(["dotnet", "pack", project, "-c", "Release", "--no-restore",
          "--disable-build-servers", "-o", dest, "-warnaserror",
          "-p:ContinuousIntegrationBuild=true", "-p:Deterministic=true",
-         f"-p:PathMap={tree}=/src"], lib, env)
+         f"-p:PathMap={work}=/build", f"-p:DeterministicTimestamp={stamp}",
+         f"-p:TakteraReproEvidenceDirectory={diagnostics}"], lib, env)
+    for name in ("before-xaml.dll", "after-xaml.dll"):
+        if not (diagnostics / name).is_file():
+            raise RuntimeError("Missing compiler-stage diagnostic: " + name)
     packages = sorted(p for p in dest.iterdir() if p.suffix in (".tgz", ".nupkg"))
     if len(packages) != 3 or sum(p.suffix == ".nupkg" for p in packages) != 1:
         raise RuntimeError("Expected exactly two npm tarballs and one NuGet package")
@@ -106,9 +130,9 @@ try:
         lock = temp / "packages.lock.json"
         results = []
         for name in ("a", "b"):
-            tree = temp / ("checkout-" + name)
             work = temp / ("build-" + name)
             work.mkdir()
+            tree = work / "checkout"
             run(["git", "worktree", "add", "--detach", tree, report["source"]])
             try:
                 if run(["git", "status", "--porcelain"], tree):
@@ -118,6 +142,7 @@ try:
                 dest.mkdir()
                 for p in packages:
                     shutil.copyfile(p, dest / p.name)
+                shutil.copytree(work / "diagnostics", dest / "compiler-stages")
                 result = {p.name: sha(p) for p in packages}
                 results.append(result)
                 report["builds"].append({"name": name, "packages": result})
@@ -135,6 +160,11 @@ try:
                     {"entry": key, "a": a.get(key), "b": b.get(key)}
                     for key in sorted(set(a) | set(b)) if a.get(key) != b.get(key)]
             report["comparisons"].append(item)
+        report["compilerStages"] = {}
+        for name in ("before-xaml.dll", "after-xaml.dll"):
+            a = OUT / "a" / "compiler-stages" / name
+            b = OUT / "b" / "compiler-stages" / name
+            report["compilerStages"][name] = pe_comparison(a, b)
         report["passed"] = all(item["identical"] for item in report["comparisons"])
         if not report["passed"]:
             report["errors"].append("Exact package SHA-256 mismatch; do not promote release")

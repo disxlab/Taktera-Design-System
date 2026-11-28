@@ -12,12 +12,21 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <IsPackable>true</IsPackable>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- Release package has no shipped PDB; avoid machine-local debug paths in the compiled DLL. Debug builds retain symbols. -->
+    <DebugType Condition="'$(Configuration)' == 'Release'">none</DebugType>
+    <DebugSymbols Condition="'$(Configuration)' == 'Release'">false</DebugSymbols>
     <AvaloniaUseCompiledBindingsByDefault>false</AvaloniaUseCompiledBindingsByDefault>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="11.3.22" />
     <None Update="README.md" Pack="true" PackagePath="/" />
   </ItemGroup>
+  <Target Name="CaptureBeforeAvaloniaXaml" BeforeTargets="CompileAvaloniaXaml" Condition="'$(TakteraReproEvidenceDirectory)' != ''">
+    <Copy SourceFiles="@(IntermediateAssembly)" DestinationFiles="$(TakteraReproEvidenceDirectory)/before-xaml.dll" />
+  </Target>
+  <Target Name="CaptureAfterAvaloniaXaml" AfterTargets="CompileAvaloniaXaml" Condition="'$(TakteraReproEvidenceDirectory)' != ''">
+    <Copy SourceFiles="@(IntermediateAssembly)" DestinationFiles="$(TakteraReproEvidenceDirectory)/after-xaml.dll" />
+  </Target>
   <Target Name="RequirePalettes" BeforeTargets="PrepareForBuild">
     <Error Condition="!Exists('Assets/Taktera.Clinic.Light.axaml')" Text="Use 30_distribution/qa/verify_nuget_consumer.py to stage canonical assets before compiling." />
   </Target>
