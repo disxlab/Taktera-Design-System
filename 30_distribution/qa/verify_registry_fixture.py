@@ -6,6 +6,7 @@ import hashlib
 import hmac
 import json
 import os
+import re
 import secrets
 import shutil
 import subprocess
@@ -24,19 +25,31 @@ ROOT=Path(__file__).resolve().parents[2]
 PUBLIC_NPM="https://registry.npmjs.org/"
 PUBLIC_NUGET="https://api.nuget.org/v3/index.json"
 
-def npm_config(endpoint,token_variable):
+def private_endpoint(endpoint,loopback):
+    require(isinstance(endpoint,str) and endpoint and all(33<=ord(ch)<=126 for ch in endpoint)
+            and "\\" not in endpoint,"Unsafe registry endpoint characters")
     u=urlsplit(endpoint)
-    require(u.scheme in ("http","https") and u.netloc and not u.username and not u.password
-            and not u.query and not u.fragment and endpoint.endswith("/"),"Invalid npm endpoint")
-    require(u.scheme=="https" or u.hostname=="127.0.0.1","HTTP is loopback-only")
+    require(u.netloc and u.hostname and not u.username and not u.password and not u.query and not u.fragment,
+            "Invalid registry endpoint")
+    require(u.scheme=="https" or (loopback and u.scheme=="http" and u.hostname=="127.0.0.1"),
+            "Insecure registry endpoint")
+    require(u.hostname.lower().rstrip(".") not in ("registry.npmjs.org","api.nuget.org","www.nuget.org","nuget.org"),
+            "Public registry cannot be private destination")
+    require("%" not in u.path and all(part not in (".","..") for part in u.path.split("/")),
+            "Ambiguous registry path")
+    require(u.port is None or 0<u.port<=65535,"Invalid registry port")
+    return u
+
+def npm_config(endpoint,token_variable):
+    u=private_endpoint(endpoint,loopback=True)
+    require(endpoint.endswith("/") and re.fullmatch(r"[A-Z][A-Z0-9_]*",token_variable) is not None,
+            "Invalid npm scope or token variable")
     return ("registry="+PUBLIC_NPM+"\n@taktera:registry="+endpoint+"\n//"+u.netloc+u.path+
             ":_authToken="+chr(36)+"{"+token_variable+"}\nignore-scripts=true\n")
 
 def nuget_config(endpoint,public_names,loopback=False):
-    u=urlsplit(endpoint)
-    require(u.scheme=="https" or (loopback and u.scheme=="http" and u.hostname=="127.0.0.1"),
-            "Insecure NuGet source")
-    require(u.netloc and not u.username and not u.password and not u.query and not u.fragment,"Invalid NuGet endpoint")
+    u=private_endpoint(endpoint,loopback)
+    require(len({name.lower() for name in public_names})==len(public_names),"Duplicate public NuGet mapping")
     root=ET.Element("configuration")
     sources=ET.SubElement(root,"packageSources")
     ET.SubElement(sources,"clear")
@@ -50,7 +63,7 @@ def nuget_config(endpoint,public_names,loopback=False):
     ET.SubElement(private,"package",{"pattern":"Taktera.UI.Avalonia"})
     public=ET.SubElement(mapping,"packageSource",{"key":"nuget.org"})
     for name in sorted(public_names):
-        require(not name.lower().startswith("taktera.") and "*" not in name,"Unsafe public mapping")
+        require(re.fullmatch(r"[A-Za-z0-9_.-]+",name) is not None and not name.lower().startswith("taktera"),"Unsafe public mapping")
         ET.SubElement(public,"package",{"pattern":name})
     audit=ET.SubElement(root,"auditSources")
     ET.SubElement(audit,"clear")

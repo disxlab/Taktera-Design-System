@@ -1253,7 +1253,7 @@
       "phase": "Beta Readiness 7",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Provider-neutral fail-closed policy (no destination configured), read-only authenticated loopback protocol fixture for exact canonical SDK archives, actual pinned npm pack / NuGet restore with isolated caches and explicit package-source mapping, anonymous/wrong credentials/unknown package/write denial checks. Fresh CI pending. Real HTTPS provider, immutable storage, authenticated clean apps and unauthorized negative tests on that provider, signed provenance, license and owner publication approval remain mandatory. npm private flag retained; no real credentials or publishing.",
+      "description": "Run #39 FINAL 25/25 PASS; registry fixture 31/31 PASS, npm CLI exact two archives, NuGet exact archive and private/public source mapping, negative auth/write checks; registry artifact 15242503754, candidate 15243307004. https://github.com/disxlab/Taktera-Design-System/actions/runs/46094888319 Loopback fixture confirmed, real provider and license/signing/owner approval remain open.",
       "dependencies": [
         "BR7-03",
         "BR7-04"
@@ -1270,8 +1270,8 @@
       "title": "Supply Chain Security",
       "phase": "Beta Readiness 7",
       "priority": "P0",
-      "status": "planned",
-      "description": "Pinned actions and toolchains, dependency audit, secret-free PR workflows, registry mapping and negative security tests.",
+      "status": "in_progress",
+      "description": "Pinned six active Actions identities and reviewed attest commit (seven total) by official repository SHA. Static guard of current workflow subset, exact lock integrity/source policies, no PR write/secrets, explicit checkout credential policy, hardened registry configuration and 17 regression controls. Validator wheels downloaded only as binaries, SHA-256 cross-checked with PyPI metadata, installed offline in isolated venv via --require-hashes. First CI observes lock; committed wheel hash allowlist still pending. Actual CI pending; not a complete security certification. Real provider and trusted signing activation remain open.",
       "dependencies": [
         "BR7-02",
         "BR7-04"
@@ -1411,6 +1411,10 @@
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #39 FINAL 25/25 PASS; registry fixture 31/31 PASS, npm CLI exact two archives, NuGet exact archive and private/public source mapping, negative auth/write checks; registry artifact 15242503754, candidate 15243307004. https://github.com/disxlab/Taktera-Design-System/actions/runs/46094888319 BR7-06 action pins, static policy controls, wheel integrity evidence and negative tests implemented; fresh CI pending."
+    },
     {
       "at": "2026-11-28",
       "message": "Run #38 FINAL 24/24 PASS; eight-subject attestation preflight PASS, independent download verifies 40 files, 41 archive members, 5 SBOMs and 4 negative controls; candidate 15241709397, independent verification 15242915608. https://github.com/disxlab/Taktera-Design-System/actions/runs/46093859272 Added BR7-05 read-only registry protocol fixture and unconfigured policy; new CI pending."

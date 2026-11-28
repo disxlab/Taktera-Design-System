@@ -19,3 +19,5 @@
 - Owner decision 2026-11-28: no real Taktera Platform integration or repository changes until Design System 4.0 Stable. Use independent package-only reference hosts and synthetic data before Stable; actual product staging is a post-Stable task.
 
 - Use exact .NET SDK from root global.json (10.0.404, roll-forward disabled); copy the pin to isolated build/consumer roots outside the repository. BR7 exact build gate also verifies Node 26.13.1 and npm 11.20.0. Do not bypass version guards.
+
+- Keep GitHub Action refs matched to `30_distribution/security/actions.lock.json`; no mutable action refs, PR secrets or write permissions. Run `python 30_distribution/qa/check_supply_chain.py` and `python 30_distribution/qa/test_supply_chain.py`. Never invent validator wheel digests; use reviewed CI evidence and committed lock comparison. No release activation from a PR.

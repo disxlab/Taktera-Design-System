@@ -15,16 +15,16 @@ jobs:
     name: Static checks and brand freeze
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: '3.12'
       - run: python 27_beta_readiness_3/qa/check_sources.py
       - run: python 28_engineering/qa/check_hardening.py
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version-file: '.node-version'
           package-manager-cache: false
@@ -32,6 +32,8 @@ jobs:
       - run: node 25_internal_completion/src/test_formatters.mjs
       - run: python 28_engineering/qa/check_board.py
       - run: python 30_distribution/qa/check_portal.py
+      - run: python 30_distribution/qa/check_supply_chain.py
+      - run: python 30_distribution/qa/test_supply_chain.py
       - name: Protect approved resources against BR3 baseline
         run: git diff --exit-code 4621646e21d987b86d8c9c21662e04c94a0b4d0b HEAD -- 01_brandbook 02_logos 03_icons 04_tokens 05_typography 06_templates 14_brand_extensions 25_internal_completion/src/tokens.canonical.json
   react:
@@ -42,10 +44,10 @@ jobs:
         os: [ubuntu-24.04, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           persist-credentials: false
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version-file: '.node-version'
           package-manager-cache: false
@@ -64,10 +66,10 @@ jobs:
         os: [windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           persist-credentials: false
-      - uses: actions/setup-dotnet@v5
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
         with:
           dotnet-version: '10.0.404'
       - run: dotnet restore 17_packages/avalonia/sample/TakteraUiAvalonia.Sample.csproj
@@ -76,14 +78,14 @@ jobs:
     name: Dependency audit
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           persist-credentials: false
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version-file: '.node-version'
           package-manager-cache: false
-      - uses: actions/setup-dotnet@v5
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
         with:
           dotnet-version: '10.0.404'
       - name: npm audit (high/critical gate)
@@ -95,7 +97,7 @@ jobs:
       - name: NuGet vulnerability report
         if: ${{ !cancelled() }}
         run: dotnet list 17_packages/avalonia/sample/TakteraUiAvalonia.Sample.csproj package --vulnerable --include-transitive --format json > nuget-audit.json
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: ${{ always() }}
         with:
           name: dependency-audit
@@ -111,10 +113,10 @@ jobs:
         engine: [chromium, firefox, webkit]
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           persist-credentials: false
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version-file: '.node-version'
           package-manager-cache: false
@@ -141,7 +143,7 @@ jobs:
         if: ${{ !cancelled() }}
         run: node qa/board-browser.mjs ${{ matrix.engine }}
         working-directory: 17_packages/react
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: ${{ always() }}
         with:
           name: browser-${{ matrix.engine }}
@@ -160,15 +162,15 @@ jobs:
         os: [ubuntu-24.04, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           persist-credentials: false
-      - uses: actions/setup-dotnet@v5
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
         with:
           dotnet-version: '10.0.404'
       - run: dotnet restore 17_packages/avalonia/tests/Taktera.Headless.Tests.csproj -p:NuGetAudit=true -p:NuGetAuditMode=all -warnaserror:NU1900,NU1903,NU1904,NU1905
       - run: dotnet test 17_packages/avalonia/tests/Taktera.Headless.Tests.csproj -c Release --no-restore --logger "trx;LogFileName=headless.trx" --results-directory headless-results
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: ${{ always() }}
         with:
           name: headless-${{ matrix.os }}
@@ -181,10 +183,10 @@ jobs:
       contents: read
       issues: read
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           persist-credentials: false
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: '3.12'
       - name: Read issue states (no write permission)
@@ -193,7 +195,7 @@ jobs:
         run: |
           gh api --paginate --slurp 'repos/${{ github.repository }}/issues?state=all&per_page=100' > issues-api.json
           python 28_engineering/qa/sync_issues.py issues-api.json github-issues-snapshot.json
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:
           name: github-issues-snapshot
           path: github-issues-snapshot.json
@@ -203,14 +205,14 @@ jobs:
     name: npm packaged clean consumer
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: '3.12'
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version-file: '.node-version'
           package-manager-cache: false
@@ -222,7 +224,7 @@ jobs:
         working-directory: 17_packages/react
       - run: python 30_distribution/qa/verify_api.py
       - run: node 30_distribution/qa/verify_npm_consumer.mjs
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: ${{ always() }}
         with:
           name: npm-consumer-evidence
@@ -237,17 +239,17 @@ jobs:
         os: [windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           persist-credentials: false
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: '3.12'
-      - uses: actions/setup-dotnet@v5
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
         with:
           dotnet-version: '10.0.404'
       - run: python 30_distribution/qa/verify_nuget_consumer.py
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: ${{ always() }}
         with:
           name: nuget-consumer-${{ matrix.os }}
@@ -262,22 +264,22 @@ jobs:
         replica: [primary, secondary]
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: '3.12'
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version: '26.13.1'
           package-manager-cache: false
-      - uses: actions/setup-dotnet@v5
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
         with:
           dotnet-version: '10.0.404'
       - run: python 30_distribution/qa/verify_reproducible.py
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: ${{ always() }}
         with:
           name: reproducibility-evidence-${{ matrix.replica }}
@@ -289,22 +291,22 @@ jobs:
     needs: [reproducible]
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           persist-credentials: false
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: '3.12'
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
         with:
           name: reproducibility-evidence-primary
           path: repro-primary
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
         with:
           name: reproducibility-evidence-secondary
           path: repro-secondary
       - run: python 30_distribution/qa/verify_canonical.py repro-primary repro-secondary canonical-packages
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:
           name: canonical-packages
           path: canonical-packages
@@ -319,23 +321,23 @@ jobs:
         os: [windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           persist-credentials: false
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: '3.12'
-      - uses: actions/setup-dotnet@v5
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
         with:
           dotnet-version: '10.0.404'
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
         with:
           name: canonical-packages
           path: canonical-input
       - run: python 30_distribution/qa/verify_nuget_consumer.py
         env:
           TAKTERA_CANONICAL_INPUT: canonical-input
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: ${{ always() }}
         with:
           name: canonical-nuget-consumer-${{ matrix.os }}
@@ -347,48 +349,58 @@ jobs:
     needs: [static, react, avalonia, security, browser, headless, board-sync, npm-consumer, nuget-consumer, reproducible, canonical, canonical-nuget-consumer]
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           persist-credentials: false
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: '3.12'
-      - uses: actions/setup-dotnet@v5
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
         with:
           dotnet-version: '10.0.404'
-      - name: Install pinned SBOM schema validator
-        run: python -m pip install --disable-pip-version-check jsonschema==4.25.1 attrs==25.3.0 jsonschema-specifications==2025.4.1 referencing==0.36.2 rpds-py==0.27.1 typing-extensions==4.15.0
-      - uses: actions/download-artifact@v6
+      - name: Download and verify exact validator wheels
+        run: python 30_distribution/qa/prepare_validator_wheels.py validator-wheelhouse validator-lock-evidence
+      - name: Install only verified wheels in isolated environment
+        run: |
+          python -m venv validator-venv
+          validator-venv/bin/python -m pip --isolated install --disable-pip-version-check --no-index --find-links validator-wheelhouse --require-hashes -r validator-lock-evidence/requirements.sha256.txt
+          validator-venv/bin/python -m pip check
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: validator-wheel-lock-evidence
+          path: validator-lock-evidence
+          if-no-files-found: error
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
         with:
           name: npm-consumer-evidence
           path: candidate-input/npm
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
         with:
           name: canonical-nuget-consumer-windows-latest
           path: candidate-input/nuget-windows
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
         with:
           name: canonical-nuget-consumer-macos-latest
           path: candidate-input/nuget-macos
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
         with:
           name: dependency-audit
           path: candidate-input/audit
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
         with:
           name: canonical-packages
           path: candidate-input/canonical
       - name: NuGet license integrity regression tests
         run: python 30_distribution/qa/test_dependency_licenses.py
-      - run: python 30_distribution/qa/assemble_candidate.py candidate-input candidate-release
-      - uses: actions/upload-artifact@v6
+      - run: validator-venv/bin/python 30_distribution/qa/assemble_candidate.py candidate-input candidate-release
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:
           name: taktera-candidate-release-evidence
           path: candidate-release
           if-no-files-found: error
       - name: Upload failed release diagnostics (not a candidate)
         if: ${{ failure() }}
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:
           name: failed-release-diagnostics
           path: |
@@ -403,23 +415,23 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           persist-credentials: false
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: '3.12'
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
         with:
           name: taktera-candidate-release-evidence
           path: candidate-download
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
         with:
           name: canonical-packages
           path: canonical-download
       - run: python 30_distribution/qa/verify_candidate_download.py candidate-download canonical-download verification/candidate-verification.json
       - run: python 30_distribution/qa/prepare_attestation_subjects.py candidate-download canonical-download verification
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:
           name: candidate-independent-verification
           path: verification
@@ -432,29 +444,29 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           persist-credentials: false
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: '3.12'
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version-file: '.node-version'
           package-manager-cache: false
-      - uses: actions/setup-dotnet@v5
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
         with:
           dotnet-version: '10.0.404'
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
         with:
           name: taktera-candidate-release-evidence
           path: candidate-download
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
         with:
           name: canonical-packages
           path: canonical-download
       - run: python 30_distribution/qa/verify_registry_fixture.py candidate-download canonical-download registry-verification
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:
           name: registry-fixture-verification
           path: registry-verification
