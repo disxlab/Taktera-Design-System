@@ -614,3 +614,49 @@ jobs:
           name: release-documentation-evidence
           path: release-documentation
           if-no-files-found: error
+
+  br8-canonical-browser:
+    name: BR8 canonical SDK browser acceptance (${{ matrix.engine }})
+    needs: [release-documentation, canonical, release-evidence]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        engine: [chromium, firefox, webkit]
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: '.node-version'
+          package-manager-cache: false
+      - run: npm ci --no-audit --no-fund
+        working-directory: 17_packages/react
+      - run: npx --no-install playwright install --with-deps ${{ matrix.engine }}
+        working-directory: 17_packages/react
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: taktera-candidate-release-evidence
+          path: candidate-download
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: canonical-packages
+          path: canonical-download
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: release-documentation-evidence
+          path: release-documentation
+      - run: python 30_distribution/qa/prepare_br8_consumer.py candidate-download canonical-download release-documentation "${RUNNER_TEMP}/taktera-br8"
+      - run: node 30_distribution/qa/verify_br8_browser.mjs ${{ matrix.engine }} "${RUNNER_TEMP}/taktera-br8" br8-evidence
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: always()
+        with:
+          name: br8-canonical-browser-${{ matrix.engine }}
+          path: br8-evidence
+          if-no-files-found: error

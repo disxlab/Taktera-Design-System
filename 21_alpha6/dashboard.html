@@ -25,7 +25,9 @@
     "Beta Readiness 5",
     "Beta Readiness 6",
     "Beta Readiness 7",
-    "Release milestones"
+    "Release milestones",
+    "Beta Readiness 8",
+    "Beta Readiness 9"
   ],
   "tasks": [
     {
@@ -1148,7 +1150,11 @@
         "BR7-07",
         "BR7-08",
         "BR7-09",
-        "BR7-10"
+        "BR7-10",
+        "BR8-01",
+        "BR8-02",
+        "BR8-03",
+        "BR9-01"
       ],
       "kind": "work",
       "source": "plan",
@@ -1163,7 +1169,7 @@
       "phase": "Beta Readiness 5",
       "priority": "P0",
       "status": "in_progress",
-      "description": "Package-only reference consumers, six product variants, RU/EN, light/dark, synthetic transport, agreed performance budgets, keyboard/manual accessibility and security boundaries. No real Taktera Platform connection. Run #28 package gates PASS; expanded acceptance pending.",
+      "description": "Package-only reference consumers, six product variants, RU/EN, light/dark, synthetic transport, agreed performance budgets, keyboard/manual accessibility and security boundaries. No real Taktera Platform connection. Run #28 package gates PASS; expanded acceptance pending. BR8 canonical browser acceptance matrix implemented: same-run canonical archives and dossier, exact consumer lock, 3 browsers x 6 products x 2 themes, registry axe, workflow callbacks and synthetic state isolation. New CI pending.",
       "dependencies": [
         "BR5-02",
         "BR5-03",
@@ -1328,7 +1334,7 @@
       "phase": "Beta Readiness 7",
       "priority": "P1",
       "status": "in_progress",
-      "description": "Run #43 FINAL 27/28; recovery and version policy PASS (8 recovery controls, 5 negative recovery controls, 10 version negative controls, zero checked API differences, version artifact 15244797422); only release documentation failed with ValueError: Version archive contracts differ. https://github.com/disxlab/Taktera-Design-System/actions/runs/46099306231 Version gate confirmed; first-publication SemVer precedence warning retained. Native ABI and owner approval remain open.",
+      "description": "Run #44 FINAL 28/28 PASS; JSON-stable native contracts fixed Run #43, 5 regression tests, 10 version negative controls, zero checked API differences, 7 dossier negative controls, four draft documentation files. Version artifact 15245761539, dossier 15245493735, rollback 15245991122. https://github.com/disxlab/Taktera-Design-System/actions/runs/46101649794 Full CLR ABI and owner promotion approval pending.",
       "dependencies": [
         "BR6-01"
       ],
@@ -1345,7 +1351,7 @@
       "phase": "Beta Readiness 7",
       "priority": "P1",
       "status": "in_progress",
-      "description": "Run #43 FINAL 27/28; recovery and version policy PASS (8 recovery controls, 5 negative recovery controls, 10 version negative controls, zero checked API differences, version artifact 15244797422); only release documentation failed with ValueError: Version archive contracts differ. https://github.com/disxlab/Taktera-Design-System/actions/runs/46099306231 Root cause: Python tuples in native dependency rows serialize to JSON lists, breaking strict cross-job equality. Emit native JSON arrays directly and require JSON-stable contracts. Added five regressions (three positive and two negative), no relaxed equality. Fresh CI pending; draft-only dossier.",
+      "description": "Run #44 FINAL 28/28 PASS; JSON-stable native contracts fixed Run #43, 5 regression tests, 10 version negative controls, zero checked API differences, 7 dossier negative controls, four draft documentation files. Version artifact 15245761539, dossier 15245493735, rollback 15245991122. https://github.com/disxlab/Taktera-Design-System/actions/runs/46101649794 Draft dossier automation verified; final release approvals and signed release docs remain open.",
       "dependencies": [
         "BR7-03",
         "BR7-08",
@@ -1408,9 +1414,88 @@
       "due": "",
       "updated": "2026-11-28",
       "githubIssue": 7
+    },
+    {
+      "id": "BR8-01",
+      "title": "Canonical browser SDK acceptance",
+      "phase": "Beta Readiness 8",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Three browsers, 12 product/theme scenarios each, exact canonical npm archives, locked package-only React host, English synthetic workflows, registry axe and request isolation. Fresh CI pending.",
+      "dependencies": [
+        "BR7-09",
+        "BR7-10",
+        "BR5-07"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 12
+    },
+    {
+      "id": "BR8-02",
+      "title": "Native SDK independent acceptance",
+      "phase": "Beta Readiness 8",
+      "priority": "P0",
+      "status": "planned",
+      "description": "Expand canonical Avalonia package-only consumer acceptance for supported native OSes, product/theme coverage and manual graphical evidence.",
+      "dependencies": [
+        "BR7-08",
+        "BR5-07"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 12
+    },
+    {
+      "id": "BR8-03",
+      "title": "RU/EN and synthetic transport acceptance",
+      "phase": "Beta Readiness 8",
+      "priority": "P0",
+      "status": "planned",
+      "description": "Package-only localized reference hosts, transport errors, conflict/validation, scheduler and analytics scenarios; no real data or endpoints.",
+      "dependencies": [
+        "BR8-01",
+        "BR5-04"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 12
+    },
+    {
+      "id": "BR9-01",
+      "title": "Final accessibility, native and performance QA",
+      "phase": "Beta Readiness 9",
+      "priority": "P0",
+      "status": "planned",
+      "description": "Manual keyboard, NVDA/VoiceOver, native desktop, browser and accessibility evidence; measured agreed performance budgets and security review.",
+      "dependencies": [
+        "BR8-01",
+        "BR8-02",
+        "BR8-03",
+        "BETA-03"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 13
     }
   ],
   "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #44 FINAL 28/28 PASS; JSON-stable native contracts fixed Run #43, 5 regression tests, 10 version negative controls, zero checked API differences, 7 dossier negative controls, four draft documentation files. Version artifact 15245761539, dossier 15245493735, rollback 15245991122. https://github.com/disxlab/Taktera-Design-System/actions/runs/46101649794 BR8/BR9 explicit acceptance work items and first canonical browser matrix implemented; new CI pending."
+    },
     {
       "at": "2026-11-28",
       "message": "Run #43 FINAL 27/28; recovery and version policy PASS (8 recovery controls, 5 negative recovery controls, 10 version negative controls, zero checked API differences, version artifact 15244797422); only release documentation failed with ValueError: Version archive contracts differ. https://github.com/disxlab/Taktera-Design-System/actions/runs/46099306231 Fix JSON representation and add cross-job regression tests."
