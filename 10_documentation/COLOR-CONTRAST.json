@@ -1,0 +1,293 @@
+{
+  "method": "sRGB relative luminance; opaque colors; internal normal-text threshold 4.5:1",
+  "pairs": [
+    {
+      "product": "platform",
+      "role": "light button",
+      "foreground": "#FFFFFF",
+      "background": "#50556B",
+      "ratio": 7.361,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "platform",
+      "role": "dark button",
+      "foreground": "#151719",
+      "background": "#B3B8D6",
+      "ratio": 9.195,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "platform",
+      "role": "light UI white",
+      "foreground": "#50556B",
+      "background": "#FFFFFF",
+      "ratio": 7.361,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "platform",
+      "role": "light UI paper",
+      "foreground": "#50556B",
+      "background": "#F4F3EF",
+      "ratio": 6.63,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "platform",
+      "role": "dark UI canvas",
+      "foreground": "#B3B8D6",
+      "background": "#151719",
+      "ratio": 9.195,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "platform",
+      "role": "dark UI surface",
+      "foreground": "#B3B8D6",
+      "background": "#22262B",
+      "ratio": 7.785,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "clinic",
+      "role": "light button",
+      "foreground": "#FFFFFF",
+      "background": "#2368D1",
+      "ratio": 5.287,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "clinic",
+      "role": "dark button",
+      "foreground": "#151719",
+      "background": "#70A6FF",
+      "ratio": 7.349,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "clinic",
+      "role": "light UI white",
+      "foreground": "#2368D1",
+      "background": "#FFFFFF",
+      "ratio": 5.287,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "clinic",
+      "role": "light UI paper",
+      "foreground": "#2368D1",
+      "background": "#F4F3EF",
+      "ratio": 4.761,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "clinic",
+      "role": "dark UI canvas",
+      "foreground": "#70A6FF",
+      "background": "#151719",
+      "ratio": 7.349,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "clinic",
+      "role": "dark UI surface",
+      "foreground": "#70A6FF",
+      "background": "#22262B",
+      "ratio": 6.222,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "beauty",
+      "role": "light button",
+      "foreground": "#FFFFFF",
+      "background": "#C13B78",
+      "ratio": 5.043,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "beauty",
+      "role": "dark button",
+      "foreground": "#151719",
+      "background": "#F17BB1",
+      "ratio": 7.025,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "beauty",
+      "role": "light UI white",
+      "foreground": "#C13B78",
+      "background": "#FFFFFF",
+      "ratio": 5.043,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "beauty",
+      "role": "light UI paper",
+      "foreground": "#C13B78",
+      "background": "#F4F3EF",
+      "ratio": 4.542,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "beauty",
+      "role": "dark UI canvas",
+      "foreground": "#F17BB1",
+      "background": "#151719",
+      "ratio": 7.025,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "beauty",
+      "role": "dark UI surface",
+      "foreground": "#F17BB1",
+      "background": "#22262B",
+      "ratio": 5.947,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "spa",
+      "role": "light button",
+      "foreground": "#FFFFFF",
+      "background": "#118569",
+      "ratio": 4.582,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "spa",
+      "role": "dark button",
+      "foreground": "#151719",
+      "background": "#55CBA4",
+      "ratio": 8.956,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "spa",
+      "role": "light UI white",
+      "foreground": "#118569",
+      "background": "#FFFFFF",
+      "ratio": 4.582,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "spa",
+      "role": "light UI paper",
+      "foreground": "#118569",
+      "background": "#F4F3EF",
+      "ratio": 4.127,
+      "meetsInternalTextThreshold": false
+    },
+    {
+      "product": "spa",
+      "role": "dark UI canvas",
+      "foreground": "#55CBA4",
+      "background": "#151719",
+      "ratio": 8.956,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "spa",
+      "role": "dark UI surface",
+      "foreground": "#55CBA4",
+      "background": "#22262B",
+      "ratio": 7.582,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "fitness",
+      "role": "light button",
+      "foreground": "#FFFFFF",
+      "background": "#D52B35",
+      "ratio": 4.969,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "fitness",
+      "role": "dark button",
+      "foreground": "#151719",
+      "background": "#FF6B75",
+      "ratio": 6.514,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "fitness",
+      "role": "light UI white",
+      "foreground": "#D52B35",
+      "background": "#FFFFFF",
+      "ratio": 4.969,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "fitness",
+      "role": "light UI paper",
+      "foreground": "#D52B35",
+      "background": "#F4F3EF",
+      "ratio": 4.475,
+      "meetsInternalTextThreshold": false
+    },
+    {
+      "product": "fitness",
+      "role": "dark UI canvas",
+      "foreground": "#FF6B75",
+      "background": "#151719",
+      "ratio": 6.514,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "fitness",
+      "role": "dark UI surface",
+      "foreground": "#FF6B75",
+      "background": "#22262B",
+      "ratio": 5.515,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "travel",
+      "role": "light button",
+      "foreground": "#151719",
+      "background": "#D4A600",
+      "ratio": 7.92,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "travel",
+      "role": "dark button",
+      "foreground": "#151719",
+      "background": "#FFD43B",
+      "ratio": 12.608,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "travel",
+      "role": "light UI white",
+      "foreground": "#806300",
+      "background": "#FFFFFF",
+      "ratio": 5.672,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "travel",
+      "role": "light UI paper",
+      "foreground": "#806300",
+      "background": "#F4F3EF",
+      "ratio": 5.108,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "travel",
+      "role": "dark UI canvas",
+      "foreground": "#FFD43B",
+      "background": "#151719",
+      "ratio": 12.608,
+      "meetsInternalTextThreshold": true
+    },
+    {
+      "product": "travel",
+      "role": "dark UI surface",
+      "foreground": "#FFD43B",
+      "background": "#22262B",
+      "ratio": 10.675,
+      "meetsInternalTextThreshold": true
+    }
+  ]
+}

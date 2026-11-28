@@ -1,0 +1,17 @@
+# Local/generated content
+node_modules/
+**/node_modules/
+**/dist/
+**/bin/
+**/obj/
+**/__pycache__/
+*.pyc
+.DS_Store
+.vscode/
+.idea/
+# QA outputs (keep curated baselines under version control)
+visual-results/
+
+28_engineering/qa/results/
+npm-audit.json
+nuget-audit.json

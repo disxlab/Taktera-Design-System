@@ -1,11 +1,13 @@
-# Taktera Design System
+# Taktera Design System v4.0 — Beta Readiness 3
 
-Единая дизайн-система экосистемы Taktera.
+Это продолжение Beta Readiness 2 без изменения исходного фирменного стиля.
 
-**Статус:** v4.0 Beta Readiness 3 — подготовка к CI; Beta ещё не подтверждена.
+**Основное:** `27_beta_readiness_3/docs/README.md` — точная инструкция по CI, React и Avalonia.
 
-Исходный релизный комплект: `Taktera_Design_System_v4.0-beta-readiness.3.zip` (передача в репозиторий поэтапная).
+**Project Board:** `21_alpha6/dashboard.html` (локальное сохранение; экспортируйте JSON перед обновлением).
 
-Рабочие направления: Web Core, React/TypeScript, Avalonia UI, дизайн-токены, Project Board, визуальные регрессии и доступность.
+**Обзор бренд-системы:** `START-HERE.html`.
 
-Изменения разрабатываются через отдельные ветки и Draft Pull Requests; успешная сборка React и Avalonia на целевых ОС пока не подтверждена.
+**Проверки:** `python 27_beta_readiness_3/qa/check_sources.py`.
+
+**Статус:** CI подготовлен, но не запускался в GitHub; React и Avalonia сборки остаются обязательными.

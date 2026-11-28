@@ -1,0 +1,3073 @@
+{
+  "package": "Taktera Design System v4.0 Alpha.2",
+  "date": "2026-11-22",
+  "source": "Alpha.1 extension (approved brand frozen)",
+  "asset_count_excluding_manifest_and_validation": 613,
+  "assets": [
+    {
+      "path": "01_brandbook/README.md",
+      "bytes": 229,
+      "sha256": "e34f8fa2f74d7954fcd20517ededaafc3cda26569f5c8f3c38c18b8b00ee305b"
+    },
+    {
+      "path": "01_brandbook/Taktera-brandbook-v3.2.pdf",
+      "bytes": 200872,
+      "sha256": "1cfb64211982cfe37b88a1f0878ad44ea8edc5ee597ea29a696e73513514f0b9"
+    },
+    {
+      "path": "01_brandbook/app-icon-sizes-dark.png",
+      "bytes": 86678,
+      "sha256": "c46bf15e04bcd6757f01db78655114975eba4fe9e9ca633e37d13301740f5159"
+    },
+    {
+      "path": "01_brandbook/app-icon-sizes.png",
+      "bytes": 82638,
+      "sha256": "615f6a7de368dee7abb7f952b31f9cf123b382175653b64337211db148dc1aed"
+    },
+    {
+      "path": "01_brandbook/product-family-ru.png",
+      "bytes": 71784,
+      "sha256": "ee2a506b3391c6ddc05588f950809d2a75edf024c0f58e630f9693761fd6dea5"
+    },
+    {
+      "path": "01_brandbook/product-family.png",
+      "bytes": 50074,
+      "sha256": "f3324e6f9d0d3e04f61af52885aabac1a1dec5d3807408814f170d146f5330d4"
+    },
+    {
+      "path": "02_logos/master/png/mark-dark.png",
+      "bytes": 3080,
+      "sha256": "0d208639ffe235fab7362d5206a42599ab36b794ad0388f1f17afa317219d509"
+    },
+    {
+      "path": "02_logos/master/png/mark-light.png",
+      "bytes": 3266,
+      "sha256": "eda4275d1665c145b38e0179c187ce2ccdc7f7b37678d1a785474e570908d86d"
+    },
+    {
+      "path": "02_logos/master/png/mark-mono-dark.png",
+      "bytes": 2677,
+      "sha256": "1ac0d1a29e290aa98136fe3b82c5020f848a8584c9036db4d387b756486afdbd"
+    },
+    {
+      "path": "02_logos/master/png/mark-mono-light.png",
+      "bytes": 2913,
+      "sha256": "91d0ef7265bc40219b3fb07532ab2201af9707a100f4630d4659c4ba85220130"
+    },
+    {
+      "path": "02_logos/master/png/taktera-dark.png",
+      "bytes": 12247,
+      "sha256": "f3a0efd57251ece284d66eb2354cb32ca48b01799dd6523078c4a1e1331907be"
+    },
+    {
+      "path": "02_logos/master/png/taktera-light.png",
+      "bytes": 12189,
+      "sha256": "91dd765ed5201a98d913b23f3c0a75ef8197480badc13e4a6ead6a9bedfe2cbb"
+    },
+    {
+      "path": "02_logos/master/svg/mark-dark.svg",
+      "bytes": 299,
+      "sha256": "d9b21430d81fcefe82994832fc71819e4a16ebef1161255c8cf892b162da068b"
+    },
+    {
+      "path": "02_logos/master/svg/mark-light.svg",
+      "bytes": 299,
+      "sha256": "6fedd0e56e333f4a44efb7bc80fb63d1f8e891adf84f7fc5695e317f1bf194b8"
+    },
+    {
+      "path": "02_logos/master/svg/mark-mono-dark.svg",
+      "bytes": 299,
+      "sha256": "29096016b90893cb64d1df0d1bb5c1a74837e0f5bf5f6f5421f40a5e0c79c23f"
+    },
+    {
+      "path": "02_logos/master/svg/mark-mono-light.svg",
+      "bytes": 299,
+      "sha256": "31c2fb7b9fd62163056d3b2728242c1bd764557c6090ebcd9dbe4b6dc2284159"
+    },
+    {
+      "path": "02_logos/master/svg/taktera-dark.svg",
+      "bytes": 3684,
+      "sha256": "81c7d93d81163c9bc6e548b87d7ec742ff60f923c64f4a7a2935201adb2b1ef5"
+    },
+    {
+      "path": "02_logos/master/svg/taktera-light.svg",
+      "bytes": 3684,
+      "sha256": "3d3797e6b38e60571ff87b1b091a4359ea6c54b40200c691455b6091260ece15"
+    },
+    {
+      "path": "02_logos/products/png/beauty-dark.png",
+      "bytes": 15393,
+      "sha256": "39a40c61affc0ddc7032f320d9f6e567e46d4be1b046f23ebdfd4f3c25076d28"
+    },
+    {
+      "path": "02_logos/products/png/beauty-light.png",
+      "bytes": 15585,
+      "sha256": "6da8231f0c251e4a09851cf3b371c20250033d9ef33eb69c4472f08f41d3652d"
+    },
+    {
+      "path": "02_logos/products/png/beauty-mark-dark.png",
+      "bytes": 3074,
+      "sha256": "d958ef2d93f18daa8c9bdcc5529bf011902f4ec563e82e2b3196fd3f031142ec"
+    },
+    {
+      "path": "02_logos/products/png/beauty-mark-light.png",
+      "bytes": 3266,
+      "sha256": "1620c63e0c214ebfbd4897edf978978909307a5a676fa1114c2717ae27801a06"
+    },
+    {
+      "path": "02_logos/products/png/clinic-dark.png",
+      "bytes": 11170,
+      "sha256": "6f03cc563f4feba7afb184813aa1a61b3dc4637f520c5ca19d21e433a1848d2b"
+    },
+    {
+      "path": "02_logos/products/png/clinic-light.png",
+      "bytes": 11820,
+      "sha256": "d836e687196e24327e82d9f3af38fe9c9bbdd46888fd9082aa4a10d8c8dff0f7"
+    },
+    {
+      "path": "02_logos/products/png/clinic-mark-dark.png",
+      "bytes": 2961,
+      "sha256": "a4cb93519a8efaab4319982364a6e29baa524f04b95d57af891665cd3d372587"
+    },
+    {
+      "path": "02_logos/products/png/clinic-mark-light.png",
+      "bytes": 3270,
+      "sha256": "3bb5de299ce573649965848761e76565144958193bf251b0b877f058560148b6"
+    },
+    {
+      "path": "02_logos/products/png/fitness-dark.png",
+      "bytes": 14317,
+      "sha256": "bb5604e60c339c79aa76bc865458989a8621ab7581a12b6a725c37cf36c45f90"
+    },
+    {
+      "path": "02_logos/products/png/fitness-light.png",
+      "bytes": 14869,
+      "sha256": "20ab73e60a1c6e343dadab1280340d82ee00dd0b23a6bee16bde90f4af3244d3"
+    },
+    {
+      "path": "02_logos/products/png/fitness-mark-dark.png",
+      "bytes": 2991,
+      "sha256": "4de67d0ff42e362bec04de241a55fa879413b88a3e0b076dd5ca34fccc757afa"
+    },
+    {
+      "path": "02_logos/products/png/fitness-mark-light.png",
+      "bytes": 3281,
+      "sha256": "4c67acbd32bb737fbfa0c0e2b8e3e4684dd59cb207fbd2442a61593c12286de9"
+    },
+    {
+      "path": "02_logos/products/png/platform-dark.png",
+      "bytes": 15815,
+      "sha256": "7d0d3a0f76b050534dac959123576b70b601aec72fe67f076c08b6ee2bec8a99"
+    },
+    {
+      "path": "02_logos/products/png/platform-light.png",
+      "bytes": 15934,
+      "sha256": "c52c0210bfda5da642f75f21a88a30cac8f8badc81b619cb2e6378de23fa223b"
+    },
+    {
+      "path": "02_logos/products/png/platform-mark-dark.png",
+      "bytes": 3080,
+      "sha256": "0d208639ffe235fab7362d5206a42599ab36b794ad0388f1f17afa317219d509"
+    },
+    {
+      "path": "02_logos/products/png/platform-mark-light.png",
+      "bytes": 3266,
+      "sha256": "eda4275d1665c145b38e0179c187ce2ccdc7f7b37678d1a785474e570908d86d"
+    },
+    {
+      "path": "02_logos/products/png/spa-dark.png",
+      "bytes": 10714,
+      "sha256": "fc16a8aed9b3febd3329278be8288b9f08e7dde281157ee2353906d490c8923b"
+    },
+    {
+      "path": "02_logos/products/png/spa-light.png",
+      "bytes": 10793,
+      "sha256": "4f507bccf4b57cbab1edc02a8d49da408fce9a17ac5ef5ed28b6f64a298d83af"
+    },
+    {
+      "path": "02_logos/products/png/spa-mark-dark.png",
+      "bytes": 3069,
+      "sha256": "38301722957f40ad650c0c07c892504e25cb4023fa4beef10a6969f39c567d0a"
+    },
+    {
+      "path": "02_logos/products/png/spa-mark-light.png",
+      "bytes": 3268,
+      "sha256": "1881de65e1bb4d402e253cf5706a28044d52844bdb6993b907bbd478a4200409"
+    },
+    {
+      "path": "02_logos/products/png/travel-dark.png",
+      "bytes": 12038,
+      "sha256": "ac9024de7a4e0b333aa00e21921b0b5d03aa56e01b9322feb06c296b59d9a0f2"
+    },
+    {
+      "path": "02_logos/products/png/travel-light.png",
+      "bytes": 12087,
+      "sha256": "2df9f6e03d5ba92a4c773456a506f1c7e582de48f46ae68acb802e2dad0b3acf"
+    },
+    {
+      "path": "02_logos/products/png/travel-mark-dark.png",
+      "bytes": 2996,
+      "sha256": "061e7924ddacc8e48eed86568383f325bc03c91092e7f6231c16ac3356097565"
+    },
+    {
+      "path": "02_logos/products/png/travel-mark-light.png",
+      "bytes": 3203,
+      "sha256": "6e9b3f2d2f55a01a2071bbe1492dc5c6bca2fc86adffbe5eeb42122527c147be"
+    },
+    {
+      "path": "02_logos/products/ru/README.md",
+      "bytes": 1821,
+      "sha256": "922ddaa0d3fd2dab5e4dab27b0b8be3a75bf882837ce740ab32439e392b81918"
+    },
+    {
+      "path": "02_logos/products/ru/png/beauty-ru-dark.png",
+      "bytes": 25396,
+      "sha256": "2a30e358023bf0117a4c3c71cc4a22095daa97f3a1585339983dc2273df6ac8f"
+    },
+    {
+      "path": "02_logos/products/ru/png/beauty-ru-light.png",
+      "bytes": 25312,
+      "sha256": "1951f193736fe177717ac81a805686f3a19a9120f1a08c158d6d9ddd56fdb9cc"
+    },
+    {
+      "path": "02_logos/products/ru/png/clinic-ru-dark.png",
+      "bytes": 22477,
+      "sha256": "02dc23beb7d97814b1144e5c2bfb88d37fb95896e42c7632ab1f197406967793"
+    },
+    {
+      "path": "02_logos/products/ru/png/clinic-ru-light.png",
+      "bytes": 23162,
+      "sha256": "ca69bb80716f8838bcbccca7c04459315187af5be8152d4314a65085decbccfc"
+    },
+    {
+      "path": "02_logos/products/ru/png/fitness-ru-dark.png",
+      "bytes": 22504,
+      "sha256": "af008ae92f503606d6924d55e2a67dc212cd27983dbd4af6825a7d0f50d43fea"
+    },
+    {
+      "path": "02_logos/products/ru/png/fitness-ru-light.png",
+      "bytes": 23231,
+      "sha256": "ce1c70d58d9e1e83b1b3bf5047c541d28d48814bcb40924d462fe4c773de1f42"
+    },
+    {
+      "path": "02_logos/products/ru/png/platform-ru-dark.png",
+      "bytes": 30686,
+      "sha256": "fcff761aed11775051f294c8f0c97097bddd83462a4c20af1611e232701de3c7"
+    },
+    {
+      "path": "02_logos/products/ru/png/platform-ru-light.png",
+      "bytes": 30466,
+      "sha256": "8ea6b9bc2292c8d71df665468b70cc7f0b52db103e8b4280d03e9e048a23055b"
+    },
+    {
+      "path": "02_logos/products/ru/png/spa-ru-dark.png",
+      "bytes": 18472,
+      "sha256": "cb640f42554fb6a86d1bc4039af05375063fb03fdae972b01be492c610d7a020"
+    },
+    {
+      "path": "02_logos/products/ru/png/spa-ru-light.png",
+      "bytes": 18308,
+      "sha256": "f684cc012f80686ef18fd8119e38be89b80dca04a3f469aaf97718f3ab83257f"
+    },
+    {
+      "path": "02_logos/products/ru/png/travel-ru-dark.png",
+      "bytes": 30033,
+      "sha256": "f40da0746f2073b8e6402c038e0984ae6cfe5bed3d0323a5627b417b962bc9c8"
+    },
+    {
+      "path": "02_logos/products/ru/png/travel-ru-light.png",
+      "bytes": 29732,
+      "sha256": "ada853b5bd552f03a925fec886e2c03e6740cacd06313b75fa5279df18b1b6a8"
+    },
+    {
+      "path": "02_logos/products/ru/svg/beauty-ru-dark.svg",
+      "bytes": 7507,
+      "sha256": "02c49dfe6500061fe2acb3dc92549ed1450d787fb030b4491b0eeea9642ee80b"
+    },
+    {
+      "path": "02_logos/products/ru/svg/beauty-ru-light.svg",
+      "bytes": 7507,
+      "sha256": "b9980bc73eae03c7610cd9f9f8cd5d8e337e9e7e52fdcc1c84352f001aeec693"
+    },
+    {
+      "path": "02_logos/products/ru/svg/clinic-ru-dark.svg",
+      "bytes": 5592,
+      "sha256": "58d12ed91d2feea297fa6589d8e3ce1a79888547763d98605bc4faeed2f5b668"
+    },
+    {
+      "path": "02_logos/products/ru/svg/clinic-ru-light.svg",
+      "bytes": 5592,
+      "sha256": "e03d101b08018cd6cb79ade61617342c1a833388bcd103ed42c790274e40a93a"
+    },
+    {
+      "path": "02_logos/products/ru/svg/fitness-ru-dark.svg",
+      "bytes": 5981,
+      "sha256": "fa1bb79d7d98af87675fea1ac878397064394e630c3ede8136800fe78026ab36"
+    },
+    {
+      "path": "02_logos/products/ru/svg/fitness-ru-light.svg",
+      "bytes": 5981,
+      "sha256": "49fe75e6c7c47594a81ddef920595f17d8a954cd97a7b04bdccb2db562473c60"
+    },
+    {
+      "path": "02_logos/products/ru/svg/platform-ru-dark.svg",
+      "bytes": 8304,
+      "sha256": "272fa8aaf0e2e9889226f30f9061cecf5f9922823fb13166537e6aebae27c9f7"
+    },
+    {
+      "path": "02_logos/products/ru/svg/platform-ru-light.svg",
+      "bytes": 8304,
+      "sha256": "0668a9550f54095acf9b163eaf80cb634bf7c5a0e75c09ec90da7e8e727a9d7b"
+    },
+    {
+      "path": "02_logos/products/ru/svg/spa-ru-dark.svg",
+      "bytes": 5327,
+      "sha256": "11c4e31b61101581d1ed75539ba94345d8feeaebb3bbfd8248259516f24946a8"
+    },
+    {
+      "path": "02_logos/products/ru/svg/spa-ru-light.svg",
+      "bytes": 5327,
+      "sha256": "01046929ae50e9ddba7aaf0fc82a159429ce4feb661338e424f5fb89738a6675"
+    },
+    {
+      "path": "02_logos/products/ru/svg/travel-ru-dark.svg",
+      "bytes": 7386,
+      "sha256": "8cf7f8d9de17ff9db488eebf22fd28e9c3bd43381d5db613563cdd5f48788e39"
+    },
+    {
+      "path": "02_logos/products/ru/svg/travel-ru-light.svg",
+      "bytes": 7386,
+      "sha256": "cb4188ed4d9c61df24a282ef22c6c34f2fc509b282ac8d0fbe9950b6f86743f1"
+    },
+    {
+      "path": "02_logos/products/svg/beauty-dark.svg",
+      "bytes": 3397,
+      "sha256": "ace99d6e2069d9366c809eca9d4540966db7222ed4b515eb7ea08e0c98ceaefe"
+    },
+    {
+      "path": "02_logos/products/svg/beauty-light.svg",
+      "bytes": 3397,
+      "sha256": "850cf11c34b6f9b2ab526ba42a735fb5d617990774acd4ca726fee7cdde46438"
+    },
+    {
+      "path": "02_logos/products/svg/beauty-mark-dark.svg",
+      "bytes": 299,
+      "sha256": "35e9784b7c31f4dbd57774df9432643444af0783df9031697d2782487952f7e3"
+    },
+    {
+      "path": "02_logos/products/svg/beauty-mark-light.svg",
+      "bytes": 299,
+      "sha256": "ad16c28a834e9b58f63fd1ae70174f700d4a4e69a393b40bc95200494bbe0a5b"
+    },
+    {
+      "path": "02_logos/products/svg/clinic-dark.svg",
+      "bytes": 2613,
+      "sha256": "c182afa23940d3ec53939f7aeaba151e9e1bbb182dfef6e25212f12db7b141c8"
+    },
+    {
+      "path": "02_logos/products/svg/clinic-light.svg",
+      "bytes": 2613,
+      "sha256": "b813d8da9025f18bec07ed6172801129ec817d9bb2b75dde1c341f9a4d01db58"
+    },
+    {
+      "path": "02_logos/products/svg/clinic-mark-dark.svg",
+      "bytes": 299,
+      "sha256": "eb415d89ed0f6fb213b7a2b6e93862d15b6e8ac16421e20cf51ac3a2f18b8f8f"
+    },
+    {
+      "path": "02_logos/products/svg/clinic-mark-light.svg",
+      "bytes": 299,
+      "sha256": "c918e6dfbc1ab3acfed7da21bca3a2738fc38e61daeeac3666461efb6d3f153e"
+    },
+    {
+      "path": "02_logos/products/svg/fitness-dark.svg",
+      "bytes": 3420,
+      "sha256": "9fa19203d3b8b050863725881a7573c9dafea99af9bd5d457fba102dc2f10375"
+    },
+    {
+      "path": "02_logos/products/svg/fitness-light.svg",
+      "bytes": 3420,
+      "sha256": "cacd9dab0f13fe8d1d7ba652c61c75c21a3d1f9049c140421610e73ee5cb9ca8"
+    },
+    {
+      "path": "02_logos/products/svg/fitness-mark-dark.svg",
+      "bytes": 299,
+      "sha256": "1f2e6d6039c443ae8ae3586cc0d93d5e955445ec63a7328ccf37211349eceb0a"
+    },
+    {
+      "path": "02_logos/products/svg/fitness-mark-light.svg",
+      "bytes": 299,
+      "sha256": "2b33ed3794f147bf686fa086d00a87150281f25ec8807f347a90026b90f92e01"
+    },
+    {
+      "path": "02_logos/products/svg/platform-dark.svg",
+      "bytes": 3909,
+      "sha256": "ef6f4b47ab6bf0e8e79e16b5023b2852602377a3cc1c6348e662a0587fc6d778"
+    },
+    {
+      "path": "02_logos/products/svg/platform-light.svg",
+      "bytes": 3909,
+      "sha256": "a7fdab19d7e285a82040b6c4a80f5cde05cfc558fee94f6910ce6af755c19df3"
+    },
+    {
+      "path": "02_logos/products/svg/platform-mark-dark.svg",
+      "bytes": 299,
+      "sha256": "d9b21430d81fcefe82994832fc71819e4a16ebef1161255c8cf892b162da068b"
+    },
+    {
+      "path": "02_logos/products/svg/platform-mark-light.svg",
+      "bytes": 299,
+      "sha256": "6fedd0e56e333f4a44efb7bc80fb63d1f8e891adf84f7fc5695e317f1bf194b8"
+    },
+    {
+      "path": "02_logos/products/svg/spa-dark.svg",
+      "bytes": 2438,
+      "sha256": "bee638300f1e556816e433ecfcecd26f2b82f470ccdba0abb62bceaefe75073b"
+    },
+    {
+      "path": "02_logos/products/svg/spa-light.svg",
+      "bytes": 2438,
+      "sha256": "ec5e281f3b900d46dc8ad14ef6a756a1b856a6eba5c004b763f69425e4c938a4"
+    },
+    {
+      "path": "02_logos/products/svg/spa-mark-dark.svg",
+      "bytes": 299,
+      "sha256": "4e98f43f7d217de55d9fc4683ddd6a1b4ee391df4b29c714e73dbace974e588e"
+    },
+    {
+      "path": "02_logos/products/svg/spa-mark-light.svg",
+      "bytes": 299,
+      "sha256": "5a08b36ff4f950a6973cf7c18dcd8d88336e0aa5ec3e7cc6760ed92946d7d39c"
+    },
+    {
+      "path": "02_logos/products/svg/travel-dark.svg",
+      "bytes": 2693,
+      "sha256": "e69abebaa88dcfd364e5485489182bda22d01e4227106a2d7fe94048721d1841"
+    },
+    {
+      "path": "02_logos/products/svg/travel-light.svg",
+      "bytes": 2693,
+      "sha256": "33057597e5dccb13118689bdfe2c72ad21cea3c8ca4aaab99bc669f4bd61a545"
+    },
+    {
+      "path": "02_logos/products/svg/travel-mark-dark.svg",
+      "bytes": 299,
+      "sha256": "ee5f1d9434629a2b02f44296aa5a2a1d7ee96b9e2d95860e622a278213cea44f"
+    },
+    {
+      "path": "02_logos/products/svg/travel-mark-light.svg",
+      "bytes": 299,
+      "sha256": "e418ac831d9148d18fd1300834cdab085777ec6ed413fdfd7f750196f7fe04a7"
+    },
+    {
+      "path": "03_icons/app/README.md",
+      "bytes": 2595,
+      "sha256": "3fceff62f9ea873e81603a8cd73d56fb8927044399f5730ec6c5aa13a30fecc7"
+    },
+    {
+      "path": "03_icons/app/beauty-dark.ico",
+      "bytes": 12630,
+      "sha256": "5e0c6ffb858cc81d765bb406fcc2adc9966b6476e72f581f2774f1cfae8f3371"
+    },
+    {
+      "path": "03_icons/app/beauty-light.ico",
+      "bytes": 12651,
+      "sha256": "349cbc10c83497c4b48e81987dc89f2599846bb804340a9d7da56c3c5ac87af8"
+    },
+    {
+      "path": "03_icons/app/clinic-dark.ico",
+      "bytes": 12718,
+      "sha256": "f617a3eced048f925392838f1691a19d6c1b73c89eb4c4a97f46094c6ddfe2c5"
+    },
+    {
+      "path": "03_icons/app/clinic-light.ico",
+      "bytes": 12709,
+      "sha256": "4fe9e2b5ae848e9a40a69a1be6a71ceee07feb2b056f267340295827aca3c72f"
+    },
+    {
+      "path": "03_icons/app/fitness-dark.ico",
+      "bytes": 11537,
+      "sha256": "08573e16297b11c8e955369bb0f2e313c533c65236d86ed2ca6f9ed8eb6d33e2"
+    },
+    {
+      "path": "03_icons/app/fitness-light.ico",
+      "bytes": 11652,
+      "sha256": "c6f655d552b81d3bf6bcda840243cc86f32496ad3a5f330363aba635c0644578"
+    },
+    {
+      "path": "03_icons/app/micro/svg/beauty-dark.svg",
+      "bytes": 419,
+      "sha256": "25d3e34d2e66a3dc0b26a72b66a1109dfa1bf46fe516af856d9e1a160027f169"
+    },
+    {
+      "path": "03_icons/app/micro/svg/beauty-light.svg",
+      "bytes": 419,
+      "sha256": "75d62e86ff8ba4ce0ee2c753b7a0e19a2b528f36b202e9fa6ef23e7d3b194bcb"
+    },
+    {
+      "path": "03_icons/app/micro/svg/clinic-dark.svg",
+      "bytes": 419,
+      "sha256": "187a841b6ace62779ea2893ce5c7d42e5d3c4882559a627c6d5f2b920ec79cbe"
+    },
+    {
+      "path": "03_icons/app/micro/svg/clinic-light.svg",
+      "bytes": 419,
+      "sha256": "5c952cf432e4649be2057b19df303bb59a083007bc9e961561cacc9a18788d70"
+    },
+    {
+      "path": "03_icons/app/micro/svg/fitness-dark.svg",
+      "bytes": 417,
+      "sha256": "18c468e5eea26967c551084a715de1ac3b148e0e22458b50d5b489c9aff88dfc"
+    },
+    {
+      "path": "03_icons/app/micro/svg/fitness-light.svg",
+      "bytes": 417,
+      "sha256": "877b2936d8b515b76b79bcf3faa93bca49e0c097c375829e2fe5d9ea50a74b83"
+    },
+    {
+      "path": "03_icons/app/micro/svg/platform-dark.svg",
+      "bytes": 423,
+      "sha256": "3730d8a18d39a4d3d5c4a9554dde390345c2f744c5a674f6ec005091e07531ff"
+    },
+    {
+      "path": "03_icons/app/micro/svg/platform-light.svg",
+      "bytes": 423,
+      "sha256": "6c0faa29e311997774d12f0d272f233a6673a3709bdf6ecf8b21c0ed98e26d47"
+    },
+    {
+      "path": "03_icons/app/micro/svg/spa-dark.svg",
+      "bytes": 411,
+      "sha256": "7394803c1570140ed81405274978fef3e215260b5599a1518402d2357b9fa2f0"
+    },
+    {
+      "path": "03_icons/app/micro/svg/spa-light.svg",
+      "bytes": 411,
+      "sha256": "4df21b0369da475c65fc66d21257744b72c14f38f51301ef7d0f8a5be933a20d"
+    },
+    {
+      "path": "03_icons/app/micro/svg/travel-dark.svg",
+      "bytes": 427,
+      "sha256": "0d0f4d6b9bbe5ca473bf724ab797b2839dbf3e929d3ba2f477d8ff64d73a7689"
+    },
+    {
+      "path": "03_icons/app/micro/svg/travel-light.svg",
+      "bytes": 427,
+      "sha256": "a6550149f986b541f9e4968e2a797ecc02b049fa24a617d97f230a00b3e2ce00"
+    },
+    {
+      "path": "03_icons/app/platform-dark.ico",
+      "bytes": 12126,
+      "sha256": "fd42bb3e9021c064b8a29224d60cdc85abf27c49820740113d432eda574bceec"
+    },
+    {
+      "path": "03_icons/app/platform-light.ico",
+      "bytes": 12205,
+      "sha256": "500dc744b89a79e16adc255e69adc3c7786e6d43d8f1b8c45f5ce56faa5f47af"
+    },
+    {
+      "path": "03_icons/app/png/beauty-dark-1024.png",
+      "bytes": 42133,
+      "sha256": "26ea964f465af7d2f3d1f75d27436c65fd8bd2d960f0d3daa281ac0c4d838f03"
+    },
+    {
+      "path": "03_icons/app/png/beauty-dark-128.png",
+      "bytes": 2634,
+      "sha256": "eae06ea4f321ab508198193764e253b39e7e5cf0edc26323adf54951dd2384c8"
+    },
+    {
+      "path": "03_icons/app/png/beauty-dark-16.png",
+      "bytes": 351,
+      "sha256": "844e3ad53eeda70e55dbd067f314cba2839fd40366fc1625cd6123cb47d98156"
+    },
+    {
+      "path": "03_icons/app/png/beauty-dark-24.png",
+      "bytes": 487,
+      "sha256": "f9d54cbef6737b64959d22e90e3bc48c7cbb0bcf901968b6df3e8be6e06e8658"
+    },
+    {
+      "path": "03_icons/app/png/beauty-dark-256.png",
+      "bytes": 5935,
+      "sha256": "d526019c89d4608fd1cd0f2df8bd67479d4342a6b1d6d6c171739e7dce6714c4"
+    },
+    {
+      "path": "03_icons/app/png/beauty-dark-32.png",
+      "bytes": 697,
+      "sha256": "f76b5c04407c853bb65275a2b65628a9f5845880737a10eb41b50d82b159525e"
+    },
+    {
+      "path": "03_icons/app/png/beauty-dark-48.png",
+      "bytes": 1063,
+      "sha256": "5711d184a01b29bc941526360a9c033aed5ce4eeb9005cf9c8cbb032fb6d59ae"
+    },
+    {
+      "path": "03_icons/app/png/beauty-dark-512.png",
+      "bytes": 15562,
+      "sha256": "2a15d60771e6b970045aa2045127900f2c4d4ecf98d047939a32c38fdd2deab9"
+    },
+    {
+      "path": "03_icons/app/png/beauty-dark-64.png",
+      "bytes": 1345,
+      "sha256": "35c6a770aa91abb4413ea8c6da589c98f31037cbcd0e683162eb6e815190c65a"
+    },
+    {
+      "path": "03_icons/app/png/beauty-light-1024.png",
+      "bytes": 43863,
+      "sha256": "dbb9d46778a1807cad232ad8eeef274d97be079ae667eee4903dae567dd32cf8"
+    },
+    {
+      "path": "03_icons/app/png/beauty-light-128.png",
+      "bytes": 2633,
+      "sha256": "b41a14bdba8b1aa61bf8ff72a92fc75f4fd0641f865ddd2aebf5c4cb9dac73a4"
+    },
+    {
+      "path": "03_icons/app/png/beauty-light-16.png",
+      "bytes": 356,
+      "sha256": "44687629ff62cf2014344c0f8b93396e0442da42f8cbfbbaf0e6161b1875081a"
+    },
+    {
+      "path": "03_icons/app/png/beauty-light-24.png",
+      "bytes": 482,
+      "sha256": "4f4c870a22bff4f3b91cdb1fac1ad79c94c8fc22dd419c1490ea60e51cdee7ea"
+    },
+    {
+      "path": "03_icons/app/png/beauty-light-256.png",
+      "bytes": 5997,
+      "sha256": "89daf5f95734afba1062c0a041c0753d8fc44d8b1072e5e182af53508f7249f0"
+    },
+    {
+      "path": "03_icons/app/png/beauty-light-32.png",
+      "bytes": 692,
+      "sha256": "73b3421093fe5f760a1936552d6bc58817c468d954e094a8152a1b1984d57257"
+    },
+    {
+      "path": "03_icons/app/png/beauty-light-48.png",
+      "bytes": 1041,
+      "sha256": "6127ae20f637d7f0693957253fde98d87adc8c3670ec8877f6b661b385ac679f"
+    },
+    {
+      "path": "03_icons/app/png/beauty-light-512.png",
+      "bytes": 15952,
+      "sha256": "c3d18b6b2dff8b61d6a85f383518d30b4573504efb53530b338752ec1e4220c9"
+    },
+    {
+      "path": "03_icons/app/png/beauty-light-64.png",
+      "bytes": 1332,
+      "sha256": "6a54ed7e187347c60c0f659bf333ac2a2d5f5311f807bb63f87bd2aa591a3240"
+    },
+    {
+      "path": "03_icons/app/png/clinic-dark-1024.png",
+      "bytes": 43168,
+      "sha256": "70239b7eb8d100eafa0f4373d4620e80348510560c6ad9285c61accb39ddefdd"
+    },
+    {
+      "path": "03_icons/app/png/clinic-dark-128.png",
+      "bytes": 2657,
+      "sha256": "ef8ecd5a08856dbc686c76a044d24f0afd5277c26b0eb6c8ca860866da5d81f3"
+    },
+    {
+      "path": "03_icons/app/png/clinic-dark-16.png",
+      "bytes": 351,
+      "sha256": "9a226e7f2536bdb4b7c2dd542aaea32b518ca4e71a0ebf751e50aefb2274fcde"
+    },
+    {
+      "path": "03_icons/app/png/clinic-dark-24.png",
+      "bytes": 485,
+      "sha256": "8bd143fec8acdcf1083108e4fc842ab9a53fbef3ecae2ffc7ccad405bf0a58fd"
+    },
+    {
+      "path": "03_icons/app/png/clinic-dark-256.png",
+      "bytes": 6118,
+      "sha256": "4e44bb7d953eb1aef0c9755901ca139fc8f335fcca2e8eea514389d5d1cd1d96"
+    },
+    {
+      "path": "03_icons/app/png/clinic-dark-32.png",
+      "bytes": 672,
+      "sha256": "d3ef942975d196ef44f5fdea03c61cbb5846980d8fe9a1abb4c6bf7d48788e2e"
+    },
+    {
+      "path": "03_icons/app/png/clinic-dark-48.png",
+      "bytes": 1015,
+      "sha256": "146d7c183b79b3400181d6b62d82980e1593fd2e7e3755dafb430c1135f590d0"
+    },
+    {
+      "path": "03_icons/app/png/clinic-dark-512.png",
+      "bytes": 16104,
+      "sha256": "208c80a4b8001db025d6bcc7fb96cd4667bbe13db19c48fa7247f6e275c6d104"
+    },
+    {
+      "path": "03_icons/app/png/clinic-dark-64.png",
+      "bytes": 1302,
+      "sha256": "327cefa777738f64a85917052b1bdd8a3e6587e42e3364e5b6de3b30b3f069b2"
+    },
+    {
+      "path": "03_icons/app/png/clinic-light-1024.png",
+      "bytes": 44574,
+      "sha256": "b4a62bcf1220bc969a14f0feb000b8f6fa8819dc2979640d2933f454db732c42"
+    },
+    {
+      "path": "03_icons/app/png/clinic-light-128.png",
+      "bytes": 2639,
+      "sha256": "25bb11c4e753318051a858bc8d3c7e33bec05e3485b067c4e45c59d71f1664df"
+    },
+    {
+      "path": "03_icons/app/png/clinic-light-16.png",
+      "bytes": 356,
+      "sha256": "2831fba23f7585d17a1f8fd0ec6dbacada4488035aa71138e82fa16ce40ad923"
+    },
+    {
+      "path": "03_icons/app/png/clinic-light-24.png",
+      "bytes": 487,
+      "sha256": "a68cea4b188b830bfe2722091b27cca2783795c4302ed3f3e50f6bb50fa0f79c"
+    },
+    {
+      "path": "03_icons/app/png/clinic-light-256.png",
+      "bytes": 6131,
+      "sha256": "e7dcc764a4a28dd571a9174f312d105c7fa9bb7ef2891b54fef1eb7cd0c3c02f"
+    },
+    {
+      "path": "03_icons/app/png/clinic-light-32.png",
+      "bytes": 678,
+      "sha256": "602e22f3bff11b56fe48122528a7bf7479fec4377963599e80a681539e2c7f3d"
+    },
+    {
+      "path": "03_icons/app/png/clinic-light-48.png",
+      "bytes": 1002,
+      "sha256": "edc51b87f4ffd2c11b4136f1f2e9a8c90749900f9efd506b92a7695d8633bb00"
+    },
+    {
+      "path": "03_icons/app/png/clinic-light-512.png",
+      "bytes": 16375,
+      "sha256": "f628bd6ecef2ec0b0d8890d24b6af3d77d3a2b6abafbf48663f997db4421468a"
+    },
+    {
+      "path": "03_icons/app/png/clinic-light-64.png",
+      "bytes": 1298,
+      "sha256": "04cb93db48925064d6aa669451cf7a80721af11d135686c41512d4f78fbdd9df"
+    },
+    {
+      "path": "03_icons/app/png/fitness-dark-1024.png",
+      "bytes": 39995,
+      "sha256": "b620de7466140b2d1333b347400b39e78f03f0b00ffebbb591971a5dcc30d735"
+    },
+    {
+      "path": "03_icons/app/png/fitness-dark-128.png",
+      "bytes": 2358,
+      "sha256": "18fcbc7ecdb934a3f19a1e6958aaba6885e321cb08941f2e1ed4cf4ca2d45574"
+    },
+    {
+      "path": "03_icons/app/png/fitness-dark-16.png",
+      "bytes": 351,
+      "sha256": "a8e61712f1e1cf11ba7e98fc73258143af97d93298cebc3c0a14d484babf0240"
+    },
+    {
+      "path": "03_icons/app/png/fitness-dark-24.png",
+      "bytes": 485,
+      "sha256": "a64d1de4619e47d8cc3b9aa7ffaf7a5224d5988af4d577215669f559c49703e7"
+    },
+    {
+      "path": "03_icons/app/png/fitness-dark-256.png",
+      "bytes": 5434,
+      "sha256": "2303786cdaa113aa6105406537e325b432ef23d148c7565bb4a8b12534cdc19e"
+    },
+    {
+      "path": "03_icons/app/png/fitness-dark-32.png",
+      "bytes": 643,
+      "sha256": "244ab79c7637ac2f5d779cd8cd1acff969ac6c268e5ca559eaca950945da898a"
+    },
+    {
+      "path": "03_icons/app/png/fitness-dark-48.png",
+      "bytes": 942,
+      "sha256": "b330378de6ea9eea342ba706f97857f7cea658172f5591de1492543f639f5255"
+    },
+    {
+      "path": "03_icons/app/png/fitness-dark-512.png",
+      "bytes": 14609,
+      "sha256": "6572d37adb54d4b4a43d15bcdf31653cf7978acfed44b5416fa852fd8424bb83"
+    },
+    {
+      "path": "03_icons/app/png/fitness-dark-64.png",
+      "bytes": 1206,
+      "sha256": "0b702533d68b237451e12d0b5e0cf1065bda395bd224c542347fdeb6496fb961"
+    },
+    {
+      "path": "03_icons/app/png/fitness-light-1024.png",
+      "bytes": 41546,
+      "sha256": "b9837b7b28d27690fcfe6fdcb8fe02c5bc8bb9fa009a307b3203ad70d6b0a3d9"
+    },
+    {
+      "path": "03_icons/app/png/fitness-light-128.png",
+      "bytes": 2357,
+      "sha256": "ceee63dd5c5f42106914bd99c99d9c1355b711c33ff6fa88888470a3718d39e2"
+    },
+    {
+      "path": "03_icons/app/png/fitness-light-16.png",
+      "bytes": 352,
+      "sha256": "e8bf73d23063ffbc261947c6df21a669721aeace2f5dda9f04db3cda50d67c66"
+    },
+    {
+      "path": "03_icons/app/png/fitness-light-24.png",
+      "bytes": 483,
+      "sha256": "5b1d8a4f2d184cf2e3756c26a2146eac372b8e56bb971a85c1874d265153acf8"
+    },
+    {
+      "path": "03_icons/app/png/fitness-light-256.png",
+      "bytes": 5550,
+      "sha256": "bd9fb0643e977d7f9d7f02e1868232fd2875375d3e1d29babff05241a72d59a3"
+    },
+    {
+      "path": "03_icons/app/png/fitness-light-32.png",
+      "bytes": 650,
+      "sha256": "1c2491b8187e135dc52d0f5879d5b77f80a49add907e03fb6dead1d4c5a7d81a"
+    },
+    {
+      "path": "03_icons/app/png/fitness-light-48.png",
+      "bytes": 932,
+      "sha256": "bcac9eddd1fd805231661f9e3a7efdc11234b1ee2a687f3c302f1bae444fb0ea"
+    },
+    {
+      "path": "03_icons/app/png/fitness-light-512.png",
+      "bytes": 14956,
+      "sha256": "9315b52bb8dc9b258f3434c8f7d975c5d925e475c01e93c548fa0438c299f738"
+    },
+    {
+      "path": "03_icons/app/png/fitness-light-64.png",
+      "bytes": 1210,
+      "sha256": "18c8e1e26c9d7ec44db4262b3fd720848e26b134c2ded92ef327f98126407005"
+    },
+    {
+      "path": "03_icons/app/png/platform-dark-1024.png",
+      "bytes": 41472,
+      "sha256": "f86fdcfeb15c52714ada2a159517618702d43b86f3b277569f5a48825b3d5af4"
+    },
+    {
+      "path": "03_icons/app/png/platform-dark-128.png",
+      "bytes": 2501,
+      "sha256": "97f8915b2f96e487d90878859f3ccc6929e88abc3de223743303b0a349be232d"
+    },
+    {
+      "path": "03_icons/app/png/platform-dark-16.png",
+      "bytes": 351,
+      "sha256": "0b7156b2aa7caa6110f699458939a488332f6fafba7e6d720bbf0a6d58ed9ac8"
+    },
+    {
+      "path": "03_icons/app/png/platform-dark-24.png",
+      "bytes": 488,
+      "sha256": "b627293cb3d48e48efb2795f77e90fdd075bd5614aafa77edc55ad42e4ce1d67"
+    },
+    {
+      "path": "03_icons/app/png/platform-dark-256.png",
+      "bytes": 5735,
+      "sha256": "ffea9ab7dacedecc5fa88841d15f5d82b002bfb57e1947c6b426da6356f35fd4"
+    },
+    {
+      "path": "03_icons/app/png/platform-dark-32.png",
+      "bytes": 655,
+      "sha256": "077c2e67b7b97a6dcdc56f1110c911508f3facdb04f7af4178ecbfdba0174ae5"
+    },
+    {
+      "path": "03_icons/app/png/platform-dark-48.png",
+      "bytes": 1001,
+      "sha256": "ba6bb43b6364c9e0452aec694e589c6bf8de14a79770d0f377d3d1faa8430336"
+    },
+    {
+      "path": "03_icons/app/png/platform-dark-512.png",
+      "bytes": 15244,
+      "sha256": "93f8a688e4bf7ac36a9af3eb43faf8f377bf89cca31ebfe664481526258a697e"
+    },
+    {
+      "path": "03_icons/app/png/platform-dark-64.png",
+      "bytes": 1277,
+      "sha256": "bd445c066948283b279c4a633462289201d37b243697ba7ff920ef0826b6d815"
+    },
+    {
+      "path": "03_icons/app/png/platform-light-1024.png",
+      "bytes": 43084,
+      "sha256": "c22a534a91b74f3ff6cdc059b4df4ddd5fd4d29ab05c6cde1d173c71ad8ef76f"
+    },
+    {
+      "path": "03_icons/app/png/platform-light-128.png",
+      "bytes": 2503,
+      "sha256": "9e184d725e854fc4ad76b05b78576a8a78b9c0833511aeeec22c73bc394445b3"
+    },
+    {
+      "path": "03_icons/app/png/platform-light-16.png",
+      "bytes": 352,
+      "sha256": "19332bd7085b4596450b9b7fac0dc99ed63a8124593447bf937da7bdef6845a5"
+    },
+    {
+      "path": "03_icons/app/png/platform-light-24.png",
+      "bytes": 489,
+      "sha256": "414c0af242eb677ebc751d84d1bea525cc2b6453e8c17e0c8a07ac893281fe4c"
+    },
+    {
+      "path": "03_icons/app/png/platform-light-256.png",
+      "bytes": 5821,
+      "sha256": "b86311b91b2625b485a392e3844ae13a5520b6fa1a543b1850cb236e924cd12c"
+    },
+    {
+      "path": "03_icons/app/png/platform-light-32.png",
+      "bytes": 658,
+      "sha256": "7911f179b786dc20ed6ddfd7685c87ea322e829f3ae52bead2f5607e3a509c82"
+    },
+    {
+      "path": "03_icons/app/png/platform-light-48.png",
+      "bytes": 995,
+      "sha256": "599e2add973299bf97143edebf5f60b431e55a3631fcdd42f5caba0df430a85a"
+    },
+    {
+      "path": "03_icons/app/png/platform-light-512.png",
+      "bytes": 15669,
+      "sha256": "496776ade722e42304cf7610bf1ed876d0f987fa1872f6259579712a5cbf556c"
+    },
+    {
+      "path": "03_icons/app/png/platform-light-64.png",
+      "bytes": 1269,
+      "sha256": "dbd9e6141d98cb5089a19b04cb2c7e90d38f4f94988c306aafecf85f9d06082d"
+    },
+    {
+      "path": "03_icons/app/png/spa-dark-1024.png",
+      "bytes": 44212,
+      "sha256": "11c4370057a6be44b1a7d93fdebadc1b7b97ed39b0f72e9bc89e4954cefbe0e4"
+    },
+    {
+      "path": "03_icons/app/png/spa-dark-128.png",
+      "bytes": 2818,
+      "sha256": "f0d2bbd68b86133b8236496b1087d0bc0a7532a656ef45268409f6d4d4c7f32c"
+    },
+    {
+      "path": "03_icons/app/png/spa-dark-16.png",
+      "bytes": 350,
+      "sha256": "2eed3fbbe869eede514c8a0c61c7c683d65699f8943f89c8aa17f24d261b7970"
+    },
+    {
+      "path": "03_icons/app/png/spa-dark-24.png",
+      "bytes": 486,
+      "sha256": "56408c9e42770e62963dfa2b36112ee4b4248874022da02940f7b99622d55f2c"
+    },
+    {
+      "path": "03_icons/app/png/spa-dark-256.png",
+      "bytes": 6412,
+      "sha256": "3a54ab756bd23839b0d8af3727df6429cea08c3e10988a6b218edd697ce1a954"
+    },
+    {
+      "path": "03_icons/app/png/spa-dark-32.png",
+      "bytes": 679,
+      "sha256": "869c72b141fe45da174fe5e485e7f9d691ddf038a31e874e317be10b869ca29b"
+    },
+    {
+      "path": "03_icons/app/png/spa-dark-48.png",
+      "bytes": 1071,
+      "sha256": "f0c2ec9595b5a028f9fe8e19400bb0340f8896472843f3e098144ef7b365e1e6"
+    },
+    {
+      "path": "03_icons/app/png/spa-dark-512.png",
+      "bytes": 16548,
+      "sha256": "bded95d5db1bda6839defd33d0c75e45e335983c7f54b953afc18c7892af4772"
+    },
+    {
+      "path": "03_icons/app/png/spa-dark-64.png",
+      "bytes": 1383,
+      "sha256": "de568128d7d039b7f7b54244625b5b95b8f5bd0b620ce8f216c49c2cdd29cd60"
+    },
+    {
+      "path": "03_icons/app/png/spa-light-1024.png",
+      "bytes": 45909,
+      "sha256": "05d7ebde4daee422cea7ec10955fde01fb0715bfa7bf073562db1bf533b50d6d"
+    },
+    {
+      "path": "03_icons/app/png/spa-light-128.png",
+      "bytes": 2838,
+      "sha256": "5f8200a9963b137cea1ad71ca5dca68431218b2332f9e8546a7e873ff7bd0c66"
+    },
+    {
+      "path": "03_icons/app/png/spa-light-16.png",
+      "bytes": 355,
+      "sha256": "6c2b2881fcc3438a1d31b7f0992457477e6523bf5db48e29bd1217373730e4a9"
+    },
+    {
+      "path": "03_icons/app/png/spa-light-24.png",
+      "bytes": 492,
+      "sha256": "d1d6e079b823516d67de7aaa9fee00467ed78bedfcafeaadd6b3fc7eeaca9627"
+    },
+    {
+      "path": "03_icons/app/png/spa-light-256.png",
+      "bytes": 6537,
+      "sha256": "48bd12a75bb2a01bd9379b8bfe4394a276e9ad01afcb52438b42d500815d5042"
+    },
+    {
+      "path": "03_icons/app/png/spa-light-32.png",
+      "bytes": 688,
+      "sha256": "14badfaa812bdbc11194b66706675abc54e909a1cfffa27c5c1bcea69fee6418"
+    },
+    {
+      "path": "03_icons/app/png/spa-light-48.png",
+      "bytes": 1066,
+      "sha256": "268ba57a067c875a62a7b4ae9de1e53ede73b41dfce6ec3e120b9bc32d225f12"
+    },
+    {
+      "path": "03_icons/app/png/spa-light-512.png",
+      "bytes": 16977,
+      "sha256": "d9d485b4455f9a849aa62c585348ad273acf88940236927a00aa8fcdcb62a38e"
+    },
+    {
+      "path": "03_icons/app/png/spa-light-64.png",
+      "bytes": 1392,
+      "sha256": "e86d5a3ef66153b037a8893fcbbe6f8fbf649dadbbb342f89daed4344a2d0395"
+    },
+    {
+      "path": "03_icons/app/png/travel-dark-1024.png",
+      "bytes": 41842,
+      "sha256": "3439a7bb7d6b9cab560374264e97bcb4da6327f7bc07b66db0e4113c9dbecad6"
+    },
+    {
+      "path": "03_icons/app/png/travel-dark-128.png",
+      "bytes": 2555,
+      "sha256": "0d585e11ebca88ddaac91193212fcc9c3b99b3627ac33529b95feb2c90ef84fb"
+    },
+    {
+      "path": "03_icons/app/png/travel-dark-16.png",
+      "bytes": 351,
+      "sha256": "5684ad807879f59f5510f33582deea1502d5716d3358d5d344038aa70eac7839"
+    },
+    {
+      "path": "03_icons/app/png/travel-dark-24.png",
+      "bytes": 484,
+      "sha256": "1fd6b902de0fb6ad19057e2875ff9398a87505a1227eac9e4ea2af2551adaf7b"
+    },
+    {
+      "path": "03_icons/app/png/travel-dark-256.png",
+      "bytes": 5807,
+      "sha256": "bec76e3c8ef9085c1a86aa68926aacfbed52329c55b47635e61789170f66f066"
+    },
+    {
+      "path": "03_icons/app/png/travel-dark-32.png",
+      "bytes": 681,
+      "sha256": "8a16f42845f55d585cc6f787c6c837315c660b62f490bfe50cbfc55b37f0b0c7"
+    },
+    {
+      "path": "03_icons/app/png/travel-dark-48.png",
+      "bytes": 1010,
+      "sha256": "ddf51c6eb4b84d2be5d0c33d0c9172974340210224f172fd3562d9ae65c4740a"
+    },
+    {
+      "path": "03_icons/app/png/travel-dark-512.png",
+      "bytes": 15394,
+      "sha256": "d42aefae867a6172cf3e6ebd05a2b4bcb7248fe6fcf1c59ee90329ddfe5227e2"
+    },
+    {
+      "path": "03_icons/app/png/travel-dark-64.png",
+      "bytes": 1291,
+      "sha256": "bdaed2e14dead213378ea413b79ac5952e239c659763b92c7e5c9878709c2f9a"
+    },
+    {
+      "path": "03_icons/app/png/travel-light-1024.png",
+      "bytes": 43386,
+      "sha256": "04fe679ad106c2b3c9be37e62cdeff08f65c66dc4144dba6d75b752554cceed8"
+    },
+    {
+      "path": "03_icons/app/png/travel-light-128.png",
+      "bytes": 2567,
+      "sha256": "fb681498055c2a8b05db2505625e88285a495f09a0b76b5b2ec0c20a9b305134"
+    },
+    {
+      "path": "03_icons/app/png/travel-light-16.png",
+      "bytes": 356,
+      "sha256": "8332a3f7a088b5e74efb27cb1a489e98c7e96524b799027ab36466be43fd35cb"
+    },
+    {
+      "path": "03_icons/app/png/travel-light-24.png",
+      "bytes": 479,
+      "sha256": "1deea4132d2deffe9f623ee6255dd5fe476a92d3f5f29bbc9d6629f198b98524"
+    },
+    {
+      "path": "03_icons/app/png/travel-light-256.png",
+      "bytes": 5920,
+      "sha256": "aaf447b274e5667fc2825de41d1516e0d60bb6b695091ea9b51159c660fbec6a"
+    },
+    {
+      "path": "03_icons/app/png/travel-light-32.png",
+      "bytes": 677,
+      "sha256": "d4f27ecf5c731d7198140dc0b728b97b8346e5b5e3365679a2e4406a1516292e"
+    },
+    {
+      "path": "03_icons/app/png/travel-light-48.png",
+      "bytes": 996,
+      "sha256": "91259b58a70426c6a5151eb769b821ee5706744e740783ff8ad9e61e390ac2bd"
+    },
+    {
+      "path": "03_icons/app/png/travel-light-512.png",
+      "bytes": 15752,
+      "sha256": "bda808ec69abe9cd602591286389781602add30103bc5fcb3793c7f25359efc2"
+    },
+    {
+      "path": "03_icons/app/png/travel-light-64.png",
+      "bytes": 1290,
+      "sha256": "a8479d1575db06448849e40bc7dca8dc7be1573a80d580f75ef5b3c73da921dc"
+    },
+    {
+      "path": "03_icons/app/spa-dark.ico",
+      "bytes": 13317,
+      "sha256": "83b68f815bccb614059f02a2477789ff789ae2f5f0ffc456001d333a0b7f4b48"
+    },
+    {
+      "path": "03_icons/app/spa-light.ico",
+      "bytes": 13486,
+      "sha256": "be4fb6161cf54e041c935113a73e17dc3c4aff44bf53d7ee91b6c0474a4263cf"
+    },
+    {
+      "path": "03_icons/app/svg/beauty-dark.svg",
+      "bytes": 1129,
+      "sha256": "38649e45ce7c5a9c75fd6441cdc616f5b32efe0314c8fad2f30176e08573fb47"
+    },
+    {
+      "path": "03_icons/app/svg/beauty-light.svg",
+      "bytes": 1129,
+      "sha256": "c0938836d4ba3884c7e122519437cf6885f30d70fa90ae90111a465713ff883a"
+    },
+    {
+      "path": "03_icons/app/svg/clinic-dark.svg",
+      "bytes": 1200,
+      "sha256": "a5ae9e532772dc48f800feb69c7de4ee6ca3d2a1a0fde21f3fd6a7bcde4e29c6"
+    },
+    {
+      "path": "03_icons/app/svg/clinic-light.svg",
+      "bytes": 1200,
+      "sha256": "1f0f87a2d803eb345e3d6ecaee779ed67f3cbc8cefccd2051fac6bfb08057584"
+    },
+    {
+      "path": "03_icons/app/svg/fitness-dark.svg",
+      "bytes": 650,
+      "sha256": "6b925e6f27e335db2751bcd82024252de6c0fd68a838147026e2d26d87aa29c0"
+    },
+    {
+      "path": "03_icons/app/svg/fitness-light.svg",
+      "bytes": 650,
+      "sha256": "f0d45d321e416a8355e60caad0b30a9703dafc706598c03aa55a92077c47f750"
+    },
+    {
+      "path": "03_icons/app/svg/platform-dark.svg",
+      "bytes": 893,
+      "sha256": "c49d55e624c63279ae7c5ec20b6a95fd0f6f7d33c1a346910198672f20499255"
+    },
+    {
+      "path": "03_icons/app/svg/platform-light.svg",
+      "bytes": 893,
+      "sha256": "735816e42f74ca3309f45345cdb8b15c7f061d2cabdcf7e1ebc3e6c7800e94bb"
+    },
+    {
+      "path": "03_icons/app/svg/spa-dark.svg",
+      "bytes": 1571,
+      "sha256": "ae954e5f46d70f7ff699a495279bce728932c57921d23723d405be37b50caa0b"
+    },
+    {
+      "path": "03_icons/app/svg/spa-light.svg",
+      "bytes": 1571,
+      "sha256": "970a4dff9114c90fa525f7dcb59b82f3429ad138a2fa4da470fb32bc59529ea1"
+    },
+    {
+      "path": "03_icons/app/svg/travel-dark.svg",
+      "bytes": 938,
+      "sha256": "abe73c362ddc32696d7be6635971a553f15fe347d7d0cbfdf99fe3fd3380b474"
+    },
+    {
+      "path": "03_icons/app/svg/travel-light.svg",
+      "bytes": 938,
+      "sha256": "05c47a2269a1048f72a7bad6aa7f1b994ee98677ca2920db51691ccadc86b027"
+    },
+    {
+      "path": "03_icons/app/travel-dark.ico",
+      "bytes": 12297,
+      "sha256": "6fde08beb8a12a117b9a90fc9b5bbc4d09acf00f6346b04afd3e3ef4061c9307"
+    },
+    {
+      "path": "03_icons/app/travel-light.ico",
+      "bytes": 12403,
+      "sha256": "9c5e2bb22d39573a1de0d70a41ac8c66e91bb8df735a259982356e0899ed6786"
+    },
+    {
+      "path": "03_icons/ui/README.md",
+      "bytes": 647,
+      "sha256": "670fcc2ca7978f82176e61187856422cd5cd0cb317c74f98dc47b5728b790258"
+    },
+    {
+      "path": "03_icons/ui/lucide-icon-map.json",
+      "bytes": 1850,
+      "sha256": "bb5cee91338baeb9b362fb89c8fa8db7e8f5f50335db93987cbf49bd8939ca48"
+    },
+    {
+      "path": "03_icons/ui/lucide-registry.tsx",
+      "bytes": 1952,
+      "sha256": "6ea588f9ca1f241ce00b093ef94c43303f690722225abe8f633f6f74e8771d17"
+    },
+    {
+      "path": "04_tokens/taktera.tokens.css",
+      "bytes": 5500,
+      "sha256": "65aa6734b001d9fb73e5bf6ebba4bbe8d5a88711a59251cb92c5c9da6f7f6b45"
+    },
+    {
+      "path": "04_tokens/taktera.tokens.dtcg.json",
+      "bytes": 36916,
+      "sha256": "19f60ba57444d55ca9ee3e2b6471aa475ed59bcde9c973537c0066dd062acbec"
+    },
+    {
+      "path": "04_tokens/taktera.tokens.json",
+      "bytes": 4274,
+      "sha256": "d7d9728ba3a6e60435405abdca5ed7f9a0fa8a1d22f2c89ec89e152f3497469f"
+    },
+    {
+      "path": "05_typography/Inter-Bold.ttf",
+      "bytes": 342932,
+      "sha256": "825150646b65f308790f050fd7ebe478a2eb8cdf9063726c5d2ef8f2591016b5"
+    },
+    {
+      "path": "05_typography/Inter-Bold.woff2",
+      "bytes": 118432,
+      "sha256": "6a16f749ffca1eb2c98e707e5be9bba5a0b3f3253ddf90a2646c3a67e1802445"
+    },
+    {
+      "path": "05_typography/Inter-Regular.ttf",
+      "bytes": 341520,
+      "sha256": "a4a50d166625f0684e02b1e2e7775a52d70e4814e73a936669d70e63cc1d6760"
+    },
+    {
+      "path": "05_typography/Inter-Regular.woff2",
+      "bytes": 115660,
+      "sha256": "c2678a3a95e35bc1d57ed340ba4237d42c9dabd9033d538575702df2d8c6240c"
+    },
+    {
+      "path": "05_typography/Inter-SemiBold.ttf",
+      "bytes": 342528,
+      "sha256": "721e5229a0eff1bf98d2ea1ffbbc3e1bc81b2de2f3d9201c439f8546d71cf44c"
+    },
+    {
+      "path": "05_typography/Inter-SemiBold.woff2",
+      "bytes": 118648,
+      "sha256": "51180fd661c21e0e6451bc444030fd63a1a766f08929c07354e19e0acfb34ac7"
+    },
+    {
+      "path": "05_typography/Inter-Variable.ttf",
+      "bytes": 876576,
+      "sha256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031"
+    },
+    {
+      "path": "05_typography/OFL.txt",
+      "bytes": 4377,
+      "sha256": "5b9321a4298cfeb6b34354164a1c3afc3db114569984c502b9b35d988fd58c57"
+    },
+    {
+      "path": "05_typography/README.md",
+      "bytes": 454,
+      "sha256": "fa3a48bc8522059c79a931a8c5b65fa6cbbb732bf9307afd442dee0a2a4ab4e6"
+    },
+    {
+      "path": "06_templates/business-card-front.png",
+      "bytes": 17264,
+      "sha256": "77e9bd6692ec295fcd3bce52c9fae61128e98ffd51b2157c702ff92465cb1aa4"
+    },
+    {
+      "path": "06_templates/business-card-front.svg",
+      "bytes": 3807,
+      "sha256": "1501b82a8cee8782aa8802d05229db3d47b61ab84cad8b7c699e4196c3dc0b9e"
+    },
+    {
+      "path": "06_templates/email-header.png",
+      "bytes": 7751,
+      "sha256": "f3b322c76617c82217ff3f8d13f993927a10399e5f94dec497798743d8d3ab36"
+    },
+    {
+      "path": "06_templates/email-header.svg",
+      "bytes": 2739,
+      "sha256": "d3eba20d818d8ff4d46cefcb6b77cce745921ab85e7c3ce964265d38f85ef4a6"
+    },
+    {
+      "path": "06_templates/opengraph-1200x630.png",
+      "bytes": 24184,
+      "sha256": "6dd8c348a80d90969177666668b3ed587cb13fd49f4753b5d0f582271f71dd3b"
+    },
+    {
+      "path": "06_templates/opengraph-1200x630.svg",
+      "bytes": 3824,
+      "sha256": "f32f5755a184bcdd7edcfbbb0247e902d2065d2ea90837cc34a4be57251fe885"
+    },
+    {
+      "path": "07_migration/IMPLEMENTATION-MAP.md",
+      "bytes": 2294,
+      "sha256": "85ae505b492bd40d9480e84511af8e588926b007ca9ca64a4914965994ee9d6e"
+    },
+    {
+      "path": "08_reference/README.md",
+      "bytes": 707,
+      "sha256": "41260bb78e815af98469519ed763658c0bed637aef901e42ce925ccc576c7fcf"
+    },
+    {
+      "path": "08_reference/final-selected-concept.png",
+      "bytes": 1643038,
+      "sha256": "c1288139e47f3150737df84289a8c927f8d3e24b9f1d86bb581e0bd4c6476990"
+    },
+    {
+      "path": "08_reference/previous-v2.2-source.txt",
+      "bytes": 27934,
+      "sha256": "06b6c379d0c58ac81da5eff5791ba37d5f60b053e627191ab139d18466f8fa16"
+    },
+    {
+      "path": "09_source/README.md",
+      "bytes": 1843,
+      "sha256": "2c3320d4cc2aff38d0394518ded3d91ba0b2ee269c10331424198b8787da4566"
+    },
+    {
+      "path": "09_source/check_preview.cjs",
+      "bytes": 1763,
+      "sha256": "2ff50df32d3eabf52c748d2edb874884e51c548ff08dcd9b6a61182a5276220f"
+    },
+    {
+      "path": "09_source/generate_tokens.py",
+      "bytes": 8449,
+      "sha256": "0468bf57a4623aa39d5035bdc0076fe39e05414eb694022231e9ebdafc51e2a8"
+    },
+    {
+      "path": "09_source/legacy_v3.2/DOCUMENTATION-VALIDATION-v3.2.json",
+      "bytes": 560,
+      "sha256": "65498c2a2ae0bd98919ca6116cb1a43314e5e77c0c55f52b5e3850d3c4d823c7"
+    },
+    {
+      "path": "09_source/legacy_v3.2/PACKAGE-MANIFEST-v3.2.json",
+      "bytes": 49587,
+      "sha256": "6da80ec608ba41138842677517ff25e503cec97c4454f922404d7e6bbcc64eb4"
+    },
+    {
+      "path": "09_source/legacy_v3.2/VALIDATION-v3.2.json",
+      "bytes": 987,
+      "sha256": "1ce075907a241def12839dc51b9d46cdcb590fa153afdf4e341c79e0ec222082"
+    },
+    {
+      "path": "09_source/legacy_v3.2/build_revision.py",
+      "bytes": 23793,
+      "sha256": "cac232cdda5446643e647cea7cf5ac9d329bdcda7ef0d1d5ba466786bdcf345b"
+    },
+    {
+      "path": "09_source/legacy_v3.2/check_documentation.cjs",
+      "bytes": 3587,
+      "sha256": "9373e5df61e20870d707d9a0f39f180ed49f04d25a1e3011190f5f935b19843e"
+    },
+    {
+      "path": "09_source/legacy_v3.2/check_package.py",
+      "bytes": 4884,
+      "sha256": "9227006017fd1af0c2ef8b48b10e639e9816de085d0d18729cd588c3aad3c099"
+    },
+    {
+      "path": "09_source/legacy_v3.2/complete_documentation.py",
+      "bytes": 51659,
+      "sha256": "c07859805d3f1726310a2c5e0095ef3ad02993e0eea6977d7b6cf30eb2e349a7"
+    },
+    {
+      "path": "09_source/legacy_v3.2/render_brandbook.cjs",
+      "bytes": 3864,
+      "sha256": "ae4846d000e9d88911ec2e622931b8ce8234bae686bf8bb95c7a671c01d539c1"
+    },
+    {
+      "path": "09_source/rebuild_assets.py",
+      "bytes": 2767,
+      "sha256": "c91168ac55c107be29308cbe5510104aacebc1e5f32c955a42b8c371ffaf4d23"
+    },
+    {
+      "path": "09_source/release.py",
+      "bytes": 6619,
+      "sha256": "9d77ab375c72809a7d65c90b3a5093fadbee286b750428b0a18213990aeeb93c"
+    },
+    {
+      "path": "09_source/render_guide.py",
+      "bytes": 4363,
+      "sha256": "c3ca31be3c50cd251a618f5e5ffb86a91f5aeba9e9220e501054a9063b0c753b"
+    },
+    {
+      "path": "10_documentation/01-brand-decisions.md",
+      "bytes": 4759,
+      "sha256": "347b005cd6e5fea1f2a8deec600e6a720d90d533e79831f0cef8ed252cc15bee"
+    },
+    {
+      "path": "10_documentation/02-logo-standard.md",
+      "bytes": 4182,
+      "sha256": "2d6afc6cbb11c295211ac00826594c3fb0377cbd35c7fc8363cd405a85746401"
+    },
+    {
+      "path": "10_documentation/03-color-and-themes.md",
+      "bytes": 5028,
+      "sha256": "fc4de3eaf417bfe05758c1cb5307ceed0471bcc5ebc90b59cfdb7a782f4f0ab1"
+    },
+    {
+      "path": "10_documentation/04-type-ui-and-content.md",
+      "bytes": 3890,
+      "sha256": "930e22d512fc514b099039de942850b99de4136cda0f7094fec2486f40dd254d"
+    },
+    {
+      "path": "10_documentation/05-developer-handoff.md",
+      "bytes": 5401,
+      "sha256": "97b5b0e8d7c869a3fd300063229e1e2f7f0ee053e507b9d76c2e43dc534970c0"
+    },
+    {
+      "path": "10_documentation/06-designer-and-print-handoff.md",
+      "bytes": 3855,
+      "sha256": "f1ad0b159e3f77486c2df510f503c3d366502314d569cf6307e37dcf9fc66553"
+    },
+    {
+      "path": "10_documentation/07-assets-and-maintenance.md",
+      "bytes": 3541,
+      "sha256": "3e5549fcdce56be51f756f7b731cbc5fa371417e51f5624480d6b410eecd650a"
+    },
+    {
+      "path": "10_documentation/08-release-checklist.md",
+      "bytes": 3855,
+      "sha256": "02071fe0cbbc57926dffd5301be49ea108c7350b3a6225360010759f7982ae3b"
+    },
+    {
+      "path": "10_documentation/09-localization-and-app-labels.md",
+      "bytes": 2644,
+      "sha256": "d3fde1e393da48a6df2703598e7c53e6016b8e06cc3d7ee7de7464b9a4167432"
+    },
+    {
+      "path": "10_documentation/ASSET-CATALOG.csv",
+      "bytes": 14058,
+      "sha256": "da2e8dec314640d728db89cc21d76a0366bdad9b3f294435ee65e9de9167199c"
+    },
+    {
+      "path": "10_documentation/COLOR-CONTRAST-v3.3.json",
+      "bytes": 19117,
+      "sha256": "7b2b96fe858fb84ae35fdbccfc2ad5169dcec1cc1afd249e0eca7fbce32a0e1b"
+    },
+    {
+      "path": "10_documentation/COLOR-CONTRAST.json",
+      "bytes": 7474,
+      "sha256": "50c4e7a8e43cc8b8f60e771749d89b1462fd7c582f2f0e657b6ce1fa700cfa9b"
+    },
+    {
+      "path": "10_documentation/FULL-DOCUMENTATION.md",
+      "bytes": 37410,
+      "sha256": "cdf3ba637f613db36416d41d1208f1f122e4287094b12cba1f65fc2f1d4e6850"
+    },
+    {
+      "path": "11_design_system/00-STATUS-AND-SCOPE.md",
+      "bytes": 5056,
+      "sha256": "a4e017ad14606373daf84190cb4278d2c181c12db903034742e466b1246b1f9b"
+    },
+    {
+      "path": "11_design_system/01-TOKENS-AND-COLOR.md",
+      "bytes": 3436,
+      "sha256": "7f9e9d42ce89adf8e1c60e64480a8dcf3c0eb643f1058d9bba2b19127bb3e2a8"
+    },
+    {
+      "path": "11_design_system/02-COMPONENT-SPEC.md",
+      "bytes": 6172,
+      "sha256": "85339259ec8befd773cacf5f71be09dd9188449033812b7b757a5bd8887d6834"
+    },
+    {
+      "path": "11_design_system/03-PLATFORM-IMPLEMENTATION.md",
+      "bytes": 4093,
+      "sha256": "3f66884c29c327494ef80c1afa71d47db78146fe8f996737ffb3e07fc2178fcb"
+    },
+    {
+      "path": "11_design_system/04-QA-CHECKLIST.md",
+      "bytes": 2874,
+      "sha256": "8bfb85dff86ba4f85d9d28c62ba4f6c9d25e1aaed03db2b5877435c31f39175e"
+    },
+    {
+      "path": "11_design_system/05-ROADMAP-V4.md",
+      "bytes": 3758,
+      "sha256": "8b210256dce8f1f6aabba9486295fdb829efc4d67ec209df0c2528a21a4c9f88"
+    },
+    {
+      "path": "11_design_system/BRAND-ASSET-IDENTITY.json",
+      "bytes": 418,
+      "sha256": "0a68a3a9f4ba951d4dc859475b023750db965def86ab1885dd49d34f50616d90"
+    },
+    {
+      "path": "11_design_system/Taktera-v3.3-implementation-guide.html",
+      "bytes": 32835,
+      "sha256": "808dfd84921c64ee49562ec5a9d3ec571f16952155e51087f46d96920db5ece4"
+    },
+    {
+      "path": "11_design_system/Taktera-v3.3-implementation-guide.pdf",
+      "bytes": 80461,
+      "sha256": "5804ef7aff00587be71066a7d9fd611350e38f00f56e5d25ea330d252b42cd6f"
+    },
+    {
+      "path": "11_design_system/taktera.components.css",
+      "bytes": 6720,
+      "sha256": "1adac6d239fa7ace610261e1daabd286979c70374a5590f5aebf360a6c0e98b2"
+    },
+    {
+      "path": "12_examples/preview.html",
+      "bytes": 6487,
+      "sha256": "5e559dc517025ca9987e1c4ac974e863ff9e57e1d21fc74ea98da693c47a99d0"
+    },
+    {
+      "path": "12_examples/preview.js",
+      "bytes": 1100,
+      "sha256": "053ccbfde3ba3b93ba5c0631edf6c5369b425fa51ac572b663ed2e0531def9d9"
+    },
+    {
+      "path": "13_ui_kit/ACCESSIBILITY-AUDIT.md",
+      "bytes": 1943,
+      "sha256": "dacbdd383d9306dbbda6ef4e3aa686adf56572e5e963d56b060791122f327201"
+    },
+    {
+      "path": "13_ui_kit/COMPONENT-CONTRACTS.md",
+      "bytes": 5296,
+      "sha256": "594a0d16c73eda01e9f3e97fe7040b9ec7e7c5cb7048eda3074b60cbdd166577"
+    },
+    {
+      "path": "13_ui_kit/PRODUCT-EXAMPLES.md",
+      "bytes": 1711,
+      "sha256": "41b26905599ebc67579a2ad2d97907563c600f12294b095e76a792d8c2fbc5fa"
+    },
+    {
+      "path": "13_ui_kit/data.js",
+      "bytes": 8231,
+      "sha256": "38f46e817dcfb66e869313d8846e8dd66a26013bdd4ece0623a03a0147e9b04a"
+    },
+    {
+      "path": "13_ui_kit/index.html",
+      "bytes": 18235,
+      "sha256": "199efcb0b4e4bcfcebedddd4b59c1e115e44ac10c54283d84b719f05048589ba"
+    },
+    {
+      "path": "13_ui_kit/ui.css",
+      "bytes": 23169,
+      "sha256": "007e4312687b016aae4c2e79a89caeff34dba248e0a00afc7b236e558a7119c0"
+    },
+    {
+      "path": "13_ui_kit/ui.js",
+      "bytes": 15878,
+      "sha256": "ec00149d55a105309f85454d85063151d07410679c9b46f1c5998d812dc4354e"
+    },
+    {
+      "path": "14_brand_extensions/PROPOSALS.md",
+      "bytes": 4075,
+      "sha256": "7ac2699d9ed089033940a0f3d66ffdaaf421328aa83c44fb0ed43e76e2172075"
+    },
+    {
+      "path": "14_brand_extensions/generate_icon_proposals.py",
+      "bytes": 5225,
+      "sha256": "8870827ae2f5475511a2c7d72d1fbea034eefc95da6a400b746d93183421e7cf"
+    },
+    {
+      "path": "14_brand_extensions/generate_signature_patterns.py",
+      "bytes": 1458,
+      "sha256": "e061c3b487365b243c6de6140de41c889a5b78a1086fa0df8c34b75c7d83e11d"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/icon-comparison.png",
+      "bytes": 124479,
+      "sha256": "b2d5b4173f96b88df6627ba563107b04f492cf34a85c67509d8cdb5e5794baf6"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/beauty-dark-A-128.png",
+      "bytes": 3776,
+      "sha256": "d223c593c4ea25e8cb24ae7ed3d3f559f45f4d4e0f3788f1a9b66831149e2414"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/beauty-dark-A-16.png",
+      "bytes": 462,
+      "sha256": "85543fb8a24bc0ec1cbb8be8dd66857cca66f61110bbd2382ac186342e3e3ad4"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/beauty-dark-A-24.png",
+      "bytes": 676,
+      "sha256": "469a983589380931c4b9efd93791ba13feecec016430930d58739ce35ae75677"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/beauty-dark-A-256.png",
+      "bytes": 7573,
+      "sha256": "26ba0cec1708a34efbf66b33f405d670ba4bdddb5d4c936900e284312c3d9d54"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/beauty-dark-A-32.png",
+      "bytes": 985,
+      "sha256": "06e0f75a28d1a9a8b58f25b5d0517fe73f6f62bfda429b1fd6a2ded629a7b7cf"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/beauty-dark-A-64.png",
+      "bytes": 1978,
+      "sha256": "6b30bb889117d19eb85bd7aa223e35f70f0e4801487b592dfe3bb320eb08de86"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/beauty-dark-B-128.png",
+      "bytes": 3788,
+      "sha256": "e658ea7eb6fd7a6f187a78fd7841219e44a01b654ea14d743b405e1978c94091"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/beauty-dark-B-16.png",
+      "bytes": 462,
+      "sha256": "85543fb8a24bc0ec1cbb8be8dd66857cca66f61110bbd2382ac186342e3e3ad4"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/beauty-dark-B-24.png",
+      "bytes": 676,
+      "sha256": "469a983589380931c4b9efd93791ba13feecec016430930d58739ce35ae75677"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/beauty-dark-B-256.png",
+      "bytes": 7548,
+      "sha256": "a96f43363d408b30f8f0e82e298410e56f160ae720639bad298d5959626b5bb0"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/beauty-dark-B-32.png",
+      "bytes": 1047,
+      "sha256": "c6e7de54f6ee1ff11e95d7bdf46e4341cadb2bb56cfe18c04c6a52857a36cfd9"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/beauty-dark-B-64.png",
+      "bytes": 2051,
+      "sha256": "de28214273719a7d86c7e61d709aa906c4e0e6d062b742c25c3fe68593eca763"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/beauty-light-A-128.png",
+      "bytes": 3715,
+      "sha256": "c540fb64ea75a3e4c40aea0c1336c7f430a8182e7698ddc5f02197d642faca57"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/beauty-light-A-16.png",
+      "bytes": 469,
+      "sha256": "17e60095d78cacc5ee160d0699f721bc30f8e6848cd5ae926bf9a6871a73f6c8"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/beauty-light-A-24.png",
+      "bytes": 665,
+      "sha256": "841c3d13cbe44135fa09e6827bc87faa05fd1568d30eb43301c1a6f64ddb74f9"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/beauty-light-A-256.png",
+      "bytes": 7352,
+      "sha256": "c7e0b874b8355c74bd9b66df97a27790017d3014db13b95a95788eefefb329b4"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/beauty-light-A-32.png",
+      "bytes": 950,
+      "sha256": "24d927a6728d805ea2ed5b2467bfc1d2ce8583d6998d66448aa37eba99282790"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/beauty-light-A-64.png",
+      "bytes": 1924,
+      "sha256": "5703782f5f96bd3d78abf136b7ab3547ef934179ec0e4db7ff93d9069c5aa353"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/beauty-light-B-128.png",
+      "bytes": 3775,
+      "sha256": "aa995ac5a11c4449c3769fccc536595925c96b562edafdf99641a7665d274236"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/beauty-light-B-16.png",
+      "bytes": 469,
+      "sha256": "17e60095d78cacc5ee160d0699f721bc30f8e6848cd5ae926bf9a6871a73f6c8"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/beauty-light-B-24.png",
+      "bytes": 665,
+      "sha256": "841c3d13cbe44135fa09e6827bc87faa05fd1568d30eb43301c1a6f64ddb74f9"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/beauty-light-B-256.png",
+      "bytes": 7438,
+      "sha256": "1f2e459e9087e24eee892ca0e04233be2e2736252df42a92f8b13dd9375f9ff2"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/beauty-light-B-32.png",
+      "bytes": 1045,
+      "sha256": "783fc816c9ebaba8a2f3c0cc25392f9a7e01ceea3b085261d6bf57f91a100c06"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/beauty-light-B-64.png",
+      "bytes": 2003,
+      "sha256": "24ce197b86be89c700ff3c9fb2fa4c4600ce55ae7468bf4d1d6e215798bf1785"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/clinic-dark-A-128.png",
+      "bytes": 3859,
+      "sha256": "e20be4887e5933224db8f39bd203e3b98cf622d82f37e776b5f9dce452da646d"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/clinic-dark-A-16.png",
+      "bytes": 464,
+      "sha256": "64554050713abf8445b9b6b54c867947e2e9a99515f431b97c202700f7e4d704"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/clinic-dark-A-24.png",
+      "bytes": 670,
+      "sha256": "6eb408a83568d65de5daafab14b99e0ec199d984eb0f977d87d3fbf5eb100cbf"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/clinic-dark-A-256.png",
+      "bytes": 7857,
+      "sha256": "582b0c92c2d883e030a55931e6d97204fda038747922fec5be9dd39f76f78380"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/clinic-dark-A-32.png",
+      "bytes": 966,
+      "sha256": "c22d6b5d5e6d35bba64b76514db097b5ea8bb03f1384b80252125da6e370c55e"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/clinic-dark-A-64.png",
+      "bytes": 1966,
+      "sha256": "6aff6fb9a2d8e5a74185d3d57562384aa15466853824ba108ad74308c4e765a5"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/clinic-dark-B-128.png",
+      "bytes": 3882,
+      "sha256": "c7c0bb07981dead0c0ef68fa941232df5210a2a9a0c4793f9318d018375095c3"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/clinic-dark-B-16.png",
+      "bytes": 464,
+      "sha256": "64554050713abf8445b9b6b54c867947e2e9a99515f431b97c202700f7e4d704"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/clinic-dark-B-24.png",
+      "bytes": 670,
+      "sha256": "6eb408a83568d65de5daafab14b99e0ec199d984eb0f977d87d3fbf5eb100cbf"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/clinic-dark-B-256.png",
+      "bytes": 7818,
+      "sha256": "8d1768db968369b7c907145a5bb7cd9a00057f701670683bb2dbdaed748f0d6a"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/clinic-dark-B-32.png",
+      "bytes": 1043,
+      "sha256": "83d938d6d01a3789d63d19c129fc13f3d52d32da1a9a929339106da5c2f5ae62"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/clinic-dark-B-64.png",
+      "bytes": 2021,
+      "sha256": "f8d2d8fc56b651b8e3640907900c990013abd9f31f2fd3f07bf30d0454b286d2"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/clinic-light-A-128.png",
+      "bytes": 3756,
+      "sha256": "abe136b7c77c1100e9589392a541bc887a651ab12f260fbd85089a295fa874d3"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/clinic-light-A-16.png",
+      "bytes": 469,
+      "sha256": "8928f4e306405e981511fed125d9400f199409ca577225ded847dceb89859132"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/clinic-light-A-24.png",
+      "bytes": 661,
+      "sha256": "6b18ebd0fe5bcfc405387661628679859d376abfb4d31952b005b942254c91a3"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/clinic-light-A-256.png",
+      "bytes": 7600,
+      "sha256": "7df1bcf0925869d4a80d14a998b67b80ca24ac8a5f8e899e5b345182e0a60b7a"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/clinic-light-A-32.png",
+      "bytes": 926,
+      "sha256": "c39918d78638e28e7754ab5b88f4f8faf1ed677cccb2b984ed0b1a75636aed1d"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/clinic-light-A-64.png",
+      "bytes": 1882,
+      "sha256": "50dcf7dd54df6ecc6b8b6925d8fec703b6e61994f002f0cf826ba1ad3fffa82f"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/clinic-light-B-128.png",
+      "bytes": 3830,
+      "sha256": "d41c99f254b035c3afe69ed8d6e0264e740e7afb5c8346d444834aa6dc884275"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/clinic-light-B-16.png",
+      "bytes": 469,
+      "sha256": "8928f4e306405e981511fed125d9400f199409ca577225ded847dceb89859132"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/clinic-light-B-24.png",
+      "bytes": 661,
+      "sha256": "6b18ebd0fe5bcfc405387661628679859d376abfb4d31952b005b942254c91a3"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/clinic-light-B-256.png",
+      "bytes": 7642,
+      "sha256": "276b84c1d3cbe273df80187ff86b8b9bbdcc8967f7fd61b00bc4bd43753dd3e0"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/clinic-light-B-32.png",
+      "bytes": 1037,
+      "sha256": "a84f13c6c109215e813dd71f4c75947df1750c9236ecd536ab8678fb1fbbee0a"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/clinic-light-B-64.png",
+      "bytes": 1990,
+      "sha256": "84ec2ac39369e55d92fa23f4ca6252adfbb036684a7cc80603fe3e47f60b6616"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/fitness-dark-A-128.png",
+      "bytes": 3352,
+      "sha256": "dbaa88b8a791fc2484d4d9bea2ce863c954e0623b11d0445527ec422c305157c"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/fitness-dark-A-16.png",
+      "bytes": 462,
+      "sha256": "106eb3349ab349e4aa43edf8320d03afcc1aac8a9ff9d15c7d13b8f7b0843dcb"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/fitness-dark-A-24.png",
+      "bytes": 674,
+      "sha256": "7c2b21e0c9a0aee251562716dba49a81c309744eedc08e6e4d7c7e526a1aa105"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/fitness-dark-A-256.png",
+      "bytes": 6757,
+      "sha256": "89952eb9fdb5c41ff455a3c9d24bb1cbc4e839b6ee8d5d9245b46661fcf9504f"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/fitness-dark-A-32.png",
+      "bytes": 916,
+      "sha256": "07d7ee728e26b417c79b4c8dee6962e2239d3c53cce1d303292a187e8508a5d4"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/fitness-dark-A-64.png",
+      "bytes": 1760,
+      "sha256": "0bc7ea918c8d2541690c469290a86e5c12570d23c53d765f017277304117298b"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/fitness-dark-B-128.png",
+      "bytes": 3430,
+      "sha256": "051a45b1ee791a3249d1ab740fdc6398e0027cfcaac178ce7dc655e3cca03b17"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/fitness-dark-B-16.png",
+      "bytes": 462,
+      "sha256": "106eb3349ab349e4aa43edf8320d03afcc1aac8a9ff9d15c7d13b8f7b0843dcb"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/fitness-dark-B-24.png",
+      "bytes": 674,
+      "sha256": "7c2b21e0c9a0aee251562716dba49a81c309744eedc08e6e4d7c7e526a1aa105"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/fitness-dark-B-256.png",
+      "bytes": 6797,
+      "sha256": "fab803ea52b05d2af65d28408edd689cae7a633c85fc77eb04990c8ef0ba25fa"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/fitness-dark-B-32.png",
+      "bytes": 1014,
+      "sha256": "836066ea5b834191c35e9e63a1a80e909c888b0282237cf56dabde222264dd39"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/fitness-dark-B-64.png",
+      "bytes": 1853,
+      "sha256": "7370f490a794ad7e4ba69828316dae43f9d1938228a371581bc7a7c88c5af6d5"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/fitness-light-A-128.png",
+      "bytes": 3315,
+      "sha256": "6177271196851452f00a137e4e05dbd7fcad962409595e2f0ca3251ea964fc9e"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/fitness-light-A-16.png",
+      "bytes": 465,
+      "sha256": "2e9578ac2c4dc0d5bccc9ff18401ac9ecddcdd52e02aa2217300ca7a9fb96766"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/fitness-light-A-24.png",
+      "bytes": 677,
+      "sha256": "7b81c1f215b072fc927dfe5f5fc783eefff7ce7e3d397f497e968bb4786d98f3"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/fitness-light-A-256.png",
+      "bytes": 6646,
+      "sha256": "c30c1bed0c7781a19083642fdedb0339ff8e7298a92ce18a8967ad6411682f11"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/fitness-light-A-32.png",
+      "bytes": 884,
+      "sha256": "e841e51518ce3c2b9f8abcf90042f1bf166aee26b7865b271d939b99d2d57058"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/fitness-light-A-64.png",
+      "bytes": 1714,
+      "sha256": "7a994f1489e6e1a2042dd84c8301c43e05ba3086512bba95da1f048d3a163051"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/fitness-light-B-128.png",
+      "bytes": 3403,
+      "sha256": "fdf0a36932228f9cb2591874ac9e0d8a682d1c4e6331257566f151c9114e6cb4"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/fitness-light-B-16.png",
+      "bytes": 465,
+      "sha256": "2e9578ac2c4dc0d5bccc9ff18401ac9ecddcdd52e02aa2217300ca7a9fb96766"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/fitness-light-B-24.png",
+      "bytes": 677,
+      "sha256": "7b81c1f215b072fc927dfe5f5fc783eefff7ce7e3d397f497e968bb4786d98f3"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/fitness-light-B-256.png",
+      "bytes": 6761,
+      "sha256": "6ce5ac2bac71df2ac3b6cc2b1003e014675b889835ded291ad0f7c27954920c5"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/fitness-light-B-32.png",
+      "bytes": 1021,
+      "sha256": "9729a4be7d56af68c707e6ca0949185b148459d46419ffe514b016f8c2ce7892"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/fitness-light-B-64.png",
+      "bytes": 1843,
+      "sha256": "4aac20b321cb0573ede79b10a5591b9f9a930adddfbfb14e156d260fecd723b1"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/platform-dark-A-128.png",
+      "bytes": 3611,
+      "sha256": "353fe50841bbfcf78d9c5922c22aa0fb2d7944d2ac8d8595f77d65ddd1718090"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/platform-dark-A-16.png",
+      "bytes": 459,
+      "sha256": "162cc202a9bddcef1f389f661726269c6291d9032e06ff174e943905177ec697"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/platform-dark-A-24.png",
+      "bytes": 673,
+      "sha256": "3bb6301e80d691067e956ad2cced76c71a1c68dd91337cec2501d3c68db801b9"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/platform-dark-A-256.png",
+      "bytes": 7285,
+      "sha256": "42c45da1a8874a3ea7176104614b800e194c0b4ef8b668d0941f70b9c8c6841a"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/platform-dark-A-32.png",
+      "bytes": 960,
+      "sha256": "5b9886dbb5921dbddb53c751bee2c015920febb55166904a73c73f028a877122"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/platform-dark-A-64.png",
+      "bytes": 1878,
+      "sha256": "a13cc4dd0b02696f35383e55c1e76653464a2823638e457abdae4d031fa15eab"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/platform-dark-B-128.png",
+      "bytes": 3650,
+      "sha256": "ff0328a172a70fac23f25b3c24ccc6f2c71774e99d199e11b04fce1d92cfd738"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/platform-dark-B-16.png",
+      "bytes": 459,
+      "sha256": "162cc202a9bddcef1f389f661726269c6291d9032e06ff174e943905177ec697"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/platform-dark-B-24.png",
+      "bytes": 673,
+      "sha256": "3bb6301e80d691067e956ad2cced76c71a1c68dd91337cec2501d3c68db801b9"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/platform-dark-B-256.png",
+      "bytes": 7298,
+      "sha256": "12fad701956122037d94dfe6064e9d8bd7411b5b956f132f379b54aef63ca44a"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/platform-dark-B-32.png",
+      "bytes": 1062,
+      "sha256": "05de3119f876a70597dc6fdd0aeb674efa254a849cdbb57b405f300d308da495"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/platform-dark-B-64.png",
+      "bytes": 1964,
+      "sha256": "0a43bf34fa293baa978d8d5df715e9841ad544d9428f46cb126ac1975fc97458"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/platform-light-A-128.png",
+      "bytes": 3550,
+      "sha256": "8e24bae4d3cccb67aaee19b1d23e835ea6229c53ffaf66cc2393433e4a892fb6"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/platform-light-A-16.png",
+      "bytes": 465,
+      "sha256": "447f71d855f85f6d1fabf297ce151583577473bf7f58f60d971c0660d5ccb097"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/platform-light-A-24.png",
+      "bytes": 659,
+      "sha256": "9c1891f3728ad59bca3f735583b9bd8eba661eb0c5b54249b67581cf8a1f2068"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/platform-light-A-256.png",
+      "bytes": 7105,
+      "sha256": "934e5d6c2c72fa5655ca8807181a05a4776479dcc4e045fa3ddb76a176a3a98c"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/platform-light-A-32.png",
+      "bytes": 918,
+      "sha256": "d19cde2393494f2d8827ad8bf9ba1f48c2951a6f9ab5c1aa4d8c795465cb034c"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/platform-light-A-64.png",
+      "bytes": 1820,
+      "sha256": "52904f1bf1801bf81a8817b9e1ab6a9a32c3c8b89db0033788ef0c9be54d9357"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/platform-light-B-128.png",
+      "bytes": 3679,
+      "sha256": "0e595457a23b0da3c8b001e63e0a48bfcddc89d66c671274148bb4b1c3f7ffb1"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/platform-light-B-16.png",
+      "bytes": 465,
+      "sha256": "447f71d855f85f6d1fabf297ce151583577473bf7f58f60d971c0660d5ccb097"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/platform-light-B-24.png",
+      "bytes": 659,
+      "sha256": "9c1891f3728ad59bca3f735583b9bd8eba661eb0c5b54249b67581cf8a1f2068"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/platform-light-B-256.png",
+      "bytes": 7253,
+      "sha256": "30c0ef36045942c44b7eb3f50240c91a981842d10ee526c578f14a1e25b91f90"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/platform-light-B-32.png",
+      "bytes": 1040,
+      "sha256": "0a4597829953b3b1b3cdf4ca0268b066affd89a3c9d3ddb35a5830a0a8f6ada1"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/platform-light-B-64.png",
+      "bytes": 1954,
+      "sha256": "d8153175189abdcc344196d3933adb01be508a8eeda0a263fe066b7fb1f442ed"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/spa-dark-A-128.png",
+      "bytes": 4170,
+      "sha256": "3bc9f5fa954648c05d3f7fbe49895821cc0137b2bd02ca72abf641abc7d5d140"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/spa-dark-A-16.png",
+      "bytes": 460,
+      "sha256": "309090495a40ebce754b9762c88e181287914190c072f237e90b91b58f051bba"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/spa-dark-A-24.png",
+      "bytes": 675,
+      "sha256": "67ff4e3bf4d8b593f72d394358617d6a868b13bcf520fa736c97f8f2692366b6"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/spa-dark-A-256.png",
+      "bytes": 8437,
+      "sha256": "5825d1f2db19fd6a91b4a76d0717138014f2e390a86124725b02bc6b382f3008"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/spa-dark-A-32.png",
+      "bytes": 999,
+      "sha256": "2c506e16af040c81f13949fd602cf3731ded641e9e5192e750424f7c585fb246"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/spa-dark-A-64.png",
+      "bytes": 2064,
+      "sha256": "69526ead624b316f541a6a3ece7282a8f29051b01f9977cd0aef66d987817c40"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/spa-dark-B-128.png",
+      "bytes": 4105,
+      "sha256": "fe408b1693f20195184e807517b689147f9ce2d434cdd661910b6d7d6b713cb8"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/spa-dark-B-16.png",
+      "bytes": 460,
+      "sha256": "309090495a40ebce754b9762c88e181287914190c072f237e90b91b58f051bba"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/spa-dark-B-24.png",
+      "bytes": 675,
+      "sha256": "67ff4e3bf4d8b593f72d394358617d6a868b13bcf520fa736c97f8f2692366b6"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/spa-dark-B-256.png",
+      "bytes": 8307,
+      "sha256": "351311caf7bc5df9290c009f56a2e236aeaddbd2600745bf8316ab61b15359fa"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/spa-dark-B-32.png",
+      "bytes": 1075,
+      "sha256": "a953f36922d2f7ef01744411c2e2d19ba4b9497ab9a8b50d190fc30da384154d"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/spa-dark-B-64.png",
+      "bytes": 2099,
+      "sha256": "6a6a0d28ec9e9f97188eeffa6d1dea5ae4c4fa143ce3bf1d560d74df5164fc6b"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/spa-light-A-128.png",
+      "bytes": 4119,
+      "sha256": "c4c9c000fe735ca2ac5d5b81a8dd6f3728f8604ba7fa0a57b187d3c234036cbb"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/spa-light-A-16.png",
+      "bytes": 467,
+      "sha256": "2a04a6bdcdbc17ea31269343751be1e9423a74297db12c2df51dd5f691ff87b2"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/spa-light-A-24.png",
+      "bytes": 664,
+      "sha256": "c9473c54d3695eab4b34fe6ebd570f34986bdf253fc3653ec4294019a9d35e1a"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/spa-light-A-256.png",
+      "bytes": 8286,
+      "sha256": "eca3526c305967a7a014bd1b381b3b5ff3b0c5d9288bc898332273bb17c878dc"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/spa-light-A-32.png",
+      "bytes": 973,
+      "sha256": "bef1539950fc627eee497579a5bf0ca9dd431c40db8fba5640fd704dc0fb7ce6"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/spa-light-A-64.png",
+      "bytes": 2020,
+      "sha256": "6a7f88cf43cf316349019482a2242fd670cc475c68f043ec3cb479f8836ea87b"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/spa-light-B-128.png",
+      "bytes": 4142,
+      "sha256": "01c86dfce23b7fa3a4d2a200db50823ac4b2154a95e42bd0000b81365a855743"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/spa-light-B-16.png",
+      "bytes": 467,
+      "sha256": "2a04a6bdcdbc17ea31269343751be1e9423a74297db12c2df51dd5f691ff87b2"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/spa-light-B-24.png",
+      "bytes": 664,
+      "sha256": "c9473c54d3695eab4b34fe6ebd570f34986bdf253fc3653ec4294019a9d35e1a"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/spa-light-B-256.png",
+      "bytes": 8312,
+      "sha256": "84727aa3f923cd356434afed2e3788e56ab4dde329fdf55815f466801f44aa34"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/spa-light-B-32.png",
+      "bytes": 1069,
+      "sha256": "1ab1c4d8fc0f8c19c4a0695b0076e4b364a1f28746dab23d8da6786a10cba47c"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/spa-light-B-64.png",
+      "bytes": 2102,
+      "sha256": "af98c99dee18b429af5160343270b6e3cea3c38dd04e5e70219f07785658edb4"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/travel-dark-A-128.png",
+      "bytes": 3656,
+      "sha256": "29c2b30f24fa359f70834ec73ee9cd0ed6fc5f11e6a13c51102fb4b097bcf6f6"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/travel-dark-A-16.png",
+      "bytes": 461,
+      "sha256": "128150c3edb208f58fb39c2ced4ed226fedf068d74f0d9890b329244ee1282e1"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/travel-dark-A-24.png",
+      "bytes": 666,
+      "sha256": "39d2afbb7f4dad6b3fc7f8f3bedd7184efb47e4b49767cd6b1d46ed3f2d8ace6"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/travel-dark-A-256.png",
+      "bytes": 7359,
+      "sha256": "8bd41ba302e70f335fec251deebe8180f5cf20213c06b75695e28b254504e4d5"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/travel-dark-A-32.png",
+      "bytes": 962,
+      "sha256": "725a157e58a4e03af80ae142f1e117c716d0e26b638e6f9d0ee48ba3ce33748b"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/travel-dark-A-64.png",
+      "bytes": 1876,
+      "sha256": "7a802a83839239aafb0c5d7b7ff87c449a9aee4d36fe92dc0ccb92945d9c26a5"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/travel-dark-B-128.png",
+      "bytes": 3666,
+      "sha256": "589c89b32aeb998f0a3635bb9e44538085aba8eb53df2d0e385020c7b6df226d"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/travel-dark-B-16.png",
+      "bytes": 461,
+      "sha256": "128150c3edb208f58fb39c2ced4ed226fedf068d74f0d9890b329244ee1282e1"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/travel-dark-B-24.png",
+      "bytes": 666,
+      "sha256": "39d2afbb7f4dad6b3fc7f8f3bedd7184efb47e4b49767cd6b1d46ed3f2d8ace6"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/travel-dark-B-256.png",
+      "bytes": 7297,
+      "sha256": "bdd37a98d89f2e87dae066bf9e2524c590fa0277b5036d47966e1a26a55fd10d"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/travel-dark-B-32.png",
+      "bytes": 1032,
+      "sha256": "cdd204606404c9e52996a25aa97ee1cfa03f5cca7d337e7f543bcd7db70bfe7a"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/travel-dark-B-64.png",
+      "bytes": 1951,
+      "sha256": "dc02fbb5c422d7a0e71e75c49c5074cfc41bc0d75726ed6d92f5fc221c73a94a"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/travel-light-A-128.png",
+      "bytes": 3593,
+      "sha256": "a4d5e8137086d2c3b034ad94aaa1a24d7d009c6c522dcaec9cbee2d24c754ae8"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/travel-light-A-16.png",
+      "bytes": 466,
+      "sha256": "4b8f8d61315094f7e87b7a94e148d713b61a4d5ba248b1d460d80263f97a60fe"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/travel-light-A-24.png",
+      "bytes": 660,
+      "sha256": "9422ae0ab3b23f24ea956320249143282e16d4c7bff3f311cac8aa02a849fab7"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/travel-light-A-256.png",
+      "bytes": 7186,
+      "sha256": "b48397b1d3403c6b689459949ca938d5793f7d9ecc73487ced788b059d97d326"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/travel-light-A-32.png",
+      "bytes": 919,
+      "sha256": "9936149eba993cf0a0f62d2ee55bd513195ceebe401ae4deb63edcc180712dce"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/travel-light-A-64.png",
+      "bytes": 1840,
+      "sha256": "5ecfc9f5ba5bd3f2045bb4ff911b656337f4f3630187016f5420b146840cf95b"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/travel-light-B-128.png",
+      "bytes": 3649,
+      "sha256": "5afbe4da851dc75468db4a283a19ee69f2a790402b56b86153e97231cd368584"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/travel-light-B-16.png",
+      "bytes": 466,
+      "sha256": "4b8f8d61315094f7e87b7a94e148d713b61a4d5ba248b1d460d80263f97a60fe"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/travel-light-B-24.png",
+      "bytes": 660,
+      "sha256": "9422ae0ab3b23f24ea956320249143282e16d4c7bff3f311cac8aa02a849fab7"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/travel-light-B-256.png",
+      "bytes": 7226,
+      "sha256": "376951ccc5eac840b141060e7aafb29f330e525b7d6874a6addcbd1433a23aa4"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/travel-light-B-32.png",
+      "bytes": 1010,
+      "sha256": "6d0561f20ac84e8a503ef89d8ea03a6dc599ec4150dfb3e629bac28f3d5428ad"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/png/travel-light-B-64.png",
+      "bytes": 1935,
+      "sha256": "a0a53f192564c601dcab7179fae70f81bf2ad72ae9d47eb137d5273a636c7f96"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/beauty-dark-A-micro.svg",
+      "bytes": 586,
+      "sha256": "44d95c13e159a76232d65ba6892d3c2d643dfcfaf654c0f170620f53271fb179"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/beauty-dark-A.svg",
+      "bytes": 1316,
+      "sha256": "e7c85672412606464391fac620fdf894fafb82f239e7cdec315005f18ece0425"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/beauty-dark-B-micro.svg",
+      "bytes": 586,
+      "sha256": "aff6091965863f858f517cfc8ea99b103c345a1776aca50a75e148d5ae892d27"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/beauty-dark-B.svg",
+      "bytes": 1371,
+      "sha256": "69069540ccd9effd9b54be5abb0fde58d0d7417cd20ebfbd6ba4fc6d3fadcedd"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/beauty-light-A-micro.svg",
+      "bytes": 587,
+      "sha256": "df7cf68fea083b5ade37cfa47f0355182470bea429ad11b6871945b4d86eee92"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/beauty-light-A.svg",
+      "bytes": 1317,
+      "sha256": "ad566eb4832a7f171c61f1b211163ffa0220cb0351502d551db45a9bb5f3a476"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/beauty-light-B-micro.svg",
+      "bytes": 587,
+      "sha256": "c0ad6747b2b09efc60b242e87d08da859e1cec17bbc53cbcda15e6f611f68df0"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/beauty-light-B.svg",
+      "bytes": 1372,
+      "sha256": "c00f0f40fbfaac7b45d51e47025b4e5dd19e3a2c0172c5f08847bc3bd7768a3e"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/clinic-dark-A-micro.svg",
+      "bytes": 586,
+      "sha256": "327858fb4414afd292a4f2e370e1ab0d1d862444d9389ec75d48b9ceb2b46b04"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/clinic-dark-A.svg",
+      "bytes": 1387,
+      "sha256": "ee7e598d3938dac79c19012da62e76edb29ceb4d04d0a5b151e57e402b9aae7a"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/clinic-dark-B-micro.svg",
+      "bytes": 586,
+      "sha256": "86f3433d3d45ac4072ed8b0a7b3b6cb5d9687391534caabb5afd5494c01f4d4e"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/clinic-dark-B.svg",
+      "bytes": 1442,
+      "sha256": "a15d297d68e4d4b9eff46fe0a268a8703cc60db5ea6350dd97bd1c8478924f3e"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/clinic-light-A-micro.svg",
+      "bytes": 587,
+      "sha256": "ed0a4d84621deb584eb14a857a4ccac9f37cfd79d245844c95fbacf94b73417c"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/clinic-light-A.svg",
+      "bytes": 1388,
+      "sha256": "97349e93c6e8a4e6b786ca85bc7a61040b175a77afa3ba1fae8f1fd2a7bb6ffe"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/clinic-light-B-micro.svg",
+      "bytes": 587,
+      "sha256": "dc39a69c9287228480930c08ce9952442b9074e8de0a64ea1542f86bb8ddd46a"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/clinic-light-B.svg",
+      "bytes": 1443,
+      "sha256": "db098cf745645eeceaad2b773bfc3b3d1ab9fc842fc3605bde25a0b209479563"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/fitness-dark-A-micro.svg",
+      "bytes": 587,
+      "sha256": "0522fc59941d7cdc27f12c4a1fd7e5bf4b402e7206c9010b047c1db9f8494239"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/fitness-dark-A.svg",
+      "bytes": 840,
+      "sha256": "9dc701f8137ecc73004b06cedab7cf6bd280fef2746aad913e83e25b191674ae"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/fitness-dark-B-micro.svg",
+      "bytes": 587,
+      "sha256": "d89a4307b51bac936fa1d04cf690bc2e1641c8e30df92285441bc1b9764af588"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/fitness-dark-B.svg",
+      "bytes": 895,
+      "sha256": "6bfedefb8dfcbaa3fd18bccdcc9f105154a4c2a5c0dc5cad3de3d61238ab8554"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/fitness-light-A-micro.svg",
+      "bytes": 588,
+      "sha256": "78082e285d47c8c90cf687e8b58ddd94c4aa084ae96dbbba9669c27ac642f151"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/fitness-light-A.svg",
+      "bytes": 841,
+      "sha256": "b5c048b8f56790248dce30011a9b9281595b5a0248d310e513305ddc569f4dde"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/fitness-light-B-micro.svg",
+      "bytes": 588,
+      "sha256": "72208b3fe1343df8fe22f0995797e43244b8d8f59994db997ea1fbdffa64e785"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/fitness-light-B.svg",
+      "bytes": 896,
+      "sha256": "0bf3925c2a753650a3dc14ad79348efec76c79f5c29a94c42c76564b9dd3c155"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/platform-dark-A-micro.svg",
+      "bytes": 588,
+      "sha256": "3dc30879d1c9ea04dec6154a8ea3e6a4cdae0b67c14857d4945918d46919c52a"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/platform-dark-A.svg",
+      "bytes": 1078,
+      "sha256": "52b37574869f45bca2857d9efd3977c0139c5da0d14c245b7531c597d21c65ac"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/platform-dark-B-micro.svg",
+      "bytes": 588,
+      "sha256": "c9afacea9fae1610f2fa81f82acef34325d2fc4b1dabdd546d1cfa85fb6068fc"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/platform-dark-B.svg",
+      "bytes": 1133,
+      "sha256": "e94a6c235c8791e41ea95e77cdf2096fadb4e5d29c4afdbe2f8986aaaa412570"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/platform-light-A-micro.svg",
+      "bytes": 589,
+      "sha256": "f5d6e4c1766475d3d65e282d90d4d42c94c16aaa6ce5586bf894d40c28541511"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/platform-light-A.svg",
+      "bytes": 1079,
+      "sha256": "a3d6ccda31c8c13b4f03f6ff5ad8e0966b7866138640bd5d48c03ca76f2b435b"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/platform-light-B-micro.svg",
+      "bytes": 589,
+      "sha256": "c01311a983c24f0fb020a85e28eaf2e51740b5cbbe457ed1c2e04157448dd8ab"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/platform-light-B.svg",
+      "bytes": 1134,
+      "sha256": "c6be8d86e10d13b97c3cc0affe81e686f9abd2e2eb18182e2627214a0b0bb19e"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/spa-dark-A-micro.svg",
+      "bytes": 583,
+      "sha256": "94fc58a760f99fdd74474eddeb23319c82f20676c22a20f3ca66d3c0fde40fc3"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/spa-dark-A.svg",
+      "bytes": 1763,
+      "sha256": "9a9aa23f89a4e4e1b84e3460faf60db43533337aea583bfceb993a5b2f742de2"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/spa-dark-B-micro.svg",
+      "bytes": 583,
+      "sha256": "87e9307220539fdd8df2692d12030e7826c06bb652d87443e8e362afebee130e"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/spa-dark-B.svg",
+      "bytes": 1818,
+      "sha256": "6f5586edff0041ff2e41d3d655d35de2b9c12497867ec291f8465c3e411923f4"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/spa-light-A-micro.svg",
+      "bytes": 584,
+      "sha256": "d7aaa60491fc5de6b535d57a8df0f0316a26a44c62746857796c2b357676664c"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/spa-light-A.svg",
+      "bytes": 1764,
+      "sha256": "786ad6e6d1a0902ced987d21c78bdb1c5b34f2fbfab68ebd90d49e986d1d7967"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/spa-light-B-micro.svg",
+      "bytes": 584,
+      "sha256": "3db72efdc48e56f8daf87a367e6a1d3094f35993f5ab4978c3ce6d9666f9cd4b"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/spa-light-B.svg",
+      "bytes": 1819,
+      "sha256": "f2fb83cd6616eff6b5ecc5e8944f5ede047963546b7e811df9b955300ea4aa50"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/travel-dark-A-micro.svg",
+      "bytes": 586,
+      "sha256": "01d484a03e96a2952ec723b9f36c363453f1704c42a32ba0c4aa2e755ff0abbd"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/travel-dark-A.svg",
+      "bytes": 1117,
+      "sha256": "c79f0ffd62a6866a8e9bafd9bebd1deda2624522ae04ed45022a25b42b218740"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/travel-dark-B-micro.svg",
+      "bytes": 586,
+      "sha256": "3872f8ce8bdfc35cf8dcd6373aa81c5a43c30594feecfd936878efd4a9d219ff"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/travel-dark-B.svg",
+      "bytes": 1172,
+      "sha256": "1926692fdcb406312f6d8ed50ffc5e0699ff516c8a2f9d421b1881f763848942"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/travel-light-A-micro.svg",
+      "bytes": 587,
+      "sha256": "7847e2e5d310d289d9db052cf5e4066726698384024dab4dda54f39a358d2b2e"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/travel-light-A.svg",
+      "bytes": 1118,
+      "sha256": "316be85afa133b19c8b2240e3180e066c21c33d02ffee12ef470da565ea4b5f3"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/travel-light-B-micro.svg",
+      "bytes": 587,
+      "sha256": "aa9a63b16f018adfdedf3c2193d08743089c485700d6e267e7316710cab6e8b8"
+    },
+    {
+      "path": "14_brand_extensions/icons_proposed/svg/travel-light-B.svg",
+      "bytes": 1173,
+      "sha256": "a7c7a19431569b4c64630b20f4bb3c6a9ee81ccbd08ab1dd8a253213488ebb15"
+    },
+    {
+      "path": "14_brand_extensions/signature_patterns/signature-beauty-dark.svg",
+      "bytes": 636,
+      "sha256": "3706b7eabfeaf7ddb6b5ef94dbcc196d518dce2aaa2c360f239583cba7f30f56"
+    },
+    {
+      "path": "14_brand_extensions/signature_patterns/signature-beauty-light.svg",
+      "bytes": 637,
+      "sha256": "bc6ec104bd396b12e767b248cac917b4387d7eee6fc1333c42b59bb54102b513"
+    },
+    {
+      "path": "14_brand_extensions/signature_patterns/signature-clinic-dark.svg",
+      "bytes": 636,
+      "sha256": "159ac11110662f9fc86b2d059698d8027f7114df87639558d9e6404109acee2f"
+    },
+    {
+      "path": "14_brand_extensions/signature_patterns/signature-clinic-light.svg",
+      "bytes": 637,
+      "sha256": "7e3b63ede07cbc956001db27f0a39f679078470a04cb8ae6a1febdbac99d2e55"
+    },
+    {
+      "path": "14_brand_extensions/signature_patterns/signature-fitness-dark.svg",
+      "bytes": 637,
+      "sha256": "748f412baf8ad7a975e108c012b473497c2616d29d56123c55ea6906c49fbe2e"
+    },
+    {
+      "path": "14_brand_extensions/signature_patterns/signature-fitness-light.svg",
+      "bytes": 638,
+      "sha256": "bde20d6c5e75994be71a5006f44483fb33734a2d52d20c5e8ef1ef7014e8a019"
+    },
+    {
+      "path": "14_brand_extensions/signature_patterns/signature-platform-dark.svg",
+      "bytes": 638,
+      "sha256": "e324bc8b189ad70e07e3f4d33e51ba87d5574be50b91b87283ba8e3aca3ab049"
+    },
+    {
+      "path": "14_brand_extensions/signature_patterns/signature-platform-light.svg",
+      "bytes": 639,
+      "sha256": "c8b50972c8385a69ac966305f8f46aab91d8579c6f0540cad763176237db4595"
+    },
+    {
+      "path": "14_brand_extensions/signature_patterns/signature-spa-dark.svg",
+      "bytes": 633,
+      "sha256": "7dd892cdd597968d2fc32d699f0a5c96acbdcfd284433345565229bb15315957"
+    },
+    {
+      "path": "14_brand_extensions/signature_patterns/signature-spa-light.svg",
+      "bytes": 634,
+      "sha256": "72ac37a8c012bf163341ca5f75603e9dfef5747fa5a5288b7fd4c891c9b0f6b3"
+    },
+    {
+      "path": "14_brand_extensions/signature_patterns/signature-travel-dark.svg",
+      "bytes": 636,
+      "sha256": "63f920bd6dbad00291f05a954741df2a7c1e907b7442d100458b3d4bb3637935"
+    },
+    {
+      "path": "14_brand_extensions/signature_patterns/signature-travel-light.svg",
+      "bytes": 637,
+      "sha256": "1d0f0323c40a4a322a1f9db25ebecad6916b6b13627473806a4a15e6568d2bf6"
+    },
+    {
+      "path": "15_platform_adapters/README.md",
+      "bytes": 1774,
+      "sha256": "4fc64c193f27d8a756ce3c57246cd2e15c9b96548fd38b3cc56c020a61940836"
+    },
+    {
+      "path": "15_platform_adapters/avalonia/Taktera.Beauty.Dark.axaml",
+      "bytes": 3045,
+      "sha256": "26d083d91171658bc2cf0670fbdaae4b179de332bf0f5a54979dc5c862b7f385"
+    },
+    {
+      "path": "15_platform_adapters/avalonia/Taktera.Beauty.Light.axaml",
+      "bytes": 3045,
+      "sha256": "220694ab1e72e2f5215f6ea6b6bee3f6c0aee98bfeeeeebd1de732ae14de9760"
+    },
+    {
+      "path": "15_platform_adapters/avalonia/Taktera.Clinic.Dark.axaml",
+      "bytes": 3045,
+      "sha256": "4cc68d28817f6546bfe39d4701dccef20ef8bef02c8317cf9c54a4c1c038667b"
+    },
+    {
+      "path": "15_platform_adapters/avalonia/Taktera.Clinic.Light.axaml",
+      "bytes": 3045,
+      "sha256": "1bb9a9d44a0af05b1c2d793e363c8d2f99e48bf093c5174bd0d02ca05533f900"
+    },
+    {
+      "path": "15_platform_adapters/avalonia/Taktera.Fitness.Dark.axaml",
+      "bytes": 3045,
+      "sha256": "2ec72c010c49f5c9d1eb5cf23285f624cde476fe358aae24150638c2ee384d9e"
+    },
+    {
+      "path": "15_platform_adapters/avalonia/Taktera.Fitness.Light.axaml",
+      "bytes": 3045,
+      "sha256": "5f623c6161a978100b22f5ffab0ee56b4a0769e376aa763475d5007c6924430f"
+    },
+    {
+      "path": "15_platform_adapters/avalonia/Taktera.Platform.Dark.axaml",
+      "bytes": 3045,
+      "sha256": "a94dcf674e0f584a8699751b335ebec69326f54ac4d6f2df4fb930d499d41419"
+    },
+    {
+      "path": "15_platform_adapters/avalonia/Taktera.Platform.Light.axaml",
+      "bytes": 3045,
+      "sha256": "002422edee985206a81b36da126d1b56c8abd2f025afedae291ee65c80443950"
+    },
+    {
+      "path": "15_platform_adapters/avalonia/Taktera.Spa.Dark.axaml",
+      "bytes": 3045,
+      "sha256": "deed56d59563766869c6c3a24292c32c99c4de65ccf52e39eb7648233c34c200"
+    },
+    {
+      "path": "15_platform_adapters/avalonia/Taktera.Spa.Light.axaml",
+      "bytes": 3045,
+      "sha256": "d940bd53fb6e42a6b923f4edf1c2abbb2cc141dfa854ed7ccd58a4ef37cb26ec"
+    },
+    {
+      "path": "15_platform_adapters/avalonia/Taktera.Travel.Dark.axaml",
+      "bytes": 3045,
+      "sha256": "32feb7d2eba565d1f48e92a2e3b9c52b0ed212290be0b0bd518d86519d5b9b4f"
+    },
+    {
+      "path": "15_platform_adapters/avalonia/Taktera.Travel.Light.axaml",
+      "bytes": 3045,
+      "sha256": "69c16bfd5cce8c2e11821454c779962f8f8cc97c9b489418bc34e8f1fe9d4b9f"
+    },
+    {
+      "path": "15_platform_adapters/generate_avalonia.py",
+      "bytes": 3024,
+      "sha256": "2316eb87fe6218ac9b09d274383a1192626e970fa918693a8ab37f2783c79ae6"
+    },
+    {
+      "path": "16_quality/BRAND-FREEZE-v3.3.json",
+      "bytes": 42797,
+      "sha256": "228d9aa1ba12170293e099cf0d80f5032f74d11a4eb705dfee7108b33350b52c"
+    },
+    {
+      "path": "16_quality/QUALITY-REPORT.md",
+      "bytes": 2845,
+      "sha256": "75397339b017232f9a8f37d8a6b349d89d26bcc0fafe28dbe9f22d30e9a5a072"
+    },
+    {
+      "path": "16_quality/browser-qa.json",
+      "bytes": 3829,
+      "sha256": "6daf132c0bb9471ee3706bc4f11b883ed9b38591a23a670b37838f53728573d3"
+    },
+    {
+      "path": "16_quality/build_release.py",
+      "bytes": 5323,
+      "sha256": "a4c9c42bd441c5d150df2c13c955282e47f554f5e0754c0145b499d6c5814d58"
+    },
+    {
+      "path": "16_quality/check_ui.py",
+      "bytes": 6584,
+      "sha256": "b30cc1696b3d3a548b9064fac3a5bc1d4dbe07bd20aeb7f7b073ab7f8a1cba4c"
+    },
+    {
+      "path": "16_quality/make_contact_sheet.py",
+      "bytes": 1158,
+      "sha256": "e103d1f9e4c2662ac2e016a91d12894005be8cf87c51aa6dd70f71149810e357"
+    },
+    {
+      "path": "16_quality/screenshots/beauty-dark.png",
+      "bytes": 186814,
+      "sha256": "10a1ae9520070b8b4dd0ea1e5c8476ba4cacfc1a5555ae190020105816b33d0c"
+    },
+    {
+      "path": "16_quality/screenshots/beauty-light.png",
+      "bytes": 184417,
+      "sha256": "32c9df24cbe46fa186b3968191d689901e2698181a03ab91854a9b2515227517"
+    },
+    {
+      "path": "16_quality/screenshots/clinic-dark.png",
+      "bytes": 187307,
+      "sha256": "ad0b3c00ef4f31f517f1ac7f5b45d3b59ff1a80a7a4f9f73a62b2368baacf830"
+    },
+    {
+      "path": "16_quality/screenshots/clinic-light.png",
+      "bytes": 184384,
+      "sha256": "b3f20aa8126589d4c2e5b208231fb033b60f603e0e483c7b569815a9732e5a48"
+    },
+    {
+      "path": "16_quality/screenshots/clinic-mobile.png",
+      "bytes": 134070,
+      "sha256": "fc77924d9be8289a5c85a3aca0d19c99ee8e0ffed6d0e4495a817b59fbfa04e4"
+    },
+    {
+      "path": "16_quality/screenshots/components-dark.png",
+      "bytes": 180099,
+      "sha256": "5ab38f5e967454caea24f6a176beb490410734e6890390ad6c114fb0ad267f13"
+    },
+    {
+      "path": "16_quality/screenshots/components-light.png",
+      "bytes": 181800,
+      "sha256": "fb41174b2d7d58a3fa550b8fab6f6d1fe8dd12d4a01a4558c9bd9d9daec15faa"
+    },
+    {
+      "path": "16_quality/screenshots/fitness-dark.png",
+      "bytes": 186648,
+      "sha256": "6e0a4eee1eab570266f25b006513bf4a1179d6ffebccc5ac164d7be0ee993b63"
+    },
+    {
+      "path": "16_quality/screenshots/fitness-light.png",
+      "bytes": 184654,
+      "sha256": "1ee4df9eff64712e5a96e3d96b57b62d66aa0428faf12d1828dbafc429e8d87d"
+    },
+    {
+      "path": "16_quality/screenshots/overview-dark-contact.png",
+      "bytes": 271955,
+      "sha256": "c91145e80ebf50d1cc84794feabb746664e1b98b3f3034d28d2df4386437af37"
+    },
+    {
+      "path": "16_quality/screenshots/overview-light-contact.png",
+      "bytes": 245231,
+      "sha256": "854c3bfdeea03961933cf4924dc8faed5fe0181e68867eb9ae2a07cbe1613100"
+    },
+    {
+      "path": "16_quality/screenshots/platform-dark.png",
+      "bytes": 189664,
+      "sha256": "e912f162afdd7aa954ad2b635b12af9d9a2f0b55c500ae27539d28deba532f46"
+    },
+    {
+      "path": "16_quality/screenshots/platform-light.png",
+      "bytes": 187405,
+      "sha256": "1ec2bf5d9b295275946a3386eae30b4a0fb9b2f84e4f901cdd2139dda911b12a"
+    },
+    {
+      "path": "16_quality/screenshots/spa-dark.png",
+      "bytes": 186379,
+      "sha256": "19a7748d5833f7b983855fa0168ac317050fa78e50795a0579618db019716adc"
+    },
+    {
+      "path": "16_quality/screenshots/spa-light.png",
+      "bytes": 184432,
+      "sha256": "9cab5f3754918f77e8b4795553eb8ecaca358302f591c6ff65bae2e08ba123a3"
+    },
+    {
+      "path": "16_quality/screenshots/travel-dark.png",
+      "bytes": 190404,
+      "sha256": "ece8b677e60eb1b0aa30129b44d0abc0d12e9a8938c2bfc1c49b807602a16a07"
+    },
+    {
+      "path": "16_quality/screenshots/travel-light.png",
+      "bytes": 188470,
+      "sha256": "7fa3c623fa273199d50771279831aebd4ff6c3d89cd026db17af86bb0b39f754"
+    },
+    {
+      "path": "17_packages/DECISIONS-REQUIRED.md",
+      "bytes": 996,
+      "sha256": "3a9704a82028124813d30cf086c7631761051c7e96c720719b9eaad391e4fee0"
+    },
+    {
+      "path": "17_packages/MIGRATION.md",
+      "bytes": 1981,
+      "sha256": "88b3b6704159800843b1247820516e93eae796dd45afbf77c7ee5c5fbda5be39"
+    },
+    {
+      "path": "17_packages/README.md",
+      "bytes": 1297,
+      "sha256": "d2cadffb40845e1dd43296c4c00e36841268184d248998f77f0f9699348aa20d"
+    },
+    {
+      "path": "17_packages/avalonia/README.md",
+      "bytes": 1137,
+      "sha256": "60ce921b8064ca88b89ef5a9b401714d6b5024447ce0f2ec2ae6b2d0888a9a81"
+    },
+    {
+      "path": "17_packages/avalonia/TkControls.axaml",
+      "bytes": 3468,
+      "sha256": "43608de2994c4c5ef35903ed078c909d5244f3a4c17516e5490d1fc3758a00e1"
+    },
+    {
+      "path": "17_packages/avalonia/TkFieldStyles.axaml",
+      "bytes": 1123,
+      "sha256": "4d3c23262095736a51320ac9e7c33b7f82a9e6afd3aa67de039a8543f7eb3b52"
+    },
+    {
+      "path": "17_packages/avalonia/sample/App.axaml",
+      "bytes": 726,
+      "sha256": "c9e301d00ff558837db5b9b8cb2118decd3102adaa9644d939bfad9586129239"
+    },
+    {
+      "path": "17_packages/avalonia/sample/Assets/Taktera.Clinic.Light.axaml",
+      "bytes": 3045,
+      "sha256": "1bb9a9d44a0af05b1c2d793e363c8d2f99e48bf093c5174bd0d02ca05533f900"
+    },
+    {
+      "path": "17_packages/avalonia/sample/Assets/TkControls.axaml",
+      "bytes": 4440,
+      "sha256": "7b58c3e21bcf2e96c7783586ce8975da4d141314a9a91a8df69122d60e2c805f"
+    },
+    {
+      "path": "17_packages/avalonia/sample/Assets/TkFieldStyles.axaml",
+      "bytes": 1123,
+      "sha256": "4d3c23262095736a51320ac9e7c33b7f82a9e6afd3aa67de039a8543f7eb3b52"
+    },
+    {
+      "path": "17_packages/avalonia/sample/MainWindow.axaml",
+      "bytes": 1226,
+      "sha256": "0ed92037a8391e8ed52a9d07c923fac514da04219c10ce8d15d5a8d089efa6e2"
+    },
+    {
+      "path": "17_packages/avalonia/sample/Program.cs",
+      "bytes": 889,
+      "sha256": "9ce02337177ec45a50d1fb51d96228e00f96871adee6310f20dcc067fca7f7aa"
+    },
+    {
+      "path": "17_packages/avalonia/sample/TakteraUiAvalonia.Sample.csproj",
+      "bytes": 539,
+      "sha256": "5d60714123e6b224c8c033c18f4197524c227200256a85f7b7aa2c06c8c52265"
+    },
+    {
+      "path": "17_packages/qa/ACCESSIBILITY-MATRIX.md",
+      "bytes": 1833,
+      "sha256": "887e6acfbe6f0daca78617dafbb8cb7089446f9103f71b5b7b000f912a168e38"
+    },
+    {
+      "path": "17_packages/qa/CI-TEMPLATE.yml",
+      "bytes": 1402,
+      "sha256": "d5c9b86b2706e23839c74a358d2b917665f03e37dcd0932dafa620a253247d5c"
+    },
+    {
+      "path": "17_packages/qa/browser-qa.json",
+      "bytes": 5869,
+      "sha256": "6e8247b411883202f8f1cc0a38ad674d9ba6c764c8674bd1d59b39755d05c31e"
+    },
+    {
+      "path": "17_packages/qa/build_release.py",
+      "bytes": 3086,
+      "sha256": "187d7d9bc264c4c7c41875e820179d2404010fae5b76c1261eb9859339b1dc6e"
+    },
+    {
+      "path": "17_packages/qa/screenshots/beauty-dark.png",
+      "bytes": 132414,
+      "sha256": "e2e133e1186899c8e3ea07bfe48221ceed2b0a46c81ae70b504aac8cf45d89ea"
+    },
+    {
+      "path": "17_packages/qa/screenshots/beauty-light.png",
+      "bytes": 130129,
+      "sha256": "f8a17a1174a15c86f15c8910c4f8bb12f2d44f20c981ef27deffe4fbd915c7d0"
+    },
+    {
+      "path": "17_packages/qa/screenshots/clinic-dark.png",
+      "bytes": 132030,
+      "sha256": "c44c49cd361a10be242295678e391db3793c4c6c39e2f442f4561093c3d88405"
+    },
+    {
+      "path": "17_packages/qa/screenshots/clinic-light.png",
+      "bytes": 129536,
+      "sha256": "3ed571d07e389c02673f8dcefa4e37195001d8802fab299611e73cb4891faae9"
+    },
+    {
+      "path": "17_packages/qa/screenshots/fitness-dark.png",
+      "bytes": 132215,
+      "sha256": "78b2a410422236e3859b825f11381d8ccbade2ddec03b34eaa41a70f7ed5c24f"
+    },
+    {
+      "path": "17_packages/qa/screenshots/fitness-light.png",
+      "bytes": 130173,
+      "sha256": "2ed85159ac27cdffd782aee8c9e71d38a6808205ab42205729aae6a449fa0323"
+    },
+    {
+      "path": "17_packages/qa/screenshots/overview-alpha2.png",
+      "bytes": 275593,
+      "sha256": "a2ad6443da95b8e061893621d293f30411a231d3ac30d975260068bf91b5e41c"
+    },
+    {
+      "path": "17_packages/qa/screenshots/platform-dark.png",
+      "bytes": 132530,
+      "sha256": "d7fb65d52d21290fc06b7bbbd515e63d1dd02af6222267353ca8d4f48553a22f"
+    },
+    {
+      "path": "17_packages/qa/screenshots/platform-light.png",
+      "bytes": 130415,
+      "sha256": "d5d2f9cbf7fc35091aa271f61f3a6752a8a66ff00a16fb091bf948aeb3687ca4"
+    },
+    {
+      "path": "17_packages/qa/screenshots/responsive-1440.png",
+      "bytes": 131849,
+      "sha256": "741561757863596042e2c57eb7349742a51c2dfcf0e139a48fee42a38d8fdfc3"
+    },
+    {
+      "path": "17_packages/qa/screenshots/responsive-320.png",
+      "bytes": 115441,
+      "sha256": "7059d0387d5acb0b6edf8ed787bdf7cda040cc1871893a408f15d44e8d198ed5"
+    },
+    {
+      "path": "17_packages/qa/screenshots/spa-dark.png",
+      "bytes": 131792,
+      "sha256": "4bac688e5d70193ec56b2dc6a6a41bcacacba6b3b62b123eceaafe820cbb60c6"
+    },
+    {
+      "path": "17_packages/qa/screenshots/spa-light.png",
+      "bytes": 129734,
+      "sha256": "311b0e64be1172bdcb2fd399c91f964cd98bc702e11bc21555c1f63a53f58f18"
+    },
+    {
+      "path": "17_packages/qa/screenshots/travel-dark.png",
+      "bytes": 131849,
+      "sha256": "741561757863596042e2c57eb7349742a51c2dfcf0e139a48fee42a38d8fdfc3"
+    },
+    {
+      "path": "17_packages/qa/screenshots/travel-light.png",
+      "bytes": 130044,
+      "sha256": "6afde185b268590f2cd0f4535b1b59018cd0897a4ddfb33be138b3101cbb36da"
+    },
+    {
+      "path": "17_packages/qa/static-qa.json",
+      "bytes": 27574,
+      "sha256": "d2096d999a71a2b198a6cbf77f2654f3ea7cd0639d7f4a4a5d1ef618e0e20c7b"
+    },
+    {
+      "path": "17_packages/qa/test_web.py",
+      "bytes": 8192,
+      "sha256": "6c69a478c64efe5a20da02b8c033e47911d0327d9727eeb147f286c0923f061c"
+    },
+    {
+      "path": "17_packages/qa/validate_static.py",
+      "bytes": 2490,
+      "sha256": "54cf1fcbf3f927d36cd3ae489dd1cb64774cea733bb398958c850257158d11b4"
+    },
+    {
+      "path": "17_packages/react/README.md",
+      "bytes": 1467,
+      "sha256": "d40c8899c7abaf402484c896933156555b7d30fe628ac80908b768fa56b28ad2"
+    },
+    {
+      "path": "17_packages/react/package.json",
+      "bytes": 740,
+      "sha256": "b0315d8cd686f6ec15d2ca14d57a9af926bbfbd4999a66c6f61c50e7da608798"
+    },
+    {
+      "path": "17_packages/react/src/index.tsx",
+      "bytes": 9931,
+      "sha256": "a5719a0552f27e5f62a9b20f5c88f8c2b9e77ec18d16668c3e4b7af6a3dd9003"
+    },
+    {
+      "path": "17_packages/react/styles.css",
+      "bytes": 10996,
+      "sha256": "4c23369f320e72773864b95e1f7b176cf1b5d1c49143f2c8d50c046378a42ebf"
+    },
+    {
+      "path": "17_packages/react/tsconfig.json",
+      "bytes": 262,
+      "sha256": "a838d57cb962a3afe25c52c4474c7263ebea7a61764899d7bb88989d198a172f"
+    },
+    {
+      "path": "17_packages/samples/demo.css",
+      "bytes": 2869,
+      "sha256": "2882b1de4cf9d9cdb9d869bdb8bd05f3485256122fa92d59ae917cbcd7cd3f76"
+    },
+    {
+      "path": "17_packages/samples/demo.js",
+      "bytes": 3958,
+      "sha256": "2f5ac9ea50f1a63e483c371436dedf8c676f5c8e3913b900f90a488b25c7d7ba"
+    },
+    {
+      "path": "17_packages/samples/index.html",
+      "bytes": 2813,
+      "sha256": "92739b8deb021907e34ac41411408dd4cdbc47203825d9575dbc474658e0216b"
+    },
+    {
+      "path": "17_packages/web-core/README.md",
+      "bytes": 1129,
+      "sha256": "d56c42e74af95739ab2a2be371202d7c3aa1dcfa6fdf3725c35d95f1cadc02c8"
+    },
+    {
+      "path": "17_packages/web-core/build.py",
+      "bytes": 819,
+      "sha256": "5ed43955e3dc244d913e3ec948396738c1313b391a56de6ed4339636d72fae6c"
+    },
+    {
+      "path": "17_packages/web-core/component.css",
+      "bytes": 5412,
+      "sha256": "9bdd2c73f375eabacecb098eb07f4def377e8861cafc25170e14f17bd58adfa8"
+    },
+    {
+      "path": "17_packages/web-core/index.mjs",
+      "bytes": 314,
+      "sha256": "d8ecba1cb7c42bb947fd68d4d7e53ddd67bc6e0bf49b1d57ada33acba0c89e4a"
+    },
+    {
+      "path": "17_packages/web-core/taktera-ui.css",
+      "bytes": 10996,
+      "sha256": "4c23369f320e72773864b95e1f7b176cf1b5d1c49143f2c8d50c046378a42ebf"
+    },
+    {
+      "path": "17_packages/web-core/taktera-ui.js",
+      "bytes": 10974,
+      "sha256": "526d27d6221876ff0e0c2ca0fc818764ab387b565fcde1c4a830f8bef2b2b2fa"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 6068,
+      "sha256": "642dcb7b5b441e5dccdc53db907416788cdef37da36329913958fcce60f227d2"
+    },
+    {
+      "path": "PACKAGE-MANIFEST-ALPHA.json",
+      "bytes": 101415,
+      "sha256": "c98388dd022e3043134ec079b436bdb1c9c38e17693518a5935781367e4d4412"
+    },
+    {
+      "path": "PACKAGE-MANIFEST.json",
+      "bytes": 52523,
+      "sha256": "e6673d7436289f2a437be052422c0868f4d2780d7dde6a841e7afce14d7d97ce"
+    },
+    {
+      "path": "README-v3.3.md",
+      "bytes": 3541,
+      "sha256": "c9255d31f2118d50597ee8a2ac2b91918fa41ea3466fc82a27659396148e43cd"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5383,
+      "sha256": "6455fff30b3fb9ef0ef8d0c89baa57f399a8a1a8c5e6f5e92bb94747900305d6"
+    },
+    {
+      "path": "ROADMAP-TO-BETA.md",
+      "bytes": 2449,
+      "sha256": "5865f5d8f1a600fca5b31e853f5a3582befa3702a69a1abc630772836aaa2204"
+    },
+    {
+      "path": "START-HERE-v3.2.html",
+      "bytes": 48407,
+      "sha256": "d0e63f90bb34e7c62c1d028a154165fcf11116e77c310d78cb4c8cb85db85a65"
+    },
+    {
+      "path": "START-HERE-v3.3.html",
+      "bytes": 5494,
+      "sha256": "da79f66c69f3ac9788e4a6fe198be72e89e539b769ce064a01fb3fa1424a70d2"
+    },
+    {
+      "path": "START-HERE.html",
+      "bytes": 5229,
+      "sha256": "fa8edb7f9bdfc4222b4aa3dba38395453037979ebf87bb6d998e8a3d04ebd9d3"
+    },
+    {
+      "path": "Taktera-brandbook-v3.2.html",
+      "bytes": 39682,
+      "sha256": "611385a88ea6281d5926a0cd247dcb3135a30717cf5806f4a087961c279eaf0b"
+    },
+    {
+      "path": "VALIDATION-ALPHA.json",
+      "bytes": 1167,
+      "sha256": "f5620e920957936b4419a334b477868d0f6b61f63476497fd2f51342341768db"
+    },
+    {
+      "path": "VALIDATION.json",
+      "bytes": 1471,
+      "sha256": "82f54611518b324ba2b165d61ffed831be82a43cec6bbe52294c54b2f846359f"
+    }
+  ]
+}

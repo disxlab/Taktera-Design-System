@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-18",
+  "pages": 14,
+  "htmlReferences": "all local links exist",
+  "svgLogoCount": 42,
+  "pngLogoCount": 42,
+  "svgText": "all logo letters outlined",
+  "pngTransparency": "all logos contain alpha transparency",
+  "htmlImages": "all loaded",
+  "browserErrors": [],
+  "layout": "all content clears footers by at least 10px",
+  "font": "local Inter loaded",
+  "mobile": "390px viewport without horizontal overflow",
+  "pdf": "14 non-empty pages; visual review rendered separately",
+  "reference": "final-selected-concept.png / exec-2c59ddad",
+  "limitations": [
+    "Optical vector reconstruction from raster, not an exact automatic trace",
+    "Application code unchanged",
+    "Trademark clearance not performed",
+    "Only documented color pairs tested"
+  ],
+  "localization": "6 Russian product names; 12 RU SVG and PNG lockups",
+  "appLabels": "PL CL BE SP FI TR; outlined labels; 16/24px micro variants; 7 ICO layers; PNG sizes verified"
+}

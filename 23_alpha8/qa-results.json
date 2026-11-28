@@ -1,0 +1,206 @@
+{
+  "passed": 33,
+  "total": 33,
+  "failed": [],
+  "checks": [
+    {
+      "name": "catalog eight components",
+      "pass": true,
+      "actual": 8,
+      "expected": 8
+    },
+    {
+      "name": "default component",
+      "pass": true,
+      "actual": "Кнопка",
+      "expected": "Кнопка"
+    },
+    {
+      "name": "field content",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "badge content",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "alert content",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "tabs content",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "card content",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "table content",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "skeleton content",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "product platform",
+      "pass": true,
+      "actual": "platform",
+      "expected": "platform"
+    },
+    {
+      "name": "product clinic",
+      "pass": true,
+      "actual": "clinic",
+      "expected": "clinic"
+    },
+    {
+      "name": "product beauty",
+      "pass": true,
+      "actual": "beauty",
+      "expected": "beauty"
+    },
+    {
+      "name": "product spa",
+      "pass": true,
+      "actual": "spa",
+      "expected": "spa"
+    },
+    {
+      "name": "product fitness",
+      "pass": true,
+      "actual": "fitness",
+      "expected": "fitness"
+    },
+    {
+      "name": "product travel",
+      "pass": true,
+      "actual": "travel",
+      "expected": "travel"
+    },
+    {
+      "name": "theme dark",
+      "pass": true,
+      "actual": "dark",
+      "expected": "dark"
+    },
+    {
+      "name": "theme light",
+      "pass": true,
+      "actual": "light",
+      "expected": "light"
+    },
+    {
+      "name": "en title",
+      "pass": true,
+      "actual": "Button",
+      "expected": "Button"
+    },
+    {
+      "name": "compact",
+      "pass": true,
+      "actual": "compact",
+      "expected": "compact"
+    },
+    {
+      "name": "comparison visible",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "comparison opposite theme",
+      "pass": true,
+      "actual": "dark",
+      "expected": "dark"
+    },
+    {
+      "name": "unsafe text not parsed",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "snippet escaped",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "disabled state",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "reset product",
+      "pass": true,
+      "actual": "platform",
+      "expected": "platform"
+    },
+    {
+      "name": "reset comparison",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "tabs switch",
+      "pass": true,
+      "actual": "true",
+      "expected": "true"
+    },
+    {
+      "name": "tabs keyboard",
+      "pass": true,
+      "actual": "true",
+      "expected": "true"
+    },
+    {
+      "name": "input aria error",
+      "pass": true,
+      "actual": "true",
+      "expected": "true"
+    },
+    {
+      "name": "table empty",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "skeleton busy",
+      "pass": true,
+      "actual": "true",
+      "expected": "true"
+    },
+    {
+      "name": "mobile no horizontal overflow",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "no script errors",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    }
+  ],
+  "note": "Chromium via set_content with same HTML, CSS and JS inlined because file navigation is restricted. Not a hosted HTTP / real screen-reader test."
+}

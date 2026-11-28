@@ -1,0 +1,438 @@
+{
+  "passed": 48,
+  "errors": [],
+  "matrix": [
+    {
+      "id": "platform-light-comfortable-ru",
+      "accent": "#50556B",
+      "row": "44px",
+      "lang": "ru",
+      "money": "1 245 680,50 ₽",
+      "date": "23 ноября 2026 г.",
+      "overflow": false
+    },
+    {
+      "id": "platform-light-comfortable-en",
+      "accent": "#50556B",
+      "row": "44px",
+      "lang": "en",
+      "money": "$1,245,680.50",
+      "date": "November 23, 2026",
+      "overflow": false
+    },
+    {
+      "id": "platform-light-compact-ru",
+      "accent": "#50556B",
+      "row": "36px",
+      "lang": "ru",
+      "money": "1 245 680,50 ₽",
+      "date": "23 ноября 2026 г.",
+      "overflow": false
+    },
+    {
+      "id": "platform-light-compact-en",
+      "accent": "#50556B",
+      "row": "36px",
+      "lang": "en",
+      "money": "$1,245,680.50",
+      "date": "November 23, 2026",
+      "overflow": false
+    },
+    {
+      "id": "platform-dark-comfortable-ru",
+      "accent": "#B3B8D6",
+      "row": "44px",
+      "lang": "ru",
+      "money": "1 245 680,50 ₽",
+      "date": "23 ноября 2026 г.",
+      "overflow": false
+    },
+    {
+      "id": "platform-dark-comfortable-en",
+      "accent": "#B3B8D6",
+      "row": "44px",
+      "lang": "en",
+      "money": "$1,245,680.50",
+      "date": "November 23, 2026",
+      "overflow": false
+    },
+    {
+      "id": "platform-dark-compact-ru",
+      "accent": "#B3B8D6",
+      "row": "36px",
+      "lang": "ru",
+      "money": "1 245 680,50 ₽",
+      "date": "23 ноября 2026 г.",
+      "overflow": false
+    },
+    {
+      "id": "platform-dark-compact-en",
+      "accent": "#B3B8D6",
+      "row": "36px",
+      "lang": "en",
+      "money": "$1,245,680.50",
+      "date": "November 23, 2026",
+      "overflow": false
+    },
+    {
+      "id": "clinic-light-comfortable-ru",
+      "accent": "#2368D1",
+      "row": "44px",
+      "lang": "ru",
+      "money": "1 245 680,50 ₽",
+      "date": "23 ноября 2026 г.",
+      "overflow": false
+    },
+    {
+      "id": "clinic-light-comfortable-en",
+      "accent": "#2368D1",
+      "row": "44px",
+      "lang": "en",
+      "money": "$1,245,680.50",
+      "date": "November 23, 2026",
+      "overflow": false
+    },
+    {
+      "id": "clinic-light-compact-ru",
+      "accent": "#2368D1",
+      "row": "36px",
+      "lang": "ru",
+      "money": "1 245 680,50 ₽",
+      "date": "23 ноября 2026 г.",
+      "overflow": false
+    },
+    {
+      "id": "clinic-light-compact-en",
+      "accent": "#2368D1",
+      "row": "36px",
+      "lang": "en",
+      "money": "$1,245,680.50",
+      "date": "November 23, 2026",
+      "overflow": false
+    },
+    {
+      "id": "clinic-dark-comfortable-ru",
+      "accent": "#70A6FF",
+      "row": "44px",
+      "lang": "ru",
+      "money": "1 245 680,50 ₽",
+      "date": "23 ноября 2026 г.",
+      "overflow": false
+    },
+    {
+      "id": "clinic-dark-comfortable-en",
+      "accent": "#70A6FF",
+      "row": "44px",
+      "lang": "en",
+      "money": "$1,245,680.50",
+      "date": "November 23, 2026",
+      "overflow": false
+    },
+    {
+      "id": "clinic-dark-compact-ru",
+      "accent": "#70A6FF",
+      "row": "36px",
+      "lang": "ru",
+      "money": "1 245 680,50 ₽",
+      "date": "23 ноября 2026 г.",
+      "overflow": false
+    },
+    {
+      "id": "clinic-dark-compact-en",
+      "accent": "#70A6FF",
+      "row": "36px",
+      "lang": "en",
+      "money": "$1,245,680.50",
+      "date": "November 23, 2026",
+      "overflow": false
+    },
+    {
+      "id": "beauty-light-comfortable-ru",
+      "accent": "#C13B78",
+      "row": "44px",
+      "lang": "ru",
+      "money": "1 245 680,50 ₽",
+      "date": "23 ноября 2026 г.",
+      "overflow": false
+    },
+    {
+      "id": "beauty-light-comfortable-en",
+      "accent": "#C13B78",
+      "row": "44px",
+      "lang": "en",
+      "money": "$1,245,680.50",
+      "date": "November 23, 2026",
+      "overflow": false
+    },
+    {
+      "id": "beauty-light-compact-ru",
+      "accent": "#C13B78",
+      "row": "36px",
+      "lang": "ru",
+      "money": "1 245 680,50 ₽",
+      "date": "23 ноября 2026 г.",
+      "overflow": false
+    },
+    {
+      "id": "beauty-light-compact-en",
+      "accent": "#C13B78",
+      "row": "36px",
+      "lang": "en",
+      "money": "$1,245,680.50",
+      "date": "November 23, 2026",
+      "overflow": false
+    },
+    {
+      "id": "beauty-dark-comfortable-ru",
+      "accent": "#F17BB1",
+      "row": "44px",
+      "lang": "ru",
+      "money": "1 245 680,50 ₽",
+      "date": "23 ноября 2026 г.",
+      "overflow": false
+    },
+    {
+      "id": "beauty-dark-comfortable-en",
+      "accent": "#F17BB1",
+      "row": "44px",
+      "lang": "en",
+      "money": "$1,245,680.50",
+      "date": "November 23, 2026",
+      "overflow": false
+    },
+    {
+      "id": "beauty-dark-compact-ru",
+      "accent": "#F17BB1",
+      "row": "36px",
+      "lang": "ru",
+      "money": "1 245 680,50 ₽",
+      "date": "23 ноября 2026 г.",
+      "overflow": false
+    },
+    {
+      "id": "beauty-dark-compact-en",
+      "accent": "#F17BB1",
+      "row": "36px",
+      "lang": "en",
+      "money": "$1,245,680.50",
+      "date": "November 23, 2026",
+      "overflow": false
+    },
+    {
+      "id": "spa-light-comfortable-ru",
+      "accent": "#118569",
+      "row": "44px",
+      "lang": "ru",
+      "money": "1 245 680,50 ₽",
+      "date": "23 ноября 2026 г.",
+      "overflow": false
+    },
+    {
+      "id": "spa-light-comfortable-en",
+      "accent": "#118569",
+      "row": "44px",
+      "lang": "en",
+      "money": "$1,245,680.50",
+      "date": "November 23, 2026",
+      "overflow": false
+    },
+    {
+      "id": "spa-light-compact-ru",
+      "accent": "#118569",
+      "row": "36px",
+      "lang": "ru",
+      "money": "1 245 680,50 ₽",
+      "date": "23 ноября 2026 г.",
+      "overflow": false
+    },
+    {
+      "id": "spa-light-compact-en",
+      "accent": "#118569",
+      "row": "36px",
+      "lang": "en",
+      "money": "$1,245,680.50",
+      "date": "November 23, 2026",
+      "overflow": false
+    },
+    {
+      "id": "spa-dark-comfortable-ru",
+      "accent": "#55CBA4",
+      "row": "44px",
+      "lang": "ru",
+      "money": "1 245 680,50 ₽",
+      "date": "23 ноября 2026 г.",
+      "overflow": false
+    },
+    {
+      "id": "spa-dark-comfortable-en",
+      "accent": "#55CBA4",
+      "row": "44px",
+      "lang": "en",
+      "money": "$1,245,680.50",
+      "date": "November 23, 2026",
+      "overflow": false
+    },
+    {
+      "id": "spa-dark-compact-ru",
+      "accent": "#55CBA4",
+      "row": "36px",
+      "lang": "ru",
+      "money": "1 245 680,50 ₽",
+      "date": "23 ноября 2026 г.",
+      "overflow": false
+    },
+    {
+      "id": "spa-dark-compact-en",
+      "accent": "#55CBA4",
+      "row": "36px",
+      "lang": "en",
+      "money": "$1,245,680.50",
+      "date": "November 23, 2026",
+      "overflow": false
+    },
+    {
+      "id": "fitness-light-comfortable-ru",
+      "accent": "#D52B35",
+      "row": "44px",
+      "lang": "ru",
+      "money": "1 245 680,50 ₽",
+      "date": "23 ноября 2026 г.",
+      "overflow": false
+    },
+    {
+      "id": "fitness-light-comfortable-en",
+      "accent": "#D52B35",
+      "row": "44px",
+      "lang": "en",
+      "money": "$1,245,680.50",
+      "date": "November 23, 2026",
+      "overflow": false
+    },
+    {
+      "id": "fitness-light-compact-ru",
+      "accent": "#D52B35",
+      "row": "36px",
+      "lang": "ru",
+      "money": "1 245 680,50 ₽",
+      "date": "23 ноября 2026 г.",
+      "overflow": false
+    },
+    {
+      "id": "fitness-light-compact-en",
+      "accent": "#D52B35",
+      "row": "36px",
+      "lang": "en",
+      "money": "$1,245,680.50",
+      "date": "November 23, 2026",
+      "overflow": false
+    },
+    {
+      "id": "fitness-dark-comfortable-ru",
+      "accent": "#FF6B75",
+      "row": "44px",
+      "lang": "ru",
+      "money": "1 245 680,50 ₽",
+      "date": "23 ноября 2026 г.",
+      "overflow": false
+    },
+    {
+      "id": "fitness-dark-comfortable-en",
+      "accent": "#FF6B75",
+      "row": "44px",
+      "lang": "en",
+      "money": "$1,245,680.50",
+      "date": "November 23, 2026",
+      "overflow": false
+    },
+    {
+      "id": "fitness-dark-compact-ru",
+      "accent": "#FF6B75",
+      "row": "36px",
+      "lang": "ru",
+      "money": "1 245 680,50 ₽",
+      "date": "23 ноября 2026 г.",
+      "overflow": false
+    },
+    {
+      "id": "fitness-dark-compact-en",
+      "accent": "#FF6B75",
+      "row": "36px",
+      "lang": "en",
+      "money": "$1,245,680.50",
+      "date": "November 23, 2026",
+      "overflow": false
+    },
+    {
+      "id": "travel-light-comfortable-ru",
+      "accent": "#D4A600",
+      "row": "44px",
+      "lang": "ru",
+      "money": "1 245 680,50 ₽",
+      "date": "23 ноября 2026 г.",
+      "overflow": false
+    },
+    {
+      "id": "travel-light-comfortable-en",
+      "accent": "#D4A600",
+      "row": "44px",
+      "lang": "en",
+      "money": "$1,245,680.50",
+      "date": "November 23, 2026",
+      "overflow": false
+    },
+    {
+      "id": "travel-light-compact-ru",
+      "accent": "#D4A600",
+      "row": "36px",
+      "lang": "ru",
+      "money": "1 245 680,50 ₽",
+      "date": "23 ноября 2026 г.",
+      "overflow": false
+    },
+    {
+      "id": "travel-light-compact-en",
+      "accent": "#D4A600",
+      "row": "36px",
+      "lang": "en",
+      "money": "$1,245,680.50",
+      "date": "November 23, 2026",
+      "overflow": false
+    },
+    {
+      "id": "travel-dark-comfortable-ru",
+      "accent": "#FFD43B",
+      "row": "44px",
+      "lang": "ru",
+      "money": "1 245 680,50 ₽",
+      "date": "23 ноября 2026 г.",
+      "overflow": false
+    },
+    {
+      "id": "travel-dark-comfortable-en",
+      "accent": "#FFD43B",
+      "row": "44px",
+      "lang": "en",
+      "money": "$1,245,680.50",
+      "date": "November 23, 2026",
+      "overflow": false
+    },
+    {
+      "id": "travel-dark-compact-ru",
+      "accent": "#FFD43B",
+      "row": "36px",
+      "lang": "ru",
+      "money": "1 245 680,50 ₽",
+      "date": "23 ноября 2026 г.",
+      "overflow": false
+    },
+    {
+      "id": "travel-dark-compact-en",
+      "accent": "#FFD43B",
+      "row": "36px",
+      "lang": "en",
+      "money": "$1,245,680.50",
+      "date": "November 23, 2026",
+      "overflow": false
+    }
+  ]
+}

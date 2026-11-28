@@ -1,0 +1,282 @@
+{
+  "$description": "Taktera Alpha.6 supplemental tokens; approved v3.3 tokens remain source of brand truth. Values added here are proposals unless already present in v3.3.",
+  "version": "4.0-alpha.6",
+  "spacing": {
+    "$type": "dimension",
+    "s0": {
+      "$value": "0px"
+    },
+    "s1": {
+      "$value": "4px"
+    },
+    "s2": {
+      "$value": "8px"
+    },
+    "s3": {
+      "$value": "12px"
+    },
+    "s4": {
+      "$value": "16px"
+    },
+    "s5": {
+      "$value": "20px"
+    },
+    "s6": {
+      "$value": "24px"
+    },
+    "s8": {
+      "$value": "32px"
+    },
+    "s10": {
+      "$value": "40px"
+    },
+    "s12": {
+      "$value": "48px"
+    },
+    "s16": {
+      "$value": "64px"
+    },
+    "s20": {
+      "$value": "80px"
+    },
+    "s24": {
+      "$value": "96px"
+    }
+  },
+  "density": {
+    "$type": "dimension",
+    "comfortableRow": {
+      "$value": "44px"
+    },
+    "compactRow": {
+      "$value": "36px"
+    },
+    "comfortableControl": {
+      "$value": "40px"
+    },
+    "compactControl": {
+      "$value": "32px"
+    }
+  },
+  "typography": {
+    "$type": "dimension",
+    "caption": {
+      "$value": "12px"
+    },
+    "body": {
+      "$value": "14px"
+    },
+    "bodyLarge": {
+      "$value": "16px"
+    },
+    "headingSmall": {
+      "$value": "18px"
+    },
+    "heading": {
+      "$value": "24px"
+    },
+    "display": {
+      "$value": "32px"
+    }
+  },
+  "radii": {
+    "$type": "dimension",
+    "xs": {
+      "$value": "4px"
+    },
+    "sm": {
+      "$value": "6px"
+    },
+    "md": {
+      "$value": "8px"
+    },
+    "lg": {
+      "$value": "12px"
+    },
+    "xl": {
+      "$value": "16px"
+    }
+  },
+  "products": {
+    "platform": {
+      "light": {
+        "accent": {
+          "$type": "color",
+          "$value": "#50556B"
+        },
+        "onAccent": {
+          "$type": "color",
+          "$value": "#FFFFFF"
+        },
+        "accentText": {
+          "$type": "color",
+          "$value": "#50556B"
+        }
+      },
+      "dark": {
+        "accent": {
+          "$type": "color",
+          "$value": "#B3B8D6"
+        },
+        "onAccent": {
+          "$type": "color",
+          "$value": "#151719"
+        },
+        "accentText": {
+          "$type": "color",
+          "$value": "#B3B8D6"
+        }
+      }
+    },
+    "clinic": {
+      "light": {
+        "accent": {
+          "$type": "color",
+          "$value": "#2368D1"
+        },
+        "onAccent": {
+          "$type": "color",
+          "$value": "#FFFFFF"
+        },
+        "accentText": {
+          "$type": "color",
+          "$value": "#2368D1"
+        }
+      },
+      "dark": {
+        "accent": {
+          "$type": "color",
+          "$value": "#70A6FF"
+        },
+        "onAccent": {
+          "$type": "color",
+          "$value": "#151719"
+        },
+        "accentText": {
+          "$type": "color",
+          "$value": "#70A6FF"
+        }
+      }
+    },
+    "beauty": {
+      "light": {
+        "accent": {
+          "$type": "color",
+          "$value": "#C13B78"
+        },
+        "onAccent": {
+          "$type": "color",
+          "$value": "#FFFFFF"
+        },
+        "accentText": {
+          "$type": "color",
+          "$value": "#C13B78"
+        }
+      },
+      "dark": {
+        "accent": {
+          "$type": "color",
+          "$value": "#F17BB1"
+        },
+        "onAccent": {
+          "$type": "color",
+          "$value": "#151719"
+        },
+        "accentText": {
+          "$type": "color",
+          "$value": "#F17BB1"
+        }
+      }
+    },
+    "spa": {
+      "light": {
+        "accent": {
+          "$type": "color",
+          "$value": "#118569"
+        },
+        "onAccent": {
+          "$type": "color",
+          "$value": "#FFFFFF"
+        },
+        "accentText": {
+          "$type": "color",
+          "$value": "#118569"
+        }
+      },
+      "dark": {
+        "accent": {
+          "$type": "color",
+          "$value": "#55CBA4"
+        },
+        "onAccent": {
+          "$type": "color",
+          "$value": "#151719"
+        },
+        "accentText": {
+          "$type": "color",
+          "$value": "#55CBA4"
+        }
+      }
+    },
+    "fitness": {
+      "light": {
+        "accent": {
+          "$type": "color",
+          "$value": "#D52B35"
+        },
+        "onAccent": {
+          "$type": "color",
+          "$value": "#FFFFFF"
+        },
+        "accentText": {
+          "$type": "color",
+          "$value": "#D52B35"
+        }
+      },
+      "dark": {
+        "accent": {
+          "$type": "color",
+          "$value": "#FF6B75"
+        },
+        "onAccent": {
+          "$type": "color",
+          "$value": "#151719"
+        },
+        "accentText": {
+          "$type": "color",
+          "$value": "#FF6B75"
+        }
+      }
+    },
+    "travel": {
+      "light": {
+        "accent": {
+          "$type": "color",
+          "$value": "#D4A600"
+        },
+        "onAccent": {
+          "$type": "color",
+          "$value": "#151719"
+        },
+        "accentText": {
+          "$type": "color",
+          "$value": "#806300"
+        }
+      },
+      "dark": {
+        "accent": {
+          "$type": "color",
+          "$value": "#FFD43B"
+        },
+        "onAccent": {
+          "$type": "color",
+          "$value": "#151719"
+        },
+        "accentText": {
+          "$type": "color",
+          "$value": "#FFD43B"
+        }
+      }
+    }
+  }
+}

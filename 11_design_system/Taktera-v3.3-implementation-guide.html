@@ -1,0 +1,369 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>Taktera Brand · Дополнение v3.3</title>
+<style>
+@font-face{font-family:Inter;src:url('../05_typography/Inter-Regular.ttf')}@font-face{font-family:Inter;src:url('../05_typography/Inter-SemiBold.ttf');font-weight:600}@font-face{font-family:Inter;src:url('../05_typography/Inter-Bold.ttf');font-weight:700}
+@page{size:A4;margin:20mm 17mm 19mm}@page:first{@top-right{content:none}}
+@page{@top-right{content:"TAKTERA / DESIGN SYSTEM · 3.3";font:9px Inter,sans-serif;color:#6B6F7D;letter-spacing:.1em}@bottom-left{content:"22 ноября 2026 · инженерное дополнение";font:9px Inter,sans-serif;color:#62676E}@bottom-right{content:counter(page);font:11px Inter,sans-serif;color:#50556B}}
+*{box-sizing:border-box}body{font:11px/1.6 Inter,Arial,sans-serif;color:#22262B;background:#fff}a{color:#50556B;text-decoration:none;overflow-wrap:anywhere}h1,h2,h3{line-height:1.25;break-after:avoid}h1{font-size:25px;letter-spacing:-.035em;margin:0 0 12px}h2{font-size:15px;letter-spacing:-.012em;margin:22px 0 8px}h3{font-size:12px;margin:16px 0 7px}p{margin:0 0 10px}li{margin:4px 0}ul,ol{padding-left:21px;margin:7px 0 13px}code{font-family:monospace;font-size:9.2px;background:#F4F3EF;border-radius:3px;padding:1px 3px;overflow-wrap:anywhere}pre{font:9.2px/1.35 monospace;background:#F4F3EF;padding:11px;border-radius:8px;white-space:pre-wrap;overflow-wrap:anywhere}pre code{background:transparent}table{width:100%;border-collapse:collapse;margin:9px 0 13px;table-layout:auto;font-size:9.7px}th{color:#50556B;background:#F4F3EF}th,td{text-align:left;vertical-align:top;border-bottom:1px solid #D9DCDF;padding:6px 6px;overflow-wrap:anywhere}thead{display:table-header-group}tr{break-inside:avoid}section.chapter{break-before:page}section.chapter:nth-of-type(2){break-before:page}section.chapter h1{border-left:4px solid #50556B;padding-left:13px}strong{font-weight:600}.cover{min-height:248mm;position:relative;padding-top:32mm}.cover img{width:150px;height:auto}.cover h1{font-size:39px;letter-spacing:-.04em;margin-top:35mm;line-height:1.08}.cover p{font-size:15px;color:#62676E;max-width:130mm}.eyebrow{font-size:11px;color:#50556B;font-weight:600;letter-spacing:.12em;margin-top:12mm}.cover-meta{position:static;margin-top:65mm;font-size:10px;border-top:1px solid #D9DCDF;padding-top:12px;width:100%}.cover-shape{position:absolute;top:4mm;right:0;width:75mm;height:65mm;border-radius:28px;background:#F4F3EF}.cover-shape::after{content:'';position:absolute;background:#50556B;border-radius:99px;width:13mm;height:13mm;right:15mm;top:11mm}
+</style></head><body><section class="cover"><div class="cover-shape"></div><img src="../02_logos/master/svg/taktera-light.svg" alt="Taktera"><div class="eyebrow">BRAND SYSTEM / IMPLEMENTATION</div><h1>Дизайн-система<br>Taktera · v3.3</h1><p>Расширение фирменного стиля до инженерных интерфейсных токенов, прототипов компонентов и процедур контроля качества.</p><div class="cover-meta"><strong>Техническая редакция</strong> · 22 ноября 2026<br>Опирается на утверждённый визуальный бренд v3.2. Не заменяет брендбук v3.2.</div></section><section class="chapter"><h1>Taktera Design System — v3.3 · техническая редакция</h1>
+<p><strong>Дата:</strong> 22 ноября 2026. <strong>Статус:</strong> готовый пакет для технической оценки / внедрения после QA целевых приложений; не продуктовый релиз. <strong>Нормативная визуальная основа:</strong> Taktera Brand v3.2 (18.10.2026).</p>
+<h2>Что сохранено без редизайна</h2>
+<ul>
+<li>Геометрия фирменного знака (изгиб, круглая точка), контурные логотипы, EN/RU подписи, набор из шести направлений.</li>
+<li>Исходные акцентные HEX каждого продукта в обеих темах, включая красный Fitness и жёлтый Travel.</li>
+<li>Все исходные PNG, SVG и ICO v3.2 остаются в пакете, не заменяются экспериментальными версиями.</li>
+<li>Брендбук PDF 14 стр. и HTML v3.2 остаются нормативным визуальным основанием и доступны в прежних местах.</li>
+</ul>
+<h2>Реализовано в v3.3</h2>
+<ol>
+<li>Обновлён исходный <code>04_tokens/taktera.tokens.json</code>: светлые/тёмные роли управления и текстовые роли холста; две уточнённые текстовые пары для Spa и Fitness.</li>
+<li>Добавлены отдельные семантические статусы success/info/warning/error и их фоны. Они <strong>не</strong> являются продуктовыми цветами и не меняют логотипы.</li>
+<li><code>09_source/generate_tokens.py</code> генерирует CSS, DTCG JSON и детальный отчёт контраста из одного исходного JSON.</li>
+<li><code>11_design_system/taktera.components.css</code> и <code>12_examples/preview.html</code> показывают реальное использование токенов в двух темах для шести продуктов: формы, таблицы, навигация, KPI, уведомления.</li>
+<li>Добавлены компактные WOFF2 файлы Inter (3 статических начертания) с сохранением OFL.</li>
+<li>Подготовлены <code>09_source/rebuild_assets.py</code> (переносимый SVG -&gt; PNG/ICO экспорт, <strong>по умолчанию только в отдельную папку</strong>) и <code>09_source/release.py</code> (проверки, SHA-256, ZIP).</li>
+<li>Отдельно создано обновлённое руководство по токенам, компонентам, внедрению и QA.</li>
+</ol>
+<h2>Не реализовано и НЕ заявляется готовым</h2>
+<ul>
+<li>Полная библиотеки готовых React/Avalonia компонентов, бизнес-логика, Storybook, Figma, автоматизированные E2E проверки приложений.</li>
+<li>Переделка самих иконок под macOS / Dock / Windows, новые EN lockup SVG — требуют дизайнерского утверждения и ручной проверки малых размеров.</li>
+<li>Экспорт окончательного брендбука как единого <strong>нового</strong> PDF v3.3: документ v3.2 сохранён + отдельное руководство расширений v3.3; не выдаём старый PDF за новый.</li>
+<li>Печатная допечатная подготовка, регистрация товарных знаков, юридические проверки.</li>
+<li>Визуальный QA всех возможных экранов, переходов, масштабирования и assistive technology. Отчёт содержит только проверенные автоматизированные пары.</li>
+</ul>
+<h2>Как изучить результат</h2>
+<ol>
+<li>Открыть <code>START-HERE.html</code> без интернета.</li>
+<li>Открыть <code>12_examples/preview.html</code>; переключить 6 продуктов и 2 темы, проверить клавиатурную навигацию.</li>
+<li>Прочитать <code>01-TOKENS-AND-COLOR.md</code>, <code>02-COMPONENT-SPEC.md</code>, <code>03-PLATFORM-IMPLEMENTATION.md</code>, <code>04-QA-CHECKLIST.md</code>.</li>
+<li>Проверить исходники и сборку: <code>python 09_source/generate_tokens.py --check</code>, <code>python 09_source/release.py</code>.</li>
+</ol>
+<h2>Управление изменениями</h2>
+<p><strong>Брендовые цвета изменять только после дизайн-согласования.</strong> Новые семантические роли — рабочие значения v3.3, которые следует принять как базу UI после тестирования в продуктах. Все изменения дизайнерских мастеров имеют отдельную историю; техническая сборка не должна незаметно изменять логотипы.</p>
+</section>
+<section class="chapter"><h1>01 · Токены, цвета и доступность</h1>
+<h2>Источник истины и экспорт</h2>
+<p><code>04_tokens/taktera.tokens.json</code> — редактируемый единый источник значений. Генерируемые файлы:</p>
+<table>
+<thead>
+<tr>
+  <th>Артефакт</th>
+  <th>Для чего</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>04_tokens/taktera.tokens.css</code></td>
+  <td>Совместимые с исходным пакетом CSS-переменные и новые UI-роли</td>
+</tr>
+<tr>
+  <td><code>04_tokens/taktera.tokens.dtcg.json</code></td>
+  <td>Выгрузка DTCG 2025.10 со структурированными значениями <code>colorSpace/components/hex</code> и <code>dimension</code></td>
+</tr>
+<tr>
+  <td><code>10_documentation/COLOR-CONTRAST-v3.3.json</code></td>
+  <td>Проверка конкретных непрозрачных пар sRGB на контраст</td>
+</tr>
+</tbody>
+</table>
+<p>DTCG реализована как <strong>экспорт из единого Taktera JSON</strong>; HEX с прямым <code>$value</code> не используется. Стандарт: <a href="https://www.designtokens.org/TR/2025.10/format/">https://www.designtokens.org/TR/2025.10/format/</a> и <a href="https://www.w3.org/community/reports/design-tokens/CG-FINAL-color-20251028/">https://www.w3.org/community/reports/design-tokens/CG-FINAL-color-20251028/</a>.</p>
+<h2>Слои токенов</h2>
+<ul>
+<li><strong>Brand:</strong> <code>--tk-mark</code>, <code>--tk-accent</code>, <code>--tk-on-accent</code> — для логотипов/кнопок; значения цвета продуктовой идентичности <strong>не менялись</strong>.</li>
+<li><strong>Content:</strong> <code>--tk-text</code>, <code>--tk-muted</code>, <code>--tk-accent-text</code> для светлой поверхности, <code>--tk-accent-text-canvas</code> для холста paper.</li>
+<li><strong>Layout:</strong> <code>--tk-canvas</code>, <code>--tk-surface</code>, <code>--tk-border</code>, <code>--tk-control-border</code>; декоративный бордер допускается слабым, но не используется единственной видимой границей поля.</li>
+<li><strong>Interactive:</strong> <code>--tk-accent-hover</code>, <code>--tk-accent-pressed</code>, <code>--tk-focus-ring</code>, disabled роли.</li>
+<li><strong>Semantic:</strong> <code>--tk-status-success-*</code>, <code>--tk-status-info-*</code>, <code>--tk-status-warning-*</code>, <code>--tk-status-error-*</code>.</li>
+</ul>
+<h2>Отдельная роль для цвета текста на холсте</h2>
+<p>В исходной палитре Spa <code>#118569</code> на paper <code>#F4F3EF</code> — 4,13:1; Fitness <code>#D52B35</code> — 4,48:1. Брендовые цвета остаются неизменными, <strong>для мелкого интерфейсного текста на paper</strong> вводятся:</p>
+<ul>
+<li>Spa: <code>--tk-accent-text-canvas: #0D755B</code> (контраст приблизительно 5,09:1).</li>
+<li>Fitness: <code>--tk-accent-text-canvas: #BE2430</code> (приблизительно 5,43:1).</li>
+</ul>
+<p>Для Travel жёлтый фирменный <code>#D4A600</code> остаётся цветом точки/акцента, а UI-текст по-прежнему <code>#806300</code>. В остальных продуктах текстовая роль холста наследует согласованный UI-текст.</p>
+<h2>Контур элементов управления</h2>
+<table>
+<thead>
+<tr>
+  <th>Тема</th>
+  <th><code>--tk-border</code> (декоративный)</th>
+  <th><code>--tk-control-border</code> (значимый)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Светлая</td>
+  <td><code>#D9DCDF</code></td>
+  <td><code>#858A93</code></td>
+</tr>
+<tr>
+  <td>Тёмная</td>
+  <td><code>#444A52</code></td>
+  <td><code>#8D939C</code></td>
+</tr>
+</tbody>
+</table>
+<p>Пара <code>#858A93</code> на paper даёт приблизительно 3,12:1; <code>#8D939C</code> на тёмной поверхности <code>#22262B</code> — приблизительно 4,92:1. Не используйте цветной shadow, placeholder или декоративный разделитель как единственный сигнал доступности компонента.</p>
+</section>
+<section class="chapter"><h1>02 · Контракт компонентов Taktera UI (draft 0.1)</h1>
+<p>Это инженерная спецификация для будущих React и desktop реализаций. В <code>taktera.components.css</code> реализован <strong>только ограниченный HTML-прототип</strong>, а не полный production UI-kit.</p>
+<h2>Универсальные состояния</h2>
+<table>
+<thead>
+<tr>
+  <th>Состояние</th>
+  <th>Контракт</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>default</td>
+  <td>Ясная визуальная иерархия, текстовый доступный ярлык</td>
+</tr>
+<tr>
+  <td>hover</td>
+  <td>Только pointer; не скрывает информацию от клавиатуры</td>
+</tr>
+<tr>
+  <td>focus-visible</td>
+  <td>Трёхпиксельный focus ring с отступом 3 px; проверить на фактическом фоне</td>
+</tr>
+<tr>
+  <td>pressed</td>
+  <td>Степень изменения фона выше, чем для hover; не меняет label</td>
+</tr>
+<tr>
+  <td>disabled</td>
+  <td>Элемент не интерактивен; если причину нужно объяснить, дать доступную подсказку рядом</td>
+</tr>
+<tr>
+  <td>loading</td>
+  <td>Сохранить ширину кнопки, <code>aria-busy</code>; предотвратить повторный submit; не оставлять без текста</td>
+</tr>
+<tr>
+  <td>invalid</td>
+  <td><code>aria-invalid</code>, сообщение ошибки привязано через <code>aria-describedby</code></td>
+</tr>
+<tr>
+  <td>selected</td>
+  <td>Не только цвет — выделение, маркер, <code>aria-selected</code> там, где применимо</td>
+</tr>
+<tr>
+  <td>success/error</td>
+  <td>Текст и семантические токены, уведомление при необходимости через live region</td>
+</tr>
+</tbody>
+</table>
+<h2>Набор приоритетных компонентов</h2>
+<table>
+<thead>
+<tr>
+  <th>Компонент</th>
+  <th>Размеры/правило</th>
+  <th>Доступность / поведение</th>
+  <th>Реализация v3.3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Button primary/secondary</td>
+  <td>мин. высота 43 px в web-демо; 44 px для touch</td>
+  <td>native <code>button</code>; disabled/loading; focus-visible</td>
+  <td>CSS preview</td>
+</tr>
+<tr>
+  <td>Text input</td>
+  <td>минимум 43 px; <code>--tk-control-border</code></td>
+  <td>видимый label; error-describedby</td>
+  <td>CSS preview</td>
+</tr>
+<tr>
+  <td>Select</td>
+  <td>минимум 43 px</td>
+  <td>native select; возможность клавиатурного выбора</td>
+  <td>CSS preview</td>
+</tr>
+<tr>
+  <td>Checkbox, radio, switch</td>
+  <td>target 44 px для touch</td>
+  <td>native semantics; checked/disabled</td>
+  <td>Спецификация</td>
+</tr>
+<tr>
+  <td>Tabs</td>
+  <td>подчеркивание или иная форма выбора</td>
+  <td>role tablist, arrow key navigation</td>
+  <td>Спецификация</td>
+</tr>
+<tr>
+  <td>Sidebar / top navigation</td>
+  <td>адаптация под планшет/узкий desktop</td>
+  <td>landmarks, aria-current</td>
+  <td>CSS preview</td>
+</tr>
+<tr>
+  <td>Data Table</td>
+  <td>фиксированные заголовки при больших наборах</td>
+  <td>caption, scope, sort; no color-only state</td>
+  <td>CSS preview (база)</td>
+</tr>
+<tr>
+  <td>Pagination</td>
+  <td>контролировать количество записей и текущую страницу</td>
+  <td>aria-current, кнопки вперёд/назад</td>
+  <td>Спецификация</td>
+</tr>
+<tr>
+  <td>Card / KPI</td>
+  <td>Inter tabular numerals</td>
+  <td>значения + единицы измерения; подпись</td>
+  <td>CSS preview</td>
+</tr>
+<tr>
+  <td>Dialog</td>
+  <td>явный заголовок и действия</td>
+  <td>focus trap, Escape, возврат фокуса</td>
+  <td>Спецификация</td>
+</tr>
+<tr>
+  <td>Toast / Alert</td>
+  <td>четкая severity</td>
+  <td>aria-live / role alert, без автоисчезновения критического</td>
+  <td>CSS preview (статусы, не toast)</td>
+</tr>
+<tr>
+  <td>Empty state</td>
+  <td>назначение и один следующий шаг</td>
+  <td>доступное название действия</td>
+  <td>Спецификация</td>
+</tr>
+<tr>
+  <td>Calendar</td>
+  <td>сетка по датам/времени</td>
+  <td>клавиатура, aria-label слотов, TZ, дата</td>
+  <td>Спецификация</td>
+</tr>
+<tr>
+  <td>Appointment scheduler</td>
+  <td>пересечения, блокировки, занятость</td>
+  <td>альтернативный список, цвета + текст</td>
+  <td>Спецификация</td>
+</tr>
+<tr>
+  <td>File upload</td>
+  <td>размер/формат, прогресс, ошибки</td>
+  <td>label, объявления прогресса</td>
+  <td>Спецификация</td>
+</tr>
+<tr>
+  <td>Search / filter</td>
+  <td>visible labels, reset</td>
+  <td>объявления результатов, кнопка сброса</td>
+  <td>Спецификация</td>
+</tr>
+<tr>
+  <td>Loading / skeleton</td>
+  <td>не вызывает крупных CLS</td>
+  <td>aria-busy, reduced-motion</td>
+  <td>Спецификация</td>
+</tr>
+<tr>
+  <td>Chart / status legend</td>
+  <td>категории, подписи, данные</td>
+  <td>текстовая таблица/краткое описание</td>
+  <td>Спецификация</td>
+</tr>
+</tbody>
+</table>
+<h2>Плотность UI</h2>
+<p>Компактный desktop режим не должен уменьшать контраст или фокус. Профессиональные таблицы и расписания допускают плотность выше маркетинговых экранов, но должны сохранять читаемость. Для touch — рекомендованная область 44 × 44 px, для компактного desktop — 32 × 32 px с отдельной QA-проверкой.</p>
+<h2>Типографика и локализация</h2>
+<p>Inter 400/600/700; body 14/21, helper 12/16, H1 30/36, H2 24/30. Для денег, чисел и времени — tabular numerals. Учитывать кириллицу, длинное название «путешествия», компактные боковые панели, локализацию системных сообщений, часовой пояс и региональные форматы чисел.</p>
+<h2>Для продуктовых команд</h2>
+<p>В Taktera Clinic, Beauty, Spa, Fitness и Travel отраслевые компоненты строятся поверх <strong>общей</strong> базовой библиотеки, без локальных копий Button, Input и Dialog. Специфические медицинские/финансовые/туристические сценарии должны проходить отдельную проверку бизнес-логики и регуляторных требований; визуальные токены их не заменяют.</p>
+</section>
+<section class="chapter"><h1>03 · Интеграция и технические границы</h1>
+<h2>Браузерные приложения</h2>
+<p>Добавьте CSS из <code>04_tokens/taktera.tokens.css</code> и собственную библиотеку компонентов или начните с <code>11_design_system/taktera.components.css</code> <strong>только как прототипа</strong>. Установите <code>data-product</code> и <code>data-theme</code> на <strong>одном</strong> корневом элементе — это предотвращает неоднозначное наследование при вложенных темах. Для каждого theme/product обновляйте путь к SVG через соответствующий готовый ресурс: CSS не перекрашивает SVG внутри <code>&lt;img&gt;</code>.</p>
+<pre><code class="language-html">&lt;html lang=&quot;ru&quot; data-theme=&quot;light&quot; data-product=&quot;clinic&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;/brand/04_tokens/taktera.tokens.css&quot;&gt;
+&lt;img src=&quot;/brand/02_logos/products/ru/svg/clinic-ru-light.svg&quot; alt=&quot;Taktera Клиника&quot;&gt;
+&lt;button type=&quot;button&quot; class=&quot;tk-primary tk-focus&quot;&gt;Сохранить&lt;/button&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Этот фрагмент демонстрирует палитру, но классы <code>.tk-primary/.tk-focus</code> сами по себе не создают компонент и его поведение. В демо подключена дополнительная библиотека стилей.</p>
+<h2>Desktop и Avalonia</h2>
+<p>CSS-токены браузера <strong>нельзя считать готовыми ресурсами Avalonia</strong>. Для приложений на Avalonia следует построить генератор <code>ResourceDictionary</code>/<code>DynamicResource</code> из DTCG или исходного JSON. Для каждой комбинации 6 продуктов × 2 темы сформируйте независимые словари, выделите семантические роли, проверяйте DPI, масштабирование, клавиатуру, OS high-contrast и реальные системные иконки.</p>
+<p>Нельзя автоматически переносить <code>color-mix</code> в XAML: в DTCG сохранены <strong>численные</strong> RGB-значения hover/pressed. Для Windows ICO уже есть 7 слоёв; macOS app bundles и ICNS требуют отдельного проверенного экспорта.</p>
+<h2>Источник / релиз</h2>
+<pre><code class="language-bash">python 09_source/generate_tokens.py           # Создать CSS, DTCG, contrast
+python 09_source/generate_tokens.py --check   # Проверить актуальность
+python 09_source/release.py                   # Проверить пакет и создать ZIP
+python 09_source/rebuild_assets.py --output ../_test_assets # Не трогает source
+</code></pre>
+<p><code>rebuild_assets.py</code> требует Pillow + CairoSVG. <code>release.py</code> дополнительно требует Pillow, fontTools и pypdf. Для генерации WOFF2 необходим fontTools + brotli. Старые скрипты из v3.2 сохранены в <code>09_source/legacy_v3.2</code>: они были жёстко привязаны к оригинальному компьютеру, не использовать их для новой сборки.</p>
+<h2>Границы воспроизводимости</h2>
+<p>Новый SVG-&gt;PNG/ICO реэкспорт независим от машины автора, но не выполняет оригинальную оптическую реконструкцию выбранного растрового знака из <code>08_reference</code> (это отдельный дизайнерский процесс). Готовые SVG в <code>02_logos</code> — фактические канонические векторы. 14-страничный брендбук v3.2 остаётся исходной публикацией; отдельное дополнение v3.3 описывает изменения. Изменение исходных SVG потребует согласования, ререндеринга и визуального диффа.</p>
+</section>
+<section class="chapter"><h1>04 · Контроль качества и критерии приёмки</h1>
+<h2>Автоматизированные проверки пакета (v3.3)</h2>
+<ul>
+<li>[x] 6 направлений × 2 темы представлены фирменными SVG.</li>
+<li>[x] Цвета акцентов и геометрия мастера не менялись.</li>
+<li>[x] Контраст всех <strong>выбранных</strong> токенов и состояний удовлетворяет проверяемым математическим порогам (подробности — <code>COLOR-CONTRAST-v3.3.json</code>).</li>
+<li>[x] Контрольный генератор токенов способен воспроизводить CSS/DTCG/отчёт.</li>
+<li>[x] Векторные файлы парсятся; PNG имеют ожидаемые размеры; ICO содержит семь слоёв.</li>
+<li>[x] Локальные HTML-ссылки существуют; WOFF2 прочитываются.</li>
+<li>[x] Исходный брендбук PDF v3.2 сохранён без модификации.</li>
+</ul>
+<h2>Реальные тесты приложений — ещё нужно выполнить</h2>
+<ul>
+<li>[ ] Ручной визуальный тест 6 × 2 комбинаций на целевых платформах/браузерах.</li>
+<li>[ ] Полноценная клавиатура: Tab, Shift+Tab, Enter, Space, Escape, стрелки, порядок и удержание фокуса.</li>
+<li>[ ] Читаемость статусов при grayscale / color blindness simulation.</li>
+<li>[ ] Текст на 200%, увеличение/изменение шрифта, без потери основных действий.</li>
+<li>[ ] Реальные ширины 360, 390, 768, 1215, 1280, 1920 px; touch-таргеты.</li>
+<li>[ ] Устройства Windows с масштабом 125/150/200%; macOS Dock/Retina.</li>
+<li>[ ] Динамика error/loading/success; работа aria-live и screenreader.</li>
+<li>[ ] Доступность конкретных графиков, календарей, фильтров, таблиц.</li>
+<li>[ ] Проверка печати и корпоративных шаблонов у типографии.</li>
+<li>[ ] Проверка товарных знаков, исключительных прав на мастера и правомерности применения.</li>
+</ul>
+<h2>Гейт для версии 3.3</h2>
+<p>Завершённая <strong>техническая сборка</strong> допускается к передаче разработчику после отсутствия отклонений в <code>python 09_source/release.py</code>. До производственного использования необходимы UX-ревью реального приложения и продуктовые UI-тесты — даже если отчёт показывает нулевые ошибки цвета.</p>
+</section>
+<section class="chapter"><h1>05 · Дорожная карта v3.3 → v4.0</h1>
+<p>Работы разделены на этапы и критерии приёмки. Перевод задач в трекер допускается после определения ответственных и целевого приложения.</p>
+<h2>Этап A. Инженерная база v3.3 (реализовано как пакет)</h2>
+<ul>
+<li>Источник токенов, отдельные цветовые роли, WCAG-расчёты, WOFF2, пример UI, контрольные суммы, независимая пересборка графических экспортов.</li>
+<li>Критерий: <code>release.py</code> проходит; <code>generate_tokens.py --check</code> проходит; ручной smoke test демо 12 сочетаний без JS-ошибок; v3.2 logo masters сохранены.</li>
+</ul>
+<h2>Этап B. Дизайн-утверждение и UX QA (следующий гейт)</h2>
+<ul>
+<li>Подтвердить статус палитры UI (не бренда), поведение всех состояний и размеры control borders; визуально пройти desktop/mobile; принять дополнительные EN lockup и системные иконки по отдельному макету.</li>
+<li>Критерий: дизайн-ревью всех тем, таблица замечаний, отсутствие high-severity дефектов и протокол контрастных состояний.</li>
+</ul>
+<h2>Этап C. Компонентная библиотека v4.0 alpha</h2>
+<ul>
+<li>Реализовать Button, Input, Select, Checkbox/Radio/Switch, Tabs, Navigation, Table, Pagination, Card/KPI, Dialog, Toast/Alert, Empty State, Skeleton.</li>
+<li>Критерий: документированное API, Storybook / аналог, unit и accessibility tests, frozen visual snapshots, клавиатура и theme switching.</li>
+</ul>
+<h2>Этап D. Отраслевые модули</h2>
+<ul>
+<li>Реализовать расписание/бронь, карточки клиентов, визиты, фильтры/поиск, загрузку файлов, отчёты и диаграммы на базе общих компонентов.</li>
+<li>Критерий: одно правило дизайна на всю семью, нет fork'ов базовых компонентов, утверждённые шаблоны ключевых экранов.</li>
+</ul>
+<h2>Этап E. Маркетинговая и визуальная система</h2>
+<ul>
+<li>Формализовать бренд-голос, motion, паттерны, фото/иллюстрации, письма, OG, презентации, печатные носители, правила продуктовой иерархии.</li>
+<li>Критерий: утверждённые мастера EN/RU, спецификация размера и охранного поля, реальные шаблоны для каждого направления, коммерческое правовое ревью.</li>
+</ul>
+<h2>Этап F. Внедрение и эксплуатация v4.0</h2>
+<ul>
+<li>Выпустить platform adapters (Web + целевая desktop технология), версии токенов, автоматическую сборку из Git, логи изменений, migration guide.</li>
+<li>Критерий: все тесты CI зелёные, сценарий rollback проверен, отдельные acceptance reports для Windows/macOS и основных браузеров.</li>
+</ul>
+<p><strong>Примечание:</strong> сроки, бюджеты и владельцы пока не определены; эту дорожную карту нельзя считать подтверждённым планом производства.</p>
+</section></body></html>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ru" data-theme="light" data-product="clinic"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Taktera v3.3 · UI-предпросмотр</title>
+<link rel="stylesheet" href="../04_tokens/taktera.tokens.css">
+<link rel="stylesheet" href="../11_design_system/taktera.components.css">
+</head>
+<body class="tk-ui">
+<div class="tk-layout">
+<aside class="tk-sidebar">
+ <div class="tk-brand-header"><img class="tk-logo" id="brand-logo" src="../02_logos/products/ru/svg/clinic-ru-light.svg" alt="Taktera Клиника"><span class="tk-product-subtitle">Демонстрация интерфейсного стандарта v3.3</span></div>
+ <nav class="tk-nav" aria-label="Разделы интерфейса"><a href="#overview" class="tk-nav-item" aria-current="page">▦&nbsp; Обзор</a><a href="#data" class="tk-nav-item">▤&nbsp; Таблица</a><a href="#components" class="tk-nav-item">◫&nbsp; Компоненты</a></nav>
+</aside>
+<main class="tk-main" id="overview">
+ <header class="tk-toolbar"><div><div class="tk-eyebrow">Taktera Design System · proof of concept</div><h1 class="tk-h1">Обзор интерфейса</h1><p class="tk-lead">Шесть продуктов, две темы, один набор правил</p></div>
+ <div class="tk-controls"><label class="tk-field"><span class="tk-label">Продукт</span><select class="tk-select" id="product"><option value="platform">Platform · Платформа</option><option value="clinic" selected>Clinic · Клиника</option><option value="beauty">Beauty · Красота</option><option value="spa">Spa · СПА</option><option value="fitness">Fitness · Фитнес</option><option value="travel">Travel · Путешествия</option></select></label>
+ <label class="tk-field"><span class="tk-label">Тема</span><select class="tk-select" id="theme"><option value="light" selected>Светлая</option><option value="dark">Тёмная</option></select></label></div></header>
+ <section class="tk-grid" aria-label="Примеры KPI"><article class="tk-card"><div class="tk-card-label">Записи сегодня</div><div class="tk-card-number">24</div><div class="tk-card-foot">Демонстрационные данные</div></article><article class="tk-card"><div class="tk-card-label">Заявки</div><div class="tk-card-number">8</div><div class="tk-card-foot">В обработке</div></article><article class="tk-card"><div class="tk-card-label">Завершено</div><div class="tk-card-number">17</div><div class="tk-card-foot">За текущий период</div></article></section>
+ <section class="tk-card" id="data"><div class="tk-inline-heading"><h2 class="tk-panel-heading">Демонстрационная таблица</h2><button class="tk-button tk-button-primary" type="button" id="save">Сохранить изменения</button></div>
+ <div class="tk-table-wrap"><table class="tk-table"><thead><tr><th scope="col">Номер</th><th scope="col">Раздел</th><th scope="col">Дата</th><th scope="col">Состояние</th></tr></thead><tbody>
+ <tr><td class="tk-number">#0001</td><td>Новая запись</td><td>22.11.2026</td><td><span class="tk-status tk-status-success">Подтверждено</span></td></tr>
+ <tr><td class="tk-number">#0002</td><td>Проверка заявки</td><td>23.11.2026</td><td><span class="tk-status tk-status-warning">Ожидает</span></td></tr>
+ <tr><td class="tk-number">#0003</td><td>Завершение</td><td>24.11.2026</td><td><span class="tk-status tk-status-info">В работе</span></td></tr>
+ </tbody></table></div><p class="tk-demo-banner">Данные вымышлены. Здесь оценивается дизайн-система, а не бизнес-логика конкретного продукта.</p></section>
+ <div class="tk-lower" id="components"><section class="tk-card tk-stack"><h2 class="tk-panel-heading">Формы и действия</h2>
+ <label class="tk-field"><span class="tk-label">Название записи</span><input class="tk-input" placeholder="Введите название" autocomplete="off" id="record-name"><span class="tk-help">Это пример стандартного поля</span></label>
+ <label class="tk-field"><span class="tk-label">Поле с ошибкой</span><input class="tk-input" aria-invalid="true" aria-describedby="field-error" value="Некорректное значение"><span class="tk-help tk-error" id="field-error">Проверьте введённые данные</span></label>
+ <label class="tk-field"><span class="tk-label">Недоступное поле</span><input class="tk-input" disabled value="Изменение недоступно"></label>
+ <div class="tk-actions"><button type="button" class="tk-button tk-button-primary" id="main-action">Основное действие</button><button type="button" class="tk-button tk-button-secondary">Вторичное</button><button type="button" class="tk-button" disabled>Недоступно</button></div>
+ </section><section class="tk-card tk-stack"><h2 class="tk-panel-heading">Семантические состояния</h2><p class="tk-help">Цвет продукта не обозначает ошибку, успех или предупреждение.</p><div class="tk-status-row"><span class="tk-status tk-status-success">Успех</span><span class="tk-status tk-status-info">Информация</span><span class="tk-status tk-status-warning">Внимание</span><span class="tk-status tk-status-error">Ошибка</span></div><p>Акцентный текст на холсте: <span class="tk-canvas-accent">Текст продукта</span></p><p class="tk-help">Для фокуса применяйте клавишу Tab. Для проверки мобильной компоновки уменьшите ширину окна браузера.</p><div id="notification" role="status" aria-live="polite" class="tk-help">Готово к взаимодействию</div></section></div>
+ <p class="tk-demo-banner">© Taktera. Концепт UI-кита для проверки токенов. Не содержит подключений к CRM, медицинских данных или производственной бизнес-логики.</p>
+</main></div>
+<script src="preview.js"></script>
+</body></html>

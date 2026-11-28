@@ -1,0 +1,56 @@
+#!/usr/bin/env python3
+from pathlib import Path
+from playwright.sync_api import sync_playwright
+import json,re,sys
+root=Path(__file__).resolve().parents[2]
+app=root/'19_pilot/pilot-app'; package=app/'node_modules/@taktera/ui-core'; out=Path(__file__).parent
+checks=[]; errors=[]
+def ck(name, result):
+ checks.append({'name':name,'ok':bool(result)}); print(('PASS' if result else 'FAIL'), name)
+with sync_playwright() as pw:
+ browser=pw.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox'])
+ page=browser.new_page(viewport={'width':1280,'height':850});page.emulate_media(reduced_motion='reduce')
+ page.on('pageerror',lambda err:errors.append(str(err)))
+ html=re.sub(r'<link[^>]*rel="stylesheet"[^>]*>','',(app/'index.html').read_text())
+ html=re.sub(r'<script[^>]*src="[^"]+"[^>]*></script>','',html)
+ page.set_content(html)
+ page.add_style_tag(content=(package/'taktera-ui.css').read_text())
+ page.add_script_tag(content=(package/'taktera-ui.js').read_text())
+ pilot=(app/'pilot.mjs').read_text()
+ pilot=re.sub(r"import \{[^}]+\} from [^;]+;",'const {setTheme,button,field,table,dialog,toastRegion}=globalThis.TakteraUI;',pilot,count=1)
+ page.add_script_tag(content=pilot)
+ ck('Installed tarball boots consumer',page.locator('table tbody tr').count()==2)
+ ck('EN notification button',page.get_by_role('button',name='Notify').count()==1)
+ page.get_by_role('button',name='Notify').click()
+ ck('EN toast message',page.get_by_text('Record created').count()>=1)
+ ck('EN toast accessible dismiss',page.get_by_role('button',name='Dismiss notification').count()==1)
+ ck('EN region label',page.get_by_role('region',name='Notifications').count()==1)
+ page.get_by_role('button',name='Dismiss notification').click()
+ ck('Dismiss removes toast',page.get_by_role('button',name='Dismiss notification').count()==0)
+ page.locator('#locale').select_option('ru')
+ page.get_by_role('button',name='Уведомить').click()
+ ck('RU toast message',page.get_by_text('Запись создана').count()>=1)
+ ck('RU toast accessible dismiss',page.get_by_role('button',name='Закрыть уведомление').count()==1)
+ ck('RU region label',page.get_by_role('region',name='Уведомления').count()==1)
+ page.get_by_role('button',name='Создать').click()
+ ck('RU dialog',page.get_by_role('dialog').get_by_role('button',name='Отмена').count()==1)
+ page.keyboard.press('Escape')
+ ck('Dialog restores focus',page.evaluate("document.activeElement.textContent==='Создать'"))
+ page.locator('#product').select_option('travel'); page.locator('#theme').select_option('dark')
+ ck('Theme switch',page.locator('#app').get_attribute('data-product')=='travel' and page.locator('#app').get_attribute('data-theme')=='dark')
+ ck('Numeric sort correctly ascending',page.evaluate('''() => {let t=TakteraUI.table({columns:[{key:'v',label:'v',sortable:true}],rows:[{v:100},{v:9},{v:25}],pageSize:10});document.body.append(t.element);t.element.querySelector('th button').click();let values=[...t.element.querySelectorAll('tbody td')].map(x=>x.textContent);t.element.remove();return JSON.stringify(values)===JSON.stringify(['9','25','100']);}'''))
+ ck('Invalid locale rejected',page.evaluate("() => {try{TakteraUI.toastRegion({locale:'de'});return false}catch(e){return e instanceof RangeError}}"))
+ ck('Invalid labels rejected',page.evaluate("() => {try{TakteraUI.toastRegion({labels:{close:123}});return false}catch(e){return e instanceof TypeError}}"))
+ ck('Invalid button type rejected',page.evaluate("() => {try{TakteraUI.button({type:'invalid'});return false}catch(e){return e instanceof RangeError}}"))
+ ck('Invalid table rows rejected',page.evaluate("() => {try{TakteraUI.table({columns:[{key:'id',label:'ID'}],rows:'bad'});return false}catch(e){return e instanceof TypeError}}"))
+ page.set_viewport_size({'width':320,'height':740})
+ ck('320px viewport fits',page.evaluate('document.documentElement.scrollWidth<=innerWidth'))
+ page.screenshot(path=str(out/'alpha5-mobile.png'),full_page=True)
+ page.set_viewport_size({'width':1280,'height':850})
+ page.screenshot(path=str(out/'alpha5-desktop.png'),full_page=True)
+ ck('No runtime errors',not errors)
+ browser.close()
+report={'passed':sum(v['ok'] for v in checks),'total':len(checks),'checks':checks,'errors':errors,'scope':'Chromium with local assets injected from npm-installed @taktera/ui-core Alpha.5; real HTTP module loading blocked by policy'}
+(out/'results.json').write_text(json.dumps(report,indent=2,ensure_ascii=False))
+print(report['passed'],'/',report['total'])
+sys.exit(0 if report['passed']==report['total'] else 1)

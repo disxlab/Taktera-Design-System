@@ -1,0 +1,51 @@
+[
+  {
+    "id": "@taktera/ui-core@4.0.0-alpha.3",
+    "name": "@taktera/ui-core",
+    "version": "4.0.0-alpha.3",
+    "size": 9773,
+    "unpackedSize": 34506,
+    "shasum": "ce79334ff2dfa63395432c4d56f7eb933e0ec4c0",
+    "integrity": "sha512-v8jD7LWkNp58iFSSM0Xc0ynEdETDP5CLJbmW/LbMChbc35hkpC8g7mQ/gI+atnzHwJoGsKCCpzQ01PH8KwjGxQ==",
+    "filename": "taktera-ui-core-4.0.0-alpha.3.tgz",
+    "files": [
+      {
+        "path": "README.md",
+        "size": 2174,
+        "mode": 420
+      },
+      {
+        "path": "index.d.mts",
+        "size": 4018,
+        "mode": 420
+      },
+      {
+        "path": "index.d.ts",
+        "size": 4018,
+        "mode": 420
+      },
+      {
+        "path": "index.mjs",
+        "size": 314,
+        "mode": 420
+      },
+      {
+        "path": "package.json",
+        "size": 880,
+        "mode": 420
+      },
+      {
+        "path": "taktera-ui.css",
+        "size": 11568,
+        "mode": 420
+      },
+      {
+        "path": "taktera-ui.js",
+        "size": 11534,
+        "mode": 420
+      }
+    ],
+    "entryCount": 7,
+    "bundled": []
+  }
+]

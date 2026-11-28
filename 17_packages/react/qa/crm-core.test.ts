@@ -1,0 +1,12 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {activeFields,formPayload,formErrors,validateSchema,chronological,searchCommands} from '../src/crm-core.js';
+import type {FormStep} from '../src/crm-core.js';
+const steps:FormStep[]=[{id:'a',label:'A',fields:[{id:'enabled',label:'Enabled',kind:'checkbox'},{id:'email',label:'Email',kind:'email',required:true,when:{field:'enabled',equals:true}},{id:'details',label:'Details',kind:'text',when:{field:'email',equals:'a@b.c'}}]},{id:'b',label:'B',fields:[{id:'agree',label:'Agree',kind:'checkbox',required:true}]}];
+test('conditional chain and hidden values omitted',()=>{const v={enabled:false,email:'a@b.c',details:'private',agree:true,unexpected:'secret'};assert.deepEqual(activeFields(steps,v).map(f=>f.id),['enabled','agree']);assert.deepEqual(formPayload(steps,v),{enabled:false,agree:true})});
+test('step validation, required checkbox and malformed email',()=>{assert.deepEqual(formErrors(steps,{enabled:true,email:'bad'},'a'),{email:'invalid'});assert.deepEqual(formErrors(steps,{enabled:true,email:'a@b.c'}),{agree:'required'});assert.deepEqual(formErrors(steps,{enabled:false,agree:true}),{})});
+test('schema rejects forward and duplicate IDs',()=>{assert.throws(()=>validateSchema([{id:'a',label:'A',fields:[{id:'x',label:'X',kind:'text',when:{field:'later',equals:true}}]}]));assert.throws(()=>validateSchema([{id:'a',label:'A',fields:[{id:'x',label:'X',kind:'text'},{id:'x',label:'Y',kind:'text'}]}]))});
+test('chronological ordering uses actual instant and does not mutate input',()=>{const rows=[{id:'a',at:'2026-12-01T09:00:00+02:00'},{id:'b',at:'2026-12-01T08:00:00Z'}];assert.deepEqual(chronological(rows).map(r=>r.id),['b','a']);assert.equal(rows[0].id,'a')});
+test('commands match all words, retain disabled metadata',()=>{const c=[{id:'a',label:'Карточка клиента',keywords:['CRM']},{id:'b',label:'Администрирование',disabled:true}];assert.deepEqual(searchCommands(c,'КЛИЕНТА crm').map(x=>x.id),['a']);assert.equal(searchCommands(c,'админ')[0].disabled,true)});
+
+test('default false dependencies, own values and invalid lengths',()=>{const fields:FormStep[]=[{id:'a',label:'A',fields:[{id:'flag',label:'Flag',kind:'checkbox'},{id:'note',label:'Note',kind:'text',when:{field:'flag',equals:false}},{id:'toString',label:'Own value only',kind:'text'}]}];assert.deepEqual(formPayload(fields,{}),{flag:false,note:'',toString:''});assert.throws(()=>validateSchema([{id:'a',label:'A',fields:[{id:'x',label:'X',kind:'text',maxLength:-1}]}]))});

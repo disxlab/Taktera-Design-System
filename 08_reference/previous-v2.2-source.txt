@@ -1,0 +1,135 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Taktera Nexus — брендбук и дизайн-код v2.2</title>
+<style>
+:root{--ink:#0B0B12;--stone:#64636C;--line:#D9D8E2;--paper:#EFEEF5;--snow:#FBFBFD;--nexus:#5B4AD6;--glow:#927FFF;}
+*{box-sizing:border-box} body{margin:0;background:var(--snow);color:var(--ink);font:14px/1.6 Inter,-apple-system,"Segoe UI",Arial,sans-serif} main{max-width:1180px;margin:auto;padding:36px 24px 100px} h1{font-size:44px;line-height:1.05;letter-spacing:-.04em;margin:0} h2{font-size:25px;margin:52px 0 12px;padding-top:18px;border-top:1px solid var(--line)} h3{font-size:17px;margin:26px 0 8px} p,li{max-width:86ch} code{font:12px/1.4 "JetBrains Mono",monospace;background:var(--paper);padding:2px 5px;border-radius:4px} .hero{background:var(--ink);color:#fff;border-radius:24px;padding:48px;display:grid;grid-template-columns:1.4fr .8fr;gap:30px;align-items:center;overflow:hidden} .hero small{color:#c6c3d0} .mark{display:flex;justify-content:center;align-items:center;min-height:260px;background:radial-gradient(circle at 50% 50%,#5b4ad655,transparent 60%)} .mark svg{width:190px;height:190px} .label{display:inline-block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px;border-radius:999px;background:#e9e6ff;color:#382d89;font-weight:700} .legacy{background:#fff6df;border:1px solid #ead094;padding:14px 16px;border-radius:12px} .proposal{background:#f2efff;border:1px solid #d8d0ff;padding:14px 16px;border-radius:12px} .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px} .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px} .swatches{display:flex;flex-wrap:wrap;gap:8px} .sw{width:112px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff} .sw i{display:block;height:58px;background:var(--c)} .sw b,.sw code{display:block;padding:4px 7px} table{width:100%;border-collapse:collapse} td,th{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left} th{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--stone)} .logoRow{display:flex;flex-wrap:wrap;gap:12px} .logoTile{padding:14px;border:1px solid var(--line);border-radius:14px;background:#fff} .logoTile.dark{background:var(--ink)} .asset{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--stone)} .iconCard{display:flex;gap:12px;align-items:center}.iconCard svg{width:28px;height:28px;stroke-width:1.5;color:var(--ink);flex:0 0 auto}.iconSpec{font-size:12px;color:var(--stone)} .iconState{display:inline-flex;align-items:center;gap:6px;padding:6px 9px;border:1px solid var(--line);border-radius:8px;background:#fff}.iconState svg{width:18px;height:18px;stroke-width:1.5}.codeblock{background:var(--ink);color:#eceaff;border-radius:12px;padding:14px 16px;overflow:auto;font:12px/1.55 "JetBrains Mono",monospace} .do{border-left:3px solid #1f7a5c;padding-left:12px} .dont{border-left:3px solid #a33b2d;padding-left:12px} @media(max-width:760px){.hero{grid-template-columns:1fr;padding:28px}h1{font-size:34px}}
+</style></head><body><main>
+<section class="hero"><div><span class="label">Taktera Signature / Nexus</span><h1>Единая система.<br>Пять направлений.<br>Один Nexus.</h1><p>Обновлённый брендбук и дизайн-код Taktera. Документ отделяет действующие правила исходной системы от новых правил Nexus и содержит рабочие ассеты для разработки.</p><small>Версия 2.2 · 11.10.2026 · Nexus + Lucide + Travel direction + UI reference pack</small></div><div class="mark"><svg viewBox="0 0 64 64"><g fill="#927FFF">
+<g transform="translate(32 32)">
+  <rect x="-5.5" y="-24" width="11" height="19" rx="5.5" transform="rotate(45)"/>
+  <rect x="-5.5" y="-24" width="11" height="19" rx="5.5" transform="rotate(135)"/>
+  <rect x="-5.5" y="-24" width="11" height="19" rx="5.5" transform="rotate(225)"/>
+  <rect x="-5.5" y="-24" width="11" height="19" rx="5.5" transform="rotate(315)"/>
+</g></g></svg></div></section>
+
+<h2>0. Статус документа</h2><div class="grid"><div class="legacy"><b>Существующая система (source)</b><p>Inter + JetBrains Mono; master Indigo #534AB7 / #7F77DD; 4 продуктовых цвета; токены в `globals.css`; flat premium UI; отступы кратны 4px; Lucide icons 1.5px; анимации 150/250/400ms.</p></div><div class="proposal"><b>Новое предложение Nexus</b><p>Новый модульный знак Nexus, обновлённая master-палитра, Signature-графика в маркетинге, сохранение строгого ERP-интерфейса и расширение продуктовой архитектуры новым направлением Travel.</p></div></div>
+
+<h2>1. Brand idea</h2><p><b>Nexus</b> — точка соединения людей, процессов, данных и продуктов. Четыре элемента знака не являются отдельными медицинскими/beauty-иконками: они показывают равноправные модули, собранные вокруг общей платформы.</p><div class="grid"><div class="card"><b>Promise</b><p>Одна платформа для роста операционного бизнеса.</p></div><div class="card"><b>Character</b><p>Precise · intelligent · calm · premium · scalable.</p></div><div class="card"><b>Visual principle</b><p>Структура внутри продукта, выразительность — в коммуникации бренда.</p></div></div>
+
+<h2>2. Логотип Nexus</h2><div class="logoRow"><div class="logoTile"><img src="02_logos/master/png/taktera-nexus-horizontal-light.png" style="max-width:360px;width:100%"></div><div class="logoTile dark"><img src="02_logos/master/png/taktera-nexus-horizontal-dark.png" style="max-width:360px;width:100%"></div></div><h3>Знак</h3><div class="logoRow"><div class="logoTile"><img src="02_logos/master/png/nexus-mark-primary.png" width="96"><div class="asset">nexus-mark-primary</div></div><div class="logoTile"><img src="02_logos/master/png/nexus-mark-black.png" width="96"><div class="asset">nexus-mark-black</div></div><div class="logoTile"><img src="02_logos/master/png/nexus-app-dark.png" width="96"><div class="asset">nexus-app-dark</div></div><div class="logoTile"><img src="02_logos/master/png/nexus-app-primary.png" width="96"><div class="asset">nexus-app-primary</div></div></div>
+<p><b>Конструкция:</b> 4 одинаковых rounded modules, повёрнутых вокруг центральной отрицательной зоны. Центральный gap обязателен — он создаёт ощущение системы, а не цветка.</p><p><b>Охранная зона:</b> минимум 0.5 высоты одного модуля вокруг знака; для horizontal lockup — высота строчной `t` со всех сторон.</p><p><b>Минимум:</b> mark 16px digital / 5mm print; horizontal lockup 120px. При 16–24px использовать только app/compact mark без wordmark.</p>
+<div class="grid"><div class="do"><b>Можно</b><p>Solid master color, white, ink; продуктовый monochrome; прозрачный фон; dark app tile.</p></div><div class="dont"><b>Нельзя</b><p>Растягивать; менять пропорции модулей; использовать разные цвета модулей внутри master mark; добавлять glow/gradient в production-логотип; помещать на шумное фото без подложки.</p></div></div>
+
+<h2>3. Master palette — Nexus Signature</h2><div class="proposal"><b>Новое предложение.</b> Исходный `#534AB7` заменяется для master-бренда на более яркий Nexus 600 `#5B4AD6`. Старый индиго может временно жить как legacy token на период миграции.</div><div class="swatches"><div class="sw" style="--c:#F3F1FF"><i></i><b>Nexus 50</b><code>#F3F1FF</code></div><div class="sw" style="--c:#E7E2FF"><i></i><b>Nexus 100</b><code>#E7E2FF</code></div><div class="sw" style="--c:#CFC6FF"><i></i><b>Nexus 200</b><code>#CFC6FF</code></div><div class="sw" style="--c:#B0A2FF"><i></i><b>Nexus 300</b><code>#B0A2FF</code></div><div class="sw" style="--c:#927FFF"><i></i><b>Nexus 400</b><code>#927FFF</code></div><div class="sw" style="--c:#7864F2"><i></i><b>Nexus 500</b><code>#7864F2</code></div><div class="sw" style="--c:#5B4AD6"><i></i><b>Nexus 600</b><code>#5B4AD6</code></div><div class="sw" style="--c:#4A3BB4"><i></i><b>Nexus 700</b><code>#4A3BB4</code></div><div class="sw" style="--c:#382D89"><i></i><b>Nexus 800</b><code>#382D89</code></div><div class="sw" style="--c:#241D59"><i></i><b>Nexus 900</b><code>#241D59</code></div></div>
+<h3>Neutral</h3><div class="swatches"><div class="sw" style="--c:#0B0B12"><i></i><b>ink</b><code>#0B0B12</code></div><div class="sw" style="--c:#64636C"><i></i><b>stone</b><code>#64636C</code></div><div class="sw" style="--c:#D9D8E2"><i></i><b>line</b><code>#D9D8E2</code></div><div class="sw" style="--c:#EFEEF5"><i></i><b>paper</b><code>#EFEEF5</code></div><div class="sw" style="--c:#FBFBFD"><i></i><b>snow</b><code>#FBFBFD</code></div><div class="sw" style="--c:#FFFFFF"><i></i><b>white</b><code>#FFFFFF</code></div></div>
+<h3>Products</h3><p>На первом этапе рекомендуем сохранить существующие продуктовые primary-цвета, чтобы смелая смена master-знака не ломала узнаваемость продуктов.</p><div class="swatches"><div class="sw" style="--c:#185FA5"><i></i><b>Clinic</b><code>#185FA5</code></div><div class="sw" style="--c:#993556"><i></i><b>Beauty</b><code>#993556</code></div><div class="sw" style="--c:#0F6E56"><i></i><b>Spa</b><code>#0F6E56</code></div><div class="sw" style="--c:#993C1D"><i></i><b>Fitness</b><code>#993C1D</code></div></div>
+
+<h2>4. Product lockups</h2><div class="logoRow"><div class="logoTile"><img src="02_logos/products/png/taktera-clinic-light.png" style="max-width:340px;width:100%"></div><div class="logoTile"><img src="02_logos/products/png/taktera-beauty-light.png" style="max-width:340px;width:100%"></div><div class="logoTile"><img src="02_logos/products/png/taktera-spa-light.png" style="max-width:340px;width:100%"></div><div class="logoTile"><img src="02_logos/products/png/taktera-fitness-light.png" style="max-width:340px;width:100%"></div></div><p>В отличие от старой схемы «каждому продукту — отдельный бит», Nexus использует <b>общий master mark</b>. Продукт различается названием и фирменным цветом. Это упрощает масштабирование экосистемы.</p>
+
+<h2>4.1. Расширение архитектуры — Taktera Travel</h2>
+<div class="legacy"><b>Существующая система.</b><p>Исходный HTML фиксирует четыре продукта: Clinic, Beauty, Spa, Fitness. Travel в исходной системе отсутствует.</p></div>
+<div class="proposal"><b>Новое предложение v2.2.</b><p>Добавляется пятое направление <b>Taktera Travel</b> для турагентств и туристического бизнеса. Оно наследует общий Nexus mark, типографику, Lucide-систему, сетку, motion и нейтральную палитру, но получает собственный product accent.</p></div>
+<div class="grid">
+<div class="card"><img src="02_logos/products/png/taktera-travel-light.png" style="max-width:100%;height:auto"><div class="asset">taktera-travel-light</div></div>
+<div class="card"><b>Travel Azure</b><div class="swatches"><div class="sw" style="--c:#08789A"><i></i><b>Travel 600</b><code>#08789A</code></div></div><p>Характер: clear · mobile · global · confident. Основные сценарии: лиды, подбор туров, бронирования, туристы, поставщики, платежи, документы, страховки и трансферы.</p></div>
+<div class="card"><b>Контраст</b><p><code>#08789A</code> на белом имеет достаточный контраст для обычного текста (≈5.04:1). Для тёмной темы следует использовать более светлую ступень Travel 200/300 после финальной генерации полной шкалы.</p></div>
+</div>
+<h3>Travel — Lucide domain map</h3>
+<div class="grid">
+<div class="card iconCard" style="color:#08789A"><i data-lucide="plane"></i><div><b>Travel</b><div class="asset">Plane</div></div></div>
+<div class="card iconCard"><i data-lucide="map-pinned"></i><div><b>Туры</b><div class="asset">MapPinned</div></div></div>
+<div class="card iconCard"><i data-lucide="calendar-range"></i><div><b>Бронирования</b><div class="asset">CalendarRange</div></div></div>
+<div class="card iconCard"><i data-lucide="globe-2"></i><div><b>Направления</b><div class="asset">Globe2</div></div></div>
+<div class="card iconCard"><i data-lucide="tickets-plane"></i><div><b>Билеты</b><div class="asset">TicketsPlane</div></div></div>
+<div class="card iconCard"><i data-lucide="hotel"></i><div><b>Отели</b><div class="asset">Hotel</div></div></div>
+<div class="card iconCard"><i data-lucide="luggage"></i><div><b>Багаж</b><div class="asset">Luggage</div></div></div>
+<div class="card iconCard"><i data-lucide="shield-check"></i><div><b>Страхование</b><div class="asset">ShieldCheck</div></div></div>
+</div>
+<h2>5. Типографика</h2><table><tr><th>Роль</th><th>Шрифт</th><th>Правило Nexus</th></tr><tr><td>UI / headings / wordmark</td><td>Inter</td><td>400, 500, 600, 700; wordmark 600–650 и tracking ≈ −0.05em</td></tr><tr><td>Коды / ID / tabular numbers</td><td>JetBrains Mono</td><td>сохранено из исходной системы</td></tr></table><p>Файлы шрифтов в пакет не включены. Подробности: <code>05_typography/README-TYPOGRAPHY.md</code>.</p>
+
+<h2>6. UI language</h2><div class="legacy"><b>Сохраняем из исходного дизайн-кода:</b> spacing 4px; радиусы 4/6/8/12/16; минимум теней; borders 0.5–1px; icon stroke 1.5; sentence case; motion 150/250/400ms; проверка 360/390/768/1215/1280/1920.</div><div class="proposal"><b>Nexus добавляет:</b> master accent — Nexus 600; Nexus 50/100 для focus/selection; фирменная графика не используется за таблицами, расписанием, формами и аналитикой. Glow и крупные абстрактные модули — только marketing / login / onboarding.</div>
+
+<h2>7. Иконки — Lucide</h2>
+<div class="legacy"><b>Существующее правило из исходного дизайн-кода:</b> UI использует <b>lucide-react</b>, толщина линии — <b>1.5 px</b>, размеры — 16 / 20 / 24 / 32 px, цвет наследуется от текста.</div>
+<div class="proposal"><b>Nexus v2.1 уточняет систему:</b> Lucide становится единственной канонической библиотекой интерфейсных пиктограмм. Локальные SVG допускаются только для уникальных доменных понятий, которых нет в Lucide, и должны визуально соответствовать геометрии Lucide. Каталог: <a href="https://lucide.dev/icons/" target="_blank" rel="noreferrer">lucide.dev/icons</a>.</div>
+
+<h3>7.1. Базовые правила</h3>
+<table><tr><th>Параметр</th><th>Правило</th><th>Примечание</th></tr>
+<tr><td>Stroke</td><td><code>1.5</code></td><td>Фирменное правило Taktera; Lucide по умолчанию показывает 2 px, в продукте переопределяем на 1.5.</td></tr>
+<tr><td>Размеры</td><td><code>16 / 20 / 24 / 32</code></td><td>20 px — default UI, 16 px — compact, 24 px — major action, 32 px — illustrative.</td></tr>
+<tr><td>Цвет</td><td><code>currentColor</code></td><td>Иконка наследует semantic token текста/состояния.</td></tr>
+<tr><td>Fill</td><td>нет</td><td>Не использовать filled-версии, градиенты, glow, тени или разноцветные stroke.</td></tr>
+<tr><td>Геометрия</td><td>native Lucide 24×24</td><td>Не масштабировать path вручную; менять только <code>size</code>.</td></tr>
+<tr><td>Hit area</td><td>≥ 32×32 px</td><td>Для touch предпочтительно 40×40 px; сама пиктограмма остаётся 16–24 px.</td></tr>
+<tr><td>Accessibility</td><td>обязательна</td><td>Decorative: <code>aria-hidden</code>; icon-only button: доступное имя/label.</td></tr></table>
+
+<h3>7.2. Канонический набор навигации</h3>
+<div class="grid">
+<div class="card iconCard"><i data-lucide="layout-dashboard"></i><div><b>Главная</b><div class="asset">LayoutDashboard</div></div></div>
+<div class="card iconCard"><i data-lucide="users-round"></i><div><b>Пациенты / клиенты</b><div class="asset">UsersRound</div></div></div>
+<div class="card iconCard"><i data-lucide="calendar-days"></i><div><b>Записи / расписание</b><div class="asset">CalendarDays</div></div></div>
+<div class="card iconCard"><i data-lucide="wallet-cards"></i><div><b>Финансы</b><div class="asset">WalletCards</div></div></div>
+<div class="card iconCard"><i data-lucide="chart-no-axes-combined"></i><div><b>Отчёты / аналитика</b><div class="asset">ChartNoAxesCombined</div></div></div>
+<div class="card iconCard"><i data-lucide="package"></i><div><b>Склад</b><div class="asset">Package</div></div></div>
+<div class="card iconCard"><i data-lucide="message-circle"></i><div><b>Сообщения</b><div class="asset">MessageCircle</div></div></div>
+<div class="card iconCard"><i data-lucide="settings"></i><div><b>Настройки</b><div class="asset">Settings</div></div></div>
+</div>
+
+<h3>7.3. Действия</h3>
+<div class="grid">
+<div class="card iconCard"><i data-lucide="search"></i><div><b>Поиск</b><div class="asset">Search</div></div></div>
+<div class="card iconCard"><i data-lucide="plus"></i><div><b>Добавить</b><div class="asset">Plus</div></div></div>
+<div class="card iconCard"><i data-lucide="pencil"></i><div><b>Редактировать</b><div class="asset">Pencil</div></div></div>
+<div class="card iconCard"><i data-lucide="trash-2"></i><div><b>Удалить</b><div class="asset">Trash2</div></div></div>
+<div class="card iconCard"><i data-lucide="list-filter"></i><div><b>Фильтр</b><div class="asset">ListFilter</div></div></div>
+<div class="card iconCard"><i data-lucide="download"></i><div><b>Скачать</b><div class="asset">Download</div></div></div>
+<div class="card iconCard"><i data-lucide="upload"></i><div><b>Загрузить</b><div class="asset">Upload</div></div></div>
+<div class="card iconCard"><i data-lucide="ellipsis"></i><div><b>Ещё</b><div class="asset">Ellipsis</div></div></div>
+</div>
+
+<h3>7.4. Статусные иконки</h3>
+<p>Статус всегда передаётся комбинацией <b>цвет + иконка + текст</b>; один цвет без подписи не используется.</p>
+<div class="logoRow">
+<span class="iconState" style="color:#5A7A4A"><i data-lucide="circle-check"></i> Успех</span>
+<span class="iconState" style="color:#D49A3D"><i data-lucide="triangle-alert"></i> Предупреждение</span>
+<span class="iconState" style="color:#A33B2D"><i data-lucide="circle-x"></i> Ошибка</span>
+<span class="iconState" style="color:#3A5C7A"><i data-lucide="info"></i> Информация</span>
+<span class="iconState"><i data-lucide="clock"></i> Ожидание</span>
+<span class="iconState"><i data-lucide="loader-circle"></i> Загрузка</span>
+</div>
+
+<h3>7.5. Контекст продуктов</h3>
+<div class="grid">
+<div class="card iconCard" style="color:#185FA5"><i data-lucide="stethoscope"></i><div><b>Clinic</b><div class="asset">Stethoscope</div></div></div>
+<div class="card iconCard" style="color:#993556"><i data-lucide="sparkles"></i><div><b>Beauty</b><div class="asset">Sparkles</div></div></div>
+<div class="card iconCard" style="color:#0F6E56"><i data-lucide="waves"></i><div><b>Spa</b><div class="asset">Waves</div></div></div>
+<div class="card iconCard" style="color:#993C1D"><i data-lucide="dumbbell"></i><div><b>Fitness</b><div class="asset">Dumbbell</div></div></div>
+<div class="card iconCard" style="color:#08789A"><i data-lucide="plane"></i><div><b>Travel</b><div class="asset">Plane</div></div></div>
+</div>
+<p><b>Важно:</b> эти пиктограммы используются только в интерфейсе для контекста разделов. Они не являются логотипами продуктов и никогда не заменяют знак Nexus или lockup <code>taktera + product</code>.</p>
+
+<h3>7.6. React implementation</h3>
+<pre class="codeblock">import { CalendarDays } from "lucide-react";
+
+&lt;CalendarDays
+  size={20}
+  strokeWidth={1.5}
+  aria-hidden="true"
+/&gt;</pre>
+<p>Полная карта имён и готовый registry: <code>03_icons/ui/lucide-icon-map.json</code> и <code>03_icons/ui/lucide-registry.tsx</code>. Предыдущие локальные SVG перемещены в <code>03_icons/ui/legacy-custom-examples</code> и больше не являются каноническими.</p>
+
+<h2>8. Brand graphics</h2><p>Фирменная графика строится из увеличенных Nexus modules, орбитальных траекторий и мягких световых полей. Производственный логотип всегда solid. Допустимы gradient/glow только как отдельный фон или motion-layer.</p><table><tr><th>Контекст</th><th>Интенсивность брендинга</th></tr><tr><td>ERP / CRM / расписание / финансы</td><td>5–10% акцента, без декоративного glow</td></tr><tr><td>Login / onboarding</td><td>15–25%, допускается Nexus background</td></tr><tr><td>Marketing landing / презентации</td><td>до 40%, допускаются крупные графические поля</td></tr><tr><td>Документы / email</td><td>solid logo + тонкая акцентная линия</td></tr></table>
+
+<h2>8.1. Интерфейсные референсы</h2>
+<p>Ниже — визуальные примеры направления Nexus. Это <b>reference screens</b>, а не пиксель-точные production-макеты: они фиксируют иерархию, плотность, цветовую роль продукта и характер компонентов.</p>
+<div class="card"><h3>Экосистема: Platform + Clinic + Beauty + Spa + Fitness + Travel</h3><img src="06_templates/visual-references/ecosystem-ui-overview.png" style="width:100%;border-radius:12px;border:1px solid var(--line)"><p class="iconSpec">Общий язык навигации, KPI, карточек, Lucide icons и mobile patterns.</p></div>
+<div class="card"><h3>Дашборды продуктов</h3><img src="06_templates/visual-references/product-dashboards-overview.png" style="width:100%;border-radius:12px;border:1px solid var(--line)"><p class="iconSpec">Clinic — blue; Beauty — wine; Spa — forest; Fitness — terracotta; Travel — azure.</p></div>
+<div class="card"><h3>Clinic — детализированный UI-набор</h3><img src="06_templates/visual-references/clinic-ui-screens.png" style="width:100%;border-radius:12px;border:1px solid var(--line)"><p class="iconSpec">Login, dashboard, patients, calendar, patient card, finance/reports.</p></div>
+<h2>9. Готовые ассеты</h2><table><tr><th>Папка</th><th>Содержимое</th></tr><tr><td><code>02_logos</code></td><td>Master mark, horizontal logo, product lockups for Clinic/Beauty/Spa/Fitness/Travel, SVG + PNG</td></tr><tr><td><code>03_icons/app</code></td><td>16–1024px PNG/SVG и favicon.ico</td></tr><tr><td><code>03_icons/ui</code></td><td>Lucide mapping, React registry, правила 1.5px; legacy custom SVG archived separately</td></tr><tr><td><code>04_tokens</code></td><td>CSS + JSON токены</td></tr><tr><td><code>05_typography</code></td><td>Спецификация шрифтов</td></tr><tr><td><code>06_templates</code></td><td>Business card, OpenGraph, email header, ecosystem/product UI reference screens</td></tr><tr><td><code>07_migration</code></td><td>Карта внедрения по исходному репозиторию</td></tr></table>
+
+<h2>10. Технические точки внедрения</h2><p>Сохраняем исходную карту hardcoded-мест. Подробный migration checklist — <code>07_migration/IMPLEMENTATION-MAP.md</code>.</p><table><tr><th>Что</th><th>Файл</th></tr><tr><td>Основная палитра</td><td><code>apps/web/app/globals.css</code></td></tr><tr><td>Web mark / wordmark</td><td><code>apps/web/components/brand/mark.tsx</code>, <code>wordmark.tsx</code>, <code>logo.tsx</code></td></tr><tr><td>Marketing assets</td><td><code>apps/marketing/components/brand/mark.tsx</code>, <code>og-template.tsx</code>, icons / OG / globals</td></tr><tr><td>Desktop icon</td><td><code>apps/desktop/assets/generate-icon.ps1</code></td></tr><tr><td>Favicon</td><td><code>apps/web/app/favicon.ico</code></td></tr><tr><td>Start screen / installer</td><td><code>apps/web/desktop-start/start.css</code>, <code>packages/installer/web/src/index.css</code></td></tr><tr><td>Email</td><td><code>apps/api/src/core/email/templates/Layout.tsx</code></td></tr><tr><td>PDF/templates</td><td><code>apps/pdf-worker</code> + document templates — отдельный аудит</td></tr></table>
+
+<h2>11. Release checklist</h2><ol><li>Утвердить master mark и wordmark.</li><li>Проверить знак в 16/24/32/64px.</li><li>Проверить контраст primary/hover/focus в обеих темах.</li><li>Заменить React brand components.</li><li>Заменить favicon, desktop, Apple, OG.</li><li>Проверить email/PDF/installer/start screen.</li><li>Проверить Travel: product token, logo lockup, Lucide domain map, light/dark contrast и mobile screens.</li><li>Visual regression на всех исходных контрольных ширинах.</li><li>Поиск hardcoded legacy hex перед удалением старых токенов.</li></ol>
+</main>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>document.addEventListener('DOMContentLoaded',function(){if(window.lucide){window.lucide.createIcons({attrs:{'stroke-width':1.5}});}});</script>
+</body></html>

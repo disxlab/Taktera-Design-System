@@ -1,0 +1,1412 @@
+{
+  "name": "Taktera Brand Package",
+  "version": "3.2",
+  "date": "2026-10-18",
+  "files": [
+    {
+      "path": "01_brandbook/app-icon-sizes-dark.png",
+      "bytes": 86678,
+      "sha256": "c46bf15e04bcd6757f01db78655114975eba4fe9e9ca633e37d13301740f5159"
+    },
+    {
+      "path": "01_brandbook/app-icon-sizes.png",
+      "bytes": 82638,
+      "sha256": "615f6a7de368dee7abb7f952b31f9cf123b382175653b64337211db148dc1aed"
+    },
+    {
+      "path": "01_brandbook/product-family-ru.png",
+      "bytes": 71784,
+      "sha256": "ee2a506b3391c6ddc05588f950809d2a75edf024c0f58e630f9693761fd6dea5"
+    },
+    {
+      "path": "01_brandbook/product-family.png",
+      "bytes": 50074,
+      "sha256": "f3324e6f9d0d3e04f61af52885aabac1a1dec5d3807408814f170d146f5330d4"
+    },
+    {
+      "path": "01_brandbook/README.md",
+      "bytes": 229,
+      "sha256": "e34f8fa2f74d7954fcd20517ededaafc3cda26569f5c8f3c38c18b8b00ee305b"
+    },
+    {
+      "path": "01_brandbook/Taktera-brandbook-v3.2.pdf",
+      "bytes": 200872,
+      "sha256": "1cfb64211982cfe37b88a1f0878ad44ea8edc5ee597ea29a696e73513514f0b9"
+    },
+    {
+      "path": "02_logos/master/png/mark-dark.png",
+      "bytes": 3080,
+      "sha256": "0d208639ffe235fab7362d5206a42599ab36b794ad0388f1f17afa317219d509"
+    },
+    {
+      "path": "02_logos/master/png/mark-light.png",
+      "bytes": 3266,
+      "sha256": "eda4275d1665c145b38e0179c187ce2ccdc7f7b37678d1a785474e570908d86d"
+    },
+    {
+      "path": "02_logos/master/png/mark-mono-dark.png",
+      "bytes": 2677,
+      "sha256": "1ac0d1a29e290aa98136fe3b82c5020f848a8584c9036db4d387b756486afdbd"
+    },
+    {
+      "path": "02_logos/master/png/mark-mono-light.png",
+      "bytes": 2913,
+      "sha256": "91d0ef7265bc40219b3fb07532ab2201af9707a100f4630d4659c4ba85220130"
+    },
+    {
+      "path": "02_logos/master/png/taktera-dark.png",
+      "bytes": 12247,
+      "sha256": "f3a0efd57251ece284d66eb2354cb32ca48b01799dd6523078c4a1e1331907be"
+    },
+    {
+      "path": "02_logos/master/png/taktera-light.png",
+      "bytes": 12189,
+      "sha256": "91dd765ed5201a98d913b23f3c0a75ef8197480badc13e4a6ead6a9bedfe2cbb"
+    },
+    {
+      "path": "02_logos/master/svg/mark-dark.svg",
+      "bytes": 299,
+      "sha256": "d9b21430d81fcefe82994832fc71819e4a16ebef1161255c8cf892b162da068b"
+    },
+    {
+      "path": "02_logos/master/svg/mark-light.svg",
+      "bytes": 299,
+      "sha256": "6fedd0e56e333f4a44efb7bc80fb63d1f8e891adf84f7fc5695e317f1bf194b8"
+    },
+    {
+      "path": "02_logos/master/svg/mark-mono-dark.svg",
+      "bytes": 299,
+      "sha256": "29096016b90893cb64d1df0d1bb5c1a74837e0f5bf5f6f5421f40a5e0c79c23f"
+    },
+    {
+      "path": "02_logos/master/svg/mark-mono-light.svg",
+      "bytes": 299,
+      "sha256": "31c2fb7b9fd62163056d3b2728242c1bd764557c6090ebcd9dbe4b6dc2284159"
+    },
+    {
+      "path": "02_logos/master/svg/taktera-dark.svg",
+      "bytes": 3684,
+      "sha256": "81c7d93d81163c9bc6e548b87d7ec742ff60f923c64f4a7a2935201adb2b1ef5"
+    },
+    {
+      "path": "02_logos/master/svg/taktera-light.svg",
+      "bytes": 3684,
+      "sha256": "3d3797e6b38e60571ff87b1b091a4359ea6c54b40200c691455b6091260ece15"
+    },
+    {
+      "path": "02_logos/products/png/beauty-dark.png",
+      "bytes": 15393,
+      "sha256": "39a40c61affc0ddc7032f320d9f6e567e46d4be1b046f23ebdfd4f3c25076d28"
+    },
+    {
+      "path": "02_logos/products/png/beauty-light.png",
+      "bytes": 15585,
+      "sha256": "6da8231f0c251e4a09851cf3b371c20250033d9ef33eb69c4472f08f41d3652d"
+    },
+    {
+      "path": "02_logos/products/png/beauty-mark-dark.png",
+      "bytes": 3074,
+      "sha256": "d958ef2d93f18daa8c9bdcc5529bf011902f4ec563e82e2b3196fd3f031142ec"
+    },
+    {
+      "path": "02_logos/products/png/beauty-mark-light.png",
+      "bytes": 3266,
+      "sha256": "1620c63e0c214ebfbd4897edf978978909307a5a676fa1114c2717ae27801a06"
+    },
+    {
+      "path": "02_logos/products/png/clinic-dark.png",
+      "bytes": 11170,
+      "sha256": "6f03cc563f4feba7afb184813aa1a61b3dc4637f520c5ca19d21e433a1848d2b"
+    },
+    {
+      "path": "02_logos/products/png/clinic-light.png",
+      "bytes": 11820,
+      "sha256": "d836e687196e24327e82d9f3af38fe9c9bbdd46888fd9082aa4a10d8c8dff0f7"
+    },
+    {
+      "path": "02_logos/products/png/clinic-mark-dark.png",
+      "bytes": 2961,
+      "sha256": "a4cb93519a8efaab4319982364a6e29baa524f04b95d57af891665cd3d372587"
+    },
+    {
+      "path": "02_logos/products/png/clinic-mark-light.png",
+      "bytes": 3270,
+      "sha256": "3bb5de299ce573649965848761e76565144958193bf251b0b877f058560148b6"
+    },
+    {
+      "path": "02_logos/products/png/fitness-dark.png",
+      "bytes": 14317,
+      "sha256": "bb5604e60c339c79aa76bc865458989a8621ab7581a12b6a725c37cf36c45f90"
+    },
+    {
+      "path": "02_logos/products/png/fitness-light.png",
+      "bytes": 14869,
+      "sha256": "20ab73e60a1c6e343dadab1280340d82ee00dd0b23a6bee16bde90f4af3244d3"
+    },
+    {
+      "path": "02_logos/products/png/fitness-mark-dark.png",
+      "bytes": 2991,
+      "sha256": "4de67d0ff42e362bec04de241a55fa879413b88a3e0b076dd5ca34fccc757afa"
+    },
+    {
+      "path": "02_logos/products/png/fitness-mark-light.png",
+      "bytes": 3281,
+      "sha256": "4c67acbd32bb737fbfa0c0e2b8e3e4684dd59cb207fbd2442a61593c12286de9"
+    },
+    {
+      "path": "02_logos/products/png/platform-dark.png",
+      "bytes": 15815,
+      "sha256": "7d0d3a0f76b050534dac959123576b70b601aec72fe67f076c08b6ee2bec8a99"
+    },
+    {
+      "path": "02_logos/products/png/platform-light.png",
+      "bytes": 15934,
+      "sha256": "c52c0210bfda5da642f75f21a88a30cac8f8badc81b619cb2e6378de23fa223b"
+    },
+    {
+      "path": "02_logos/products/png/platform-mark-dark.png",
+      "bytes": 3080,
+      "sha256": "0d208639ffe235fab7362d5206a42599ab36b794ad0388f1f17afa317219d509"
+    },
+    {
+      "path": "02_logos/products/png/platform-mark-light.png",
+      "bytes": 3266,
+      "sha256": "eda4275d1665c145b38e0179c187ce2ccdc7f7b37678d1a785474e570908d86d"
+    },
+    {
+      "path": "02_logos/products/png/spa-dark.png",
+      "bytes": 10714,
+      "sha256": "fc16a8aed9b3febd3329278be8288b9f08e7dde281157ee2353906d490c8923b"
+    },
+    {
+      "path": "02_logos/products/png/spa-light.png",
+      "bytes": 10793,
+      "sha256": "4f507bccf4b57cbab1edc02a8d49da408fce9a17ac5ef5ed28b6f64a298d83af"
+    },
+    {
+      "path": "02_logos/products/png/spa-mark-dark.png",
+      "bytes": 3069,
+      "sha256": "38301722957f40ad650c0c07c892504e25cb4023fa4beef10a6969f39c567d0a"
+    },
+    {
+      "path": "02_logos/products/png/spa-mark-light.png",
+      "bytes": 3268,
+      "sha256": "1881de65e1bb4d402e253cf5706a28044d52844bdb6993b907bbd478a4200409"
+    },
+    {
+      "path": "02_logos/products/png/travel-dark.png",
+      "bytes": 12038,
+      "sha256": "ac9024de7a4e0b333aa00e21921b0b5d03aa56e01b9322feb06c296b59d9a0f2"
+    },
+    {
+      "path": "02_logos/products/png/travel-light.png",
+      "bytes": 12087,
+      "sha256": "2df9f6e03d5ba92a4c773456a506f1c7e582de48f46ae68acb802e2dad0b3acf"
+    },
+    {
+      "path": "02_logos/products/png/travel-mark-dark.png",
+      "bytes": 2996,
+      "sha256": "061e7924ddacc8e48eed86568383f325bc03c91092e7f6231c16ac3356097565"
+    },
+    {
+      "path": "02_logos/products/png/travel-mark-light.png",
+      "bytes": 3203,
+      "sha256": "6e9b3f2d2f55a01a2071bbe1492dc5c6bca2fc86adffbe5eeb42122527c147be"
+    },
+    {
+      "path": "02_logos/products/ru/png/beauty-ru-dark.png",
+      "bytes": 25396,
+      "sha256": "2a30e358023bf0117a4c3c71cc4a22095daa97f3a1585339983dc2273df6ac8f"
+    },
+    {
+      "path": "02_logos/products/ru/png/beauty-ru-light.png",
+      "bytes": 25312,
+      "sha256": "1951f193736fe177717ac81a805686f3a19a9120f1a08c158d6d9ddd56fdb9cc"
+    },
+    {
+      "path": "02_logos/products/ru/png/clinic-ru-dark.png",
+      "bytes": 22477,
+      "sha256": "02dc23beb7d97814b1144e5c2bfb88d37fb95896e42c7632ab1f197406967793"
+    },
+    {
+      "path": "02_logos/products/ru/png/clinic-ru-light.png",
+      "bytes": 23162,
+      "sha256": "ca69bb80716f8838bcbccca7c04459315187af5be8152d4314a65085decbccfc"
+    },
+    {
+      "path": "02_logos/products/ru/png/fitness-ru-dark.png",
+      "bytes": 22504,
+      "sha256": "af008ae92f503606d6924d55e2a67dc212cd27983dbd4af6825a7d0f50d43fea"
+    },
+    {
+      "path": "02_logos/products/ru/png/fitness-ru-light.png",
+      "bytes": 23231,
+      "sha256": "ce1c70d58d9e1e83b1b3bf5047c541d28d48814bcb40924d462fe4c773de1f42"
+    },
+    {
+      "path": "02_logos/products/ru/png/platform-ru-dark.png",
+      "bytes": 30686,
+      "sha256": "fcff761aed11775051f294c8f0c97097bddd83462a4c20af1611e232701de3c7"
+    },
+    {
+      "path": "02_logos/products/ru/png/platform-ru-light.png",
+      "bytes": 30466,
+      "sha256": "8ea6b9bc2292c8d71df665468b70cc7f0b52db103e8b4280d03e9e048a23055b"
+    },
+    {
+      "path": "02_logos/products/ru/png/spa-ru-dark.png",
+      "bytes": 18472,
+      "sha256": "cb640f42554fb6a86d1bc4039af05375063fb03fdae972b01be492c610d7a020"
+    },
+    {
+      "path": "02_logos/products/ru/png/spa-ru-light.png",
+      "bytes": 18308,
+      "sha256": "f684cc012f80686ef18fd8119e38be89b80dca04a3f469aaf97718f3ab83257f"
+    },
+    {
+      "path": "02_logos/products/ru/png/travel-ru-dark.png",
+      "bytes": 30033,
+      "sha256": "f40da0746f2073b8e6402c038e0984ae6cfe5bed3d0323a5627b417b962bc9c8"
+    },
+    {
+      "path": "02_logos/products/ru/png/travel-ru-light.png",
+      "bytes": 29732,
+      "sha256": "ada853b5bd552f03a925fec886e2c03e6740cacd06313b75fa5279df18b1b6a8"
+    },
+    {
+      "path": "02_logos/products/ru/README.md",
+      "bytes": 1821,
+      "sha256": "922ddaa0d3fd2dab5e4dab27b0b8be3a75bf882837ce740ab32439e392b81918"
+    },
+    {
+      "path": "02_logos/products/ru/svg/beauty-ru-dark.svg",
+      "bytes": 7507,
+      "sha256": "02c49dfe6500061fe2acb3dc92549ed1450d787fb030b4491b0eeea9642ee80b"
+    },
+    {
+      "path": "02_logos/products/ru/svg/beauty-ru-light.svg",
+      "bytes": 7507,
+      "sha256": "b9980bc73eae03c7610cd9f9f8cd5d8e337e9e7e52fdcc1c84352f001aeec693"
+    },
+    {
+      "path": "02_logos/products/ru/svg/clinic-ru-dark.svg",
+      "bytes": 5592,
+      "sha256": "58d12ed91d2feea297fa6589d8e3ce1a79888547763d98605bc4faeed2f5b668"
+    },
+    {
+      "path": "02_logos/products/ru/svg/clinic-ru-light.svg",
+      "bytes": 5592,
+      "sha256": "e03d101b08018cd6cb79ade61617342c1a833388bcd103ed42c790274e40a93a"
+    },
+    {
+      "path": "02_logos/products/ru/svg/fitness-ru-dark.svg",
+      "bytes": 5981,
+      "sha256": "fa1bb79d7d98af87675fea1ac878397064394e630c3ede8136800fe78026ab36"
+    },
+    {
+      "path": "02_logos/products/ru/svg/fitness-ru-light.svg",
+      "bytes": 5981,
+      "sha256": "49fe75e6c7c47594a81ddef920595f17d8a954cd97a7b04bdccb2db562473c60"
+    },
+    {
+      "path": "02_logos/products/ru/svg/platform-ru-dark.svg",
+      "bytes": 8304,
+      "sha256": "272fa8aaf0e2e9889226f30f9061cecf5f9922823fb13166537e6aebae27c9f7"
+    },
+    {
+      "path": "02_logos/products/ru/svg/platform-ru-light.svg",
+      "bytes": 8304,
+      "sha256": "0668a9550f54095acf9b163eaf80cb634bf7c5a0e75c09ec90da7e8e727a9d7b"
+    },
+    {
+      "path": "02_logos/products/ru/svg/spa-ru-dark.svg",
+      "bytes": 5327,
+      "sha256": "11c4e31b61101581d1ed75539ba94345d8feeaebb3bbfd8248259516f24946a8"
+    },
+    {
+      "path": "02_logos/products/ru/svg/spa-ru-light.svg",
+      "bytes": 5327,
+      "sha256": "01046929ae50e9ddba7aaf0fc82a159429ce4feb661338e424f5fb89738a6675"
+    },
+    {
+      "path": "02_logos/products/ru/svg/travel-ru-dark.svg",
+      "bytes": 7386,
+      "sha256": "8cf7f8d9de17ff9db488eebf22fd28e9c3bd43381d5db613563cdd5f48788e39"
+    },
+    {
+      "path": "02_logos/products/ru/svg/travel-ru-light.svg",
+      "bytes": 7386,
+      "sha256": "cb4188ed4d9c61df24a282ef22c6c34f2fc509b282ac8d0fbe9950b6f86743f1"
+    },
+    {
+      "path": "02_logos/products/svg/beauty-dark.svg",
+      "bytes": 3397,
+      "sha256": "ace99d6e2069d9366c809eca9d4540966db7222ed4b515eb7ea08e0c98ceaefe"
+    },
+    {
+      "path": "02_logos/products/svg/beauty-light.svg",
+      "bytes": 3397,
+      "sha256": "850cf11c34b6f9b2ab526ba42a735fb5d617990774acd4ca726fee7cdde46438"
+    },
+    {
+      "path": "02_logos/products/svg/beauty-mark-dark.svg",
+      "bytes": 299,
+      "sha256": "35e9784b7c31f4dbd57774df9432643444af0783df9031697d2782487952f7e3"
+    },
+    {
+      "path": "02_logos/products/svg/beauty-mark-light.svg",
+      "bytes": 299,
+      "sha256": "ad16c28a834e9b58f63fd1ae70174f700d4a4e69a393b40bc95200494bbe0a5b"
+    },
+    {
+      "path": "02_logos/products/svg/clinic-dark.svg",
+      "bytes": 2613,
+      "sha256": "c182afa23940d3ec53939f7aeaba151e9e1bbb182dfef6e25212f12db7b141c8"
+    },
+    {
+      "path": "02_logos/products/svg/clinic-light.svg",
+      "bytes": 2613,
+      "sha256": "b813d8da9025f18bec07ed6172801129ec817d9bb2b75dde1c341f9a4d01db58"
+    },
+    {
+      "path": "02_logos/products/svg/clinic-mark-dark.svg",
+      "bytes": 299,
+      "sha256": "eb415d89ed0f6fb213b7a2b6e93862d15b6e8ac16421e20cf51ac3a2f18b8f8f"
+    },
+    {
+      "path": "02_logos/products/svg/clinic-mark-light.svg",
+      "bytes": 299,
+      "sha256": "c918e6dfbc1ab3acfed7da21bca3a2738fc38e61daeeac3666461efb6d3f153e"
+    },
+    {
+      "path": "02_logos/products/svg/fitness-dark.svg",
+      "bytes": 3420,
+      "sha256": "9fa19203d3b8b050863725881a7573c9dafea99af9bd5d457fba102dc2f10375"
+    },
+    {
+      "path": "02_logos/products/svg/fitness-light.svg",
+      "bytes": 3420,
+      "sha256": "cacd9dab0f13fe8d1d7ba652c61c75c21a3d1f9049c140421610e73ee5cb9ca8"
+    },
+    {
+      "path": "02_logos/products/svg/fitness-mark-dark.svg",
+      "bytes": 299,
+      "sha256": "1f2e6d6039c443ae8ae3586cc0d93d5e955445ec63a7328ccf37211349eceb0a"
+    },
+    {
+      "path": "02_logos/products/svg/fitness-mark-light.svg",
+      "bytes": 299,
+      "sha256": "2b33ed3794f147bf686fa086d00a87150281f25ec8807f347a90026b90f92e01"
+    },
+    {
+      "path": "02_logos/products/svg/platform-dark.svg",
+      "bytes": 3909,
+      "sha256": "ef6f4b47ab6bf0e8e79e16b5023b2852602377a3cc1c6348e662a0587fc6d778"
+    },
+    {
+      "path": "02_logos/products/svg/platform-light.svg",
+      "bytes": 3909,
+      "sha256": "a7fdab19d7e285a82040b6c4a80f5cde05cfc558fee94f6910ce6af755c19df3"
+    },
+    {
+      "path": "02_logos/products/svg/platform-mark-dark.svg",
+      "bytes": 299,
+      "sha256": "d9b21430d81fcefe82994832fc71819e4a16ebef1161255c8cf892b162da068b"
+    },
+    {
+      "path": "02_logos/products/svg/platform-mark-light.svg",
+      "bytes": 299,
+      "sha256": "6fedd0e56e333f4a44efb7bc80fb63d1f8e891adf84f7fc5695e317f1bf194b8"
+    },
+    {
+      "path": "02_logos/products/svg/spa-dark.svg",
+      "bytes": 2438,
+      "sha256": "bee638300f1e556816e433ecfcecd26f2b82f470ccdba0abb62bceaefe75073b"
+    },
+    {
+      "path": "02_logos/products/svg/spa-light.svg",
+      "bytes": 2438,
+      "sha256": "ec5e281f3b900d46dc8ad14ef6a756a1b856a6eba5c004b763f69425e4c938a4"
+    },
+    {
+      "path": "02_logos/products/svg/spa-mark-dark.svg",
+      "bytes": 299,
+      "sha256": "4e98f43f7d217de55d9fc4683ddd6a1b4ee391df4b29c714e73dbace974e588e"
+    },
+    {
+      "path": "02_logos/products/svg/spa-mark-light.svg",
+      "bytes": 299,
+      "sha256": "5a08b36ff4f950a6973cf7c18dcd8d88336e0aa5ec3e7cc6760ed92946d7d39c"
+    },
+    {
+      "path": "02_logos/products/svg/travel-dark.svg",
+      "bytes": 2693,
+      "sha256": "e69abebaa88dcfd364e5485489182bda22d01e4227106a2d7fe94048721d1841"
+    },
+    {
+      "path": "02_logos/products/svg/travel-light.svg",
+      "bytes": 2693,
+      "sha256": "33057597e5dccb13118689bdfe2c72ad21cea3c8ca4aaab99bc669f4bd61a545"
+    },
+    {
+      "path": "02_logos/products/svg/travel-mark-dark.svg",
+      "bytes": 299,
+      "sha256": "ee5f1d9434629a2b02f44296aa5a2a1d7ee96b9e2d95860e622a278213cea44f"
+    },
+    {
+      "path": "02_logos/products/svg/travel-mark-light.svg",
+      "bytes": 299,
+      "sha256": "e418ac831d9148d18fd1300834cdab085777ec6ed413fdfd7f750196f7fe04a7"
+    },
+    {
+      "path": "03_icons/app/beauty-dark.ico",
+      "bytes": 12630,
+      "sha256": "5e0c6ffb858cc81d765bb406fcc2adc9966b6476e72f581f2774f1cfae8f3371"
+    },
+    {
+      "path": "03_icons/app/beauty-light.ico",
+      "bytes": 12651,
+      "sha256": "349cbc10c83497c4b48e81987dc89f2599846bb804340a9d7da56c3c5ac87af8"
+    },
+    {
+      "path": "03_icons/app/clinic-dark.ico",
+      "bytes": 12718,
+      "sha256": "f617a3eced048f925392838f1691a19d6c1b73c89eb4c4a97f46094c6ddfe2c5"
+    },
+    {
+      "path": "03_icons/app/clinic-light.ico",
+      "bytes": 12709,
+      "sha256": "4fe9e2b5ae848e9a40a69a1be6a71ceee07feb2b056f267340295827aca3c72f"
+    },
+    {
+      "path": "03_icons/app/fitness-dark.ico",
+      "bytes": 11537,
+      "sha256": "08573e16297b11c8e955369bb0f2e313c533c65236d86ed2ca6f9ed8eb6d33e2"
+    },
+    {
+      "path": "03_icons/app/fitness-light.ico",
+      "bytes": 11652,
+      "sha256": "c6f655d552b81d3bf6bcda840243cc86f32496ad3a5f330363aba635c0644578"
+    },
+    {
+      "path": "03_icons/app/micro/svg/beauty-dark.svg",
+      "bytes": 419,
+      "sha256": "25d3e34d2e66a3dc0b26a72b66a1109dfa1bf46fe516af856d9e1a160027f169"
+    },
+    {
+      "path": "03_icons/app/micro/svg/beauty-light.svg",
+      "bytes": 419,
+      "sha256": "75d62e86ff8ba4ce0ee2c753b7a0e19a2b528f36b202e9fa6ef23e7d3b194bcb"
+    },
+    {
+      "path": "03_icons/app/micro/svg/clinic-dark.svg",
+      "bytes": 419,
+      "sha256": "187a841b6ace62779ea2893ce5c7d42e5d3c4882559a627c6d5f2b920ec79cbe"
+    },
+    {
+      "path": "03_icons/app/micro/svg/clinic-light.svg",
+      "bytes": 419,
+      "sha256": "5c952cf432e4649be2057b19df303bb59a083007bc9e961561cacc9a18788d70"
+    },
+    {
+      "path": "03_icons/app/micro/svg/fitness-dark.svg",
+      "bytes": 417,
+      "sha256": "18c468e5eea26967c551084a715de1ac3b148e0e22458b50d5b489c9aff88dfc"
+    },
+    {
+      "path": "03_icons/app/micro/svg/fitness-light.svg",
+      "bytes": 417,
+      "sha256": "877b2936d8b515b76b79bcf3faa93bca49e0c097c375829e2fe5d9ea50a74b83"
+    },
+    {
+      "path": "03_icons/app/micro/svg/platform-dark.svg",
+      "bytes": 423,
+      "sha256": "3730d8a18d39a4d3d5c4a9554dde390345c2f744c5a674f6ec005091e07531ff"
+    },
+    {
+      "path": "03_icons/app/micro/svg/platform-light.svg",
+      "bytes": 423,
+      "sha256": "6c0faa29e311997774d12f0d272f233a6673a3709bdf6ecf8b21c0ed98e26d47"
+    },
+    {
+      "path": "03_icons/app/micro/svg/spa-dark.svg",
+      "bytes": 411,
+      "sha256": "7394803c1570140ed81405274978fef3e215260b5599a1518402d2357b9fa2f0"
+    },
+    {
+      "path": "03_icons/app/micro/svg/spa-light.svg",
+      "bytes": 411,
+      "sha256": "4df21b0369da475c65fc66d21257744b72c14f38f51301ef7d0f8a5be933a20d"
+    },
+    {
+      "path": "03_icons/app/micro/svg/travel-dark.svg",
+      "bytes": 427,
+      "sha256": "0d0f4d6b9bbe5ca473bf724ab797b2839dbf3e929d3ba2f477d8ff64d73a7689"
+    },
+    {
+      "path": "03_icons/app/micro/svg/travel-light.svg",
+      "bytes": 427,
+      "sha256": "a6550149f986b541f9e4968e2a797ecc02b049fa24a617d97f230a00b3e2ce00"
+    },
+    {
+      "path": "03_icons/app/platform-dark.ico",
+      "bytes": 12126,
+      "sha256": "fd42bb3e9021c064b8a29224d60cdc85abf27c49820740113d432eda574bceec"
+    },
+    {
+      "path": "03_icons/app/platform-light.ico",
+      "bytes": 12205,
+      "sha256": "500dc744b89a79e16adc255e69adc3c7786e6d43d8f1b8c45f5ce56faa5f47af"
+    },
+    {
+      "path": "03_icons/app/png/beauty-dark-1024.png",
+      "bytes": 42133,
+      "sha256": "26ea964f465af7d2f3d1f75d27436c65fd8bd2d960f0d3daa281ac0c4d838f03"
+    },
+    {
+      "path": "03_icons/app/png/beauty-dark-128.png",
+      "bytes": 2634,
+      "sha256": "eae06ea4f321ab508198193764e253b39e7e5cf0edc26323adf54951dd2384c8"
+    },
+    {
+      "path": "03_icons/app/png/beauty-dark-16.png",
+      "bytes": 351,
+      "sha256": "844e3ad53eeda70e55dbd067f314cba2839fd40366fc1625cd6123cb47d98156"
+    },
+    {
+      "path": "03_icons/app/png/beauty-dark-24.png",
+      "bytes": 487,
+      "sha256": "f9d54cbef6737b64959d22e90e3bc48c7cbb0bcf901968b6df3e8be6e06e8658"
+    },
+    {
+      "path": "03_icons/app/png/beauty-dark-256.png",
+      "bytes": 5935,
+      "sha256": "d526019c89d4608fd1cd0f2df8bd67479d4342a6b1d6d6c171739e7dce6714c4"
+    },
+    {
+      "path": "03_icons/app/png/beauty-dark-32.png",
+      "bytes": 697,
+      "sha256": "f76b5c04407c853bb65275a2b65628a9f5845880737a10eb41b50d82b159525e"
+    },
+    {
+      "path": "03_icons/app/png/beauty-dark-48.png",
+      "bytes": 1063,
+      "sha256": "5711d184a01b29bc941526360a9c033aed5ce4eeb9005cf9c8cbb032fb6d59ae"
+    },
+    {
+      "path": "03_icons/app/png/beauty-dark-512.png",
+      "bytes": 15562,
+      "sha256": "2a15d60771e6b970045aa2045127900f2c4d4ecf98d047939a32c38fdd2deab9"
+    },
+    {
+      "path": "03_icons/app/png/beauty-dark-64.png",
+      "bytes": 1345,
+      "sha256": "35c6a770aa91abb4413ea8c6da589c98f31037cbcd0e683162eb6e815190c65a"
+    },
+    {
+      "path": "03_icons/app/png/beauty-light-1024.png",
+      "bytes": 43863,
+      "sha256": "dbb9d46778a1807cad232ad8eeef274d97be079ae667eee4903dae567dd32cf8"
+    },
+    {
+      "path": "03_icons/app/png/beauty-light-128.png",
+      "bytes": 2633,
+      "sha256": "b41a14bdba8b1aa61bf8ff72a92fc75f4fd0641f865ddd2aebf5c4cb9dac73a4"
+    },
+    {
+      "path": "03_icons/app/png/beauty-light-16.png",
+      "bytes": 356,
+      "sha256": "44687629ff62cf2014344c0f8b93396e0442da42f8cbfbbaf0e6161b1875081a"
+    },
+    {
+      "path": "03_icons/app/png/beauty-light-24.png",
+      "bytes": 482,
+      "sha256": "4f4c870a22bff4f3b91cdb1fac1ad79c94c8fc22dd419c1490ea60e51cdee7ea"
+    },
+    {
+      "path": "03_icons/app/png/beauty-light-256.png",
+      "bytes": 5997,
+      "sha256": "89daf5f95734afba1062c0a041c0753d8fc44d8b1072e5e182af53508f7249f0"
+    },
+    {
+      "path": "03_icons/app/png/beauty-light-32.png",
+      "bytes": 692,
+      "sha256": "73b3421093fe5f760a1936552d6bc58817c468d954e094a8152a1b1984d57257"
+    },
+    {
+      "path": "03_icons/app/png/beauty-light-48.png",
+      "bytes": 1041,
+      "sha256": "6127ae20f637d7f0693957253fde98d87adc8c3670ec8877f6b661b385ac679f"
+    },
+    {
+      "path": "03_icons/app/png/beauty-light-512.png",
+      "bytes": 15952,
+      "sha256": "c3d18b6b2dff8b61d6a85f383518d30b4573504efb53530b338752ec1e4220c9"
+    },
+    {
+      "path": "03_icons/app/png/beauty-light-64.png",
+      "bytes": 1332,
+      "sha256": "6a54ed7e187347c60c0f659bf333ac2a2d5f5311f807bb63f87bd2aa591a3240"
+    },
+    {
+      "path": "03_icons/app/png/clinic-dark-1024.png",
+      "bytes": 43168,
+      "sha256": "70239b7eb8d100eafa0f4373d4620e80348510560c6ad9285c61accb39ddefdd"
+    },
+    {
+      "path": "03_icons/app/png/clinic-dark-128.png",
+      "bytes": 2657,
+      "sha256": "ef8ecd5a08856dbc686c76a044d24f0afd5277c26b0eb6c8ca860866da5d81f3"
+    },
+    {
+      "path": "03_icons/app/png/clinic-dark-16.png",
+      "bytes": 351,
+      "sha256": "9a226e7f2536bdb4b7c2dd542aaea32b518ca4e71a0ebf751e50aefb2274fcde"
+    },
+    {
+      "path": "03_icons/app/png/clinic-dark-24.png",
+      "bytes": 485,
+      "sha256": "8bd143fec8acdcf1083108e4fc842ab9a53fbef3ecae2ffc7ccad405bf0a58fd"
+    },
+    {
+      "path": "03_icons/app/png/clinic-dark-256.png",
+      "bytes": 6118,
+      "sha256": "4e44bb7d953eb1aef0c9755901ca139fc8f335fcca2e8eea514389d5d1cd1d96"
+    },
+    {
+      "path": "03_icons/app/png/clinic-dark-32.png",
+      "bytes": 672,
+      "sha256": "d3ef942975d196ef44f5fdea03c61cbb5846980d8fe9a1abb4c6bf7d48788e2e"
+    },
+    {
+      "path": "03_icons/app/png/clinic-dark-48.png",
+      "bytes": 1015,
+      "sha256": "146d7c183b79b3400181d6b62d82980e1593fd2e7e3755dafb430c1135f590d0"
+    },
+    {
+      "path": "03_icons/app/png/clinic-dark-512.png",
+      "bytes": 16104,
+      "sha256": "208c80a4b8001db025d6bcc7fb96cd4667bbe13db19c48fa7247f6e275c6d104"
+    },
+    {
+      "path": "03_icons/app/png/clinic-dark-64.png",
+      "bytes": 1302,
+      "sha256": "327cefa777738f64a85917052b1bdd8a3e6587e42e3364e5b6de3b30b3f069b2"
+    },
+    {
+      "path": "03_icons/app/png/clinic-light-1024.png",
+      "bytes": 44574,
+      "sha256": "b4a62bcf1220bc969a14f0feb000b8f6fa8819dc2979640d2933f454db732c42"
+    },
+    {
+      "path": "03_icons/app/png/clinic-light-128.png",
+      "bytes": 2639,
+      "sha256": "25bb11c4e753318051a858bc8d3c7e33bec05e3485b067c4e45c59d71f1664df"
+    },
+    {
+      "path": "03_icons/app/png/clinic-light-16.png",
+      "bytes": 356,
+      "sha256": "2831fba23f7585d17a1f8fd0ec6dbacada4488035aa71138e82fa16ce40ad923"
+    },
+    {
+      "path": "03_icons/app/png/clinic-light-24.png",
+      "bytes": 487,
+      "sha256": "a68cea4b188b830bfe2722091b27cca2783795c4302ed3f3e50f6bb50fa0f79c"
+    },
+    {
+      "path": "03_icons/app/png/clinic-light-256.png",
+      "bytes": 6131,
+      "sha256": "e7dcc764a4a28dd571a9174f312d105c7fa9bb7ef2891b54fef1eb7cd0c3c02f"
+    },
+    {
+      "path": "03_icons/app/png/clinic-light-32.png",
+      "bytes": 678,
+      "sha256": "602e22f3bff11b56fe48122528a7bf7479fec4377963599e80a681539e2c7f3d"
+    },
+    {
+      "path": "03_icons/app/png/clinic-light-48.png",
+      "bytes": 1002,
+      "sha256": "edc51b87f4ffd2c11b4136f1f2e9a8c90749900f9efd506b92a7695d8633bb00"
+    },
+    {
+      "path": "03_icons/app/png/clinic-light-512.png",
+      "bytes": 16375,
+      "sha256": "f628bd6ecef2ec0b0d8890d24b6af3d77d3a2b6abafbf48663f997db4421468a"
+    },
+    {
+      "path": "03_icons/app/png/clinic-light-64.png",
+      "bytes": 1298,
+      "sha256": "04cb93db48925064d6aa669451cf7a80721af11d135686c41512d4f78fbdd9df"
+    },
+    {
+      "path": "03_icons/app/png/fitness-dark-1024.png",
+      "bytes": 39995,
+      "sha256": "b620de7466140b2d1333b347400b39e78f03f0b00ffebbb591971a5dcc30d735"
+    },
+    {
+      "path": "03_icons/app/png/fitness-dark-128.png",
+      "bytes": 2358,
+      "sha256": "18fcbc7ecdb934a3f19a1e6958aaba6885e321cb08941f2e1ed4cf4ca2d45574"
+    },
+    {
+      "path": "03_icons/app/png/fitness-dark-16.png",
+      "bytes": 351,
+      "sha256": "a8e61712f1e1cf11ba7e98fc73258143af97d93298cebc3c0a14d484babf0240"
+    },
+    {
+      "path": "03_icons/app/png/fitness-dark-24.png",
+      "bytes": 485,
+      "sha256": "a64d1de4619e47d8cc3b9aa7ffaf7a5224d5988af4d577215669f559c49703e7"
+    },
+    {
+      "path": "03_icons/app/png/fitness-dark-256.png",
+      "bytes": 5434,
+      "sha256": "2303786cdaa113aa6105406537e325b432ef23d148c7565bb4a8b12534cdc19e"
+    },
+    {
+      "path": "03_icons/app/png/fitness-dark-32.png",
+      "bytes": 643,
+      "sha256": "244ab79c7637ac2f5d779cd8cd1acff969ac6c268e5ca559eaca950945da898a"
+    },
+    {
+      "path": "03_icons/app/png/fitness-dark-48.png",
+      "bytes": 942,
+      "sha256": "b330378de6ea9eea342ba706f97857f7cea658172f5591de1492543f639f5255"
+    },
+    {
+      "path": "03_icons/app/png/fitness-dark-512.png",
+      "bytes": 14609,
+      "sha256": "6572d37adb54d4b4a43d15bcdf31653cf7978acfed44b5416fa852fd8424bb83"
+    },
+    {
+      "path": "03_icons/app/png/fitness-dark-64.png",
+      "bytes": 1206,
+      "sha256": "0b702533d68b237451e12d0b5e0cf1065bda395bd224c542347fdeb6496fb961"
+    },
+    {
+      "path": "03_icons/app/png/fitness-light-1024.png",
+      "bytes": 41546,
+      "sha256": "b9837b7b28d27690fcfe6fdcb8fe02c5bc8bb9fa009a307b3203ad70d6b0a3d9"
+    },
+    {
+      "path": "03_icons/app/png/fitness-light-128.png",
+      "bytes": 2357,
+      "sha256": "ceee63dd5c5f42106914bd99c99d9c1355b711c33ff6fa88888470a3718d39e2"
+    },
+    {
+      "path": "03_icons/app/png/fitness-light-16.png",
+      "bytes": 352,
+      "sha256": "e8bf73d23063ffbc261947c6df21a669721aeace2f5dda9f04db3cda50d67c66"
+    },
+    {
+      "path": "03_icons/app/png/fitness-light-24.png",
+      "bytes": 483,
+      "sha256": "5b1d8a4f2d184cf2e3756c26a2146eac372b8e56bb971a85c1874d265153acf8"
+    },
+    {
+      "path": "03_icons/app/png/fitness-light-256.png",
+      "bytes": 5550,
+      "sha256": "bd9fb0643e977d7f9d7f02e1868232fd2875375d3e1d29babff05241a72d59a3"
+    },
+    {
+      "path": "03_icons/app/png/fitness-light-32.png",
+      "bytes": 650,
+      "sha256": "1c2491b8187e135dc52d0f5879d5b77f80a49add907e03fb6dead1d4c5a7d81a"
+    },
+    {
+      "path": "03_icons/app/png/fitness-light-48.png",
+      "bytes": 932,
+      "sha256": "bcac9eddd1fd805231661f9e3a7efdc11234b1ee2a687f3c302f1bae444fb0ea"
+    },
+    {
+      "path": "03_icons/app/png/fitness-light-512.png",
+      "bytes": 14956,
+      "sha256": "9315b52bb8dc9b258f3434c8f7d975c5d925e475c01e93c548fa0438c299f738"
+    },
+    {
+      "path": "03_icons/app/png/fitness-light-64.png",
+      "bytes": 1210,
+      "sha256": "18c8e1e26c9d7ec44db4262b3fd720848e26b134c2ded92ef327f98126407005"
+    },
+    {
+      "path": "03_icons/app/png/platform-dark-1024.png",
+      "bytes": 41472,
+      "sha256": "f86fdcfeb15c52714ada2a159517618702d43b86f3b277569f5a48825b3d5af4"
+    },
+    {
+      "path": "03_icons/app/png/platform-dark-128.png",
+      "bytes": 2501,
+      "sha256": "97f8915b2f96e487d90878859f3ccc6929e88abc3de223743303b0a349be232d"
+    },
+    {
+      "path": "03_icons/app/png/platform-dark-16.png",
+      "bytes": 351,
+      "sha256": "0b7156b2aa7caa6110f699458939a488332f6fafba7e6d720bbf0a6d58ed9ac8"
+    },
+    {
+      "path": "03_icons/app/png/platform-dark-24.png",
+      "bytes": 488,
+      "sha256": "b627293cb3d48e48efb2795f77e90fdd075bd5614aafa77edc55ad42e4ce1d67"
+    },
+    {
+      "path": "03_icons/app/png/platform-dark-256.png",
+      "bytes": 5735,
+      "sha256": "ffea9ab7dacedecc5fa88841d15f5d82b002bfb57e1947c6b426da6356f35fd4"
+    },
+    {
+      "path": "03_icons/app/png/platform-dark-32.png",
+      "bytes": 655,
+      "sha256": "077c2e67b7b97a6dcdc56f1110c911508f3facdb04f7af4178ecbfdba0174ae5"
+    },
+    {
+      "path": "03_icons/app/png/platform-dark-48.png",
+      "bytes": 1001,
+      "sha256": "ba6bb43b6364c9e0452aec694e589c6bf8de14a79770d0f377d3d1faa8430336"
+    },
+    {
+      "path": "03_icons/app/png/platform-dark-512.png",
+      "bytes": 15244,
+      "sha256": "93f8a688e4bf7ac36a9af3eb43faf8f377bf89cca31ebfe664481526258a697e"
+    },
+    {
+      "path": "03_icons/app/png/platform-dark-64.png",
+      "bytes": 1277,
+      "sha256": "bd445c066948283b279c4a633462289201d37b243697ba7ff920ef0826b6d815"
+    },
+    {
+      "path": "03_icons/app/png/platform-light-1024.png",
+      "bytes": 43084,
+      "sha256": "c22a534a91b74f3ff6cdc059b4df4ddd5fd4d29ab05c6cde1d173c71ad8ef76f"
+    },
+    {
+      "path": "03_icons/app/png/platform-light-128.png",
+      "bytes": 2503,
+      "sha256": "9e184d725e854fc4ad76b05b78576a8a78b9c0833511aeeec22c73bc394445b3"
+    },
+    {
+      "path": "03_icons/app/png/platform-light-16.png",
+      "bytes": 352,
+      "sha256": "19332bd7085b4596450b9b7fac0dc99ed63a8124593447bf937da7bdef6845a5"
+    },
+    {
+      "path": "03_icons/app/png/platform-light-24.png",
+      "bytes": 489,
+      "sha256": "414c0af242eb677ebc751d84d1bea525cc2b6453e8c17e0c8a07ac893281fe4c"
+    },
+    {
+      "path": "03_icons/app/png/platform-light-256.png",
+      "bytes": 5821,
+      "sha256": "b86311b91b2625b485a392e3844ae13a5520b6fa1a543b1850cb236e924cd12c"
+    },
+    {
+      "path": "03_icons/app/png/platform-light-32.png",
+      "bytes": 658,
+      "sha256": "7911f179b786dc20ed6ddfd7685c87ea322e829f3ae52bead2f5607e3a509c82"
+    },
+    {
+      "path": "03_icons/app/png/platform-light-48.png",
+      "bytes": 995,
+      "sha256": "599e2add973299bf97143edebf5f60b431e55a3631fcdd42f5caba0df430a85a"
+    },
+    {
+      "path": "03_icons/app/png/platform-light-512.png",
+      "bytes": 15669,
+      "sha256": "496776ade722e42304cf7610bf1ed876d0f987fa1872f6259579712a5cbf556c"
+    },
+    {
+      "path": "03_icons/app/png/platform-light-64.png",
+      "bytes": 1269,
+      "sha256": "dbd9e6141d98cb5089a19b04cb2c7e90d38f4f94988c306aafecf85f9d06082d"
+    },
+    {
+      "path": "03_icons/app/png/spa-dark-1024.png",
+      "bytes": 44212,
+      "sha256": "11c4370057a6be44b1a7d93fdebadc1b7b97ed39b0f72e9bc89e4954cefbe0e4"
+    },
+    {
+      "path": "03_icons/app/png/spa-dark-128.png",
+      "bytes": 2818,
+      "sha256": "f0d2bbd68b86133b8236496b1087d0bc0a7532a656ef45268409f6d4d4c7f32c"
+    },
+    {
+      "path": "03_icons/app/png/spa-dark-16.png",
+      "bytes": 350,
+      "sha256": "2eed3fbbe869eede514c8a0c61c7c683d65699f8943f89c8aa17f24d261b7970"
+    },
+    {
+      "path": "03_icons/app/png/spa-dark-24.png",
+      "bytes": 486,
+      "sha256": "56408c9e42770e62963dfa2b36112ee4b4248874022da02940f7b99622d55f2c"
+    },
+    {
+      "path": "03_icons/app/png/spa-dark-256.png",
+      "bytes": 6412,
+      "sha256": "3a54ab756bd23839b0d8af3727df6429cea08c3e10988a6b218edd697ce1a954"
+    },
+    {
+      "path": "03_icons/app/png/spa-dark-32.png",
+      "bytes": 679,
+      "sha256": "869c72b141fe45da174fe5e485e7f9d691ddf038a31e874e317be10b869ca29b"
+    },
+    {
+      "path": "03_icons/app/png/spa-dark-48.png",
+      "bytes": 1071,
+      "sha256": "f0c2ec9595b5a028f9fe8e19400bb0340f8896472843f3e098144ef7b365e1e6"
+    },
+    {
+      "path": "03_icons/app/png/spa-dark-512.png",
+      "bytes": 16548,
+      "sha256": "bded95d5db1bda6839defd33d0c75e45e335983c7f54b953afc18c7892af4772"
+    },
+    {
+      "path": "03_icons/app/png/spa-dark-64.png",
+      "bytes": 1383,
+      "sha256": "de568128d7d039b7f7b54244625b5b95b8f5bd0b620ce8f216c49c2cdd29cd60"
+    },
+    {
+      "path": "03_icons/app/png/spa-light-1024.png",
+      "bytes": 45909,
+      "sha256": "05d7ebde4daee422cea7ec10955fde01fb0715bfa7bf073562db1bf533b50d6d"
+    },
+    {
+      "path": "03_icons/app/png/spa-light-128.png",
+      "bytes": 2838,
+      "sha256": "5f8200a9963b137cea1ad71ca5dca68431218b2332f9e8546a7e873ff7bd0c66"
+    },
+    {
+      "path": "03_icons/app/png/spa-light-16.png",
+      "bytes": 355,
+      "sha256": "6c2b2881fcc3438a1d31b7f0992457477e6523bf5db48e29bd1217373730e4a9"
+    },
+    {
+      "path": "03_icons/app/png/spa-light-24.png",
+      "bytes": 492,
+      "sha256": "d1d6e079b823516d67de7aaa9fee00467ed78bedfcafeaadd6b3fc7eeaca9627"
+    },
+    {
+      "path": "03_icons/app/png/spa-light-256.png",
+      "bytes": 6537,
+      "sha256": "48bd12a75bb2a01bd9379b8bfe4394a276e9ad01afcb52438b42d500815d5042"
+    },
+    {
+      "path": "03_icons/app/png/spa-light-32.png",
+      "bytes": 688,
+      "sha256": "14badfaa812bdbc11194b66706675abc54e909a1cfffa27c5c1bcea69fee6418"
+    },
+    {
+      "path": "03_icons/app/png/spa-light-48.png",
+      "bytes": 1066,
+      "sha256": "268ba57a067c875a62a7b4ae9de1e53ede73b41dfce6ec3e120b9bc32d225f12"
+    },
+    {
+      "path": "03_icons/app/png/spa-light-512.png",
+      "bytes": 16977,
+      "sha256": "d9d485b4455f9a849aa62c585348ad273acf88940236927a00aa8fcdcb62a38e"
+    },
+    {
+      "path": "03_icons/app/png/spa-light-64.png",
+      "bytes": 1392,
+      "sha256": "e86d5a3ef66153b037a8893fcbbe6f8fbf649dadbbb342f89daed4344a2d0395"
+    },
+    {
+      "path": "03_icons/app/png/travel-dark-1024.png",
+      "bytes": 41842,
+      "sha256": "3439a7bb7d6b9cab560374264e97bcb4da6327f7bc07b66db0e4113c9dbecad6"
+    },
+    {
+      "path": "03_icons/app/png/travel-dark-128.png",
+      "bytes": 2555,
+      "sha256": "0d585e11ebca88ddaac91193212fcc9c3b99b3627ac33529b95feb2c90ef84fb"
+    },
+    {
+      "path": "03_icons/app/png/travel-dark-16.png",
+      "bytes": 351,
+      "sha256": "5684ad807879f59f5510f33582deea1502d5716d3358d5d344038aa70eac7839"
+    },
+    {
+      "path": "03_icons/app/png/travel-dark-24.png",
+      "bytes": 484,
+      "sha256": "1fd6b902de0fb6ad19057e2875ff9398a87505a1227eac9e4ea2af2551adaf7b"
+    },
+    {
+      "path": "03_icons/app/png/travel-dark-256.png",
+      "bytes": 5807,
+      "sha256": "bec76e3c8ef9085c1a86aa68926aacfbed52329c55b47635e61789170f66f066"
+    },
+    {
+      "path": "03_icons/app/png/travel-dark-32.png",
+      "bytes": 681,
+      "sha256": "8a16f42845f55d585cc6f787c6c837315c660b62f490bfe50cbfc55b37f0b0c7"
+    },
+    {
+      "path": "03_icons/app/png/travel-dark-48.png",
+      "bytes": 1010,
+      "sha256": "ddf51c6eb4b84d2be5d0c33d0c9172974340210224f172fd3562d9ae65c4740a"
+    },
+    {
+      "path": "03_icons/app/png/travel-dark-512.png",
+      "bytes": 15394,
+      "sha256": "d42aefae867a6172cf3e6ebd05a2b4bcb7248fe6fcf1c59ee90329ddfe5227e2"
+    },
+    {
+      "path": "03_icons/app/png/travel-dark-64.png",
+      "bytes": 1291,
+      "sha256": "bdaed2e14dead213378ea413b79ac5952e239c659763b92c7e5c9878709c2f9a"
+    },
+    {
+      "path": "03_icons/app/png/travel-light-1024.png",
+      "bytes": 43386,
+      "sha256": "04fe679ad106c2b3c9be37e62cdeff08f65c66dc4144dba6d75b752554cceed8"
+    },
+    {
+      "path": "03_icons/app/png/travel-light-128.png",
+      "bytes": 2567,
+      "sha256": "fb681498055c2a8b05db2505625e88285a495f09a0b76b5b2ec0c20a9b305134"
+    },
+    {
+      "path": "03_icons/app/png/travel-light-16.png",
+      "bytes": 356,
+      "sha256": "8332a3f7a088b5e74efb27cb1a489e98c7e96524b799027ab36466be43fd35cb"
+    },
+    {
+      "path": "03_icons/app/png/travel-light-24.png",
+      "bytes": 479,
+      "sha256": "1deea4132d2deffe9f623ee6255dd5fe476a92d3f5f29bbc9d6629f198b98524"
+    },
+    {
+      "path": "03_icons/app/png/travel-light-256.png",
+      "bytes": 5920,
+      "sha256": "aaf447b274e5667fc2825de41d1516e0d60bb6b695091ea9b51159c660fbec6a"
+    },
+    {
+      "path": "03_icons/app/png/travel-light-32.png",
+      "bytes": 677,
+      "sha256": "d4f27ecf5c731d7198140dc0b728b97b8346e5b5e3365679a2e4406a1516292e"
+    },
+    {
+      "path": "03_icons/app/png/travel-light-48.png",
+      "bytes": 996,
+      "sha256": "91259b58a70426c6a5151eb769b821ee5706744e740783ff8ad9e61e390ac2bd"
+    },
+    {
+      "path": "03_icons/app/png/travel-light-512.png",
+      "bytes": 15752,
+      "sha256": "bda808ec69abe9cd602591286389781602add30103bc5fcb3793c7f25359efc2"
+    },
+    {
+      "path": "03_icons/app/png/travel-light-64.png",
+      "bytes": 1290,
+      "sha256": "a8479d1575db06448849e40bc7dca8dc7be1573a80d580f75ef5b3c73da921dc"
+    },
+    {
+      "path": "03_icons/app/README.md",
+      "bytes": 2595,
+      "sha256": "3fceff62f9ea873e81603a8cd73d56fb8927044399f5730ec6c5aa13a30fecc7"
+    },
+    {
+      "path": "03_icons/app/spa-dark.ico",
+      "bytes": 13317,
+      "sha256": "83b68f815bccb614059f02a2477789ff789ae2f5f0ffc456001d333a0b7f4b48"
+    },
+    {
+      "path": "03_icons/app/spa-light.ico",
+      "bytes": 13486,
+      "sha256": "be4fb6161cf54e041c935113a73e17dc3c4aff44bf53d7ee91b6c0474a4263cf"
+    },
+    {
+      "path": "03_icons/app/svg/beauty-dark.svg",
+      "bytes": 1129,
+      "sha256": "38649e45ce7c5a9c75fd6441cdc616f5b32efe0314c8fad2f30176e08573fb47"
+    },
+    {
+      "path": "03_icons/app/svg/beauty-light.svg",
+      "bytes": 1129,
+      "sha256": "c0938836d4ba3884c7e122519437cf6885f30d70fa90ae90111a465713ff883a"
+    },
+    {
+      "path": "03_icons/app/svg/clinic-dark.svg",
+      "bytes": 1200,
+      "sha256": "a5ae9e532772dc48f800feb69c7de4ee6ca3d2a1a0fde21f3fd6a7bcde4e29c6"
+    },
+    {
+      "path": "03_icons/app/svg/clinic-light.svg",
+      "bytes": 1200,
+      "sha256": "1f0f87a2d803eb345e3d6ecaee779ed67f3cbc8cefccd2051fac6bfb08057584"
+    },
+    {
+      "path": "03_icons/app/svg/fitness-dark.svg",
+      "bytes": 650,
+      "sha256": "6b925e6f27e335db2751bcd82024252de6c0fd68a838147026e2d26d87aa29c0"
+    },
+    {
+      "path": "03_icons/app/svg/fitness-light.svg",
+      "bytes": 650,
+      "sha256": "f0d45d321e416a8355e60caad0b30a9703dafc706598c03aa55a92077c47f750"
+    },
+    {
+      "path": "03_icons/app/svg/platform-dark.svg",
+      "bytes": 893,
+      "sha256": "c49d55e624c63279ae7c5ec20b6a95fd0f6f7d33c1a346910198672f20499255"
+    },
+    {
+      "path": "03_icons/app/svg/platform-light.svg",
+      "bytes": 893,
+      "sha256": "735816e42f74ca3309f45345cdb8b15c7f061d2cabdcf7e1ebc3e6c7800e94bb"
+    },
+    {
+      "path": "03_icons/app/svg/spa-dark.svg",
+      "bytes": 1571,
+      "sha256": "ae954e5f46d70f7ff699a495279bce728932c57921d23723d405be37b50caa0b"
+    },
+    {
+      "path": "03_icons/app/svg/spa-light.svg",
+      "bytes": 1571,
+      "sha256": "970a4dff9114c90fa525f7dcb59b82f3429ad138a2fa4da470fb32bc59529ea1"
+    },
+    {
+      "path": "03_icons/app/svg/travel-dark.svg",
+      "bytes": 938,
+      "sha256": "abe73c362ddc32696d7be6635971a553f15fe347d7d0cbfdf99fe3fd3380b474"
+    },
+    {
+      "path": "03_icons/app/svg/travel-light.svg",
+      "bytes": 938,
+      "sha256": "05c47a2269a1048f72a7bad6aa7f1b994ee98677ca2920db51691ccadc86b027"
+    },
+    {
+      "path": "03_icons/app/travel-dark.ico",
+      "bytes": 12297,
+      "sha256": "6fde08beb8a12a117b9a90fc9b5bbc4d09acf00f6346b04afd3e3ef4061c9307"
+    },
+    {
+      "path": "03_icons/app/travel-light.ico",
+      "bytes": 12403,
+      "sha256": "9c5e2bb22d39573a1de0d70a41ac8c66e91bb8df735a259982356e0899ed6786"
+    },
+    {
+      "path": "03_icons/ui/lucide-icon-map.json",
+      "bytes": 1850,
+      "sha256": "bb5cee91338baeb9b362fb89c8fa8db7e8f5f50335db93987cbf49bd8939ca48"
+    },
+    {
+      "path": "03_icons/ui/lucide-registry.tsx",
+      "bytes": 1952,
+      "sha256": "6ea588f9ca1f241ce00b093ef94c43303f690722225abe8f633f6f74e8771d17"
+    },
+    {
+      "path": "03_icons/ui/README.md",
+      "bytes": 618,
+      "sha256": "e64588769b14708d5253752f88ca39807a558563a53207a88162b0a99ea0e435"
+    },
+    {
+      "path": "04_tokens/taktera.tokens.css",
+      "bytes": 3075,
+      "sha256": "d4127d52a22852d1b50250812e1f38f616d7ecba6d6552d036048cb9401a829d"
+    },
+    {
+      "path": "04_tokens/taktera.tokens.json",
+      "bytes": 2719,
+      "sha256": "60cc55d90fc1806c28e18fd6bce16df24fc68d570a57159bed8a5a77e42fce44"
+    },
+    {
+      "path": "05_typography/Inter-Bold.ttf",
+      "bytes": 342932,
+      "sha256": "825150646b65f308790f050fd7ebe478a2eb8cdf9063726c5d2ef8f2591016b5"
+    },
+    {
+      "path": "05_typography/Inter-Regular.ttf",
+      "bytes": 341520,
+      "sha256": "a4a50d166625f0684e02b1e2e7775a52d70e4814e73a936669d70e63cc1d6760"
+    },
+    {
+      "path": "05_typography/Inter-SemiBold.ttf",
+      "bytes": 342528,
+      "sha256": "721e5229a0eff1bf98d2ea1ffbbc3e1bc81b2de2f3d9201c439f8546d71cf44c"
+    },
+    {
+      "path": "05_typography/Inter-Variable.ttf",
+      "bytes": 876576,
+      "sha256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031"
+    },
+    {
+      "path": "05_typography/OFL.txt",
+      "bytes": 4377,
+      "sha256": "5b9321a4298cfeb6b34354164a1c3afc3db114569984c502b9b35d988fd58c57"
+    },
+    {
+      "path": "05_typography/README.md",
+      "bytes": 454,
+      "sha256": "fa3a48bc8522059c79a931a8c5b65fa6cbbb732bf9307afd442dee0a2a4ab4e6"
+    },
+    {
+      "path": "06_templates/business-card-front.png",
+      "bytes": 17264,
+      "sha256": "77e9bd6692ec295fcd3bce52c9fae61128e98ffd51b2157c702ff92465cb1aa4"
+    },
+    {
+      "path": "06_templates/business-card-front.svg",
+      "bytes": 3807,
+      "sha256": "1501b82a8cee8782aa8802d05229db3d47b61ab84cad8b7c699e4196c3dc0b9e"
+    },
+    {
+      "path": "06_templates/email-header.png",
+      "bytes": 7751,
+      "sha256": "f3b322c76617c82217ff3f8d13f993927a10399e5f94dec497798743d8d3ab36"
+    },
+    {
+      "path": "06_templates/email-header.svg",
+      "bytes": 2739,
+      "sha256": "d3eba20d818d8ff4d46cefcb6b77cce745921ab85e7c3ce964265d38f85ef4a6"
+    },
+    {
+      "path": "06_templates/opengraph-1200x630.png",
+      "bytes": 24184,
+      "sha256": "6dd8c348a80d90969177666668b3ed587cb13fd49f4753b5d0f582271f71dd3b"
+    },
+    {
+      "path": "06_templates/opengraph-1200x630.svg",
+      "bytes": 3824,
+      "sha256": "f32f5755a184bcdd7edcfbbb0247e902d2065d2ea90837cc34a4be57251fe885"
+    },
+    {
+      "path": "07_migration/IMPLEMENTATION-MAP.md",
+      "bytes": 2294,
+      "sha256": "85ae505b492bd40d9480e84511af8e588926b007ca9ca64a4914965994ee9d6e"
+    },
+    {
+      "path": "08_reference/final-selected-concept.png",
+      "bytes": 1643038,
+      "sha256": "c1288139e47f3150737df84289a8c927f8d3e24b9f1d86bb581e0bd4c6476990"
+    },
+    {
+      "path": "08_reference/previous-v2.2-source.txt",
+      "bytes": 27934,
+      "sha256": "06b6c379d0c58ac81da5eff5791ba37d5f60b053e627191ab139d18466f8fa16"
+    },
+    {
+      "path": "08_reference/README.md",
+      "bytes": 707,
+      "sha256": "41260bb78e815af98469519ed763658c0bed637aef901e42ce925ccc576c7fcf"
+    },
+    {
+      "path": "09_source/build_revision.py",
+      "bytes": 23793,
+      "sha256": "cac232cdda5446643e647cea7cf5ac9d329bdcda7ef0d1d5ba466786bdcf345b"
+    },
+    {
+      "path": "09_source/check_documentation.cjs",
+      "bytes": 3587,
+      "sha256": "9373e5df61e20870d707d9a0f39f180ed49f04d25a1e3011190f5f935b19843e"
+    },
+    {
+      "path": "09_source/check_package.py",
+      "bytes": 4884,
+      "sha256": "9227006017fd1af0c2ef8b48b10e639e9816de085d0d18729cd588c3aad3c099"
+    },
+    {
+      "path": "09_source/complete_documentation.py",
+      "bytes": 51659,
+      "sha256": "c07859805d3f1726310a2c5e0095ef3ad02993e0eea6977d7b6cf30eb2e349a7"
+    },
+    {
+      "path": "09_source/README.md",
+      "bytes": 1808,
+      "sha256": "bf38bf7ee4cb308f31eda22d5f3b89d609f64e3831a0077f02eccfa82bfa9359"
+    },
+    {
+      "path": "09_source/render_brandbook.cjs",
+      "bytes": 3864,
+      "sha256": "ae4846d000e9d88911ec2e622931b8ce8234bae686bf8bb95c7a671c01d539c1"
+    },
+    {
+      "path": "10_documentation/01-brand-decisions.md",
+      "bytes": 4759,
+      "sha256": "347b005cd6e5fea1f2a8deec600e6a720d90d533e79831f0cef8ed252cc15bee"
+    },
+    {
+      "path": "10_documentation/02-logo-standard.md",
+      "bytes": 4182,
+      "sha256": "2d6afc6cbb11c295211ac00826594c3fb0377cbd35c7fc8363cd405a85746401"
+    },
+    {
+      "path": "10_documentation/03-color-and-themes.md",
+      "bytes": 5028,
+      "sha256": "fc4de3eaf417bfe05758c1cb5307ceed0471bcc5ebc90b59cfdb7a782f4f0ab1"
+    },
+    {
+      "path": "10_documentation/04-type-ui-and-content.md",
+      "bytes": 3890,
+      "sha256": "930e22d512fc514b099039de942850b99de4136cda0f7094fec2486f40dd254d"
+    },
+    {
+      "path": "10_documentation/05-developer-handoff.md",
+      "bytes": 5401,
+      "sha256": "97b5b0e8d7c869a3fd300063229e1e2f7f0ee053e507b9d76c2e43dc534970c0"
+    },
+    {
+      "path": "10_documentation/06-designer-and-print-handoff.md",
+      "bytes": 3855,
+      "sha256": "f1ad0b159e3f77486c2df510f503c3d366502314d569cf6307e37dcf9fc66553"
+    },
+    {
+      "path": "10_documentation/07-assets-and-maintenance.md",
+      "bytes": 3541,
+      "sha256": "3e5549fcdce56be51f756f7b731cbc5fa371417e51f5624480d6b410eecd650a"
+    },
+    {
+      "path": "10_documentation/08-release-checklist.md",
+      "bytes": 3855,
+      "sha256": "02071fe0cbbc57926dffd5301be49ea108c7350b3a6225360010759f7982ae3b"
+    },
+    {
+      "path": "10_documentation/09-localization-and-app-labels.md",
+      "bytes": 2644,
+      "sha256": "d3fde1e393da48a6df2703598e7c53e6016b8e06cc3d7ee7de7464b9a4167432"
+    },
+    {
+      "path": "10_documentation/ASSET-CATALOG.csv",
+      "bytes": 14058,
+      "sha256": "da2e8dec314640d728db89cc21d76a0366bdad9b3f294435ee65e9de9167199c"
+    },
+    {
+      "path": "10_documentation/COLOR-CONTRAST.json",
+      "bytes": 7474,
+      "sha256": "50c4e7a8e43cc8b8f60e771749d89b1462fd7c582f2f0e657b6ce1fa700cfa9b"
+    },
+    {
+      "path": "10_documentation/FULL-DOCUMENTATION.md",
+      "bytes": 37410,
+      "sha256": "cdf3ba637f613db36416d41d1208f1f122e4287094b12cba1f65fc2f1d4e6850"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 2435,
+      "sha256": "5762c47b32f70f8f96298aa8db40e875a7136a713aafec0e68ea2157a2fb7b88"
+    },
+    {
+      "path": "DOCUMENTATION-VALIDATION.json",
+      "bytes": 560,
+      "sha256": "65498c2a2ae0bd98919ca6116cb1a43314e5e77c0c55f52b5e3850d3c4d823c7"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2795,
+      "sha256": "ffc63e712de0a99094c4e56d2d1ddecb541fedadb94ab7166b1b5cf6d36f8512"
+    },
+    {
+      "path": "START-HERE.html",
+      "bytes": 48407,
+      "sha256": "d0e63f90bb34e7c62c1d028a154165fcf11116e77c310d78cb4c8cb85db85a65"
+    },
+    {
+      "path": "Taktera-brandbook-v3.2.html",
+      "bytes": 39682,
+      "sha256": "611385a88ea6281d5926a0cd247dcb3135a30717cf5806f4a087961c279eaf0b"
+    },
+    {
+      "path": "VALIDATION.json",
+      "bytes": 987,
+      "sha256": "1ce075907a241def12839dc51b9d46cdcb590fa153afdf4e341c79e0ec222082"
+    }
+  ]
+}

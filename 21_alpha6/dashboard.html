@@ -1,0 +1,1766 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Taktera · Project Board Beta Readiness 4</title><link rel="stylesheet" href="dashboard.css"></head><body><div class="layout"><aside class="sidebar"><div class="brand"><span class="sig">T<span style="color:#b3b8d6">•</span></span> taktera</div><nav aria-label="Разделы"><a class="side-link active" href="dashboard.html">◫ &nbsp; Доска проекта</a><a class="side-link" href="../22_alpha7/index.html">▦ &nbsp; Advanced UI Kit</a><a class="side-link" href="studio.html">◈ &nbsp; Design Studio</a><a class="side-link" href="../START-HERE.html">↗ &nbsp; Весь пакет</a></nav><div class="side-note">DESIGN SYSTEM<br>v4.0 · Beta Readiness 4<br><br>Локальная рабочая доска.<br>Экспортируйте JSON для переноса и резервного копирования.</div></aside><main class="content"><div class="top"><div><span class="eyebrow">Taktera / Workspace / Release management</span><h1>Доска развития проекта</h1><p class="desc">Задачи, приоритеты, блокировки, этапы и история решений в одном месте.</p></div><div class="actions"><a class="btn" href="studio.html">Открыть Studio ↗</a><button id="export">↓ Экспорт JSON</button><button id="import">↑ Импорт JSON</button><button id="issueImport">↑ Снимок GitHub Issues</button><input type="file" id="issueFile" accept=".json,application/json" hidden><button class="primary" id="add">+ Новая задача</button><input type="file" id="importFile" accept=".json,application/json" hidden></div></div><div class="alert" role="note">Данные автоматически сохраняются только в этом браузере. Для переноса между устройствами используйте «Экспорт JSON» и «Импорт JSON». Это не облачная синхронизация. Снимок GitHub Issues хранится отдельно; удалённые задачи исходного плана не восстанавливаются автоматически.</div><section class="kpis" id="kpis" aria-label="Статистика проекта"></section><div class="top"><h2 class="section-title">Задачи и контроль статусов</h2><div class="tabs" role="group" aria-label="Вид задач"><button id="kanbanTab" class="active" aria-pressed="true">Kanban</button><button id="listTab" aria-pressed="false">Список</button></div></div><div class="filters"><input id="search" type="search" placeholder="Поиск по задачам, ID и описаниям…" aria-label="Поиск задач"><select id="phase" aria-label="Этап"><option value="">Все этапы</option></select><select id="priority" aria-label="Приоритет"><option value="">Любой приоритет</option><option>P0</option><option>P1</option><option>P2</option></select><select id="statusFilter" aria-label="Статус"><option value="">Любой статус</option><option value="planned">Запланировано</option><option value="in_progress">В работе</option><option value="blocked">Заблокировано</option><option value="deferred">Отложено</option><option value="done">Завершено</option></select><button id="clearFilters">Сбросить фильтры</button></div><section id="kanban" class="board" aria-label="Канбан-доска"></section><section id="listView" class="panel hidden" aria-label="Список задач"><div class="table-wrap"><table class="table"><thead><tr><th>ID</th><th>Задача</th><th>Этап</th><th>Приоритет</th><th>Статус</th><th>Зависимости</th></tr></thead><tbody id="rows"></tbody></table></div></section><h2 class="section-title">Прогресс этапов</h2><section class="milestones" id="milestones"></section><div class="top"><h2 class="section-title">Журнал изменений</h2><div class="actions"><button id="exportCSV">↓ Задачи CSV</button><button id="reset" class="danger">Сбросить к исходному плану</button></div></div><section class="panel" id="history" aria-label="История изменений"></section><p class="foot">Источник начальных статусов: Alpha.5 ROADMAP-TO-BETA.md и подтверждённые результаты предыдущих выпусков. «Завершено» означает выполненный артефакт этапа, а не production-сертификацию.</p></main></div><dialog id="editor"><form id="taskForm" novalidate><div class="modal-head"><strong id="modalTitle">Редактирование задачи</strong><button type="button" id="closeModal" aria-label="Закрыть">✕</button></div><div class="modal-body"><div class="field wide"><label for="title">Название задачи *</label><input id="title" required maxlength="160"></div><div class="field"><label for="taskPhase">Этап</label><select id="taskPhase"></select></div><div class="field"><label for="taskPriority">Приоритет</label><select id="taskPriority"><option>P0</option><option>P1</option><option>P2</option></select></div><div class="field"><label for="taskStatus">Статус</label><select id="taskStatus"><option value="planned">Запланировано</option><option value="in_progress">В работе</option><option value="blocked">Заблокировано</option><option value="deferred">Отложено</option><option value="done">Завершено</option></select></div><div class="field"><label for="owner">Исполнитель</label><input id="owner" placeholder="Не назначен"></div><div class="field"><label for="due">Срок (если согласован)</label><input id="due" type="date"></div><div class="field"><label for="deps">Зависимости (ID через запятую)</label><input id="deps" placeholder="DS-007, DS-008"></div><div class="field wide"><label for="description">Описание / критерии готовности</label><textarea id="description" rows="4"></textarea></div><div class="field wide"><label for="note">Комментарий в журнал изменений</label><input id="note" placeholder="Что изменилось и почему"></div><div class="field wide"><span class="hint" id="editorHint"></span><p id="issueDetail"></p></div></div><div class="modal-foot"><button type="button" id="deleteTask" class="danger">Удалить</button><button type="button" id="cancel">Отмена</button><button class="primary" type="submit">Сохранить</button></div></form></dialog><div id="toast" class="toast hidden" role="status" aria-live="polite"></div><script id="seed" type="application/json">
+{
+  "schemaVersion": 1,
+  "project": "Taktera Design System",
+  "release": "4.0-beta-readiness.7",
+  "referenceDate": "2026-11-28",
+  "statuses": [
+    "planned",
+    "in_progress",
+    "blocked",
+    "deferred",
+    "done"
+  ],
+  "phases": [
+    "Foundation",
+    "Alpha.6",
+    "Alpha.7",
+    "Alpha.8",
+    "Alpha.9",
+    "Beta gates",
+    "Beta Readiness 1",
+    "Beta Readiness 2",
+    "Beta Readiness 3",
+    "Beta Readiness 4",
+    "Beta Readiness 5",
+    "Beta Readiness 6",
+    "Beta Readiness 7",
+    "Release milestones",
+    "Beta Readiness 8",
+    "Beta Readiness 9"
+  ],
+  "tasks": [
+    {
+      "id": "DS-001",
+      "title": "Сохранение фирменных оригиналов v3.2",
+      "phase": "Foundation",
+      "priority": "P0",
+      "status": "done",
+      "description": "Утверждённые бренд-ресурсы не заменяются экспериментами.",
+      "dependencies": [],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-22"
+    },
+    {
+      "id": "DS-002",
+      "title": "Семантические UI-токены v3.3",
+      "phase": "Foundation",
+      "priority": "P0",
+      "status": "done",
+      "description": "Базовые статусы, границы и темы подготовлены.",
+      "dependencies": [],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-22"
+    },
+    {
+      "id": "DS-003",
+      "title": "Отраслевой HTML-прототип для 6 продуктов",
+      "phase": "Foundation",
+      "priority": "P1",
+      "status": "done",
+      "description": "6 продуктов × светлая/тёмная тема.",
+      "dependencies": [],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-22"
+    },
+    {
+      "id": "DS-004",
+      "title": "Базовая Web Core библиотека",
+      "phase": "Foundation",
+      "priority": "P0",
+      "status": "done",
+      "description": "npm-архив Alpha.5 установлен в независимый офлайн-проект.",
+      "dependencies": [],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-22"
+    },
+    {
+      "id": "DS-005",
+      "title": "RU/EN таблицы и диалоги",
+      "phase": "Foundation",
+      "priority": "P1",
+      "status": "done",
+      "description": "Проверено для ограниченного набора UI-компонентов; не вся локализация продукта.",
+      "dependencies": [],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-22"
+    },
+    {
+      "id": "DS-006",
+      "title": "Регрессия Web Core Alpha.5",
+      "phase": "Foundation",
+      "priority": "P0",
+      "status": "done",
+      "description": "Задокументированы 53+29+19 браузерных и 274 статических проверки; не заменяют production QA.",
+      "dependencies": [],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-22"
+    },
+    {
+      "id": "DS-007",
+      "title": "Design Tokens 2.0 — архитектура и слой алиасов",
+      "phase": "Alpha.6",
+      "priority": "P0",
+      "status": "done",
+      "description": "Поставлена расширяемая семантическая надстройка с DTCG JSON и CSS, исходные значения сохранены.",
+      "dependencies": [
+        "DS-002"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-22"
+    },
+    {
+      "id": "DS-008",
+      "title": "Интерактивный проектный Dashboard",
+      "phase": "Alpha.6",
+      "priority": "P0",
+      "status": "done",
+      "description": "Kanban, редактирование, фильтры, журнал, экспорт/импорт JSON, локальное хранение.",
+      "dependencies": [],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-22",
+      "githubIssue": 8
+    },
+    {
+      "id": "DS-009",
+      "title": "Design System Studio — MVP",
+      "phase": "Alpha.6",
+      "priority": "P0",
+      "status": "done",
+      "description": "Продукты, темы, образцы компонентов, доступность и экспорт CSS пользовательских настроек.",
+      "dependencies": [
+        "DS-007"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-22"
+    },
+    {
+      "id": "DS-010",
+      "title": "Даты, валюты и множественное число RU/EN",
+      "phase": "Alpha.6",
+      "priority": "P1",
+      "status": "done",
+      "description": "RU/EN Intl: форматирование даты, времени, числа, процента, RUB/USD и pluralRules; 15 тестовых утверждений. Реальные бизнес-правила локали уточняются в пилоте.",
+      "dependencies": [
+        "DS-005"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "DS-011",
+      "title": "Расширенный токен-пайплайн для Web/Avalonia",
+      "phase": "Alpha.6",
+      "priority": "P1",
+      "status": "done",
+      "description": "Один JSON-источник для генерации Web CSS и 12 словарей ресурсов Avalonia; проверено детерминированное повторное создание файлов, без нативной компиляции.",
+      "dependencies": [
+        "DS-007"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "DS-012",
+      "title": "Спецификация типографики, сетки и плотности",
+      "phase": "Alpha.6",
+      "priority": "P1",
+      "status": "done",
+      "description": "Добавлены шкалы типографики, отступов, радиусов и comfortable/compact для Web/Avalonia; остаётся проверка в реальных UI.",
+      "dependencies": [],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "DS-013",
+      "title": "Advanced Tables / Data Grid",
+      "phase": "Alpha.7",
+      "priority": "P0",
+      "status": "done",
+      "description": "Виртуализация, состояния, выборка, массовые действия, accessibility. Прототип Alpha.7 реализован и проходит автоматические сценарии; интеграция в production не проводилась.",
+      "dependencies": [
+        "DS-007"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "DS-014",
+      "title": "Расписание и календари ресурсов",
+      "phase": "Alpha.7",
+      "priority": "P0",
+      "status": "done",
+      "description": "Слоты, конфликты, ресурсы, клавиатура, часовые пояса. Прототип Alpha.7 реализован и проходит автоматические сценарии; интеграция в production не проводилась.",
+      "dependencies": [
+        "DS-007"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "DS-015",
+      "title": "Сложные формы и мастера",
+      "phase": "Alpha.7",
+      "priority": "P1",
+      "status": "done",
+      "description": "Validation, autosave, multi-step, error summary. Прототип Alpha.7 реализован и проходит автоматические сценарии; интеграция в production не проводилась.",
+      "dependencies": [],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "DS-016",
+      "title": "KPI и data visualization",
+      "phase": "Alpha.7",
+      "priority": "P0",
+      "status": "done",
+      "description": "Цветовая семантика, финансы, периоды, пустые состояния. Прототип Alpha.7 реализован и проходит автоматические сценарии; интеграция в production не проводилась.",
+      "dependencies": [],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "DS-017",
+      "title": "Отраслевые сценарии Clinic / Beauty / Spa",
+      "phase": "Alpha.7",
+      "priority": "P1",
+      "status": "in_progress",
+      "description": "Спецификации пользовательских процессов, без медицинских допущений. Общие компоненты доступны с переключением продуктовых ресурсов; отраслевые процессы и полномасштабные сценарии ещё не завершены.",
+      "dependencies": [
+        "DS-013",
+        "DS-014"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "DS-018",
+      "title": "Отраслевые сценарии Fitness / Travel / Platform",
+      "phase": "Alpha.7",
+      "priority": "P1",
+      "status": "in_progress",
+      "description": "Шесть продуктов, единая архитектура. Общие компоненты доступны с переключением продуктовых ресурсов; отраслевые процессы и полномасштабные сценарии ещё не завершены.",
+      "dependencies": [
+        "DS-013",
+        "DS-014"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "DS-019",
+      "title": "Studio: интерактивная документация компонентов",
+      "phase": "Alpha.8",
+      "priority": "P1",
+      "status": "done",
+      "description": "Интерактивный каталог восьми компонентных сценариев, настройка вариантов, живые превью, RU/EN, подсказки по API и копирование безопасного исходного кода. Реализовано в Alpha.8.",
+      "dependencies": [
+        "DS-009"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "DS-020",
+      "title": "Studio: визуальные эталоны и сравнение версий",
+      "phase": "Alpha.8",
+      "priority": "P1",
+      "status": "in_progress",
+      "description": "Созданы и автоматически сопоставляются 48 эталонов Chromium; исторические эталоны по релизам и Firefox/Safari ещё не подтверждены.",
+      "dependencies": [
+        "DS-009"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-23",
+      "githubIssue": 6
+    },
+    {
+      "id": "DS-021",
+      "title": "Стандарты Lucide и продуктовых иконок",
+      "phase": "Alpha.9",
+      "priority": "P1",
+      "status": "done",
+      "description": "Систематизация иконографии; не менять утверждённые ресурсы. | Alpha.9: подготовлены спецификации и интерактивная демонстрация, материалы представлены на согласование; production-утверждение не заявляется.",
+      "dependencies": [],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "DS-022",
+      "title": "Утверждение иконок A/B",
+      "phase": "Alpha.9",
+      "priority": "P1",
+      "status": "deferred",
+      "description": "Кандидаты подготовлены, требуется отдельное дизайнерское согласование. | Варианты A/B остаются отложены до решения владельца бренда и OS-проверки.",
+      "dependencies": [
+        "DS-021"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-22",
+      "githubIssue": 9
+    },
+    {
+      "id": "DS-023",
+      "title": "Signature Graphics / Motion",
+      "phase": "Alpha.9",
+      "priority": "P2",
+      "status": "done",
+      "description": "Стандарты иллюстраций, motion и reduced-motion. | Alpha.9: подготовлены спецификации и интерактивная демонстрация, материалы представлены на согласование; production-утверждение не заявляется.",
+      "dependencies": [],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "DS-024",
+      "title": "Шаблоны документов, писем и презентаций",
+      "phase": "Alpha.9",
+      "priority": "P2",
+      "status": "done",
+      "description": "Коммуникационные шаблоны шести направлений. | Alpha.9: подготовлены спецификации и интерактивная демонстрация, материалы представлены на согласование; production-утверждение не заявляется.",
+      "dependencies": [],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "DS-025",
+      "title": "UX Writing / Brand Governance",
+      "phase": "Alpha.9",
+      "priority": "P1",
+      "status": "done",
+      "description": "Стандарты терминологии, ошибок, релизов и принятия изменений. | Alpha.9: подготовлены спецификации и интерактивная демонстрация, материалы представлены на согласование; production-утверждение не заявляется.",
+      "dependencies": [],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "BETA-01",
+      "title": "React / TypeScript: реальная сборка и тесты",
+      "phase": "Beta gates",
+      "priority": "P0",
+      "status": "done",
+      "description": "Locked npm ci Node 26, React typecheck/build/SSR and hydration/interaction 181/181 on each of three engines; Run #10 14/14 PASS https://github.com/disxlab/Taktera-Design-System/actions/runs/46076078235. Manual accessibility remains BETA-03.",
+      "dependencies": [
+        "DS-004"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 2
+    },
+    {
+      "id": "BETA-02",
+      "title": "Avalonia: Windows/macOS native build и UI QA",
+      "phase": "Beta gates",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Windows/macOS Release builds and 3/3 headless tests on each Linux/Windows/macOS passed https://github.com/disxlab/Taktera-Design-System/actions/runs/46076078235; real native UI QA remains open.",
+      "dependencies": [
+        "DS-007"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 3
+    },
+    {
+      "id": "BETA-03",
+      "title": "Accessibility: axe + NVDA + VoiceOver",
+      "phase": "Beta gates",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "72 automated axe scans (Web Core + React, 12 each per engine), 0 detected violations https://github.com/disxlab/Taktera-Design-System/actions/runs/46076078235; manual WCAG/NVDA/VoiceOver and incomplete review remain.",
+      "dependencies": [
+        "DS-009"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 4
+    },
+    {
+      "id": "BETA-04",
+      "title": "Реальный ERP/CRM pilot: staging/performance/security",
+      "phase": "Beta gates",
+      "priority": "P0",
+      "status": "deferred",
+      "description": "Локальный пилот не равен интеграции в реальный продукт. Owner decision 2026-11-28: real product integration only AFTER Design System 4.0 Stable; standalone SDK acceptance is BR5-07.",
+      "dependencies": [
+        "DS-013",
+        "DS-014",
+        "REL-STABLE"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 5
+    },
+    {
+      "id": "BETA-05",
+      "title": "Web: Firefox/Safari/HTTP ES modules",
+      "phase": "Beta gates",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Chromium/Firefox/WebKit: Web Core 38/38, React 325/325 and 12 axe scans per engine PASS in Run #14 https://github.com/disxlab/Taktera-Design-System/actions/runs/46077631934; Firefox crash no longer reproduced after isolating accessibility page; native Safari remains open.",
+      "dependencies": [
+        "DS-004"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 6
+    },
+    {
+      "id": "BETA-06",
+      "title": "CI релиза и критерии отката",
+      "phase": "Beta gates",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Базовый CI 6/6 https://github.com/disxlab/Taktera-Design-System/actions/runs/46074642182; release/rollback и hardening открыты.",
+      "dependencies": [
+        "BETA-01",
+        "BETA-02"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 7
+    },
+    {
+      "id": "DS-026",
+      "title": "Studio: библиотека образцов и API-контракты",
+      "phase": "Alpha.8",
+      "priority": "P1",
+      "status": "done",
+      "description": "Конфигуратор восьми демонстрационных компонентов с семантическими параметрами и примерами HTML; без обещания готовых React/Avalonia-пакетов.",
+      "dependencies": [
+        "DS-019"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "DS-027",
+      "title": "Studio: эталоны Firefox/Safari и доступность со скринридерами",
+      "phase": "Alpha.8",
+      "priority": "P0",
+      "status": "blocked",
+      "description": "Финальная проверка эталонов и взаимодействия с NVDA/VoiceOver; требуется реальная среда и ручная приёмка.",
+      "dependencies": [
+        "DS-020",
+        "BETA-03",
+        "BETA-05"
+      ],
+      "kind": "gate",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-23",
+      "githubIssue": 6
+    },
+    {
+      "id": "DS-028",
+      "title": "Финальное утверждение Signature Graphics и набора шаблонов",
+      "phase": "Alpha.9",
+      "priority": "P1",
+      "status": "planned",
+      "description": "Провести дизайн-ревью и согласовать применимость, включая печать и цветопередачу.",
+      "dependencies": [
+        "DS-023",
+        "DS-024"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-23",
+      "githubIssue": 9
+    },
+    {
+      "id": "DS-029",
+      "title": "Согласовать UX Writing и юридические дисклеймеры шаблонов",
+      "phase": "Alpha.9",
+      "priority": "P1",
+      "status": "planned",
+      "description": "Финальная редактура тональности; юридическая проверка перед публичным использованием.",
+      "dependencies": [
+        "DS-025"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "DS-030",
+      "title": "Проверка экспорта шаблонов и печати",
+      "phase": "Alpha.9",
+      "priority": "P1",
+      "status": "planned",
+      "description": "Кроссбраузерный тест печати и выходных материалов на реальных устройствах.",
+      "dependencies": [
+        "DS-024"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "DS-031",
+      "title": "Локальные визуальные эталоны Chromium — 48 конфигураций",
+      "phase": "Beta Readiness 1",
+      "priority": "P1",
+      "status": "done",
+      "description": "48 эталонов Chromium автоматически сопоставляются с текущими снимками (порог 0,5% пикселей / RGB>16). Положительный прогон 48/48, негативный тест распознаёт отклонение. Firefox/Safari остаются отдельными задачами.",
+      "dependencies": [
+        "DS-012",
+        "DS-020"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "DS-032",
+      "title": "Сверка локализации и токенов в реальном приложении",
+      "phase": "Beta Readiness 1",
+      "priority": "P0",
+      "status": "deferred",
+      "description": "Локализацию и токены необходимо проверить в реальном приложении на Windows/macOS; визуальный diff Chromium этого не заменяет. Owner decision 2026-11-28: real product integration only AFTER Design System 4.0 Stable; standalone SDK acceptance is BR5-07.",
+      "dependencies": [
+        "DS-010",
+        "DS-011",
+        "DS-012",
+        "REL-STABLE"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 5
+    },
+    {
+      "id": "DS-039",
+      "title": "Визуальные эталоны Firefox/Safari и история релизов",
+      "phase": "Beta Readiness 2",
+      "priority": "P1",
+      "status": "planned",
+      "description": "Получить эталоны в отдельных поддерживаемых средах, проверить повторяемость, межрелизную разницу и политику утверждения baseline. Не использовать Chromium baseline для Safari.",
+      "dependencies": [
+        "DS-031",
+        "DS-020"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-23",
+      "githubIssue": 6
+    },
+    {
+      "id": "BR3-01",
+      "title": "Подготовка межплатформенного CI React/Avalonia",
+      "phase": "Beta Readiness 3",
+      "priority": "P0",
+      "status": "done",
+      "description": "Workflow и инструкции добавлены; выполнение в GitHub ещё не производилось. Завершена только подготовка артефактов.",
+      "dependencies": [],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-23",
+      "githubIssue": 7
+    },
+    {
+      "id": "BR3-02",
+      "title": "React SSR smoke для всех продуктов и тем",
+      "phase": "Beta Readiness 3",
+      "priority": "P0",
+      "status": "done",
+      "description": "14/14 SSR PASS на каждой из трёх ОС, https://github.com/disxlab/Taktera-Design-System/actions/runs/46074642182; не browser/hydration QA.",
+      "dependencies": [
+        "BR3-01"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 2
+    },
+    {
+      "id": "BR3-03",
+      "title": "Avalonia: проверка XML и ссылок на ресурсы",
+      "phase": "Beta Readiness 3",
+      "priority": "P0",
+      "status": "done",
+      "description": "Статическая XML-проверка 12 адаптеров Tkn→Tk прошла (53/53 тестов общего preflight). Это не подтверждает сборку Avalonia на Windows/macOS.",
+      "dependencies": [
+        "BR3-01"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-23",
+      "githubIssue": 3
+    },
+    {
+      "id": "BR3-04",
+      "title": "Собрать фактические CI-логи и закрыть Beta gates",
+      "phase": "Beta Readiness 3",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Компиляционный CI 6/6 PASS https://github.com/disxlab/Taktera-Design-System/actions/runs/46074642182; остальные Beta gates открыты.",
+      "dependencies": [
+        "BR3-01",
+        "BR3-02",
+        "BR3-03"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 7
+    },
+    {
+      "id": "BR4-01",
+      "title": "React lockfile и npm ci",
+      "phase": "Beta Readiness 4",
+      "priority": "P0",
+      "status": "done",
+      "description": "Node.js 26.13.1, npm ci с зафиксированным lockfile v3, React Linux/Windows/macOS PASS: https://github.com/disxlab/Taktera-Design-System/actions/runs/46075425832",
+      "dependencies": [
+        "BR3-02"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 11
+    },
+    {
+      "id": "BR4-02",
+      "title": "GitHub Actions: Node 24 runtime",
+      "phase": "Beta Readiness 4",
+      "priority": "P0",
+      "status": "done",
+      "description": "Actions с runtime Node.js 24 и все 10 jobs прошли https://github.com/disxlab/Taktera-Design-System/actions/runs/46075133438; Node 26 используется для проекта, а не для подмены внутреннего runtime Actions.",
+      "dependencies": [
+        "BR3-01"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 11
+    },
+    {
+      "id": "BR4-03",
+      "title": "npm / NuGet аудит зависимостей",
+      "phase": "Beta Readiness 4",
+      "priority": "P0",
+      "status": "done",
+      "description": "Run #9 raw npm audit total 0; NuGet sample vulnerability report empty. Run #10 audit and headless direct/transitive restore gates PASS https://github.com/disxlab/Taktera-Design-System/actions/runs/46076078235; no NU1900–NU1905 warnings in inspected headless logs. Scope: known vulnerabilities, not complete security certification.",
+      "dependencies": [
+        "BR4-01"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 11
+    },
+    {
+      "id": "BR4-04",
+      "title": "XAML, генерация токенов и brand freeze",
+      "phase": "Beta Readiness 4",
+      "priority": "P0",
+      "status": "done",
+      "description": "53/53 preflight, XAML regression guard, deterministic token generation, brand freeze и 15 Intl assertions PASS https://github.com/disxlab/Taktera-Design-System/actions/runs/46075133438.",
+      "dependencies": [
+        "BR3-03"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 11
+    },
+    {
+      "id": "BR4-05",
+      "title": "HTTP browser QA Chromium/Firefox/WebKit",
+      "phase": "Beta Readiness 4",
+      "priority": "P0",
+      "status": "done",
+      "description": "Web Core HTTP/ESM 38/38 per Chromium, Firefox, WebKit https://github.com/disxlab/Taktera-Design-System/actions/runs/46076078235; native Safari remains BETA-05.",
+      "dependencies": [
+        "BR4-01"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 6
+    },
+    {
+      "id": "BR4-06",
+      "title": "axe WCAG автоматические проверки",
+      "phase": "Beta Readiness 4",
+      "priority": "P0",
+      "status": "done",
+      "description": "72 axe scans across Web Core and React on three engines, 0 detected violations https://github.com/disxlab/Taktera-Design-System/actions/runs/46076078235; manual WCAG and incomplete checks open.",
+      "dependencies": [
+        "BR4-05"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 4
+    },
+    {
+      "id": "BR4-07",
+      "title": "Avalonia native UI QA",
+      "phase": "Beta Readiness 4",
+      "priority": "P1",
+      "status": "in_progress",
+      "description": "Headless 3/3 per OS PASS https://github.com/disxlab/Taktera-Design-System/actions/runs/46076078235; manual native Windows/macOS UI, focus, DPI and screenshots still required.",
+      "dependencies": [
+        "BETA-02"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 3
+    },
+    {
+      "id": "BR4-08",
+      "title": "Project Board ↔ GitHub Issues",
+      "phase": "Beta Readiness 4",
+      "priority": "P1",
+      "status": "done",
+      "description": "Run #12 attempt 1: Project Board persistence QA 19/19 per Chromium/Firefox/WebKit (57/57). Local changes, tombstones, snapshot isolation, backup restore, persistent browser restart verified. Read-only issue snapshot; no two-way writes. https://github.com/disxlab/Taktera-Design-System/actions/runs/46076886597",
+      "dependencies": [],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 8
+    },
+    {
+      "id": "BR4-09",
+      "title": "AGENTS.md и инженерные правила",
+      "phase": "Beta Readiness 4",
+      "priority": "P1",
+      "status": "done",
+      "description": "AGENTS.md опубликован; правила сборки, CI, brand freeze, проверки и release/rollback документированы.",
+      "dependencies": [],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 7
+    },
+    {
+      "id": "BR4-10",
+      "title": "Beta Candidate readiness / rollback",
+      "phase": "Beta Readiness 4",
+      "priority": "P1",
+      "status": "in_progress",
+      "description": "Automated engineering baseline 14/14 jobs PASS https://github.com/disxlab/Taktera-Design-System/actions/runs/46076078235; manual accessibility, native UI, Safari, staging, board persistence QA and distribution acceptance remain. Real Platform staging deferred; independent synthetic host acceptance required before release.",
+      "dependencies": [
+        "BR4-01",
+        "BR4-02",
+        "BR4-03",
+        "BR4-04",
+        "BR4-05",
+        "BR4-06",
+        "BR4-07",
+        "BR4-08",
+        "BR4-09",
+        "BR5-07",
+        "BETA-05",
+        "BR4-11",
+        "BR4-12",
+        "BETA-03"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 7
+    },
+    {
+      "id": "BR4-11",
+      "title": "React hydration и browser interaction",
+      "phase": "Beta Readiness 4",
+      "priority": "P0",
+      "status": "done",
+      "description": "React hydration + interaction: 181/181 per engine (543/543), axe 12 scans/engine, 0 detected violations after semantic tab token fix https://github.com/disxlab/Taktera-Design-System/actions/runs/46076078235.",
+      "dependencies": [
+        "BR4-01",
+        "BR4-05"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 2
+    },
+    {
+      "id": "BR4-12",
+      "title": "Avalonia headless XUnit",
+      "phase": "Beta Readiness 4",
+      "priority": "P0",
+      "status": "done",
+      "description": "Avalonia.Headless.XUnit 11.3.22: 3/3 on Linux, Windows, macOS (9/9) https://github.com/disxlab/Taktera-Design-System/actions/runs/46076078235; real native QA is separate.",
+      "dependencies": [
+        "BR4-04"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 3
+    },
+    {
+      "id": "BR5-01",
+      "title": "Контракт ERP/CRM pilot и staging",
+      "phase": "Beta Readiness 5",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Draft ERP/CRM contract and synthetic fixture strategy implemented in 29_product_integration; host repo/staging and budgets require agreement. Pre-Stable: validate in isolated synthetic reference hosts; actual Platform integration is deferred to BR5-06.",
+      "dependencies": [
+        "BR4-11",
+        "BR4-12"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 12
+    },
+    {
+      "id": "BR5-02",
+      "title": "DataGrid: группировка и виртуализация",
+      "phase": "Beta Readiness 5",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Run #15: 14/14, 397/397 React per engine, remote cursor/filter/sort, group headers, partial bulk UI verified with synthetic transport. https://github.com/disxlab/Taktera-Design-System/actions/runs/46077847394 Real staging, virtual-mode grouping and manual/performance acceptance remain. Pre-Stable: validate in isolated synthetic reference hosts; actual Platform integration is deferred to BR5-06.",
+      "dependencies": [
+        "BR5-01",
+        "DS-013"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 12
+    },
+    {
+      "id": "BR5-03",
+      "title": "Resource Scheduler",
+      "phase": "Beta Readiness 5",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Run #19 14/14 PASS on a87de024: Scheduler 227/227 each Chromium/Firefox/WebKit (681/681), separate agenda/timeline axe scans (72 Scheduler, 144 total), zero detected violations. https://github.com/disxlab/Taktera-Design-System/actions/runs/46079874046 Core and UI verified with synthetic transport. Actual ERP transaction, manual accessibility, touch drag and series-wide edit remain open. Pre-Stable: validate in isolated synthetic reference hosts; actual Platform integration is deferred to BR5-06.",
+      "dependencies": [
+        "BR5-01",
+        "DS-014"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 12
+    },
+    {
+      "id": "BR5-04",
+      "title": "CRM, Forms, Application Shell",
+      "phase": "Beta Readiness 5",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Run #22 14/14 PASS: CRM 326/326 per engine (978/978), async validation, draft callback, field errors, tab guard and reopen verified with synthetic host. https://github.com/disxlab/Taktera-Design-System/actions/runs/46081132417 Actual ERP endpoints, global routing/manual QA remain open. Pre-Stable: validate in isolated synthetic reference hosts; actual Platform integration is deferred to BR5-06.",
+      "dependencies": [
+        "BR5-01",
+        "DS-015"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 12
+    },
+    {
+      "id": "BR5-05",
+      "title": "Analytics/KPI и отраслевые сценарии",
+      "phase": "Beta Readiness 5",
+      "priority": "P1",
+      "status": "in_progress",
+      "description": "Run #24 15/15 PASS, CRM/analytics 434/434 per engine; 1302/1302 total, npm clean consumer 16/16. https://github.com/disxlab/Taktera-Design-System/actions/runs/46082895789 Actual ERP reporting and manual acceptance remain. Pre-Stable: validate in isolated synthetic reference hosts; actual Platform integration is deferred to BR5-06.",
+      "dependencies": [
+        "BR5-01",
+        "DS-016"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 12
+    },
+    {
+      "id": "BR5-06",
+      "title": "Реальный staging pilot и приёмка",
+      "phase": "Beta Readiness 5",
+      "priority": "P0",
+      "status": "deferred",
+      "description": "Independent reference React workspace prepared using only packed public APIs, synthetic data and local callbacks. This is a local pilot, not actual Taktera Platform staging. CI pending; real host required. Owner decision 2026-11-28: real product integration only AFTER Design System 4.0 Stable; standalone SDK acceptance is BR5-07.",
+      "dependencies": [
+        "BR5-02",
+        "BR5-03",
+        "BR5-04",
+        "BR5-05",
+        "REL-STABLE"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 12
+    },
+    {
+      "id": "BR6-01",
+      "title": "Public API и semver",
+      "phase": "Beta Readiness 6",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Run #27 all 18 jobs PASS, API contract verified in packed npm gate and native clean consumer. Full SemVer/API approval remains. https://github.com/disxlab/Taktera-Design-System/actions/runs/46084256928",
+      "dependencies": [
+        "BR5-01"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 13
+    },
+    {
+      "id": "BR6-02",
+      "title": "npm pack и clean consumer",
+      "phase": "Beta Readiness 6",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Run #27 npm clean consumer 22/22 PASS, both tarballs and CLI/portal verified. Stable version/reproducibility/registry approval remain. https://github.com/disxlab/Taktera-Design-System/actions/runs/46084256928 Run #33 canonical npm archive agreement and clean consumer PASS; registry/stable approval remain.",
+      "dependencies": [
+        "BR6-01",
+        "BR4-11"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 13
+    },
+    {
+      "id": "BR6-03",
+      "title": "NuGet packaging и clean consumer",
+      "phase": "Beta Readiness 6",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Run #27 Windows and macOS each 26/26 and 5/5 headless PASS, mandatory cleanup succeeded after scoped telemetry opt-out. NuGet bytes differ between OSes; canonical artifact/reproducibility and release acceptance remain. https://github.com/disxlab/Taktera-Design-System/actions/runs/46084256928 Run #33 independent canonical NuGet reproducibility, committed lock and same-package consumers Windows/macOS PASS; release acceptance remains.",
+      "dependencies": [
+        "BR6-01",
+        "BR4-12"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 13
+    },
+    {
+      "id": "BR6-04",
+      "title": "Private registry, SBOM, license, provenance",
+      "phase": "Beta Readiness 6",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Run #27 candidate job PASS: 4 package files, 3 CycloneDX consumer inventories, 19 hashed files, artifact 15238208262. Product SBOM, third-party notices/license review, reproducibility, signed provenance and private registry remain open. https://github.com/disxlab/Taktera-Design-System/actions/runs/46084256928 Run #33 first product SBOMs generated; official schema and license validation remain.",
+      "dependencies": [
+        "BR6-02",
+        "BR6-03"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 13
+    },
+    {
+      "id": "BR6-05",
+      "title": "Developer docs и migration/rollback",
+      "phase": "Beta Readiness 6",
+      "priority": "P1",
+      "status": "in_progress",
+      "description": "Run #27 npm starter/portal 22/22, Avalonia consumer 26/26 and 5/5 on both OSes; docs and rollback acceptance remain. https://github.com/disxlab/Taktera-Design-System/actions/runs/46084256928",
+      "dependencies": [
+        "BR6-02",
+        "BR6-03"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 13
+    },
+    {
+      "id": "BR6-06",
+      "title": "Beta Candidate package acceptance",
+      "phase": "Beta Readiness 6",
+      "priority": "P0",
+      "status": "blocked",
+      "description": "Run #28 18/18 PASS; Beta acceptance requires BR7 release gates, independent SDK reference host, manual/native/accessibility QA and owner approval. Actual Platform integration deferred until after Stable. https://github.com/disxlab/Taktera-Design-System/actions/runs/46085839752",
+      "dependencies": [
+        "BR6-04",
+        "BR6-05",
+        "BR5-07",
+        "BR4-10",
+        "BETA-03",
+        "BR7-07",
+        "BR7-08",
+        "BR7-09",
+        "BR7-10",
+        "BR8-01",
+        "BR8-02",
+        "BR8-03",
+        "BR9-01"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 13
+    },
+    {
+      "id": "BR5-07",
+      "title": "Независимая SDK-приёмка ERP/CRM",
+      "phase": "Beta Readiness 5",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Package-only reference consumers, six product variants, RU/EN, light/dark, synthetic transport, agreed performance budgets, keyboard/manual accessibility and security boundaries. No real Taktera Platform connection. Run #28 package gates PASS; expanded acceptance pending. BR8 canonical browser acceptance matrix implemented: same-run canonical archives and dossier, exact consumer lock, 3 browsers x 6 products x 2 themes, registry axe, workflow callbacks and synthetic state isolation. New CI pending. Run #45 FINAL failure; first-page API shows 29 successes, Firefox failure, Chromium 134/134, 12 scenarios/12 axe scans, zero violations. Firefox 35/36 reported checks, 12 page crashes in axe evaluation, zero completed axe scans; full WebKit job outside first-page API, artifact exists but conclusion unverified. https://github.com/disxlab/Taktera-Design-System/actions/runs/46110955155 Firefox harness repair pending CI.",
+      "dependencies": [
+        "BR5-02",
+        "BR5-03",
+        "BR5-04",
+        "BR5-05"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 12
+    },
+    {
+      "id": "BR7-01",
+      "title": "Reproducible Builds",
+      "phase": "Beta Readiness 7",
+      "priority": "P0",
+      "status": "done",
+      "description": "Run #33 23/23 PASS, four exact locked builds on two independent runner jobs, canonical Windows/macOS consumers PASS, candidate artifact 15240739920: 3 shipped packages, 5 SBOMs, 41 archive members, 7 external components, 8 dependency edges, 14 XAML source hashes, 27 hashed files. https://github.com/disxlab/Taktera-Design-System/actions/runs/46090391495 Committed NuGet lock from Run #32 verified under --locked-mode. Exact reproducibility and canonical cross-OS consumption confirmed; subsequent release CI retains these gates.",
+      "dependencies": [
+        "BR6-02",
+        "BR6-03"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 14
+    },
+    {
+      "id": "BR7-02",
+      "title": "Product SBOM — CycloneDX / SPDX",
+      "phase": "Beta Readiness 7",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Run #37 Candidate PASS: 3 SDKs, 5 schema-validated SBOMs, 41 archive members, 14 XAML sources, 19 marker files, 7/7 license texts found (3 embedded + 4 pinned source), zero missing, one unconfirmed binary-source association (MicroCom), 40 hashed files. Independent verification log PASS and all four negative controls rejected; final job state pending at initial review. https://github.com/disxlab/Taktera-Design-System/actions/runs/46093427123 Product inventory and independent download hash verification evidenced; detailed marker attribution review still open.",
+      "dependencies": [
+        "BR7-01"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 14
+    },
+    {
+      "id": "BR7-03",
+      "title": "Third-Party Notices",
+      "phase": "Beta Readiness 7",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Run #37 Candidate PASS: 3 SDKs, 5 schema-validated SBOMs, 41 archive members, 14 XAML sources, 19 marker files, 7/7 license texts found (3 embedded + 4 pinned source), zero missing, one unconfirmed binary-source association (MicroCom), 40 hashed files. Independent verification log PASS and all four negative controls rejected; final job state pending at initial review. https://github.com/disxlab/Taktera-Design-System/actions/runs/46093427123 Exact package-declared upstream commits confirmed for three NuGet dependencies; MicroCom historical version only. All license text evidence retrieved; legal and asset approval still open.",
+      "dependencies": [
+        "BR7-02"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 14
+    },
+    {
+      "id": "BR7-04",
+      "title": "Signed Build Provenance",
+      "phase": "Beta Readiness 7",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Run #38 FINAL 24/24 PASS; eight-subject attestation preflight PASS, independent download verifies 40 files, 41 archive members, 5 SBOMs and 4 negative controls; candidate 15241709397, independent verification 15242915608. https://github.com/disxlab/Taktera-Design-System/actions/runs/46093859272 Real signature remains inactive; owner approval and trusted main workflow required.",
+      "dependencies": [
+        "BR7-01",
+        "BR7-02"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 14
+    },
+    {
+      "id": "BR7-05",
+      "title": "Private npm / NuGet Registry",
+      "phase": "Beta Readiness 7",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Run #39 FINAL 25/25 PASS; registry fixture 31/31 PASS, npm CLI exact two archives, NuGet exact archive and private/public source mapping, negative auth/write checks; registry artifact 15242503754, candidate 15243307004. https://github.com/disxlab/Taktera-Design-System/actions/runs/46094888319 Loopback fixture confirmed, real provider and license/signing/owner approval remain open.",
+      "dependencies": [
+        "BR7-03",
+        "BR7-04"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 14
+    },
+    {
+      "id": "BR7-06",
+      "title": "Supply Chain Security",
+      "phase": "Beta Readiness 7",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Run #41 FINAL 26/26 PASS, committed-match for all six Python wheels, pip check PASS, release preflight PASS and eleven negative controls rejected; publicationAllowed=false, artifact 15243779215. https://github.com/disxlab/Taktera-Design-System/actions/runs/46098015946 Static guard, action and dependency pins, mandatory wheel lock confirmed. Broader security review, trusted environment and real release controls remain open.",
+      "dependencies": [
+        "BR7-02",
+        "BR7-04"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 14
+    },
+    {
+      "id": "BR7-07",
+      "title": "Release Automation",
+      "phase": "Beta Readiness 7",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Run #41 FINAL 26/26 PASS, committed-match for all six Python wheels, pip check PASS, release preflight PASS and eleven negative controls rejected; publicationAllowed=false, artifact 15243779215. https://github.com/disxlab/Taktera-Design-System/actions/runs/46098015946 Read-only release plan verified; no executable publish mode, owner approval/signature/licensing/actual registry/manual acceptance remain required.",
+      "dependencies": [
+        "BR7-01",
+        "BR7-03",
+        "BR7-04",
+        "BR7-05",
+        "BR7-06"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 14
+    },
+    {
+      "id": "BR7-08",
+      "title": "Rollback",
+      "phase": "Beta Readiness 7",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Run #42 FINAL 27/27 PASS; historical Run #39 recovered, eight consumer checks, five negative rollback controls, 20.13 s local drill, Avalonia same-version/different-bytes collision detected; rollback artifact 15244762254. https://github.com/disxlab/Taktera-Design-System/actions/runs/46098533423 Historical unsigned candidate drill PASS, not production RTO/RPO or approved rollback. Real immutable release and provider acceptance pending.",
+      "dependencies": [
+        "BR7-05",
+        "BR7-07"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 14
+    },
+    {
+      "id": "BR7-09",
+      "title": "Versioning & Compatibility Policy",
+      "phase": "Beta Readiness 7",
+      "priority": "P1",
+      "status": "in_progress",
+      "description": "Run #44 FINAL 28/28 PASS; JSON-stable native contracts fixed Run #43, 5 regression tests, 10 version negative controls, zero checked API differences, 7 dossier negative controls, four draft documentation files. Version artifact 15245761539, dossier 15245493735, rollback 15245991122. https://github.com/disxlab/Taktera-Design-System/actions/runs/46101649794 Full CLR ABI and owner promotion approval pending.",
+      "dependencies": [
+        "BR6-01"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 14
+    },
+    {
+      "id": "BR7-10",
+      "title": "Release Documentation",
+      "phase": "Beta Readiness 7",
+      "priority": "P1",
+      "status": "in_progress",
+      "description": "Run #44 FINAL 28/28 PASS; JSON-stable native contracts fixed Run #43, 5 regression tests, 10 version negative controls, zero checked API differences, 7 dossier negative controls, four draft documentation files. Version artifact 15245761539, dossier 15245493735, rollback 15245991122. https://github.com/disxlab/Taktera-Design-System/actions/runs/46101649794 Draft dossier automation verified; final release approvals and signed release docs remain open.",
+      "dependencies": [
+        "BR7-03",
+        "BR7-08",
+        "BR7-09"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 14
+    },
+    {
+      "id": "REL-BETA",
+      "title": "4.0.0-beta.1",
+      "phase": "Release milestones",
+      "priority": "P0",
+      "status": "blocked",
+      "description": "Standalone SDK acceptance and all Beta gates; no real product integration.",
+      "dependencies": [
+        "BR6-06"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 7
+    },
+    {
+      "id": "REL-RC",
+      "title": "4.0.0-rc.1",
+      "phase": "Release milestones",
+      "priority": "P0",
+      "status": "planned",
+      "description": "Freeze public API, manual/native accessibility, performance and security evidence; approved candidate.",
+      "dependencies": [
+        "REL-BETA"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 7
+    },
+    {
+      "id": "REL-STABLE",
+      "title": "4.0.0 Stable",
+      "phase": "Release milestones",
+      "priority": "P0",
+      "status": "planned",
+      "description": "Independent consumer acceptance, versioned SDK, signed release, documented migration and rollback, owner approval. Actual Taktera Platform integration is explicitly post-Stable.",
+      "dependencies": [
+        "REL-RC"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 7
+    },
+    {
+      "id": "BR8-01",
+      "title": "Canonical browser SDK acceptance",
+      "phase": "Beta Readiness 8",
+      "priority": "P0",
+      "status": "done",
+      "description": "Run #47 FINAL success, all 30 returned jobs success (31-job workflow; first-page API limitation); all three canonical browser artifacts exist: chromium 15251014792, firefox 15251396350, webkit 15250329495. Firefox and WebKit logs explicitly 170/170 each, 12 scenarios, 12 axe scans, zero violations/errors. Chromium success via overall run and artifact; individual job log unavailable on first page. https://github.com/disxlab/Taktera-Design-System/actions/runs/46114720283 . Separate independent functional and main-world axe contexts resolve observed Firefox crash in CI, without skipping WCAG checks. Scope: English synthetic registry/workflows, no complete manual accessibility or production acceptance.",
+      "dependencies": [
+        "BR7-09",
+        "BR7-10",
+        "BR5-07"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 12
+    },
+    {
+      "id": "BR8-02",
+      "title": "Native SDK independent acceptance",
+      "phase": "Beta Readiness 8",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Rebased prepared native matrix onto current browser fix, 24 product/theme/host-language scenarios per Windows/macOS and five existing tests per OS; canonical archive, DLL and application dependency graph checks; strict exact named TRX results and seven evidence-parser tests (one positive, six negative). Native jobs require successful BR8 browser and release gates. Pending CI and actual graphical/accessibility acceptance. Combined acceptance evidence gate prepared: exact browser check/scenario/axe sets and both native matrices, same source/run/attempt/candidate/dossier/package/lock identities, evidence SHA-256, 18 negative controls and positive browser/native controls. No publication or manual acceptance. Run #47 browser prerequisite passed; activate native matrix and combined evidence job. New CI pending. Run #48 failed static supply-chain gate: combined acceptance job setup-python pin was truncated to 35 characters (workflow line 683). Restored exact existing reviewed 40-character lock SHA, added truncated-pin negative regression; no lock, permission or validator changes. 21 successful, 1 failed, 8 skipped on first-page API; native/combined acceptance not executed. New CI required. Run #49 FINAL failure: full 34-job API response confirms 31 successful, two failed canonical native jobs (Windows 140897917111, macOS 140897917164), combined evidence skipped; all three canonical browsers passed. macOS log confirms 24 matrix failures and five baseline passes, Assert.Single at NativeAcceptanceTests.cs:106 sees two visual TextBoxes. Reference host declares one service TextBox; a second visual TextBox is present after templating. Name the independent host service field and require a unique matching visual descendant, same XAML namescope control and field class; exercise selector with an unrelated TextBox in every existing matrix scenario. Preserve all 29 required named tests, palette, input and callback assertions, package graph and evidence gates. Fresh CI required; native/manual acceptance remains open. https://github.com/disxlab/Taktera-Design-System/actions/runs/46118009935 Run #50 FINAL 34/34 success, head 9f4a6d76a8953aad9c27eef6e0c5faebabc092af, verified PR test merge 90359bbfe363464c1baf52b7e2656170ad825184 (parents base d984bd9 and head 9f4a6d7, same tree). Downloaded combined artifact 15258755032 and all five matrix archives; SHA-256 of all five JSON reports and release dossier match summary, ZIP CRC valid. Summary SHA-256 020694c6f31deb085a87a1f05ab8fb9be6c375bbe52a93659251a76911450872. Three browsers 170/170 each, 36 registry axe scans, zero violations/incomplete; both native OS 29/29 each with dependency graph match; combined gate passed. Automated headless scope only; manual native/accessibility remains open. https://github.com/disxlab/Taktera-Design-System/actions/runs/46132167055 Run #55 FINAL 34/34 success (full paginated jobs API), head e0b05342d4cea83e60123b8b3270d6ff4d0756f8, combined acceptance artifact 15261210912. Firefox and WebKit logs independently confirm 1507/1507 each, 12 registry scenarios, zero detected violations; all three browser and both native acceptance jobs passed in full API. Combined acceptance gate succeeded. Automated scope only; manual graphical/AT, security review, owner performance-budget approval and release approvals remain open. https://github.com/disxlab/Taktera-Design-System/actions/runs/46138094563",
+      "dependencies": [
+        "BR7-08",
+        "BR5-07",
+        "BR8-01"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 12
+    },
+    {
+      "id": "BR8-03",
+      "title": "RU/EN and synthetic transport acceptance",
+      "phase": "Beta Readiness 8",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Package-only localized reference hosts, transport errors, conflict/validation, scheduler and analytics scenarios; no real data or endpoints. Prepared independent in-memory host transport fixture: optimistic version conflict, field validation, transient failure/retry, exact request-ID idempotency and collision rejection, missing record, concurrent writes, isolated state, RU text. 17 pure JS checks executed successfully during preparation; committed CI and actual package-only UI integration not yet verified. No HTTP, real endpoints, persistent data or Platform connection. Prepared BR8-03 localized synthetic transport panel in independent React starter using packaged Field, Button, Select and Alert and the existing in-memory fixture. Browser checks cover both languages for all six products and both themes per engine: validation, accessible error, transient retry, replay, competing write, stale version conflict, reload and resolved save; exact named matrix gates extended, prior checks retained. No full SDK translation, localized scheduler/analytics, Web Core transport or manual acceptance claim. New CI required. Run #51 FINAL failure, npm packaged clean consumer job 140942805965: 8/8 completed checks then ERR_MODULE_NOT_FOUND importing dist/synthetic-transport.mjs from LocalizedTransport.js. 21 successful, one failed and eight skipped on first-page API. https://github.com/disxlab/Taktera-Design-System/actions/runs/46133230936 . Fix starter build explicitly compiles TypeScript using pinned local tsc, then stages exact synthetic JS runtime with byte equality; declaration remains for strict type checking. Existing npm consumer calls the actual starter build and verifies copied bytes before SSR import. Rollback and canonical browser consumers already use npm run build. No change to SDK packages, lock constraints or security gates. Fresh CI required. Run #52 FINAL failure, first-page API 30/30 success but overall failure and combined artifact absent. Downloaded all five matrix ZIPs and dossier (IDs 15259541292,15259067690,15259332055,15258973087,15259007907,15258459628), ZIP CRC valid; each browser 458/458, 12 registry axe scans, zero violations/incomplete, both native OS 29/29. All reports bind source 3391f10fe1cfe281e85aa423536075b360e6df19, Run 46134174999 attempt 1, manifest 38c028fe0ab4f25af9a8ecd069d679525374b1458887501298eeb0c7cdd703b2, dossier SHA-256 cdfa7051636ac73862554a8a12fd5886415025567db86b4c370d026a36c9ee4a. Independent comparison against exact expected check names found 72 missing and 72 unexpected names in each browser: extra space before locale, accessible error, draft reloaded. Hypothetical whitespace correction produces exact expected set of 458; original artifacts remain unchanged and rejected. Fix producer labels, assert canonical unique names at emission, keep strict exact matrix gate with separate diagnostics, add whitespace and duplicate negative tests. Failed downstream job log unavailable on first-page API, fresh CI required. https://github.com/disxlab/Taktera-Design-System/actions/runs/46134174999 Run #53 FINAL success; combined artifact 15260310099 downloaded, ZIP CRC valid, summary SHA-256 192ec4a72de4520ddb82629d9f5f72aadacc94c928f0c1e4cb0f821d4c940b36; report binds run 46135614866 attempt 1 source 48e44cd8e4eb6abf4c1af50476369fcc8f2d045f. Three browsers 458/458 each, 36 registry axe scans, zero violations/incomplete; both native OS 29/29. Automated localized transport confirmed. https://github.com/disxlab/Taktera-Design-System/actions/runs/46135614866 Added separate independent localized Scheduler and Analytics host page, both languages x 12 product/theme combinations per engine, 12 additional exact named checks per locale: week/day, timezone, rejected and successful single-record update, analytics valid/invalid/incomplete period, details/table and real exact CSV download. Existing tests retained. Expected 746 checks/engine, 2238 total; no full translation, scheduler creation/cancellation/series acceptance, standalone Web Core transport or manual acceptance claim. Fresh CI required. Prepared standalone CLI Web Core host with package-only DOM controls, RU/EN fixture, exact archive/lock/install identity, 12 transport checks per locale x 12 product/theme combinations per engine, isolated network and browser errors. Expected 1073 checks/engine (746+288+36+3), all existing checks retained; fresh CI required. Run #54 still active at preparation; no interruption. Scheduler creation/cancellation/series and BR9 manual evidence remain separate. Extended localized Scheduler fixture and real UI checks for local overlap blocked before transport, create, cancellation, atomic two-occurrence series and both occurrences visible. Five extra checks per locale x 12 product/theme combinations per engine; expected 1193 browser checks per engine including standalone Web. Exact previous evidence gate retained; no live data or endpoints. New CI required. Expanded security smoke: two additional literal markup checks for each React and standalone Web language case; expected 1289 checks/engine (1193+96). Run #54 FINAL SUCCESS; first-page 30/30, overall success; combined artifact 15260019305 downloaded, ZIP CRC valid; acceptance-summary.json SHA-256 7780c833976905d699665f77233a037513db751c80f1c25e09f8e165012f7cc7, source 1304c41ff778a81206f3f02593a93e7512ed5a85, Run 46137251861 attempt 1; candidate manifest e6ceaa2eb49e85dc8d1f2a34302ee0a1e897d0f796dc4a1abb80a176078bca57. Three browsers 746/746 each (2238), 36 registry axe scans, zero violations and incomplete findings; native Windows/macOS 29/29. RU/EN localized React transport, scheduler single-record update and Analytics exact CSV confirmed. https://github.com/disxlab/Taktera-Design-System/actions/runs/46137251861 . Activate prepared standalone Web, scheduler mutation, performance, localized axe and manual evidence gates; fresh CI required. Manual/native graphical, AT, security review and owner budget approval remain open; no release authorization. Run #55 FINAL 34/34 success (full paginated jobs API), head e0b05342d4cea83e60123b8b3270d6ff4d0756f8, combined acceptance artifact 15261210912. Firefox and WebKit logs independently confirm 1507/1507 each, 12 registry scenarios, zero detected violations; all three browser and both native acceptance jobs passed in full API. Combined acceptance gate succeeded. Automated scope only; manual graphical/AT, security review, owner performance-budget approval and release approvals remain open. https://github.com/disxlab/Taktera-Design-System/actions/runs/46138094563",
+      "dependencies": [
+        "BR8-01",
+        "BR5-04"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 12
+    },
+    {
+      "id": "BR9-01",
+      "title": "Final accessibility, native and performance QA",
+      "phase": "Beta Readiness 9",
+      "priority": "P0",
+      "status": "in_progress",
+      "description": "Manual keyboard, NVDA/VoiceOver, native desktop, browser and accessibility evidence; measured agreed performance budgets and security review. BR9 automated engineering preparation: collect 12 navigation/hydration and 24 resolved-save timing samples per engine for each independent React/Web host, strict finite positive exact matrix and provisional p95 guards 5s/2s; native clean consumer wall time <=900s/OS, not graphical latency. Add literal markup inertness checks to all transport cases. Combined evidence emits run-bound 726-case manual checklist with NOT RUN status and structural verification of actual recorded evidence hashes; owner budget approval, native graphical, NVDA/VoiceOver, native browser and security review remain pending. Fresh CI required; no production SLA, approval or publication claim. Prepared BR9 localized full-document axe coverage in fresh main-world contexts: React transport, operations, standalone Web, 6 products x 2 themes x 2 languages x 3 surfaces x 3 engines =216 extra scans; 252 total with original registry scans. All WCAG tags retained, exact coverage and zero detected violations required; incomplete findings retained for manual review. Added 218 named checks per engine (1507 total per engine) and manual evidence validator regression with synthetic positive and eight negative conditions; no actual manual pass claim. Run #54 still active at authoring. Fresh CI required. Run #54 FINAL SUCCESS; first-page 30/30, overall success; combined artifact 15260019305 downloaded, ZIP CRC valid; acceptance-summary.json SHA-256 7780c833976905d699665f77233a037513db751c80f1c25e09f8e165012f7cc7, source 1304c41ff778a81206f3f02593a93e7512ed5a85, Run 46137251861 attempt 1; candidate manifest e6ceaa2eb49e85dc8d1f2a34302ee0a1e897d0f796dc4a1abb80a176078bca57. Three browsers 746/746 each (2238), 36 registry axe scans, zero violations and incomplete findings; native Windows/macOS 29/29. RU/EN localized React transport, scheduler single-record update and Analytics exact CSV confirmed. https://github.com/disxlab/Taktera-Design-System/actions/runs/46137251861 . Activate prepared standalone Web, scheduler mutation, performance, localized axe and manual evidence gates; fresh CI required. Manual/native graphical, AT, security review and owner budget approval remain open; no release authorization. Run #55 FINAL 34/34 success (full paginated jobs API), head e0b05342d4cea83e60123b8b3270d6ff4d0756f8, combined acceptance artifact 15261210912. Firefox and WebKit logs independently confirm 1507/1507 each, 12 registry scenarios, zero detected violations; all three browser and both native acceptance jobs passed in full API. Combined acceptance gate succeeded. Automated scope only; manual graphical/AT, security review, owner performance-budget approval and release approvals remain open. https://github.com/disxlab/Taktera-Design-System/actions/runs/46138094563",
+      "dependencies": [
+        "BR8-01",
+        "BR8-02",
+        "BR8-03",
+        "BETA-03"
+      ],
+      "kind": "work",
+      "source": "plan",
+      "owner": "",
+      "due": "",
+      "updated": "2026-11-28",
+      "githubIssue": 13
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-11-28",
+      "message": "Run #55 FINAL 34/34 success (full paginated jobs API), head e0b05342d4cea83e60123b8b3270d6ff4d0756f8, combined acceptance artifact 15261210912. Firefox and WebKit logs independently confirm 1507/1507 each, 12 registry scenarios, zero detected violations; all three browser and both native acceptance jobs passed in full API. Combined acceptance gate succeeded. Automated scope only; manual graphical/AT, security review, owner performance-budget approval and release approvals remain open. https://github.com/disxlab/Taktera-Design-System/actions/runs/46138094563"
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #54 FINAL SUCCESS; first-page 30/30, overall success; combined artifact 15260019305 downloaded, ZIP CRC valid; acceptance-summary.json SHA-256 7780c833976905d699665f77233a037513db751c80f1c25e09f8e165012f7cc7, source 1304c41ff778a81206f3f02593a93e7512ed5a85, Run 46137251861 attempt 1; candidate manifest e6ceaa2eb49e85dc8d1f2a34302ee0a1e897d0f796dc4a1abb80a176078bca57. Three browsers 746/746 each (2238), 36 registry axe scans, zero violations and incomplete findings; native Windows/macOS 29/29. RU/EN localized React transport, scheduler single-record update and Analytics exact CSV confirmed. https://github.com/disxlab/Taktera-Design-System/actions/runs/46137251861 . Activate prepared standalone Web, scheduler mutation, performance, localized axe and manual evidence gates; fresh CI required. Manual/native graphical, AT, security review and owner budget approval remain open; no release authorization."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Prepared BR9 localized full-document axe coverage in fresh main-world contexts: React transport, operations, standalone Web, 6 products x 2 themes x 2 languages x 3 surfaces x 3 engines =216 extra scans; 252 total with original registry scans. All WCAG tags retained, exact coverage and zero detected violations required; incomplete findings retained for manual review. Added 218 named checks per engine (1507 total per engine) and manual evidence validator regression with synthetic positive and eight negative conditions; no actual manual pass claim. Run #54 still active at authoring. Fresh CI required."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "BR9 automated engineering preparation: collect 12 navigation/hydration and 24 resolved-save timing samples per engine for each independent React/Web host, strict finite positive exact matrix and provisional p95 guards 5s/2s; native clean consumer wall time <=900s/OS, not graphical latency. Add literal markup inertness checks to all transport cases. Combined evidence emits run-bound 726-case manual checklist with NOT RUN status and structural verification of actual recorded evidence hashes; owner budget approval, native graphical, NVDA/VoiceOver, native browser and security review remain pending. Fresh CI required; no production SLA, approval or publication claim."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Extended localized Scheduler fixture and real UI checks for local overlap blocked before transport, create, cancellation, atomic two-occurrence series and both occurrences visible. Five extra checks per locale x 12 product/theme combinations per engine; expected 1193 browser checks per engine including standalone Web. Exact previous evidence gate retained; no live data or endpoints. New CI required."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Prepared standalone CLI Web Core host with package-only DOM controls, RU/EN fixture, exact archive/lock/install identity, 12 transport checks per locale x 12 product/theme combinations per engine, isolated network and browser errors. Expected 1073 checks/engine (746+288+36+3), all existing checks retained; fresh CI required. Run #54 still active at preparation; no interruption. Scheduler creation/cancellation/series and BR9 manual evidence remain separate."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #53 FINAL success; combined artifact 15260310099 downloaded, ZIP CRC valid, summary SHA-256 192ec4a72de4520ddb82629d9f5f72aadacc94c928f0c1e4cb0f821d4c940b36; report binds run 46135614866 attempt 1 source 48e44cd8e4eb6abf4c1af50476369fcc8f2d045f. Three browsers 458/458 each, 36 registry axe scans, zero violations/incomplete; both native OS 29/29. Automated localized transport confirmed. https://github.com/disxlab/Taktera-Design-System/actions/runs/46135614866 Added separate independent localized Scheduler and Analytics host page, both languages x 12 product/theme combinations per engine, 12 additional exact named checks per locale: week/day, timezone, rejected and successful single-record update, analytics valid/invalid/incomplete period, details/table and real exact CSV download. Existing tests retained. Expected 746 checks/engine, 2238 total; no full translation, scheduler creation/cancellation/series acceptance, standalone Web Core transport or manual acceptance claim. Fresh CI required."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #52 FINAL failure, first-page API 30/30 success but overall failure and combined artifact absent. Downloaded all five matrix ZIPs and dossier (IDs 15259541292,15259067690,15259332055,15258973087,15259007907,15258459628), ZIP CRC valid; each browser 458/458, 12 registry axe scans, zero violations/incomplete, both native OS 29/29. All reports bind source 3391f10fe1cfe281e85aa423536075b360e6df19, Run 46134174999 attempt 1, manifest 38c028fe0ab4f25af9a8ecd069d679525374b1458887501298eeb0c7cdd703b2, dossier SHA-256 cdfa7051636ac73862554a8a12fd5886415025567db86b4c370d026a36c9ee4a. Independent comparison against exact expected check names found 72 missing and 72 unexpected names in each browser: extra space before locale, accessible error, draft reloaded. Hypothetical whitespace correction produces exact expected set of 458; original artifacts remain unchanged and rejected. Fix producer labels, assert canonical unique names at emission, keep strict exact matrix gate with separate diagnostics, add whitespace and duplicate negative tests. Failed downstream job log unavailable on first-page API, fresh CI required. https://github.com/disxlab/Taktera-Design-System/actions/runs/46134174999"
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #51 FINAL failure, npm packaged clean consumer job 140942805965: 8/8 completed checks then ERR_MODULE_NOT_FOUND importing dist/synthetic-transport.mjs from LocalizedTransport.js. 21 successful, one failed and eight skipped on first-page API. https://github.com/disxlab/Taktera-Design-System/actions/runs/46133230936 . Fix starter build explicitly compiles TypeScript using pinned local tsc, then stages exact synthetic JS runtime with byte equality; declaration remains for strict type checking. Existing npm consumer calls the actual starter build and verifies copied bytes before SSR import. Rollback and canonical browser consumers already use npm run build. No change to SDK packages, lock constraints or security gates. Fresh CI required."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #48 failed static supply-chain gate: combined acceptance job setup-python pin was truncated to 35 characters (workflow line 683). Restored exact existing reviewed 40-character lock SHA, added truncated-pin negative regression; no lock, permission or validator changes. 21 successful, 1 failed, 8 skipped on first-page API; native/combined acceptance not executed. New CI required."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #47 FINAL success, all 30 returned jobs success (31-job workflow; first-page API limitation); all three canonical browser artifacts exist: chromium 15251014792, firefox 15251396350, webkit 15250329495. Firefox and WebKit logs explicitly 170/170 each, 12 scenarios, 12 axe scans, zero violations/errors. Chromium success via overall run and artifact; individual job log unavailable on first page. https://github.com/disxlab/Taktera-Design-System/actions/runs/46114720283 . Separate independent functional and main-world axe contexts resolve observed Firefox crash in CI, without skipping WCAG checks. Scope: English synthetic registry/workflows, no complete manual accessibility or production acceptance. Activate prepared BR8-02, combined evidence and BR8-03 synthetic transport foundation; new CI required."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "BR8-03 synthetic host transport foundation prepared; 17 in-memory JS checks passed at authoring, package-only localized UI and CI still pending. Preserve Run #47."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Prepared combined BR8 acceptance evidence gate and regression fixtures; retain running Run #47, no approval or manual acceptance claim."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Prepared rebased BR8-02 canonical native matrix with strict named TRX coverage and evidence parser regressions; preserve running Run #47, no premature completion."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Reconciled the prepared independent audit-context variant onto actual working-branch head b918b14 (parallel fresh audit-page fix). Current branch compare confirms b918b14; PR #10 metadata still reports 77e7972 and CI/status lookup returns no runs/checks for b918b14. Preserve existing parallel documentation and all gates. Functional role locators and axe scans use distinct fresh browser contexts; audit uses main-world DOM theme selection and verifies theme and both synthetic registry rows. Full WCAG tags, exactly 12 scans per engine, external request/WebSocket denial, and failure on any error remain mandatory. No SDK/brand/dependency change; root cause and effectiveness unconfirmed pending CI."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #46 FINAL failure: Firefox content process SIGSEGV (11), 35/36 checks, 12 crashes during axe evaluation, 0 completed scans; Chromium job success, WebKit conclusion outside first-page API. Firefox artifact 15250825018. https://github.com/disxlab/Taktera-Design-System/actions/runs/46111723612 . Prior routing/projection patch did not resolve crash. Passing source harness uses a fresh separately hydrated audit page; apply same lifecycle to canonical consumer after workflow checks, verify audit product/theme and fresh registry, retain full document scan, tags, 12 scans, error and network gates. Root cause hypothesis remains unconfirmed; fresh CI required."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #45 FINAL failure; first-page API shows 29 successes, Firefox failure, Chromium 134/134, 12 scenarios/12 axe scans, zero violations. Firefox 35/36 reported checks, 12 page crashes in axe evaluation, zero completed axe scans; full WebKit job outside first-page API, artifact exists but conclusion unverified. https://github.com/disxlab/Taktera-Design-System/actions/runs/46110955155 BR8 harness diagnostic fix; no SDK/brand changes or weakened acceptance."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #44 FINAL 28/28 PASS; JSON-stable native contracts fixed Run #43, 5 regression tests, 10 version negative controls, zero checked API differences, 7 dossier negative controls, four draft documentation files. Version artifact 15245761539, dossier 15245493735, rollback 15245991122. https://github.com/disxlab/Taktera-Design-System/actions/runs/46101649794 BR8/BR9 explicit acceptance work items and first canonical browser matrix implemented; new CI pending."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #43 FINAL 27/28; recovery and version policy PASS (8 recovery controls, 5 negative recovery controls, 10 version negative controls, zero checked API differences, version artifact 15244797422); only release documentation failed with ValueError: Version archive contracts differ. https://github.com/disxlab/Taktera-Design-System/actions/runs/46099306231 Fix JSON representation and add cross-job regression tests."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #42 FINAL 27/27 PASS; historical Run #39 recovered, eight consumer checks, five negative rollback controls, 20.13 s local drill, Avalonia same-version/different-bytes collision detected; rollback artifact 15244762254. https://github.com/disxlab/Taktera-Design-System/actions/runs/46098533423 Version preflight and draft release dossier automation implemented, fresh CI pending."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "BR7-09 version and compatibility preflight prepared. Run #42 recovery still pending at initial review; retain running CI."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #41 FINAL 26/26 PASS, committed-match for all six Python wheels, pip check PASS, release preflight PASS and eleven negative controls rejected; publicationAllowed=false, artifact 15243779215. https://github.com/disxlab/Taktera-Design-System/actions/runs/46098015946 Activate historical recovery rehearsal on draft branch, not production."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "BR7-08 historical recovery rehearsal implemented using exact Run #39 evidence. Run #41 final status pending at initial review; do not push until successful."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #40 static policy PASS (66 active and 14 template pins, 41 npm / 4 NuGet lock dependencies, 17/17 tests); Candidate job PASS, six actual validator wheel hashes observed, pip check PASS, artifact 15243339848. https://github.com/disxlab/Taktera-Design-System/actions/runs/46097626668 Committed observed wheel hashes and implemented release preflight; final Run #40 pending at initial review, fresh CI required."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #39 FINAL 25/25 PASS; registry fixture 31/31 PASS, npm CLI exact two archives, NuGet exact archive and private/public source mapping, negative auth/write checks; registry artifact 15242503754, candidate 15243307004. https://github.com/disxlab/Taktera-Design-System/actions/runs/46094888319 BR7-06 action pins, static policy controls, wheel integrity evidence and negative tests implemented; fresh CI pending."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #38 FINAL 24/24 PASS; eight-subject attestation preflight PASS, independent download verifies 40 files, 41 archive members, 5 SBOMs and 4 negative controls; candidate 15241709397, independent verification 15242915608. https://github.com/disxlab/Taktera-Design-System/actions/runs/46093859272 Added BR7-05 read-only registry protocol fixture and unconfigured policy; new CI pending."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #37 Candidate PASS: 3 SDKs, 5 schema-validated SBOMs, 41 archive members, 14 XAML sources, 19 marker files, 7/7 license texts found (3 embedded + 4 pinned source), zero missing, one unconfirmed binary-source association (MicroCom), 40 hashed files. Independent verification log PASS and all four negative controls rejected; final job state pending at initial review. https://github.com/disxlab/Taktera-Design-System/actions/runs/46093427123 Trusted signing template and read-only subject preflight implemented; new CI pending."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #36 23/23 PASS; 5 SBOM schemas pass, 41 archive members, 14 embedded XAML sources, 19 flagged files, no separate asset files, 3 embedded license texts + 2 pinned upstream, 2 missing texts, 37 hashed files; candidate 15241378664. https://github.com/disxlab/Taktera-Design-System/actions/runs/46092700331 Added two historical license sources and read-only independent candidate verification (BR7-04 preflight); new CI pending."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #35 23/23 PASS; seven hash regression tests PASS, five official SBOM schemas PASS, 7 external components, 3 original embedded license texts, 4 missing embedded texts, candidate artifact 15241269003, 33 hashed files. https://github.com/disxlab/Taktera-Design-System/actions/runs/46091839760 Added exact-release upstream license evidence and archive/XAML asset attribution audit, new CI pending."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #34 22/23 PASS; all 5 SBOM documents passed official pinned JSON schemas. Candidate failed later at NuGet license evidence: raw archive SHA-512 sidecar incorrectly compared to lock contentHash. No Candidate artifact. https://github.com/disxlab/Taktera-Design-System/actions/runs/46090733578 Native content/raw hash distinction fixed; schema and license gate retained; new CI pending."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #33 23/23 PASS, four exact locked builds on two independent runner jobs, canonical Windows/macOS consumers PASS, candidate artifact 15240739920: 3 shipped packages, 5 SBOMs, 41 archive members, 7 external components, 8 dependency edges, 14 XAML source hashes, 27 hashed files. https://github.com/disxlab/Taktera-Design-System/actions/runs/46090391495 BR7-01 completed; BR7-02/03 ongoing; official schemas and original license evidence review draft implemented for next CI."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #33 independent locked-build agreement PASS; final candidate status pending at initial verification. Added official pinned schema validation and dependency license evidence / draft notices; new CI pending. https://github.com/disxlab/Taktera-Design-System/actions/runs/46090391495"
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #32 23/23 PASS, four clean builds on two runner jobs, exact three canonical packages, Windows/macOS each canonical consumer 19/19 and 5/5 headless, candidate artifact 15240697879. https://github.com/disxlab/Taktera-Design-System/actions/runs/46089799082 Exact CI lock committed; initial product SBOM generator added. New CI pending."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #31 19/19 PASS: exact 3/3 packages, pre/post-XAML DLL byte-identical, candidate artifact 15239888971. https://github.com/disxlab/Taktera-Design-System/actions/runs/46089374458 Four-build independent runner/canonical consumer gates implemented; CI pending."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #30 17/19 PASS, 1 failure, 1 skipped. Exact SDK selection fixed (.NET 10.0.404). Both clean builds completed, npm Web Core and React SHA-256 identical; NuGet differed in ZIP timestamps and Avalonia DLL bytes. Six other ZIP member payloads identical. https://github.com/disxlab/Taktera-Design-System/actions/runs/46087100433 Reproducibility fix and stage diagnostics implemented; CI pending."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #29: 17/19 PASS, 1 failed, 1 skipped. BR7-01 stopped before builds: runner selected .NET SDK 11.0.100 despite installing 10.0.404. Node 26.13.1 and npm 11.20.0 confirmed. Candidate gate correctly skipped. https://github.com/disxlab/Taktera-Design-System/actions/runs/46086531837 SDK selection fixed in source; revalidation pending."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #28 18/18 PASS, candidate artifact 15239062367. Owner decision: Platform integration after Stable only; BR5-07 synthetic independent acceptance and BR7-01–10/REL milestones added. First reproducibility gate implemented; CI pending. https://github.com/disxlab/Taktera-Design-System/actions/runs/46085839752"
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #27 18/18 PASS; npm 22/22, Windows/macOS NuGet 26/26 + 5/5 each including mandatory cleanup; candidate evidence 4 packages, 3 consumer inventories, 19 hashes, artifact 15238208262. No publishing; product SBOM, license review, reproducibility, registry and manual/staging gates remain. https://github.com/disxlab/Taktera-Design-System/actions/runs/46084256928"
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #26 16/18 (1 failure, 1 skipped): CRM/Analytics 1302/1302, npm 22/22, API 12+2, macOS NuGet 26/26 and 5/5 PASS; Windows 26/26 and 5/5 before collector cleanup failure. Release gate correctly skipped. Scoped telemetry opt-out added."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #25 15/17 PASS; Windows NuGet 22/22 and 4/4 tests before cleanup failure, macOS CS0234 in test consumer. Fixes, API guard, CLI, portal and candidate release evidence added; new CI pending."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #24 15/15 PASS, CRM/analytics 434/434 per engine; 1302/1302 total, npm clean consumer 16/16. NuGet resource SDK and independent consumer added; new CI pending."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #23 11/14; analytics QA blocked by ambiguous locator on 3 engines. Exact selectors fixed; BR5 reference workspace and BR6 npm clean-consumer gate added. CI pending."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #22 14/14 PASS; CRM 978/978; 288 total axe scans / zero detected violations. BR5-05 advanced analytics added; new CI required."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #21 14/14 PASS, notification label fix verified on all engines, CRM 654/654, 252 total axe scans with zero detected violations. BR5-04 extension and BR5-05 initial KPI committed, new CI pending."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "BR5-04 extended forms/workspace and BR5-05 Analytics KPI foundation prepared; CI pending."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #20 CRM functional 654/654; notification accessible-name mismatch failed axe on all engines. Corrected accessible label, no rule exclusions."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #19 14/14 PASS; Scheduler 681/681; 144 axe scans with zero detected violations. BR5-04 source and QA ready; new CI required."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #18 14/14 PASS, Scheduler 681/681, unit tests 87/87. Scheduler hardening published. BR5-04 CRM foundation implemented; new CI pending."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #17 14/14 PASS; Scheduler 654/654, 108 axe scans / zero detected violations. Added opt-in advanced Scheduler UI and core; new CI pending."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #16: 11/14, Scheduler unit tests 6/6 per OS; first 6 browser checks passed per engine then resource selector label timeout. Existing React 397/397, Web Core 38/38 and Board 19/19 per engine still PASS. Correction pending."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #16 confirmed scheduler unit tests across three OSes; accessible name issue found in WebKit browser QA, correction and revalidation pending."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #15 14/14 PASS, React 1191/1191, 72 axe scans, zero detected violations. Scheduler day/week and booking editor implemented; new CI pending."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #14: 14/14 PASS; 975 React functional checks, 114 Web Core checks, 72 axe scans / 0 detected violations, Board 57/57. Firefox recovered with fresh audit page. Remote controller, bulk core and Scheduler unit tests passed; remote UI requires new CI."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "BR5: remote UI, grouped rows and explicit bulk confirmation implemented; test transport only, CI pending."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #13 13/14; Firefox crash before axe completes, Chromium/WebKit 325/325. BR5 remote controller, bulk protocol and Scheduler core added; verification pending."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "BR4-08 browser persistence verified 57/57 on Run #12. BR5: virtualized DOM and paginated fallback added, verification pending. No approved resource or main changes."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #11 14/14 PASS (https://github.com/disxlab/Taktera-Design-System/actions/runs/46076262919). Added Project Board persistence regression tests and BR5 ERP/CRM architecture / AdvancedDataGrid initial implementation; new CI pending."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #10 (1682fb05d145): 14/14 jobs PASS, Web Core 114/114, React 543/543, 72 axe scans / 0 detected violations, Avalonia headless 9/9, issue snapshot 11 issues/41 links. Automated BR4 baseline confirmed; manual and staging gates remain. https://github.com/disxlab/Taktera-Design-System/actions/runs/46076078235"
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #9: React interaction 181/181 на каждом движке; axe нашёл 2 contrast-нарушения; headless 2/3 на каждой ОС; issue snapshot PASS. Исправлены ссылка на семантический токен вкладок и выбор текстового поля, ожидается повторный CI."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #8: 10/10 PASS на Node.js 26.13.1, npm ci, static/freeze, React, Avalonia, audit и Web Core 114 checks / 36 axe scans. Добавлены BR4-11/12 и планы BR5/6; новые проверки ещё не подтверждены."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "Run #7: 10/10 PASS, 114 browser checks, 36 axe scans / 0 violations. Фиксация реального npm lockfile и миграция на Node.js 26 LTS; новый CI ещё требуется."
+    },
+    {
+      "at": "2026-11-28",
+      "message": "BR3: CI Run #6 — 6/6 PASS, 53/53 static, React SSR 14/14 × 3, Avalonia 0/0 Windows/macOS. BR4 запущен, новые проверки ещё не подтверждены."
+    },
+    {
+      "at": "2026-11-23",
+      "message": "Beta Readiness 3: 53/53 offline preflight; 12 адаптеров ключей Avalonia Tkn→Tk, проверена воспроизводимость. Реальные CI и React/Avalonia сборки открыты."
+    },
+    {
+      "at": "2026-11-23",
+      "message": "Beta Readiness 3: создан межплатформенный CI и тестовые сценарии; успешные React/Avalonia сборки пока не подтверждены."
+    },
+    {
+      "at": "2026-11-23",
+      "message": "Beta Readiness 1: закрыты DS-010/011/012 на уровне генераторов/проверяемых Web-артефактов; DS-020 остаётся в работе."
+    },
+    {
+      "at": "2026-11-23",
+      "message": "Alpha.7: добавлены прототипы Data Grid, календаря ресурсов, мастера форм и аналитики; отраслевые сценарии остаются в работе."
+    },
+    {
+      "at": "2026-11-23",
+      "message": "Alpha.9: подготовлены иконографические, графические, motion, шаблонные и UX/governance-спецификации; оригиналы иконок и A/B не утверждались."
+    }
+  ]
+}
+</script><script src="dashboard.js"></script></body></html>

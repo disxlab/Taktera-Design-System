@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "jsx": "react-jsx",
+    "strict": true,
+    "skipLibCheck": false,
+    "outDir": "dist",
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "esModuleInterop": true
+  },
+  "include": [
+    "App.tsx",
+    "client.tsx",
+    "LocalizedTransport.tsx",
+    "synthetic-transport.d.mts",
+    "LocalizedOperations.tsx"
+  ]
+}

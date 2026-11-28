@@ -1,0 +1,16 @@
+{
+  "release": "4.0-beta-readiness.1",
+  "date": "2026-11-23",
+  "preserved_source_files": 260,
+  "generated_avalonia_resource_dictionaries": 12,
+  "visual_baselines_chromium": 48,
+  "mobile_smoke": 1,
+  "formatter_assertions": 15,
+  "xml_validation": "pass",
+  "deterministic_generation": "pass",
+  "browser_js_errors": 0,
+  "external_native_build": "not_tested",
+  "multi_browser_reference": "not_tested",
+  "screenreader": "not_tested",
+  "foundation_and_semantic_tokens_exported": true
+}

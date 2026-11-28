@@ -1,0 +1,131 @@
+{
+  "checks": [
+    {
+      "test": "seeded tasks 31",
+      "passed": true
+    },
+    {
+      "test": "5 lanes",
+      "passed": true
+    },
+    {
+      "test": "phase milestones 6",
+      "passed": true
+    },
+    {
+      "test": "critical beta blocked",
+      "passed": true
+    },
+    {
+      "test": "search filters",
+      "passed": true
+    },
+    {
+      "test": "add task",
+      "passed": true
+    },
+    {
+      "test": "journal updated",
+      "passed": true
+    },
+    {
+      "test": "task remains in live state",
+      "passed": true
+    },
+    {
+      "test": "table toggles",
+      "passed": true
+    },
+    {
+      "test": "valid backup export",
+      "passed": true
+    },
+    {
+      "test": "reset restores seed",
+      "passed": true
+    },
+    {
+      "test": "backup import restores changed state",
+      "passed": true
+    },
+    {
+      "test": "mobile no horizontal document overflow",
+      "passed": true
+    },
+    {
+      "test": "studio shows tokens",
+      "passed": true
+    },
+    {
+      "test": "studio platform light",
+      "passed": true
+    },
+    {
+      "test": "studio platform dark",
+      "passed": true
+    },
+    {
+      "test": "studio clinic light",
+      "passed": true
+    },
+    {
+      "test": "studio clinic dark",
+      "passed": true
+    },
+    {
+      "test": "studio beauty light",
+      "passed": true
+    },
+    {
+      "test": "studio beauty dark",
+      "passed": true
+    },
+    {
+      "test": "studio spa light",
+      "passed": true
+    },
+    {
+      "test": "studio spa dark",
+      "passed": true
+    },
+    {
+      "test": "studio fitness light",
+      "passed": true
+    },
+    {
+      "test": "studio fitness dark",
+      "passed": true
+    },
+    {
+      "test": "studio travel light",
+      "passed": true
+    },
+    {
+      "test": "studio travel dark",
+      "passed": true
+    },
+    {
+      "test": "density applied",
+      "passed": true
+    },
+    {
+      "test": "english translation",
+      "passed": true
+    },
+    {
+      "test": "experimental override applied",
+      "passed": true
+    },
+    {
+      "test": "restore removes experimental override",
+      "passed": true
+    },
+    {
+      "test": "studio mobile no overflow",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "passed": 31,
+  "total": 31
+}

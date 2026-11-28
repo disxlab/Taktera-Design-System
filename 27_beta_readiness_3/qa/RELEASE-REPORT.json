@@ -1,0 +1,234 @@
+{
+  "release": "Beta Readiness 3",
+  "board_tasks": 43,
+  "preflight": {
+    "checks": 53,
+    "passed": 53,
+    "failed": [],
+    "items": [
+      {
+        "name": "React package remains private until release approval",
+        "passed": true
+      },
+      {
+        "name": "React smoke test runner dependency declared",
+        "passed": true
+      },
+      {
+        "name": "React SSR smoke script available",
+        "passed": true
+      },
+      {
+        "name": "React SSR test source exists",
+        "passed": true
+      },
+      {
+        "name": "React source entrypoint exists",
+        "passed": true
+      },
+      {
+        "name": "Avalonia sample csproj exists",
+        "passed": true
+      },
+      {
+        "name": "Avalonia application code exists",
+        "passed": true
+      },
+      {
+        "name": "Avalonia application XAML exists",
+        "passed": true
+      },
+      {
+        "name": "Exactly 12 product/theme resource dictionaries generated",
+        "passed": true
+      },
+      {
+        "name": "No duplicate resource keys: Taktera.Beauty.Dark.axaml",
+        "passed": true
+      },
+      {
+        "name": "Canonical accent brush exists: Taktera.Beauty.Dark.axaml",
+        "passed": true
+      },
+      {
+        "name": "No duplicate resource keys: Taktera.Beauty.Light.axaml",
+        "passed": true
+      },
+      {
+        "name": "Canonical accent brush exists: Taktera.Beauty.Light.axaml",
+        "passed": true
+      },
+      {
+        "name": "No duplicate resource keys: Taktera.Clinic.Dark.axaml",
+        "passed": true
+      },
+      {
+        "name": "Canonical accent brush exists: Taktera.Clinic.Dark.axaml",
+        "passed": true
+      },
+      {
+        "name": "No duplicate resource keys: Taktera.Clinic.Light.axaml",
+        "passed": true
+      },
+      {
+        "name": "Canonical accent brush exists: Taktera.Clinic.Light.axaml",
+        "passed": true
+      },
+      {
+        "name": "No duplicate resource keys: Taktera.Fitness.Dark.axaml",
+        "passed": true
+      },
+      {
+        "name": "Canonical accent brush exists: Taktera.Fitness.Dark.axaml",
+        "passed": true
+      },
+      {
+        "name": "No duplicate resource keys: Taktera.Fitness.Light.axaml",
+        "passed": true
+      },
+      {
+        "name": "Canonical accent brush exists: Taktera.Fitness.Light.axaml",
+        "passed": true
+      },
+      {
+        "name": "No duplicate resource keys: Taktera.Platform.Dark.axaml",
+        "passed": true
+      },
+      {
+        "name": "Canonical accent brush exists: Taktera.Platform.Dark.axaml",
+        "passed": true
+      },
+      {
+        "name": "No duplicate resource keys: Taktera.Platform.Light.axaml",
+        "passed": true
+      },
+      {
+        "name": "Canonical accent brush exists: Taktera.Platform.Light.axaml",
+        "passed": true
+      },
+      {
+        "name": "No duplicate resource keys: Taktera.Spa.Dark.axaml",
+        "passed": true
+      },
+      {
+        "name": "Canonical accent brush exists: Taktera.Spa.Dark.axaml",
+        "passed": true
+      },
+      {
+        "name": "No duplicate resource keys: Taktera.Spa.Light.axaml",
+        "passed": true
+      },
+      {
+        "name": "Canonical accent brush exists: Taktera.Spa.Light.axaml",
+        "passed": true
+      },
+      {
+        "name": "No duplicate resource keys: Taktera.Travel.Dark.axaml",
+        "passed": true
+      },
+      {
+        "name": "Canonical accent brush exists: Taktera.Travel.Dark.axaml",
+        "passed": true
+      },
+      {
+        "name": "No duplicate resource keys: Taktera.Travel.Light.axaml",
+        "passed": true
+      },
+      {
+        "name": "Canonical accent brush exists: Taktera.Travel.Light.axaml",
+        "passed": true
+      },
+      {
+        "name": "Well-formed Avalonia XAML: App.axaml",
+        "passed": true
+      },
+      {
+        "name": "Well-formed Avalonia XAML: MainWindow.axaml",
+        "passed": true
+      },
+      {
+        "name": "Well-formed Avalonia XAML: Assets/TkControls.axaml",
+        "passed": true
+      },
+      {
+        "name": "Well-formed Avalonia XAML: Assets/TkFieldStyles.axaml",
+        "passed": true
+      },
+      {
+        "name": "Well-formed Avalonia XAML: Assets/Taktera.Clinic.Light.axaml",
+        "passed": true
+      },
+      {
+        "name": "12 backwards-compatible resource dictionaries generated",
+        "passed": true
+      },
+      {
+        "name": "Legacy Tk* brush coverage in Taktera.Beauty.Dark.axaml: []",
+        "passed": true
+      },
+      {
+        "name": "Legacy Tk* brush coverage in Taktera.Beauty.Light.axaml: []",
+        "passed": true
+      },
+      {
+        "name": "Legacy Tk* brush coverage in Taktera.Clinic.Dark.axaml: []",
+        "passed": true
+      },
+      {
+        "name": "Legacy Tk* brush coverage in Taktera.Clinic.Light.axaml: []",
+        "passed": true
+      },
+      {
+        "name": "Legacy Tk* brush coverage in Taktera.Fitness.Dark.axaml: []",
+        "passed": true
+      },
+      {
+        "name": "Legacy Tk* brush coverage in Taktera.Fitness.Light.axaml: []",
+        "passed": true
+      },
+      {
+        "name": "Legacy Tk* brush coverage in Taktera.Platform.Dark.axaml: []",
+        "passed": true
+      },
+      {
+        "name": "Legacy Tk* brush coverage in Taktera.Platform.Light.axaml: []",
+        "passed": true
+      },
+      {
+        "name": "Legacy Tk* brush coverage in Taktera.Spa.Dark.axaml: []",
+        "passed": true
+      },
+      {
+        "name": "Legacy Tk* brush coverage in Taktera.Spa.Light.axaml: []",
+        "passed": true
+      },
+      {
+        "name": "Legacy Tk* brush coverage in Taktera.Travel.Dark.axaml: []",
+        "passed": true
+      },
+      {
+        "name": "Legacy Tk* brush coverage in Taktera.Travel.Light.axaml: []",
+        "passed": true
+      },
+      {
+        "name": "Sample resources cover every referenced Tk*Brush",
+        "passed": true
+      },
+      {
+        "name": "GitHub Actions workflow is included (not yet executed)",
+        "passed": true
+      }
+    ],
+    "limitations": [
+      "Static XML check is not an Avalonia build",
+      "No npm dependencies fetched in offline environment",
+      "Workflow not run on GitHub Actions"
+    ]
+  },
+  "brand_logo_files_unchanged": 84,
+  "react_build": "not_run_npm_registry_EAI_AGAIN",
+  "avalonia_build": "not_run_dotnet_sdk_missing",
+  "github_actions": "not_run_not_uploaded",
+  "generated_compat_dictionaries": 12,
+  "repeat_generation": "identical_sha256"
+}

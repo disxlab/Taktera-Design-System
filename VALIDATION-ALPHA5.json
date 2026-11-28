@@ -1,0 +1,26 @@
+{
+  "version": "4.0-alpha.5",
+  "browser_base": 53,
+  "browser_extended": 29,
+  "browser_consumer": 19,
+  "static": 274,
+  "offline_npm_install": true,
+  "react_build": "not tested",
+  "avalonia_build": "not tested",
+  "http_browser_navigation": "blocked by browser policy",
+  "brand_comparison": {
+    "scope": [
+      "01_brandbook",
+      "02_logos",
+      "03_icons",
+      "04_tokens",
+      "05_typography",
+      "06_templates",
+      "07_guidelines",
+      "08_exports"
+    ],
+    "compared": 257,
+    "identical": 257,
+    "different": []
+  }
+}

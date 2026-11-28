@@ -1,0 +1,443 @@
+{
+  "browser": "Chromium",
+  "viewport": [
+    1280,
+    840
+  ],
+  "deviceScaleFactor": 1,
+  "configs": [
+    {
+      "id": "platform-light-comfortable-ru",
+      "lang": "ru",
+      "theme": "light",
+      "product": "platform",
+      "density": "comfortable",
+      "row": "44px",
+      "overflow": false
+    },
+    {
+      "id": "platform-light-comfortable-en",
+      "lang": "en",
+      "theme": "light",
+      "product": "platform",
+      "density": "comfortable",
+      "row": "44px",
+      "overflow": false
+    },
+    {
+      "id": "platform-light-compact-ru",
+      "lang": "ru",
+      "theme": "light",
+      "product": "platform",
+      "density": "compact",
+      "row": "36px",
+      "overflow": false
+    },
+    {
+      "id": "platform-light-compact-en",
+      "lang": "en",
+      "theme": "light",
+      "product": "platform",
+      "density": "compact",
+      "row": "36px",
+      "overflow": false
+    },
+    {
+      "id": "platform-dark-comfortable-ru",
+      "lang": "ru",
+      "theme": "dark",
+      "product": "platform",
+      "density": "comfortable",
+      "row": "44px",
+      "overflow": false
+    },
+    {
+      "id": "platform-dark-comfortable-en",
+      "lang": "en",
+      "theme": "dark",
+      "product": "platform",
+      "density": "comfortable",
+      "row": "44px",
+      "overflow": false
+    },
+    {
+      "id": "platform-dark-compact-ru",
+      "lang": "ru",
+      "theme": "dark",
+      "product": "platform",
+      "density": "compact",
+      "row": "36px",
+      "overflow": false
+    },
+    {
+      "id": "platform-dark-compact-en",
+      "lang": "en",
+      "theme": "dark",
+      "product": "platform",
+      "density": "compact",
+      "row": "36px",
+      "overflow": false
+    },
+    {
+      "id": "clinic-light-comfortable-ru",
+      "lang": "ru",
+      "theme": "light",
+      "product": "clinic",
+      "density": "comfortable",
+      "row": "44px",
+      "overflow": false
+    },
+    {
+      "id": "clinic-light-comfortable-en",
+      "lang": "en",
+      "theme": "light",
+      "product": "clinic",
+      "density": "comfortable",
+      "row": "44px",
+      "overflow": false
+    },
+    {
+      "id": "clinic-light-compact-ru",
+      "lang": "ru",
+      "theme": "light",
+      "product": "clinic",
+      "density": "compact",
+      "row": "36px",
+      "overflow": false
+    },
+    {
+      "id": "clinic-light-compact-en",
+      "lang": "en",
+      "theme": "light",
+      "product": "clinic",
+      "density": "compact",
+      "row": "36px",
+      "overflow": false
+    },
+    {
+      "id": "clinic-dark-comfortable-ru",
+      "lang": "ru",
+      "theme": "dark",
+      "product": "clinic",
+      "density": "comfortable",
+      "row": "44px",
+      "overflow": false
+    },
+    {
+      "id": "clinic-dark-comfortable-en",
+      "lang": "en",
+      "theme": "dark",
+      "product": "clinic",
+      "density": "comfortable",
+      "row": "44px",
+      "overflow": false
+    },
+    {
+      "id": "clinic-dark-compact-ru",
+      "lang": "ru",
+      "theme": "dark",
+      "product": "clinic",
+      "density": "compact",
+      "row": "36px",
+      "overflow": false
+    },
+    {
+      "id": "clinic-dark-compact-en",
+      "lang": "en",
+      "theme": "dark",
+      "product": "clinic",
+      "density": "compact",
+      "row": "36px",
+      "overflow": false
+    },
+    {
+      "id": "beauty-light-comfortable-ru",
+      "lang": "ru",
+      "theme": "light",
+      "product": "beauty",
+      "density": "comfortable",
+      "row": "44px",
+      "overflow": false
+    },
+    {
+      "id": "beauty-light-comfortable-en",
+      "lang": "en",
+      "theme": "light",
+      "product": "beauty",
+      "density": "comfortable",
+      "row": "44px",
+      "overflow": false
+    },
+    {
+      "id": "beauty-light-compact-ru",
+      "lang": "ru",
+      "theme": "light",
+      "product": "beauty",
+      "density": "compact",
+      "row": "36px",
+      "overflow": false
+    },
+    {
+      "id": "beauty-light-compact-en",
+      "lang": "en",
+      "theme": "light",
+      "product": "beauty",
+      "density": "compact",
+      "row": "36px",
+      "overflow": false
+    },
+    {
+      "id": "beauty-dark-comfortable-ru",
+      "lang": "ru",
+      "theme": "dark",
+      "product": "beauty",
+      "density": "comfortable",
+      "row": "44px",
+      "overflow": false
+    },
+    {
+      "id": "beauty-dark-comfortable-en",
+      "lang": "en",
+      "theme": "dark",
+      "product": "beauty",
+      "density": "comfortable",
+      "row": "44px",
+      "overflow": false
+    },
+    {
+      "id": "beauty-dark-compact-ru",
+      "lang": "ru",
+      "theme": "dark",
+      "product": "beauty",
+      "density": "compact",
+      "row": "36px",
+      "overflow": false
+    },
+    {
+      "id": "beauty-dark-compact-en",
+      "lang": "en",
+      "theme": "dark",
+      "product": "beauty",
+      "density": "compact",
+      "row": "36px",
+      "overflow": false
+    },
+    {
+      "id": "spa-light-comfortable-ru",
+      "lang": "ru",
+      "theme": "light",
+      "product": "spa",
+      "density": "comfortable",
+      "row": "44px",
+      "overflow": false
+    },
+    {
+      "id": "spa-light-comfortable-en",
+      "lang": "en",
+      "theme": "light",
+      "product": "spa",
+      "density": "comfortable",
+      "row": "44px",
+      "overflow": false
+    },
+    {
+      "id": "spa-light-compact-ru",
+      "lang": "ru",
+      "theme": "light",
+      "product": "spa",
+      "density": "compact",
+      "row": "36px",
+      "overflow": false
+    },
+    {
+      "id": "spa-light-compact-en",
+      "lang": "en",
+      "theme": "light",
+      "product": "spa",
+      "density": "compact",
+      "row": "36px",
+      "overflow": false
+    },
+    {
+      "id": "spa-dark-comfortable-ru",
+      "lang": "ru",
+      "theme": "dark",
+      "product": "spa",
+      "density": "comfortable",
+      "row": "44px",
+      "overflow": false
+    },
+    {
+      "id": "spa-dark-comfortable-en",
+      "lang": "en",
+      "theme": "dark",
+      "product": "spa",
+      "density": "comfortable",
+      "row": "44px",
+      "overflow": false
+    },
+    {
+      "id": "spa-dark-compact-ru",
+      "lang": "ru",
+      "theme": "dark",
+      "product": "spa",
+      "density": "compact",
+      "row": "36px",
+      "overflow": false
+    },
+    {
+      "id": "spa-dark-compact-en",
+      "lang": "en",
+      "theme": "dark",
+      "product": "spa",
+      "density": "compact",
+      "row": "36px",
+      "overflow": false
+    },
+    {
+      "id": "fitness-light-comfortable-ru",
+      "lang": "ru",
+      "theme": "light",
+      "product": "fitness",
+      "density": "comfortable",
+      "row": "44px",
+      "overflow": false
+    },
+    {
+      "id": "fitness-light-comfortable-en",
+      "lang": "en",
+      "theme": "light",
+      "product": "fitness",
+      "density": "comfortable",
+      "row": "44px",
+      "overflow": false
+    },
+    {
+      "id": "fitness-light-compact-ru",
+      "lang": "ru",
+      "theme": "light",
+      "product": "fitness",
+      "density": "compact",
+      "row": "36px",
+      "overflow": false
+    },
+    {
+      "id": "fitness-light-compact-en",
+      "lang": "en",
+      "theme": "light",
+      "product": "fitness",
+      "density": "compact",
+      "row": "36px",
+      "overflow": false
+    },
+    {
+      "id": "fitness-dark-comfortable-ru",
+      "lang": "ru",
+      "theme": "dark",
+      "product": "fitness",
+      "density": "comfortable",
+      "row": "44px",
+      "overflow": false
+    },
+    {
+      "id": "fitness-dark-comfortable-en",
+      "lang": "en",
+      "theme": "dark",
+      "product": "fitness",
+      "density": "comfortable",
+      "row": "44px",
+      "overflow": false
+    },
+    {
+      "id": "fitness-dark-compact-ru",
+      "lang": "ru",
+      "theme": "dark",
+      "product": "fitness",
+      "density": "compact",
+      "row": "36px",
+      "overflow": false
+    },
+    {
+      "id": "fitness-dark-compact-en",
+      "lang": "en",
+      "theme": "dark",
+      "product": "fitness",
+      "density": "compact",
+      "row": "36px",
+      "overflow": false
+    },
+    {
+      "id": "travel-light-comfortable-ru",
+      "lang": "ru",
+      "theme": "light",
+      "product": "travel",
+      "density": "comfortable",
+      "row": "44px",
+      "overflow": false
+    },
+    {
+      "id": "travel-light-comfortable-en",
+      "lang": "en",
+      "theme": "light",
+      "product": "travel",
+      "density": "comfortable",
+      "row": "44px",
+      "overflow": false
+    },
+    {
+      "id": "travel-light-compact-ru",
+      "lang": "ru",
+      "theme": "light",
+      "product": "travel",
+      "density": "compact",
+      "row": "36px",
+      "overflow": false
+    },
+    {
+      "id": "travel-light-compact-en",
+      "lang": "en",
+      "theme": "light",
+      "product": "travel",
+      "density": "compact",
+      "row": "36px",
+      "overflow": false
+    },
+    {
+      "id": "travel-dark-comfortable-ru",
+      "lang": "ru",
+      "theme": "dark",
+      "product": "travel",
+      "density": "comfortable",
+      "row": "44px",
+      "overflow": false
+    },
+    {
+      "id": "travel-dark-comfortable-en",
+      "lang": "en",
+      "theme": "dark",
+      "product": "travel",
+      "density": "comfortable",
+      "row": "44px",
+      "overflow": false
+    },
+    {
+      "id": "travel-dark-compact-ru",
+      "lang": "ru",
+      "theme": "dark",
+      "product": "travel",
+      "density": "compact",
+      "row": "36px",
+      "overflow": false
+    },
+    {
+      "id": "travel-dark-compact-en",
+      "lang": "en",
+      "theme": "dark",
+      "product": "travel",
+      "density": "compact",
+      "row": "36px",
+      "overflow": false
+    }
+  ],
+  "captureCount": 48
+}

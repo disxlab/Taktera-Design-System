@@ -1,0 +1,276 @@
+{
+  "version": "v4.0-alpha.3",
+  "test_target": "web-core standalone samples demo",
+  "browser": "system Chromium",
+  "navigation": "set_content+inject local source because file/http blocked",
+  "checks": [
+    {
+      "name": "Loaded API and native components",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "No page errors at bootstrap",
+      "ok": true,
+      "info": "[]"
+    },
+    {
+      "name": "Theme attributes platform/light",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Canonical accent rendered platform/light",
+      "ok": true,
+      "info": "rgb(80, 85, 107) vs #50556B"
+    },
+    {
+      "name": "Theme attributes platform/dark",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Canonical accent rendered platform/dark",
+      "ok": true,
+      "info": "rgb(179, 184, 214) vs #B3B8D6"
+    },
+    {
+      "name": "Theme attributes clinic/light",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Canonical accent rendered clinic/light",
+      "ok": true,
+      "info": "rgb(35, 104, 209) vs #2368D1"
+    },
+    {
+      "name": "Theme attributes clinic/dark",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Canonical accent rendered clinic/dark",
+      "ok": true,
+      "info": "rgb(112, 166, 255) vs #70A6FF"
+    },
+    {
+      "name": "Theme attributes beauty/light",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Canonical accent rendered beauty/light",
+      "ok": true,
+      "info": "rgb(193, 59, 120) vs #C13B78"
+    },
+    {
+      "name": "Theme attributes beauty/dark",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Canonical accent rendered beauty/dark",
+      "ok": true,
+      "info": "rgb(241, 123, 177) vs #F17BB1"
+    },
+    {
+      "name": "Theme attributes spa/light",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Canonical accent rendered spa/light",
+      "ok": true,
+      "info": "rgb(17, 133, 105) vs #118569"
+    },
+    {
+      "name": "Theme attributes spa/dark",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Canonical accent rendered spa/dark",
+      "ok": true,
+      "info": "rgb(85, 203, 164) vs #55CBA4"
+    },
+    {
+      "name": "Theme attributes fitness/light",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Canonical accent rendered fitness/light",
+      "ok": true,
+      "info": "rgb(213, 43, 53) vs #D52B35"
+    },
+    {
+      "name": "Theme attributes fitness/dark",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Canonical accent rendered fitness/dark",
+      "ok": true,
+      "info": "rgb(255, 107, 117) vs #FF6B75"
+    },
+    {
+      "name": "Theme attributes travel/light",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Canonical accent rendered travel/light",
+      "ok": true,
+      "info": "rgb(212, 166, 0) vs #D4A600"
+    },
+    {
+      "name": "Theme attributes travel/dark",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Canonical accent rendered travel/dark",
+      "ok": true,
+      "info": "rgb(255, 212, 59) vs #FFD43B"
+    },
+    {
+      "name": "Responsive no horizontal viewport overflow 320",
+      "ok": true,
+      "info": "{'scroll': 320, 'width': 320}"
+    },
+    {
+      "name": "Responsive no horizontal viewport overflow 390",
+      "ok": true,
+      "info": "{'scroll': 390, 'width': 390}"
+    },
+    {
+      "name": "Responsive no horizontal viewport overflow 768",
+      "ok": true,
+      "info": "{'scroll': 768, 'width': 768}"
+    },
+    {
+      "name": "Responsive no horizontal viewport overflow 1440",
+      "ok": true,
+      "info": "{'scroll': 1440, 'width': 1440}"
+    },
+    {
+      "name": "Name field has associated label",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Invalid field has error association",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Disabled action cannot be clicked",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Loading action aria-busy",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Switch exposes checked role",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Tab right arrow changes selection",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Arrow-selected tab is keyboard focus",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Tab End navigates to last tab",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Tab Home navigates to first tab",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Table sort aria-sort ascending",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Table sort toggles desc",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Table pagination updates range",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Table previous works",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Native dialog is modal",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Dialog holds focus",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Dialog Escape closes",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Focus returns to opener",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Dialog confirmation closes",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Toast appears on confirmation",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Toast can be dismissed",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "XSS escaping in table cells",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Invalid theme rejected",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Zero browser errors",
+      "ok": true,
+      "info": "[]"
+    }
+  ],
+  "passed": 53,
+  "failed": 0,
+  "browser_errors": []
+}

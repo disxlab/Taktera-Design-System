@@ -1,0 +1,15 @@
+{
+  "version": "4.0-alpha.4",
+  "pilot": {
+    "passed": 14,
+    "total": 14,
+    "mode": "installed package script+CSS injected into Chromium due HTTP navigation block"
+  },
+  "base_browser": 53,
+  "extended_browser": 29,
+  "static": 274,
+  "react_build": "not executed",
+  "avalonia_build": "not executed",
+  "brand_freeze_original_files": 248,
+  "manifest_sha256": "33893f798f67eb068577c18d99a1389aff0814ae0ddb6dd4447eaf1507f9d358"
+}

@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "scope": "historical unsigned candidate rehearsal only",
+  "sourceCommit": "cc244b551f6afaaa7438c2b8ac16e8ed85128e4f",
+  "githubRunId": "46094888319",
+  "githubRunAttempt": "1",
+  "candidateArtifactId": "15243307004",
+  "canonicalArtifactId": "15242641664",
+  "candidateArtifactDigest": "sha256:71d55752556dde93ac7ec22daa887eb8dab006ad263d365601aaf2c9ad5cafcb",
+  "canonicalArtifactDigest": "sha256:24755c8c8b367d4cb5e2d198de33435533eaddb27209351faedb5ec25b0b90b9",
+  "candidateManifestSha256": "4f0716a823feaecfef3b6fd65ad922ab9e3ae98a4ca9efedb92ce1366b5794ce",
+  "canonicalPackages": {
+    "Taktera.UI.Avalonia.4.0.0-beta-readiness.3.nupkg": "e5d4f9d2b3ffd9e852be5ff6816abebc125b1cede04eb5354e284d34dfaa9820",
+    "taktera-ui-core-4.0.0-alpha.5.tgz": "184910a858d6cb1ba3d07a454f9c0d9ad681f64a5a56e90e19979e189f742fe6",
+    "taktera-ui-react-4.0.0-beta-readiness.3.tgz": "dec123a89703c47aa520fe7c0dfa758540bb73611f5ed4cfbe4f01d75d3b42a2"
+  },
+  "approvedRelease": false
+}

@@ -1,0 +1,17 @@
+<Window xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  x:Class="Taktera.Reference.MainWindow" Title="Taktera UI · Clinic sample" Width="720" Height="420"
+  Background="{DynamicResource TkCanvasBrush}" Foreground="{DynamicResource TkTextBrush}">
+  <StackPanel Margin="32" Spacing="14">
+    <TextBlock Text="Taktera Clinic" FontSize="24" FontWeight="Bold" Foreground="{DynamicResource TkAccentTextBrush}"/>
+    <TextBlock Text="Packaged Taktera UI · synthetic reference consumer"/>
+    <TextBox x:Name="ServiceNameField" Classes="tku-field" Watermark="Название услуги" Width="360" HorizontalAlignment="Left"/>
+    <ComboBox Classes="tku-field" Width="240" HorizontalAlignment="Left" SelectedIndex="0">
+      <ComboBoxItem Content="Консультация"/><ComboBoxItem Content="Повторный приём"/>
+    </ComboBox>
+    <CheckBox Classes="tku-check" Content="Подтверждено"/>
+    <StackPanel Orientation="Horizontal" Spacing="10">
+      <Button Theme="{StaticResource TkPrimaryButton}" Content="Сохранить"/>
+      <Button Theme="{StaticResource TkSecondaryButton}" Content="Отмена"/>
+    </StackPanel>
+  </StackPanel>
+</Window>

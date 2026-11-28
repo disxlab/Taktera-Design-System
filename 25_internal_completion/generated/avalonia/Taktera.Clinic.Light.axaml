@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- GENERATED. Product clinic, theme light; resources only, not executable ControlTheme. -->
+<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Color x:Key="TknBrandAccentColor">#2368D1</Color>
+  <SolidColorBrush x:Key="TknBrandAccentBrush" Color="#2368D1"/>
+  <Color x:Key="TknBrandAccentHoverColor">#205FBE</Color>
+  <SolidColorBrush x:Key="TknBrandAccentHoverBrush" Color="#205FBE"/>
+  <Color x:Key="TknBrandAccentPressedColor">#1D56AD</Color>
+  <SolidColorBrush x:Key="TknBrandAccentPressedBrush" Color="#1D56AD"/>
+  <Color x:Key="TknBrandAccentTextColor">#2368D1</Color>
+  <SolidColorBrush x:Key="TknBrandAccentTextBrush" Color="#2368D1"/>
+  <Color x:Key="TknBrandAccentTextCanvasColor">#2368D1</Color>
+  <SolidColorBrush x:Key="TknBrandAccentTextCanvasBrush" Color="#2368D1"/>
+  <Color x:Key="TknBrandFocusRingColor">#2368D1</Color>
+  <SolidColorBrush x:Key="TknBrandFocusRingBrush" Color="#2368D1"/>
+  <Color x:Key="TknBrandOnAccentColor">#FFFFFF</Color>
+  <SolidColorBrush x:Key="TknBrandOnAccentBrush" Color="#FFFFFF"/>
+  <Color x:Key="TknFoundationBorderColor">#D9DCDF</Color>
+  <SolidColorBrush x:Key="TknFoundationBorderBrush" Color="#D9DCDF"/>
+  <Color x:Key="TknFoundationCanvasColor">#F4F3EF</Color>
+  <SolidColorBrush x:Key="TknFoundationCanvasBrush" Color="#F4F3EF"/>
+  <Color x:Key="TknFoundationControlBorderColor">#858A93</Color>
+  <SolidColorBrush x:Key="TknFoundationControlBorderBrush" Color="#858A93"/>
+  <Color x:Key="TknFoundationDisabledBgColor">#EAEBED</Color>
+  <SolidColorBrush x:Key="TknFoundationDisabledBgBrush" Color="#EAEBED"/>
+  <Color x:Key="TknFoundationDisabledTextColor">#62676E</Color>
+  <SolidColorBrush x:Key="TknFoundationDisabledTextBrush" Color="#62676E"/>
+  <Color x:Key="TknFoundationMarkColor">#000000</Color>
+  <SolidColorBrush x:Key="TknFoundationMarkBrush" Color="#000000"/>
+  <Color x:Key="TknFoundationMutedColor">#62676E</Color>
+  <SolidColorBrush x:Key="TknFoundationMutedBrush" Color="#62676E"/>
+  <Color x:Key="TknFoundationSurfaceColor">#FFFFFF</Color>
+  <SolidColorBrush x:Key="TknFoundationSurfaceBrush" Color="#FFFFFF"/>
+  <Color x:Key="TknFoundationTextColor">#22262B</Color>
+  <SolidColorBrush x:Key="TknFoundationTextBrush" Color="#22262B"/>
+  <Color x:Key="TknSemanticErrorBackgroundColor">#FFF0F2</Color>
+  <SolidColorBrush x:Key="TknSemanticErrorBackgroundBrush" Color="#FFF0F2"/>
+  <Color x:Key="TknSemanticErrorForegroundColor">#AD2432</Color>
+  <SolidColorBrush x:Key="TknSemanticErrorForegroundBrush" Color="#AD2432"/>
+  <Color x:Key="TknSemanticInfoBackgroundColor">#E9F1FF</Color>
+  <SolidColorBrush x:Key="TknSemanticInfoBackgroundBrush" Color="#E9F1FF"/>
+  <Color x:Key="TknSemanticInfoForegroundColor">#164A9C</Color>
+  <SolidColorBrush x:Key="TknSemanticInfoForegroundBrush" Color="#164A9C"/>
+  <Color x:Key="TknSemanticSuccessBackgroundColor">#E8F5EC</Color>
+  <SolidColorBrush x:Key="TknSemanticSuccessBackgroundBrush" Color="#E8F5EC"/>
+  <Color x:Key="TknSemanticSuccessForegroundColor">#126A45</Color>
+  <SolidColorBrush x:Key="TknSemanticSuccessForegroundBrush" Color="#126A45"/>
+  <Color x:Key="TknSemanticWarningBackgroundColor">#FFF3D6</Color>
+  <SolidColorBrush x:Key="TknSemanticWarningBackgroundBrush" Color="#FFF3D6"/>
+  <Color x:Key="TknSemanticWarningForegroundColor">#8A5300</Color>
+  <SolidColorBrush x:Key="TknSemanticWarningForegroundBrush" Color="#8A5300"/>
+  <x:Double x:Key="TknSpacingS0">0</x:Double>
+  <x:Double x:Key="TknSpacingS1">4</x:Double>
+  <x:Double x:Key="TknSpacingS10">40</x:Double>
+  <x:Double x:Key="TknSpacingS12">48</x:Double>
+  <x:Double x:Key="TknSpacingS16">64</x:Double>
+  <x:Double x:Key="TknSpacingS2">8</x:Double>
+  <x:Double x:Key="TknSpacingS20">80</x:Double>
+  <x:Double x:Key="TknSpacingS24">96</x:Double>
+  <x:Double x:Key="TknSpacingS3">12</x:Double>
+  <x:Double x:Key="TknSpacingS4">16</x:Double>
+  <x:Double x:Key="TknSpacingS5">20</x:Double>
+  <x:Double x:Key="TknSpacingS6">24</x:Double>
+  <x:Double x:Key="TknSpacingS8">32</x:Double>
+  <x:Double x:Key="TknTypographyBody">14</x:Double>
+  <x:Double x:Key="TknTypographyBodylarge">16</x:Double>
+  <x:Double x:Key="TknTypographyCaption">12</x:Double>
+  <x:Double x:Key="TknTypographyDisplay">32</x:Double>
+  <x:Double x:Key="TknTypographyHeading">24</x:Double>
+  <x:Double x:Key="TknTypographyHeadingsmall">18</x:Double>
+  <x:Double x:Key="TknRadiiLg">12</x:Double>
+  <x:Double x:Key="TknRadiiMd">8</x:Double>
+  <x:Double x:Key="TknRadiiSm">6</x:Double>
+  <x:Double x:Key="TknRadiiXl">16</x:Double>
+  <x:Double x:Key="TknRadiiXs">4</x:Double>
+  <x:Double x:Key="TknComfortableRowHeight">44</x:Double>
+  <x:Double x:Key="TknComfortableControlHeight">40</x:Double>
+  <x:Double x:Key="TknCompactRowHeight">36</x:Double>
+  <x:Double x:Key="TknCompactControlHeight">32</x:Double>
+</ResourceDictionary>

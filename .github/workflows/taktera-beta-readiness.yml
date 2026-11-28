@@ -1,0 +1,748 @@
+name: Taktera Design System — Beta gates
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  workflow_call:
+permissions:
+  contents: read
+concurrency:
+  group: taktera-beta-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  static:
+    name: Static checks and brand freeze
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - run: python 27_beta_readiness_3/qa/check_sources.py
+      - run: python 28_engineering/qa/check_hardening.py
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: '.node-version'
+          package-manager-cache: false
+      - run: node --version
+      - run: node 25_internal_completion/src/test_formatters.mjs
+      - run: python 28_engineering/qa/check_board.py
+      - run: python 30_distribution/qa/check_portal.py
+      - run: python 30_distribution/qa/check_supply_chain.py
+      - run: python 30_distribution/qa/test_supply_chain.py
+      - run: python 30_distribution/qa/test_release_dossier.py
+      - run: python 30_distribution/qa/test_br8_native_evidence.py
+      - run: python 30_distribution/qa/test_br8_matrix.py
+      - run: python 30_distribution/qa/test_br9_manual.py
+      - run: node 30_distribution/acceptance/transport/test-synthetic-transport.mjs
+      - name: Protect approved resources against BR3 baseline
+        run: git diff --exit-code 4621646e21d987b86d8c9c21662e04c94a0b4d0b HEAD -- 01_brandbook 02_logos 03_icons 04_tokens 05_typography 06_templates 14_brand_extensions 25_internal_completion/src/tokens.canonical.json
+  react:
+    name: React typecheck / build / SSR smoke
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: '.node-version'
+          package-manager-cache: false
+      - run: node --version
+      - run: npm ci --no-audit --no-fund
+        working-directory: 17_packages/react
+      - run: npm run verify
+        working-directory: 17_packages/react
+      - run: npx --no-install tsx --test qa/advanced-grid.test.ts qa/integration-core.test.ts qa/scheduler.test.ts qa/scheduler-advanced.test.ts qa/crm-core.test.ts qa/analytics-core.test.ts
+        working-directory: 17_packages/react
+  avalonia:
+    name: Avalonia Release compilation
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
+        with:
+          dotnet-version: '10.0.404'
+      - run: dotnet restore 17_packages/avalonia/sample/TakteraUiAvalonia.Sample.csproj
+      - run: dotnet build 17_packages/avalonia/sample/TakteraUiAvalonia.Sample.csproj --configuration Release --no-restore -warnaserror
+  security:
+    name: Dependency audit
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: '.node-version'
+          package-manager-cache: false
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
+        with:
+          dotnet-version: '10.0.404'
+      - name: npm audit (high/critical gate)
+        run: npm audit --audit-level=high --json > ../../npm-audit.json
+        working-directory: 17_packages/react
+      - name: NuGet audit (direct and transitive)
+        if: ${{ !cancelled() }}
+        run: dotnet restore 17_packages/avalonia/sample/TakteraUiAvalonia.Sample.csproj -p:NuGetAudit=true -p:NuGetAuditMode=all -warnaserror:NU1900,NU1903,NU1904,NU1905
+      - name: NuGet vulnerability report
+        if: ${{ !cancelled() }}
+        run: dotnet list 17_packages/avalonia/sample/TakteraUiAvalonia.Sample.csproj package --vulnerable --include-transitive --format json > nuget-audit.json
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: ${{ always() }}
+        with:
+          name: dependency-audit
+          path: |
+            npm-audit.json
+            nuget-audit.json
+          if-no-files-found: error
+  browser:
+    name: Browser and axe QA
+    strategy:
+      fail-fast: false
+      matrix:
+        engine: [chromium, firefox, webkit]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: '.node-version'
+          package-manager-cache: false
+      - run: node --version
+      - run: npm ci --no-audit --no-fund
+        working-directory: 17_packages/react
+      - run: npx playwright install --with-deps ${{ matrix.engine }}
+        working-directory: 17_packages/react
+      - run: npm run qa:browser -- ${{ matrix.engine }}
+        working-directory: 17_packages/react
+      - name: React hydration and interaction
+        if: ${{ !cancelled() }}
+        run: npx --no-install tsx qa/react-browser.ts ${{ matrix.engine }}
+        working-directory: 17_packages/react
+      - name: Resource Scheduler hydration and interaction
+        if: ${{ !cancelled() }}
+        run: npx --no-install tsx qa/scheduler-browser.ts ${{ matrix.engine }}
+        working-directory: 17_packages/react
+      - name: CRM workspace hydration and interaction
+        if: ${{ !cancelled() }}
+        run: npx --no-install tsx qa/crm-browser.ts ${{ matrix.engine }}
+        working-directory: 17_packages/react
+      - name: Project Board persistence and snapshot QA
+        if: ${{ !cancelled() }}
+        run: node qa/board-browser.mjs ${{ matrix.engine }}
+        working-directory: 17_packages/react
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: ${{ always() }}
+        with:
+          name: browser-${{ matrix.engine }}
+          path: |
+            28_engineering/qa/results/${{ matrix.engine }}
+            28_engineering/qa/results/react-${{ matrix.engine }}
+            28_engineering/qa/results/board-${{ matrix.engine }}
+            28_engineering/qa/results/scheduler-${{ matrix.engine }}
+            28_engineering/qa/results/crm-${{ matrix.engine }}
+          if-no-files-found: warn
+  headless:
+    name: Avalonia headless XUnit
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
+        with:
+          dotnet-version: '10.0.404'
+      - run: dotnet restore 17_packages/avalonia/tests/Taktera.Headless.Tests.csproj -p:NuGetAudit=true -p:NuGetAuditMode=all -warnaserror:NU1900,NU1903,NU1904,NU1905
+      - run: dotnet test 17_packages/avalonia/tests/Taktera.Headless.Tests.csproj -c Release --no-restore --logger "trx;LogFileName=headless.trx" --results-directory headless-results
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: ${{ always() }}
+        with:
+          name: headless-${{ matrix.os }}
+          path: headless-results
+          if-no-files-found: warn
+  board-sync:
+    name: Project Board GitHub issue snapshot
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      issues: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - name: Read issue states (no write permission)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api --paginate --slurp 'repos/${{ github.repository }}/issues?state=all&per_page=100' > issues-api.json
+          python 28_engineering/qa/sync_issues.py issues-api.json github-issues-snapshot.json
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: github-issues-snapshot
+          path: github-issues-snapshot.json
+          if-no-files-found: error
+
+  npm-consumer:
+    name: npm packaged clean consumer
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: '.node-version'
+          package-manager-cache: false
+      - run: npm ci --no-audit --no-fund
+        working-directory: 17_packages/react
+      - run: npm run verify
+        working-directory: 17_packages/react
+      - run: npx playwright install --with-deps chromium
+        working-directory: 17_packages/react
+      - run: python 30_distribution/qa/verify_api.py
+      - run: node 30_distribution/qa/verify_npm_consumer.mjs
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: ${{ always() }}
+        with:
+          name: npm-consumer-evidence
+          path: 30_distribution/qa/results/npm
+          if-no-files-found: warn
+
+  nuget-consumer:
+    name: NuGet packaged clean consumer
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
+        with:
+          dotnet-version: '10.0.404'
+      - run: python 30_distribution/qa/verify_nuget_consumer.py
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: ${{ always() }}
+        with:
+          name: nuget-consumer-${{ matrix.os }}
+          path: 30_distribution/qa/results/nuget
+          if-no-files-found: warn
+
+  reproducible:
+    name: BR7 exact package reproducibility
+    strategy:
+      fail-fast: false
+      matrix:
+        replica: [primary, secondary]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '26.13.1'
+          package-manager-cache: false
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
+        with:
+          dotnet-version: '10.0.404'
+      - run: python 30_distribution/qa/verify_reproducible.py
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: ${{ always() }}
+        with:
+          name: reproducibility-evidence-${{ matrix.replica }}
+          path: 30_distribution/qa/results/reproducible
+          if-no-files-found: error
+
+  canonical:
+    name: BR7 independent runner package agreement
+    needs: [reproducible]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: reproducibility-evidence-primary
+          path: repro-primary
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: reproducibility-evidence-secondary
+          path: repro-secondary
+      - run: python 30_distribution/qa/verify_canonical.py repro-primary repro-secondary canonical-packages
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: canonical-packages
+          path: canonical-packages
+          if-no-files-found: error
+
+  canonical-nuget-consumer:
+    name: BR7 canonical NuGet clean consumer
+    needs: [canonical]
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
+        with:
+          dotnet-version: '10.0.404'
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: canonical-packages
+          path: canonical-input
+      - run: python 30_distribution/qa/verify_nuget_consumer.py
+        env:
+          TAKTERA_CANONICAL_INPUT: canonical-input
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: ${{ always() }}
+        with:
+          name: canonical-nuget-consumer-${{ matrix.os }}
+          path: 30_distribution/qa/results/nuget
+          if-no-files-found: warn
+
+  release-evidence:
+    name: Candidate release evidence (no publish)
+    needs: [static, react, avalonia, security, browser, headless, board-sync, npm-consumer, nuget-consumer, reproducible, canonical, canonical-nuget-consumer]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
+        with:
+          dotnet-version: '10.0.404'
+      - name: Download and verify exact validator wheels
+        run: python 30_distribution/qa/prepare_validator_wheels.py validator-wheelhouse validator-lock-evidence
+      - name: Install only verified wheels in isolated environment
+        run: |
+          python -m venv validator-venv
+          validator-venv/bin/python -m pip --isolated install --disable-pip-version-check --no-index --find-links validator-wheelhouse --require-hashes -r validator-lock-evidence/requirements.sha256.txt
+          validator-venv/bin/python -m pip check
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: validator-wheel-lock-evidence
+          path: validator-lock-evidence
+          if-no-files-found: error
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: npm-consumer-evidence
+          path: candidate-input/npm
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: canonical-nuget-consumer-windows-latest
+          path: candidate-input/nuget-windows
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: canonical-nuget-consumer-macos-latest
+          path: candidate-input/nuget-macos
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: dependency-audit
+          path: candidate-input/audit
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: canonical-packages
+          path: candidate-input/canonical
+      - name: NuGet license integrity regression tests
+        run: python 30_distribution/qa/test_dependency_licenses.py
+      - run: validator-venv/bin/python 30_distribution/qa/assemble_candidate.py candidate-input candidate-release
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: taktera-candidate-release-evidence
+          path: candidate-release
+          if-no-files-found: error
+      - name: Upload failed release diagnostics (not a candidate)
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: failed-release-diagnostics
+          path: |
+            candidate-release/sbom
+            candidate-release/licenses
+          if-no-files-found: warn
+
+  candidate-verification:
+    name: BR7 independent candidate download verification
+    needs: [release-evidence, canonical]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: taktera-candidate-release-evidence
+          path: candidate-download
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: canonical-packages
+          path: canonical-download
+      - run: python 30_distribution/qa/verify_candidate_download.py candidate-download canonical-download verification/candidate-verification.json
+      - run: python 30_distribution/qa/prepare_attestation_subjects.py candidate-download canonical-download verification
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: candidate-independent-verification
+          path: verification
+          if-no-files-found: error
+
+  registry-fixture:
+    name: BR7 private registry protocol fixture (no publish)
+    needs: [candidate-verification, canonical]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: '.node-version'
+          package-manager-cache: false
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
+        with:
+          dotnet-version: '10.0.404'
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: taktera-candidate-release-evidence
+          path: candidate-download
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: canonical-packages
+          path: canonical-download
+      - run: python 30_distribution/qa/verify_registry_fixture.py candidate-download canonical-download registry-verification
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: registry-fixture-verification
+          path: registry-verification
+          if-no-files-found: error
+
+  release-preflight:
+    name: BR7 fail-closed release plan (no publish)
+    needs: [static, release-evidence, candidate-verification, registry-fixture, canonical]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: taktera-candidate-release-evidence
+          path: candidate-download
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: canonical-packages
+          path: canonical-download
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: candidate-independent-verification
+          path: verification
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: registry-fixture-verification
+          path: registry-verification
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: validator-wheel-lock-evidence
+          path: validator-lock-evidence
+      - run: python 30_distribution/qa/release_preflight.py candidate-download canonical-download verification registry-verification validator-lock-evidence release-plan
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: release-preflight-evidence
+          path: release-plan
+          if-no-files-found: error
+
+  rollback-rehearsal:
+    name: BR7 historical candidate recovery rehearsal (no publish)
+    needs: [release-preflight, canonical]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: '.node-version'
+          package-manager-cache: false
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
+        with:
+          dotnet-version: '10.0.404'
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: taktera-candidate-release-evidence
+          path: candidate-download
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: canonical-packages
+          path: canonical-download
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: release-preflight-evidence
+          path: release-plan
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          artifact-ids: '15243307004'
+          run-id: '46094888319'
+          repository: disxlab/Taktera-Design-System
+          github-token: ${{ github.token }}
+          path: historical-candidate
+          merge-multiple: true
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          artifact-ids: '15242641664'
+          run-id: '46094888319'
+          repository: disxlab/Taktera-Design-System
+          github-token: ${{ github.token }}
+          path: historical-canonical
+          merge-multiple: true
+      - run: python 30_distribution/qa/verify_rollback_rehearsal.py candidate-download canonical-download historical-candidate historical-canonical release-plan rollback-evidence
+      - run: python 30_distribution/qa/verify_version_policy.py candidate-download canonical-download historical-candidate historical-canonical release-plan version-evidence
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: rollback-rehearsal-evidence
+          path: rollback-evidence
+          if-no-files-found: error
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: version-policy-evidence
+          path: version-evidence
+          if-no-files-found: error
+
+  release-documentation:
+    name: BR7 run-bound release documentation (no publish)
+    needs: [rollback-rehearsal, release-preflight, canonical]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: taktera-candidate-release-evidence
+          path: candidate-download
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: canonical-packages
+          path: canonical-download
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: release-preflight-evidence
+          path: release-plan
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: rollback-rehearsal-evidence
+          path: rollback-evidence
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: version-policy-evidence
+          path: version-evidence
+      - run: python 30_distribution/qa/generate_release_dossier.py candidate-download canonical-download release-plan rollback-evidence version-evidence release-documentation
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: release-documentation-evidence
+          path: release-documentation
+          if-no-files-found: error
+
+  br8-canonical-browser:
+    name: BR8 canonical SDK browser acceptance (${{ matrix.engine }})
+    needs: [release-documentation, canonical, release-evidence]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        engine: [chromium, firefox, webkit]
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: '.node-version'
+          package-manager-cache: false
+      - run: npm ci --no-audit --no-fund
+        working-directory: 17_packages/react
+      - run: npx --no-install playwright install --with-deps ${{ matrix.engine }}
+        working-directory: 17_packages/react
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: taktera-candidate-release-evidence
+          path: candidate-download
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: canonical-packages
+          path: canonical-download
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: release-documentation-evidence
+          path: release-documentation
+      - run: python 30_distribution/qa/prepare_br8_consumer.py candidate-download canonical-download release-documentation "${RUNNER_TEMP}/taktera-br8"
+      - run: node 30_distribution/qa/verify_br8_browser.mjs ${{ matrix.engine }} "${RUNNER_TEMP}/taktera-br8" br8-evidence
+        env:
+          DEBUG: pw:browser
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: always()
+        with:
+          name: br8-canonical-browser-${{ matrix.engine }}
+          path: br8-evidence
+          if-no-files-found: error
+
+  br8-canonical-native:
+    name: BR8 canonical Avalonia headless acceptance (${{ matrix.os }})
+    needs: [release-documentation, canonical, release-evidence, br8-canonical-browser]
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
+        with:
+          dotnet-version: '10.0.404'
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: taktera-candidate-release-evidence
+          path: candidate-download
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: canonical-packages
+          path: canonical-download
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: release-documentation-evidence
+          path: release-documentation
+      - run: python 30_distribution/qa/verify_br8_native.py candidate-download canonical-download release-documentation br8-native-evidence
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: always()
+        with:
+          name: br8-canonical-native-${{ matrix.os }}
+          path: |
+            br8-native-evidence
+            30_distribution/qa/results/nuget
+          if-no-files-found: error
+
+  br8-acceptance-summary:
+    name: BR8 combined canonical acceptance evidence
+    needs: [release-documentation, canonical, release-evidence, br8-canonical-browser, br8-canonical-native]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: taktera-candidate-release-evidence
+          path: candidate-download
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: canonical-packages
+          path: canonical-download
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: release-documentation-evidence
+          path: release-documentation
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          pattern: br8-canonical-*
+          path: br8-download
+          merge-multiple: false
+      - run: python 30_distribution/qa/verify_br8_matrix.py candidate-download canonical-download release-documentation br8-download br8-summary
+      - run: python 30_distribution/qa/prepare_br9_manual.py br8-summary/acceptance-summary.json br8-summary/manual-acceptance.template.json
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: br8-acceptance-summary
+          path: br8-summary
+          if-no-files-found: error

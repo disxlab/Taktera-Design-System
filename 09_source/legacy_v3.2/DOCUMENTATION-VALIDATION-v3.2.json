@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-18",
+  "version": "3.2",
+  "chapters": 9,
+  "localLinks": "all targets exist",
+  "anchors": "all targets exist",
+  "images": "all loaded",
+  "font": "local Inter loaded",
+  "browserErrors": [],
+  "desktop": {
+    "viewport": 1440,
+    "scrollWidth": 1440
+  },
+  "mobile": {
+    "viewport": 390,
+    "scrollWidth": 390
+  },
+  "contrast": "36 explicit color pairs calculated in 10_documentation/COLOR-CONTRAST.json; Spa and Fitness paper limitations documented",
+  "scope": "documentation and package resources, not application validation"
+}

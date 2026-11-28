@@ -1,0 +1,1104 @@
+{
+  "version": "4.0-alpha.3",
+  "checks": 274,
+  "passed": 274,
+  "failed": 0,
+  "details": [
+    {
+      "name": "brand original: 01_brandbook/README.md",
+      "ok": true
+    },
+    {
+      "name": "brand original: 01_brandbook/Taktera-brandbook-v3.2.pdf",
+      "ok": true
+    },
+    {
+      "name": "brand original: 01_brandbook/app-icon-sizes-dark.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 01_brandbook/app-icon-sizes.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 01_brandbook/product-family-ru.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 01_brandbook/product-family.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/master/png/mark-dark.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/master/png/mark-light.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/master/png/mark-mono-dark.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/master/png/mark-mono-light.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/master/png/taktera-dark.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/master/png/taktera-light.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/master/svg/mark-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/master/svg/mark-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/master/svg/mark-mono-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/master/svg/mark-mono-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/master/svg/taktera-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/master/svg/taktera-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/png/beauty-dark.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/png/beauty-light.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/png/beauty-mark-dark.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/png/beauty-mark-light.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/png/clinic-dark.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/png/clinic-light.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/png/clinic-mark-dark.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/png/clinic-mark-light.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/png/fitness-dark.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/png/fitness-light.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/png/fitness-mark-dark.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/png/fitness-mark-light.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/png/platform-dark.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/png/platform-light.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/png/platform-mark-dark.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/png/platform-mark-light.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/png/spa-dark.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/png/spa-light.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/png/spa-mark-dark.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/png/spa-mark-light.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/png/travel-dark.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/png/travel-light.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/png/travel-mark-dark.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/png/travel-mark-light.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/ru/README.md",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/ru/png/beauty-ru-dark.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/ru/png/beauty-ru-light.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/ru/png/clinic-ru-dark.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/ru/png/clinic-ru-light.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/ru/png/fitness-ru-dark.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/ru/png/fitness-ru-light.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/ru/png/platform-ru-dark.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/ru/png/platform-ru-light.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/ru/png/spa-ru-dark.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/ru/png/spa-ru-light.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/ru/png/travel-ru-dark.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/ru/png/travel-ru-light.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/ru/svg/beauty-ru-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/ru/svg/beauty-ru-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/ru/svg/clinic-ru-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/ru/svg/clinic-ru-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/ru/svg/fitness-ru-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/ru/svg/fitness-ru-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/ru/svg/platform-ru-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/ru/svg/platform-ru-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/ru/svg/spa-ru-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/ru/svg/spa-ru-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/ru/svg/travel-ru-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/ru/svg/travel-ru-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/svg/beauty-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/svg/beauty-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/svg/beauty-mark-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/svg/beauty-mark-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/svg/clinic-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/svg/clinic-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/svg/clinic-mark-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/svg/clinic-mark-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/svg/fitness-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/svg/fitness-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/svg/fitness-mark-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/svg/fitness-mark-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/svg/platform-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/svg/platform-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/svg/platform-mark-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/svg/platform-mark-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/svg/spa-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/svg/spa-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/svg/spa-mark-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/svg/spa-mark-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/svg/travel-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/svg/travel-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/svg/travel-mark-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 02_logos/products/svg/travel-mark-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/README.md",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/beauty-dark.ico",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/beauty-light.ico",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/clinic-dark.ico",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/clinic-light.ico",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/fitness-dark.ico",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/fitness-light.ico",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/micro/svg/beauty-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/micro/svg/beauty-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/micro/svg/clinic-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/micro/svg/clinic-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/micro/svg/fitness-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/micro/svg/fitness-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/micro/svg/platform-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/micro/svg/platform-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/micro/svg/spa-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/micro/svg/spa-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/micro/svg/travel-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/micro/svg/travel-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/platform-dark.ico",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/platform-light.ico",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/beauty-dark-1024.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/beauty-dark-128.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/beauty-dark-16.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/beauty-dark-24.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/beauty-dark-256.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/beauty-dark-32.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/beauty-dark-48.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/beauty-dark-512.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/beauty-dark-64.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/beauty-light-1024.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/beauty-light-128.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/beauty-light-16.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/beauty-light-24.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/beauty-light-256.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/beauty-light-32.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/beauty-light-48.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/beauty-light-512.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/beauty-light-64.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/clinic-dark-1024.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/clinic-dark-128.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/clinic-dark-16.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/clinic-dark-24.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/clinic-dark-256.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/clinic-dark-32.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/clinic-dark-48.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/clinic-dark-512.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/clinic-dark-64.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/clinic-light-1024.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/clinic-light-128.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/clinic-light-16.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/clinic-light-24.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/clinic-light-256.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/clinic-light-32.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/clinic-light-48.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/clinic-light-512.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/clinic-light-64.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/fitness-dark-1024.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/fitness-dark-128.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/fitness-dark-16.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/fitness-dark-24.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/fitness-dark-256.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/fitness-dark-32.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/fitness-dark-48.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/fitness-dark-512.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/fitness-dark-64.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/fitness-light-1024.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/fitness-light-128.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/fitness-light-16.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/fitness-light-24.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/fitness-light-256.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/fitness-light-32.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/fitness-light-48.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/fitness-light-512.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/fitness-light-64.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/platform-dark-1024.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/platform-dark-128.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/platform-dark-16.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/platform-dark-24.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/platform-dark-256.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/platform-dark-32.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/platform-dark-48.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/platform-dark-512.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/platform-dark-64.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/platform-light-1024.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/platform-light-128.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/platform-light-16.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/platform-light-24.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/platform-light-256.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/platform-light-32.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/platform-light-48.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/platform-light-512.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/platform-light-64.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/spa-dark-1024.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/spa-dark-128.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/spa-dark-16.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/spa-dark-24.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/spa-dark-256.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/spa-dark-32.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/spa-dark-48.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/spa-dark-512.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/spa-dark-64.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/spa-light-1024.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/spa-light-128.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/spa-light-16.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/spa-light-24.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/spa-light-256.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/spa-light-32.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/spa-light-48.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/spa-light-512.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/spa-light-64.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/travel-dark-1024.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/travel-dark-128.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/travel-dark-16.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/travel-dark-24.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/travel-dark-256.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/travel-dark-32.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/travel-dark-48.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/travel-dark-512.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/travel-dark-64.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/travel-light-1024.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/travel-light-128.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/travel-light-16.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/travel-light-24.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/travel-light-256.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/travel-light-32.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/travel-light-48.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/travel-light-512.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/png/travel-light-64.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/spa-dark.ico",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/spa-light.ico",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/svg/beauty-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/svg/beauty-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/svg/clinic-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/svg/clinic-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/svg/fitness-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/svg/fitness-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/svg/platform-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/svg/platform-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/svg/spa-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/svg/spa-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/svg/travel-dark.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/svg/travel-light.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/travel-dark.ico",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/app/travel-light.ico",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/ui/README.md",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/ui/lucide-icon-map.json",
+      "ok": true
+    },
+    {
+      "name": "brand original: 03_icons/ui/lucide-registry.tsx",
+      "ok": true
+    },
+    {
+      "name": "brand original: 06_templates/business-card-front.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 06_templates/business-card-front.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 06_templates/email-header.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 06_templates/email-header.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 06_templates/opengraph-1200x630.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 06_templates/opengraph-1200x630.svg",
+      "ok": true
+    },
+    {
+      "name": "brand original: 08_reference/README.md",
+      "ok": true
+    },
+    {
+      "name": "brand original: 08_reference/final-selected-concept.png",
+      "ok": true
+    },
+    {
+      "name": "brand original: 08_reference/previous-v2.2-source.txt",
+      "ok": true
+    },
+    {
+      "name": "web bundled css synchronized",
+      "ok": true
+    },
+    {
+      "name": "react css equals web core css",
+      "ok": true
+    },
+    {
+      "name": "valid Avalonia XAML XML: avalonia/TkControls.axaml",
+      "ok": true
+    },
+    {
+      "name": "valid Avalonia XAML XML: avalonia/TkFieldStyles.axaml",
+      "ok": true
+    },
+    {
+      "name": "valid Avalonia XAML XML: avalonia/sample/App.axaml",
+      "ok": true
+    },
+    {
+      "name": "valid Avalonia XAML XML: avalonia/sample/Assets/Taktera.Clinic.Light.axaml",
+      "ok": true
+    },
+    {
+      "name": "valid Avalonia XAML XML: avalonia/sample/Assets/TkControls.axaml",
+      "ok": true
+    },
+    {
+      "name": "valid Avalonia XAML XML: avalonia/sample/Assets/TkFieldStyles.axaml",
+      "ok": true
+    },
+    {
+      "name": "valid Avalonia XAML XML: avalonia/sample/MainWindow.axaml",
+      "ok": true
+    },
+    {
+      "name": "all ControlTheme colors in Taktera.Beauty.Dark.axaml",
+      "ok": true
+    },
+    {
+      "name": "all ControlTheme colors in Taktera.Beauty.Light.axaml",
+      "ok": true
+    },
+    {
+      "name": "all ControlTheme colors in Taktera.Clinic.Dark.axaml",
+      "ok": true
+    },
+    {
+      "name": "all ControlTheme colors in Taktera.Clinic.Light.axaml",
+      "ok": true
+    },
+    {
+      "name": "all ControlTheme colors in Taktera.Fitness.Dark.axaml",
+      "ok": true
+    },
+    {
+      "name": "all ControlTheme colors in Taktera.Fitness.Light.axaml",
+      "ok": true
+    },
+    {
+      "name": "all ControlTheme colors in Taktera.Platform.Dark.axaml",
+      "ok": true
+    },
+    {
+      "name": "all ControlTheme colors in Taktera.Platform.Light.axaml",
+      "ok": true
+    },
+    {
+      "name": "all ControlTheme colors in Taktera.Spa.Dark.axaml",
+      "ok": true
+    },
+    {
+      "name": "all ControlTheme colors in Taktera.Spa.Light.axaml",
+      "ok": true
+    },
+    {
+      "name": "all ControlTheme colors in Taktera.Travel.Dark.axaml",
+      "ok": true
+    },
+    {
+      "name": "all ControlTheme colors in Taktera.Travel.Light.axaml",
+      "ok": true
+    },
+    {
+      "name": "nonempty source: index.html",
+      "ok": true
+    },
+    {
+      "name": "nonempty source: demo.js",
+      "ok": true
+    },
+    {
+      "name": "nonempty source: taktera-ui.js",
+      "ok": true
+    },
+    {
+      "name": "nonempty source: package.json",
+      "ok": true
+    },
+    {
+      "name": "core avoids innerHTML injection",
+      "ok": true
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "browser": "Chromium",
+  "viewport": [
+    1280,
+    840
+  ],
+  "deviceScaleFactor": 1,
+  "configs": [
+    {
+      "id": "clinic-light-comfortable-ru",
+      "lang": "ru",
+      "theme": "light",
+      "product": "clinic",
+      "density": "comfortable",
+      "row": "44px",
+      "overflow": false
+    }
+  ],
+  "captureCount": 1
+}

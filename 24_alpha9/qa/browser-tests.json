@@ -1,0 +1,79 @@
+{
+  "passed": 18,
+  "total": 18,
+  "results": [
+    [
+      "graphics initial",
+      true
+    ],
+    [
+      "product platform",
+      true
+    ],
+    [
+      "product clinic",
+      true
+    ],
+    [
+      "product beauty",
+      true
+    ],
+    [
+      "product spa",
+      true
+    ],
+    [
+      "product fitness",
+      true
+    ],
+    [
+      "product travel",
+      true
+    ],
+    [
+      "theme dark",
+      true
+    ],
+    [
+      "theme light",
+      true
+    ],
+    [
+      "icons",
+      true
+    ],
+    [
+      "templates",
+      true
+    ],
+    [
+      "writing",
+      true
+    ],
+    [
+      "governance",
+      true
+    ],
+    [
+      "graphics",
+      true
+    ],
+    [
+      "en",
+      true
+    ],
+    [
+      "reduced motion",
+      true
+    ],
+    [
+      "keyboard tab",
+      true
+    ],
+    [
+      "mobile overflow",
+      true
+    ]
+  ],
+  "pageErrors": []
+}

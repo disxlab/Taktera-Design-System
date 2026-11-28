@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Taktera UI Avalonia v4.0 alpha.2: named opt-in ControlThemes, requires compiled smoke test on Windows/macOS. -->
+<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ControlTheme x:Key="TkPrimaryButton" TargetType="Button">
+    <Setter Property="Background" Value="{DynamicResource TkAccentBrush}"/>
+    <Setter Property="Foreground" Value="{DynamicResource TkOnAccentBrush}"/>
+    <Setter Property="BorderBrush" Value="{DynamicResource TkAccentBrush}"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="Padding" Value="16,9"/>
+    <Setter Property="MinHeight" Value="40"/>
+    <Setter Property="FontWeight" Value="SemiBold"/>
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="8">
+          <ContentPresenter Content="{TemplateBinding Content}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Margin="{TemplateBinding Padding}" />
+        </Border>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:pointerover"><Setter Property="Background" Value="{DynamicResource TkAccentHoverBrush}"/></Style>
+    <Style Selector="^:pressed"><Setter Property="Background" Value="{DynamicResource TkAccentPressedBrush}"/></Style>
+    <Style Selector="^:disabled"><Setter Property="Background" Value="{DynamicResource TkDisabledBgBrush}"/>
+      <Setter Property="Foreground" Value="{DynamicResource TkDisabledTextBrush}"/></Style>
+    <Style Selector="^:focus-visible"><Setter Property="BorderBrush" Value="{DynamicResource TkFocusRingBrush}"/>
+      <Setter Property="BorderThickness" Value="3"/></Style>
+  </ControlTheme>
+  <ControlTheme x:Key="TkSecondaryButton" TargetType="Button">
+    <Setter Property="Background" Value="{DynamicResource TkSurfaceBrush}"/>
+    <Setter Property="Foreground" Value="{DynamicResource TkTextBrush}"/>
+    <Setter Property="BorderBrush" Value="{DynamicResource TkControlBorderBrush}"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="Padding" Value="16,9"/>
+    <Setter Property="MinHeight" Value="40"/>
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="8">
+          <ContentPresenter Content="{TemplateBinding Content}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Margin="{TemplateBinding Padding}" />
+        </Border>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:pointerover"><Setter Property="Background" Value="{DynamicResource TkDisabledBgBrush}"/></Style>
+    <Style Selector="^:disabled"><Setter Property="Foreground" Value="{DynamicResource TkDisabledTextBrush}"/></Style>
+    <Style Selector="^:focus-visible"><Setter Property="BorderBrush" Value="{DynamicResource TkFocusRingBrush}"/>
+      <Setter Property="BorderThickness" Value="3"/></Style>
+  </ControlTheme>
+</ResourceDictionary>

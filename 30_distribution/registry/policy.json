@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "mode": "unconfigured",
+  "provider": null,
+  "ownerApproved": false,
+  "publicationEnabled": false,
+  "npm": {
+    "scope": "@taktera",
+    "registry": null,
+    "publicRegistry": "https://registry.npmjs.org/",
+    "packageIds": [
+      "@taktera/ui-core",
+      "@taktera/ui-react"
+    ],
+    "auth": "registry-path scoped environment token; read and write credentials separate",
+    "retainPrivateFlag": true
+  },
+  "nuget": {
+    "registry": null,
+    "publicRegistry": "https://api.nuget.org/v3/index.json",
+    "packageIds": [
+      "Taktera.UI.Avalonia"
+    ],
+    "sourceName": "TakteraPrivate",
+    "sourceMapping": "exact private ID and explicit public dependency IDs",
+    "auth": "NuGetPackageSourceCredentials_TakteraPrivate environment variable"
+  },
+  "requirements": [
+    "Owner-approved private destination and verified access controls",
+    "HTTPS with valid certificates",
+    "Immutable package versions and no anonymous access",
+    "Signed provenance and license approval",
+    "Fresh authenticated package-only consumers and unauthorized denial on real provider",
+    "Separate least-privilege credentials; no PR secrets",
+    "No publishing until explicit release approval"
+  ]
+}
