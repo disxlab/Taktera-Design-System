@@ -34,6 +34,8 @@ class EvidenceTests(unittest.TestCase):
             ("violation",lambda r:r["axe"][0].update(violations=[{"id":"x"}])),
             ("missing check",lambda r:r["checks"].pop()),
             ("missing RU transport",lambda r:r["checks"].__setitem__(next(i for i,c in enumerate(r["checks"]) if " ru transport " in c["name"]),{"name":"unrelated","ok":True})),
+            ("extra space in transport name",lambda r:next(c for c in r["checks"] if " en transport locale" in c["name"]).update(name="beauty/dark en transport  locale")),
+            ("duplicate check",lambda r:r["checks"].__setitem__(0,copy.deepcopy(r["checks"][1]))),
             ("failed check",lambda r:r["checks"][0].update(ok=False)),
             ("errors",lambda r:r.update(errors=["crash"]))):
             with self.subTest(label=label):

@@ -34,7 +34,7 @@ assert.equal(externalNetwork('https://example.invalid/',probe),true);
 assert.equal(externalNetwork('http://127.0.0.1:43211/',probe),true);
 assert.equal(externalNetwork('wss://example.invalid/',probe),true);
 await mkdir(out,{recursive:true});
-function check(name,ok){report.checks.push({name,ok:Boolean(ok)});assert.ok(ok,name);}
+function check(name,ok){assert.equal(name,name.trim().replace(/\s+/g,' '),'Noncanonical check name: '+JSON.stringify(name));assert.ok(!report.checks.some(c=>c.name===name),'Duplicate check name: '+name);report.checks.push({name,ok:Boolean(ok)});assert.ok(ok,name);}
 function run(command,args){const p=spawnSync(command,args,{cwd:host,encoding:'utf8',maxBuffer:16*1024*1024,env:{...process.env,NPM_CONFIG_CACHE:join(host,'.npm-cache')}});if(p.error||p.status!==0)throw Error(command+' failed: '+String(p.error??'')+'\n'+p.stdout+'\n'+p.stderr);return p.stdout.trim();}
 let child,browser;
 async function start(){
@@ -115,10 +115,10 @@ async function localizedTransport(page,name){
    check(prefix+label,await status.getAttribute('data-status')===code&&await record.textContent()===expectedName&&await version.textContent()===expectedVersion);
   }
   await state('initial','idle',l.idle,'Synthetic Alice','1');
-  check(prefix+' locale',await region.getAttribute('lang')===locale&&await field.isVisible());
+  check(prefix+'locale',await region.getAttribute('lang')===locale&&await field.isVisible());
   await field.fill('');await button(l.save).click();
   await state('validation','validation',l.validation,'Synthetic Alice','1');
-  check(prefix+' accessible error',await field.getAttribute('aria-invalid')==='true'&&Boolean(await field.getAttribute('aria-describedby')));
+  check(prefix+'accessible error',await field.getAttribute('aria-invalid')==='true'&&Boolean(await field.getAttribute('aria-describedby')));
   await field.fill(l.newName);await button(l.fail).click();await button(l.save).click();
   await state('unavailable','unavailable',l.unavailable,'Synthetic Alice','1');
   await button(l.retry).click();await state('retry','applied',l.applied,l.newName,'2');
@@ -126,7 +126,7 @@ async function localizedTransport(page,name){
   await button(l.compete).click();await state('competing write','idle',l.idle,l.external,'3');
   await field.fill(l.finalName);await button(l.save).click();await state('conflict','conflict',l.conflict,l.external,'3');
   await button(l.reload).click();await state('reload current','idle',l.idle,l.external,'3');
-  check(prefix+' draft reloaded',await field.inputValue()===l.external);
+  check(prefix+'draft reloaded',await field.inputValue()===l.external);
   await field.fill(l.finalName);await button(l.save).click();await state('resolved save','applied',l.applied,l.finalName,'4');
  }
 }

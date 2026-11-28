@@ -38,7 +38,10 @@ def browser_report(record,engine,actual,dossier_sha,lock_sha):
     exact_matrix(record["axe"])
     require(all(r["page"]=="registry" and r["violations"]==[] and isinstance(r["incomplete"],list) for r in record["axe"]),"Failed/missing accessibility scan")
     checks=record["checks"]
-    require(len(checks)==len(EXPECTED_CHECKS) and {r["name"] for r in checks}==EXPECTED_CHECKS and all(r["ok"] is True for r in checks),"Missing, duplicate, failed or unexpected browser check")
+    names={r["name"] for r in checks}
+    require(len(checks)==len(names),"Duplicate browser check")
+    require(names==EXPECTED_CHECKS,"Browser check name mismatch; missing="+repr(sorted(EXPECTED_CHECKS-names))+"; unexpected="+repr(sorted(names-EXPECTED_CHECKS)))
+    require(all(r["ok"] is True for r in checks),"Failed browser check")
     return {"checks":len(checks),"scenarios":len(record["scenarios"]),"axeScans":len(record["axe"]),
             "violations":0,"incompleteFindings":sum(len(r["incomplete"]) for r in record["axe"])}
 
